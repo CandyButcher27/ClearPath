@@ -26,6 +26,7 @@ from structurer import (
     structure_category_metadata,
     structure_invoice,
     structure_packing_list,
+    structure_shipment_document_bundle,
 )
 
 # ---------------------------------------------------------------------------
@@ -123,25 +124,15 @@ def process_shipment():
             extracted_texts[name] = extract_text_from_pdf(path)
 
         # ------------------------------------------------------------------
-        # 4. Structure text → JSON via Gemini
+        # 4. Structure text → JSON and extract category metadata in one request
         # ------------------------------------------------------------------
-        logger.info("[%s] Step 2/4: Structuring extracted text via Gemini...", session_id)
-        bol_json = structure_bill_of_lading(extracted_texts["bill_of_lading"])
-        inv_json = structure_invoice(extracted_texts["invoice"])
-        pl_json = structure_packing_list(extracted_texts["packing_list"])
+        logger.info("[%s] Step 2/4: Structuring extracted text and category metadata...", session_id)
+        bol_json, inv_json, pl_json, category_meta = structure_shipment_document_bundle(extracted_texts)
 
         # ------------------------------------------------------------------
-        # 5. Detect category and extract category metadata
+        # 5. Assemble shipment & run normaliser
         # ------------------------------------------------------------------
-        logger.info("[%s] Step 3/4: Detecting category and extracting metadata...", session_id)
-        category = detect_category(inv_json)
-        combined_text = "\n\n---\n\n".join(extracted_texts.values())
-        category_meta = structure_category_metadata(combined_text, category)
-
-        # ------------------------------------------------------------------
-        # 6. Assemble shipment & run normaliser
-        # ------------------------------------------------------------------
-        logger.info("[%s] Step 4/4: Running normaliser...", session_id)
+        logger.info("[%s] Step 3/4: Running normaliser...", session_id)
         product_id = f"PRD-{session_id.upper()}"
         shipment = build_shipment(
             bol=bol_json,

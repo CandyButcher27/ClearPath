@@ -124,8 +124,8 @@ class ShipmentProcessor:
     # -----------------------------------------------------------------------
 
     def process(self):
-        weight = sum(i.get("weight_kg", 0) for i in self.pl.get("items", []))
-        pkgs   = sum(p.get("pkgs_count", 0) for p in self.bol.get("customer_order_info", []))
+        weight = sum(i.get("weight_kg", 0) for i in (self.pl.get("items") or []))
+        pkgs   = sum(p.get("pkgs_count", 0) for p in (self.bol.get("customer_order_info") or []))
         ship_to = self.bol.get("ship_to", {})
 
         flags = {
@@ -213,12 +213,12 @@ class ShipmentProcessor:
     def check_container(self):
         inv_conts = {
             li.get("container_number")
-            for li in self.inv.get("line_items", [])
+            for li in (self.inv.get("line_items") or [])
             if li.get("container_number") and li.get("container_number") != "N/A"
         }
         pl_conts = {
             i.get("container_number")
-            for i in self.pl.get("items", [])
+            for i in (self.pl.get("items") or [])
             if i.get("container_number") and i.get("container_number") != "N/A"
         }
         if not inv_conts or not pl_conts:
@@ -301,8 +301,8 @@ class ShipmentProcessor:
     # may weigh exactly 300 kg. When a type mismatch is detected the check returns
     # is_flagged=False with a clear reason so the output stays informative.
     def check_overcharge(self):
-        inv_items = self.inv.get("line_items", [])
-        pl_items  = self.pl.get("items", [])
+        inv_items = self.inv.get("line_items") or []
+        pl_items  = self.pl.get("items") or []
         if not inv_items or not pl_items:
             return None
 
@@ -341,7 +341,7 @@ class ShipmentProcessor:
     # Returns a list of per-item flags so the caller can see exactly which lines
     # were short-shipped.
     def check_short_ship(self):
-        items = self.pl.get("items", [])
+        items = self.pl.get("items") or []
         if not items:
             return None
         per_item = []
@@ -511,7 +511,7 @@ class ShipmentProcessor:
     # Previously only checked [0], so any mis-calculated tax on items 2..N was
     # silently ignored.
     def check_tax(self):
-        line_items = self.inv.get("line_items", [])
+        line_items = self.inv.get("line_items") or []
         if not line_items:
             return None
         errors = []

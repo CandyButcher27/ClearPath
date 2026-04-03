@@ -58,7 +58,10 @@ export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ file
   const progressPct = useMemo(() => (currentIndex / LOG_LINES.length) * 100, [currentIndex])
 
   const [apiError, setApiError] = useState<string | null>(null)
-  const resultRef = useRef<ApiResult | null>(null)
+  const [apiDone, setApiDone] = useState(false)
+  const [result, setResult] = useState<ApiResult | null>(null)
+  const [requestPending, setRequestPending] = useState(true)
+  const [statusMessage, setStatusMessage] = useState('Preparing verification pipeline...')
 
   useEffect(() => {
     const cursorInterval = window.setInterval(() => {
@@ -74,38 +77,58 @@ export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ file
     formData.append('invoice', files.invoice!)
     formData.append('packing_list', files.packing_list!)
 
-    fetch('http://localhost:5000/api/process-shipment', {
-      method: 'POST',
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((data) => { resultRef.current = data })
-      .catch((err) => setApiError(String(err)))
+    const submit = async () => {
+      try {
+        setStatusMessage('Sending documents to backend...')
+        const res = await fetch('http://localhost:5000/api/process-shipment', {
+          method: 'POST',
+          body: formData,
+        })
+        const data = await res.json()
+        if (!res.ok) {
+          throw new Error(data?.error || `HTTP ${res.status}`)
+        }
+        setResult(data)
+        setStatusMessage('Backend response received. Finalizing verification...')
+      } catch (err) {
+        setApiError(String(err))
+        setStatusMessage('Backend request failed.')
+      } finally {
+        setRequestPending(false)
+        setApiDone(true)
+      }
+    }
+
+    submit()
   }, []) // run once on mount
 
   useEffect(() => {
     if (currentIndex >= LOG_LINES.length) {
-      setPhase('complete')
-      const completeTimer = window.setTimeout(() => {
-        if (apiError) {
+      if (!apiDone) {
+        setStatusMessage('Log extraction complete. Waiting for backend response...')
+        return
+      }
+
+      // Only transition to complete if we have a valid result (not an error)
+      if (apiError) {
+        setPhase('complete')
+        const completeTimer = window.setTimeout(() => {
           alert(`Processing failed: ${apiError}`)
           onError()
-        } else if (resultRef.current) {
-          onComplete(resultRef.current)
-        } else {
-          // API still in-flight — poll until ready
-          const poll = window.setInterval(() => {
-            if (resultRef.current) {
-              window.clearInterval(poll)
-              onComplete(resultRef.current)
-            } else if (apiError) {
-              window.clearInterval(poll)
-              alert(`Processing failed: ${apiError}`)
-              onError()
-            }
-          }, 500)
-        }
-      }, 1200)
+        }, 500)
+        return () => window.clearTimeout(completeTimer)
+      }
+
+      if (!result) {
+        setStatusMessage('Backend completed but returned no result.')
+        return
+      }
+
+      // Both API done AND result exists
+      setPhase('complete')
+      const completeTimer = window.setTimeout(() => {
+        onComplete(result)
+      }, 800)
       return () => window.clearTimeout(completeTimer)
     }
 
@@ -116,7 +139,7 @@ export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ file
     }, line.delay)
 
     return () => window.clearTimeout(timer)
-  }, [currentIndex, onComplete, onError, apiError])
+  }, [currentIndex, onComplete, onError, apiError, apiDone, result])
 
   useEffect(() => {
     if (terminalRef.current) {
@@ -162,11 +185,33 @@ export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ file
           <div className="h-1.5 w-full bg-white/10">
             <div className="h-full bg-secondary transition-all duration-300" style={{ width: `${progressPct}%` }} />
           </div>
+          <div className="mt-3 text-sm text-white/70">
+            {statusMessage}
+          </div>
+          {!requestPending && apiDone && apiError ? (
+            <div className="mt-3 rounded border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-100">
+              Backend error: {apiError}
+            </div>
+          ) : null}
+          {!requestPending && apiDone && !apiError && !result ? (
+            <div className="mt-3 rounded border border-yellow-500/20 bg-yellow-500/10 px-4 py-3 text-sm text-yellow-100">
+              Backend completed but returned no result.
+            </div>
+          ) : null}
         </div>
 
         {phase === 'complete' ? (
           <div className="absolute inset-0 flex items-center justify-center bg-[#0d0d0f]/80 backdrop-blur-sm">
-            <span className="text-6xl font-black uppercase tracking-[0.18em] text-secondary">Verified</span>
+            <div className="space-y-3 text-center">
+              <span className="text-5xl font-black uppercase tracking-[0.18em] text-secondary">
+                {apiError ? 'Verification Failed' : 'Verification Complete'}
+              </span>
+              <p className="max-w-md text-sm text-white/70">
+                {apiError
+                  ? 'The backend returned an error. Please retry or inspect server logs.'
+                  : 'Documents have been processed and results are ready.'}
+              </p>
+            </div>
           </div>
         ) : null}
       </div>
