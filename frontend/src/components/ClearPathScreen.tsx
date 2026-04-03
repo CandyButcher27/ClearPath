@@ -1,14 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { clearPathData } from '../data/mockData'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
+import type { UploadedFiles } from '../App'
 
 export interface ReadonlyClearPathScreenProps {
-  onSubmit: () => void
+  onSubmit: (files: UploadedFiles) => void
 }
 
 export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubmit }) => {
   const scrollY = useScrollAnimation()
   const [gridPos, setGridPos] = useState({ x: 0, y: 0 })
+  const [files, setFiles] = useState<UploadedFiles>({
+    bill_of_lading: null,
+    invoice: null,
+    packing_list: null,
+  })
+
+  const fileKeys: (keyof UploadedFiles)[] = ['bill_of_lading', 'invoice', 'packing_list']
+  const allFilesSelected = fileKeys.every((k) => files[k] !== null)
+
+  const handleFileChange = (key: keyof UploadedFiles, e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] ?? null
+    setFiles((prev) => ({ ...prev, [key]: file }))
+  }
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -80,8 +94,9 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubm
               </p>
               <div className="flex flex-wrap gap-4">
                 <button
-                  onClick={onSubmit}
-                  className="group relative flex items-center gap-4 overflow-hidden bg-red-600 px-10 py-5 text-xs font-black uppercase tracking-widest text-white transition-all duration-500 hover:bg-primary"
+                  onClick={() => allFilesSelected && onSubmit(files)}
+                  disabled={!allFilesSelected}
+                  className={`group relative flex items-center gap-4 overflow-hidden bg-red-600 px-10 py-5 text-xs font-black uppercase tracking-widest text-white transition-all duration-500 hover:bg-primary ${!allFilesSelected ? 'opacity-40 cursor-not-allowed' : ''}`}
                 >
                   <span className="relative z-10 flex items-center gap-4">
                     Initiate Audit
@@ -127,35 +142,39 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubm
               <p className="mt-8 text-xs font-black uppercase tracking-widest text-on-surface-variant">Deploy your documents into the verification pipeline.</p>
             </div>
 
-            <div className="stagger-children grid gap-8 md:grid-cols-3">
-              {clearPathData.documents.map((doc, idx) => (
-                <div
-                  key={doc.title}
-                  className={`scroll-reveal group relative border border-white/5 bg-surface-container/60 p-12 backdrop-blur-sm transition-all duration-500 hover:border-secondary/30 hover:shadow-[0_0_0_1px_rgba(233,7,22,0.12),0_20px_60px_rgba(0,0,0,0.3)] ${idx > 0 ? `reveal-delay-${idx}` : ''}`}
-                >
-                  <img
-                    src="/circle.png"
-                    alt="verified"
-                    className="animated-check absolute right-4 top-4 inline-block h-6 w-6 object-contain"
-                    style={{ animationDelay: `${0.1 + idx * 0.1}s` }}
-                  />
-                  <div className="mb-10 h-12 w-12">
-                    <img src={doc.icon} alt={doc.title} className="h-full w-full object-contain" />
+            <div className="grid gap-6 md:grid-cols-3">
+              {clearPathData.documents.map((doc, i) => {
+                const keys: (keyof UploadedFiles)[] = ['bill_of_lading', 'invoice', 'packing_list']
+                const key = keys[i]
+                return (
+                  <div key={doc.title} className="border border-outline-variant/20 bg-surface-container-low p-6">
+                    <img src={doc.icon} alt={doc.title} className="mb-4 h-10 w-10 object-contain" />
+                    <h3 className="mb-2 text-sm font-black uppercase tracking-widest text-primary">{doc.title}</h3>
+                    <p className="mb-4 text-xs text-on-surface-variant">{doc.description}</p>
+                    <label className="flex cursor-pointer flex-col items-center gap-2 border border-dashed border-outline-variant/40 p-4 text-xs text-on-surface-variant hover:border-secondary hover:text-secondary transition-colors">
+                      {files[key] ? (
+                        <span className="text-secondary font-bold">{files[key]!.name}</span>
+                      ) : (
+                        <span>Click to upload PDF</span>
+                      )}
+                      <input
+                        type="file"
+                        accept=".pdf"
+                        className="hidden"
+                        onChange={(e) => handleFileChange(key, e)}
+                      />
+                    </label>
                   </div>
-                  <h3 className="mb-4 text-2xl font-black uppercase tracking-tighter text-primary">{doc.title}</h3>
-                  <p className="mb-10 text-xs font-bold uppercase leading-relaxed tracking-tight text-on-surface-variant">{doc.description}</p>
-
-                  <div className="flex h-40 w-full flex-col items-center justify-center border border-dashed border-white/10 transition-all duration-500 group-hover:border-secondary/30 group-hover:bg-secondary/5">
-                    <span className="material-symbols-outlined mb-2 text-on-surface-variant transition-colors group-hover:text-secondary">upload_file</span>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-on-surface-variant transition-colors group-hover:text-secondary">Drag &amp; Drop</span>
-                  </div>
-                  <button className="mt-6 w-full bg-primary py-4 text-[10px] font-black uppercase tracking-widest text-on-primary transition-colors duration-300 hover:bg-secondary">Upload File</button>
-                </div>
-              ))}
+                )
+              })}
             </div>
 
             <div className="scroll-reveal mt-20 flex justify-center">
-              <button onClick={onSubmit} className="animate-pulse-accent flex items-center gap-5 bg-red-600 px-16 py-6 text-sm font-black uppercase tracking-[0.3em] text-white transition-all duration-300 hover:bg-red-700">
+              <button 
+                onClick={() => allFilesSelected && onSubmit(files)}
+                disabled={!allFilesSelected} 
+                className={`animate-pulse-accent flex items-center gap-5 bg-red-600 px-16 py-6 text-sm font-black uppercase tracking-[0.3em] text-white transition-all duration-300 hover:bg-red-700 ${!allFilesSelected ? 'opacity-40 cursor-not-allowed' : ''}`}
+              >
                 Submit for Verification
               </button>
             </div>

@@ -1,13 +1,21 @@
 import React from 'react'
 import { verificationResultsData } from '../data/mockData'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
+import type { ApiResult } from '../App'
 
 export interface ReadonlyVerificationResultsScreenProps {
+  result: ApiResult | null
   onNavigateHome: () => void
 }
 
-export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScreenProps> = ({ onNavigateHome }) => {
+export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScreenProps> = ({ result, onNavigateHome }) => {
   const scrollY = useScrollAnimation()
+  const normalized = result?.normalized ?? {}
+  const sessionId = result?.session_id ?? 'N/A'
+
+  // Extract fields for display — adapt keys to match your normalizer output
+  const checks = normalized.checks as Record<string, unknown>[] ?? []
+  const summary = normalized.summary as Record<string, string> ?? {}
 
   return (
     <div className="min-h-screen bg-surface text-on-surface selection:bg-secondary/20">
@@ -53,7 +61,7 @@ export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScre
               <img src="/circle.png" alt="check circle" className="inline-block h-8 w-8 object-contain" />
             </div>
             <div className="flex flex-col">
-              <span className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-secondary">Process ID: {verificationResultsData.header.processId}</span>
+              <span className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-secondary">Process ID: {sessionId}</span>
               <h1 className="text-7xl font-black uppercase leading-[0.9] tracking-tighter text-primary md:text-8xl">{verificationResultsData.header.title}</h1>
             </div>
           </div>
@@ -64,25 +72,32 @@ export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScre
 
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
           <div className="stagger-children lg:col-span-8 space-y-4">
-            {verificationResultsData.points.map((point, index) => (
-              <div
-                key={point.id}
-                className={`reveal point-${index} group rounded-sm border-l-8 border-primary bg-surface-container-lowest p-8 shadow-sm transition-all duration-500 hover:bg-surface-container hover:shadow-xl`}
-                style={{ transform: `translateY(${index % 2 === 0 ? scrollY * 0.02 : scrollY * -0.015}px)` }}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex flex-col gap-1">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant">Metadata Point {point.id}</span>
-                    <h3 className="text-2xl font-bold tracking-tight text-primary">{point.title}</h3>
-                  </div>
-                  <img
-                    src="/ccircle.png"
-                    alt="verified"
-                    className="animated-check inline-block"
-                    style={{ width: '32px', height: '32px', objectFit: 'contain', animationDelay: `${0.1 + index * 0.1}s` }}
-                  />
+            {checks.length > 0
+              ? checks.map((check, index) => (
+                <div key={index} className="...">
+                  <h3>{String(check.field ?? check.name ?? `Check ${index + 1}`)}</h3>
+                  <span>{String(check.status ?? check.result ?? '')}</span>
                 </div>
-              </div>
+              ))
+              : verificationResultsData.points.map((point, index) => (
+                <div
+                  key={point.id}
+                  className={`reveal point-${index} group rounded-sm border-l-8 border-primary bg-surface-container-lowest p-8 shadow-sm transition-all duration-500 hover:bg-surface-container hover:shadow-xl`}
+                  style={{ transform: `translateY(${index % 2 === 0 ? scrollY * 0.02 : scrollY * -0.015}px)` }}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant">Metadata Point {point.id}</span>
+                      <h3 className="text-2xl font-bold tracking-tight text-primary">{point.title}</h3>
+                    </div>
+                    <img
+                      src="/ccircle.png"
+                      alt="verified"
+                      className="animated-check inline-block"
+                      style={{ width: '32px', height: '32px', objectFit: 'contain', animationDelay: `${0.1 + index * 0.1}s` }}
+                    />
+                  </div>
+                </div>
             ))}
           </div>
 

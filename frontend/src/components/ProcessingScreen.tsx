@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
+import type { UploadedFiles, ApiResult } from '../App'
 
 type LogLevel = 'SYSTEM' | 'INFO' | 'OK' | 'WARN' | 'HASH'
 
@@ -10,7 +11,9 @@ interface LogLine {
 }
 
 export interface ReadonlyProcessingScreenProps {
-  onComplete: () => void
+  files: UploadedFiles
+  onComplete: (result: ApiResult) => void
+  onError: () => void
 }
 
 const LOG_LINES: LogLine[] = [
@@ -44,7 +47,7 @@ const levelColor: Record<LogLevel, string> = {
   INFO: 'text-sky-400/70',
 }
 
-export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ onComplete }) => {
+export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ files, onComplete, onError }) => {
   const [visibleLines, setVisibleLines] = useState<LogLine[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [phase, setPhase] = useState<'running' | 'complete'>('running')
@@ -53,6 +56,9 @@ export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ onCo
   const terminalRef = useRef<HTMLDivElement | null>(null)
 
   const progressPct = useMemo(() => (currentIndex / LOG_LINES.length) * 100, [currentIndex])
+
+  const [apiError, setApiError] = useState<string | null>(null)
+  const resultRef = useRef<ApiResult | null>(null)
 
   useEffect(() => {
     const cursorInterval = window.setInterval(() => {
@@ -66,9 +72,25 @@ export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ onCo
     if (currentIndex >= LOG_LINES.length) {
       setPhase('complete')
       const completeTimer = window.setTimeout(() => {
-        onComplete()
+        if (apiError) {
+          alert(`Processing failed: ${apiError}`)
+          onError()
+        } else if (resultRef.current) {
+          onComplete(resultRef.current)
+        } else {
+          // API still in-flight — poll until ready
+          const poll = window.setInterval(() => {
+            if (resultRef.current) {
+              window.clearInterval(poll)
+              onComplete(resultRef.current)
+            } else if (apiError) {
+              window.clearInterval(poll)
+              alert(`Processing failed: ${apiError}`)
+              onError()
+            }
+          }, 500)
+        }
       }, 1200)
-
       return () => window.clearTimeout(completeTimer)
     }
 
@@ -79,7 +101,7 @@ export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ onCo
     }, line.delay)
 
     return () => window.clearTimeout(timer)
-  }, [currentIndex, onComplete])
+  }, [currentIndex, onComplete, onError, apiError])
 
   useEffect(() => {
     if (terminalRef.current) {

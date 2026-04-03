@@ -64,3 +64,4 @@ check_*.py
 *.txt
 .claude
 CLaude.md
+uploads/
