@@ -1,5 +1,5 @@
 {
-  "shipment_id": "string", 
+  "product_id": "string", 
   "category_metadata": {
     "applied_category": "string",
     "fields": "object"
