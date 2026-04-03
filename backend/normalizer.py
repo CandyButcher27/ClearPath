@@ -203,7 +203,7 @@ class ShipmentProcessor:
 
 # --- MAIN EXECUTION LOOP ---
 if __name__ == "__main__":
-    with open("samples.json", "r") as f:
+    with open("sample_data/samples.json", "r") as f:
         samples = json.load(f)
 
     final_results = []
