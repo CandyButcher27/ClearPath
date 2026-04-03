@@ -1,0 +1,2961 @@
+{
+  "metadata": {
+    "filename": "doc6.pdf",
+    "num_pages": 8,
+    "processing_version": "1.0.0"
+  },
+  "pages": [
+    {
+      "page_num": 0,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_0_0",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.02394287109375,
+            "y0": 144.09677734374998,
+            "x1": 543.5479296875,
+            "y1": 233.49722656250003
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9417,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9417
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.77601806640625,
+            "y0": 67.62250000000006,
+            "x1": 542.6006445312499,
+            "y1": 91.42994140625001
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9342,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9342
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_2",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.66461669921874,
+            "y0": 95.18880859375008,
+            "x1": 542.7927734374999,
+            "y1": 140.71888671875
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9314,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9314
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 105.77207763671875,
+            "y0": 382.94839843750003,
+            "x1": 507.55595703125,
+            "y1": 461.08329101562504
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9252,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9252
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 105.72852050781249,
+            "y0": 271.93580078125,
+            "x1": 507.51558593749996,
+            "y1": 382.650341796875
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9006,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9006
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_5",
+          "block_type": "header",
+          "bbox": {
+            "x0": 70.28843505859375,
+            "y0": 243.42941406249997,
+            "x1": 157.2568994140625,
+            "y1": 257.56396484375
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8725,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8725
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_6",
+          "block_type": "header",
+          "bbox": {
+            "x0": 275.37578125,
+            "y0": 469.35282226562504,
+            "x1": 336.98061523437497,
+            "y1": 483.203017578125
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8624,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8624
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_7",
+          "block_type": "header",
+          "bbox": {
+            "x0": 15.05408996582031,
+            "y0": 224.546640625,
+            "x1": 37.1758349609375,
+            "y1": 577.19005859375
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8622,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8622
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_8",
+          "block_type": "text",
+          "bbox": {
+            "x0": 110.54212890625,
+            "y0": 601.1131884765625,
+            "x1": 500.34892578125,
+            "y1": 613.9739990234375
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.7059,
+            "geometric_score": 0.3,
+            "final_confidence": 0.7059
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_9",
+          "block_type": "header",
+          "bbox": {
+            "x0": 145.3236279296875,
+            "y0": 635.1259375,
+            "x1": 467.29923828125,
+            "y1": 694.01826171875
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.5838,
+            "geometric_score": 0.3,
+            "final_confidence": 0.5838
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_10",
+          "block_type": "header",
+          "bbox": {
+            "x0": 278.05398437499997,
+            "y0": 496.51076171875,
+            "x1": 333.58666015625,
+            "y1": 509.446455078125
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.5275,
+            "geometric_score": 0.3,
+            "final_confidence": 0.5275
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_11",
+          "block_type": "text",
+          "bbox": {
+            "x0": 126.88578613281248,
+            "y0": 536.5039843750001,
+            "x1": 270.98509765625,
+            "y1": 594.3993359375
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.5264,
+            "geometric_score": 0.3,
+            "final_confidence": 0.5264
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_12",
+          "block_type": "text",
+          "bbox": {
+            "x0": 329.747529296875,
+            "y0": 536.57623046875,
+            "x1": 485.78990234375,
+            "y1": 597.0567089843751
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.4147,
+            "geometric_score": 0.3,
+            "final_confidence": 0.4147
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    },
+    {
+      "page_num": 1,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_1_0",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.80505859374999,
+            "y0": 397.027216796875,
+            "x1": 542.944296875,
+            "y1": 454.205087890625
+          },
+          "page_num": 1,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9495,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9495
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.88107666015625,
+            "y0": 487.45316406250004,
+            "x1": 543.5741796875,
+            "y1": 577.3338623046875
+          },
+          "page_num": 1,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9487,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9487
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_2",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.7930029296875,
+            "y0": 618.3813671875,
+            "x1": 542.81333984375,
+            "y1": 718.8236474609375
+          },
+          "page_num": 1,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9479,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9479
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.90882080078124,
+            "y0": 271.652734375,
+            "x1": 544.0741015625,
+            "y1": 394.02725585937503
+          },
+          "page_num": 1,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.942,
+            "geometric_score": 0.3,
+            "final_confidence": 0.942
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.88229980468749,
+            "y0": 168.04205078125005,
+            "x1": 544.0450976562499,
+            "y1": 268.41482421875
+          },
+          "page_num": 1,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9392,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9392
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.8262109375,
+            "y0": 129.15841796874997,
+            "x1": 543.35509765625,
+            "y1": 164.6151171875
+          },
+          "page_num": 1,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8977,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8977
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_6",
+          "block_type": "text",
+          "bbox": {
+            "x0": 301.60111328125,
+            "y0": 37.50490234375002,
+            "x1": 310.6204296875,
+            "y1": 51.14187500000003
+          },
+          "page_num": 1,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8961,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8961
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_7",
+          "block_type": "header",
+          "bbox": {
+            "x0": 69.9844140625,
+            "y0": 588.1823095703126,
+            "x1": 284.22875,
+            "y1": 603.0689257812501
+          },
+          "page_num": 1,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8892,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8892
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_8",
+          "block_type": "header",
+          "bbox": {
+            "x0": 70.052412109375,
+            "y0": 461.57394531250003,
+            "x1": 171.7362646484375,
+            "y1": 474.68149414062503
+          },
+          "page_num": 1,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8826,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8826
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_9",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.5818310546875,
+            "y0": 67.74882812500005,
+            "x1": 543.65609375,
+            "y1": 120.286015625
+          },
+          "page_num": 1,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8453,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8453
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    },
+    {
+      "page_num": 2,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_2_0",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.014736328125,
+            "y0": 598.64318359375,
+            "x1": 543.94625,
+            "y1": 644.5192578125
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9418,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9418
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.121611328125,
+            "y0": 695.34724609375,
+            "x1": 543.2572460937499,
+            "y1": 718.8368530273438
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9284,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9284
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_2",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.36800537109374,
+            "y0": 67.28423828125005,
+            "x1": 543.16677734375,
+            "y1": 102.91917968749999
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9199,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9199
+          },
+          "reading_order": 22,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.2622509765625,
+            "y0": 176.09617187499998,
+            "x1": 543.0923046875,
+            "y1": 200.34441406250005
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.917,
+            "geometric_score": 0.3,
+            "final_confidence": 0.917
+          },
+          "reading_order": 18,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.05642578125,
+            "y0": 273.72015625000006,
+            "x1": 543.2842578125,
+            "y1": 298.20945312500004
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9133,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9133
+          },
+          "reading_order": 15,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.0245068359375,
+            "y0": 338.673525390625,
+            "x1": 542.9978515624999,
+            "y1": 363.13537109375
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9096,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9096
+          },
+          "reading_order": 13,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_6",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.20660888671874,
+            "y0": 371.465458984375,
+            "x1": 543.16220703125,
+            "y1": 395.74241210937504
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9096,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9096
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_7",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.30558837890625,
+            "y0": 240.93156250000004,
+            "x1": 543.72201171875,
+            "y1": 265.53458984375004
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9044,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9044
+          },
+          "reading_order": 16,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_8",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.11725341796874,
+            "y0": 306.035634765625,
+            "x1": 543.4185546875,
+            "y1": 330.836123046875
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9038,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9038
+          },
+          "reading_order": 14,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_9",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.3198193359375,
+            "y0": 208.30644531250005,
+            "x1": 544.28884765625,
+            "y1": 233.04423828125005
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9029,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9029
+          },
+          "reading_order": 17,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_10",
+          "block_type": "text",
+          "bbox": {
+            "x0": 301.40716796875,
+            "y0": 37.85833984375006,
+            "x1": 310.75701171875,
+            "y1": 51.40695312499997
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8938,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8938
+          },
+          "reading_order": 23,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_11",
+          "block_type": "header",
+          "bbox": {
+            "x0": 70.34559326171875,
+            "y0": 657.129208984375,
+            "x1": 189.41146484375,
+            "y1": 669.8559130859375
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8392,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8392
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_12",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.03116455078124,
+            "y0": 154.55324218750002,
+            "x1": 520.7674999999999,
+            "y1": 167.91201171875002
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8204,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8204
+          },
+          "reading_order": 19,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_13",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.14612548828124,
+            "y0": 111.26517578125004,
+            "x1": 534.2499218749999,
+            "y1": 124.83787109374998
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.7694,
+            "geometric_score": 0.3,
+            "final_confidence": 0.7694
+          },
+          "reading_order": 21,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_14",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.98737304687499,
+            "y0": 490.4053515625,
+            "x1": 369.95626953125,
+            "y1": 503.629560546875
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.7339,
+            "geometric_score": 0.3,
+            "final_confidence": 0.7339
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_15",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.04157226562499,
+            "y0": 577.3218408203124,
+            "x1": 280.160966796875,
+            "y1": 590.2536669921875
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.7064,
+            "geometric_score": 0.3,
+            "final_confidence": 0.7064
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_16",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.38946533203125,
+            "y0": 512.3077832031249,
+            "x1": 338.85546875,
+            "y1": 525.567880859375
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.7035,
+            "geometric_score": 0.3,
+            "final_confidence": 0.7035
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_17",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.127412109375,
+            "y0": 132.90185546875,
+            "x1": 367.1209765625,
+            "y1": 146.35554687500007
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.7027,
+            "geometric_score": 0.3,
+            "final_confidence": 0.7027
+          },
+          "reading_order": 20,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_18",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.20211181640624,
+            "y0": 555.7098583984375,
+            "x1": 350.70611328125,
+            "y1": 568.8210107421875
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.6629,
+            "geometric_score": 0.3,
+            "final_confidence": 0.6629
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_19",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.87690185546874,
+            "y0": 533.816376953125,
+            "x1": 303.5746484375,
+            "y1": 547.45103515625
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.6581,
+            "geometric_score": 0.3,
+            "final_confidence": 0.6581
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_20",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.931298828125,
+            "y0": 447.210390625,
+            "x1": 354.117470703125,
+            "y1": 460.392705078125
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.6475,
+            "geometric_score": 0.3,
+            "final_confidence": 0.6475
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_21",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.17615478515624,
+            "y0": 468.959013671875,
+            "x1": 306.31208984375,
+            "y1": 482.467841796875
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.636,
+            "geometric_score": 0.3,
+            "final_confidence": 0.636
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_22",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.443876953125,
+            "y0": 425.60763671875003,
+            "x1": 354.38978515625,
+            "y1": 439.172685546875
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.6225,
+            "geometric_score": 0.3,
+            "final_confidence": 0.6225
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_23",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.22876464843749,
+            "y0": 404.09875,
+            "x1": 353.79110351562497,
+            "y1": 417.55689453125
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.5578,
+            "geometric_score": 0.3,
+            "final_confidence": 0.5578
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    },
+    {
+      "page_num": 3,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_3_0",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.72272705078124,
+            "y0": 67.1287890625,
+            "x1": 545.99509765625,
+            "y1": 126.01730468749997
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9491,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9491
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.02115234375,
+            "y0": 402.741953125,
+            "x1": 545.6085546875,
+            "y1": 483.11172851562503
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9486,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9486
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_2",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.79057861328124,
+            "y0": 213.26599609375,
+            "x1": 545.805546875,
+            "y1": 304.94041015625004
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9474,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9474
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.87378173828125,
+            "y0": 640.6840234375,
+            "x1": 545.428671875,
+            "y1": 720.2053247070312
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.947,
+            "geometric_score": 0.3,
+            "final_confidence": 0.947
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.79043212890625,
+            "y0": 569.62099609375,
+            "x1": 545.1482421874999,
+            "y1": 638.650185546875
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9424,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9424
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.82088623046874,
+            "y0": 153.22498046875,
+            "x1": 545.88599609375,
+            "y1": 211.70486328125003
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9424,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9424
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_6",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.897109375,
+            "y0": 353.555986328125,
+            "x1": 545.4749023437499,
+            "y1": 401.144345703125
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9407,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9407
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_7",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.73879638671875,
+            "y0": 520.4898437500001,
+            "x1": 545.01822265625,
+            "y1": 567.668369140625
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9396,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9396
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_8",
+          "block_type": "text",
+          "bbox": {
+            "x0": 300.70656249999996,
+            "y0": 38.03681640625007,
+            "x1": 311.034716796875,
+            "y1": 52.554980468750045
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8946,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8946
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_9",
+          "block_type": "header",
+          "bbox": {
+            "x0": 69.752470703125,
+            "y0": 490.952705078125,
+            "x1": 292.0494921875,
+            "y1": 507.97812500000003
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8569,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8569
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_10",
+          "block_type": "header",
+          "bbox": {
+            "x0": 69.88662109375,
+            "y0": 129.98042968750008,
+            "x1": 247.847626953125,
+            "y1": 144.92005859375
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8407,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8407
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_11",
+          "block_type": "header",
+          "bbox": {
+            "x0": 69.74787841796875,
+            "y0": 308.69625976562503,
+            "x1": 205.937744140625,
+            "y1": 323.5005078125
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8279,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8279
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_12",
+          "block_type": "header",
+          "bbox": {
+            "x0": 70.02527587890624,
+            "y0": 328.508681640625,
+            "x1": 286.016533203125,
+            "y1": 343.86514648437503
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8212,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8212
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    },
+    {
+      "page_num": 4,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_4_0",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.06208007812499,
+            "y0": 451.32818359375,
+            "x1": 545.87861328125,
+            "y1": 553.9758740234375
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9495,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9495
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.94095947265625,
+            "y0": 355.42758789062503,
+            "x1": 545.9880078125,
+            "y1": 424.86546875
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9488,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9488
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_2",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.365517578125,
+            "y0": 281.281796875,
+            "x1": 545.768984375,
+            "y1": 328.796474609375
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.948,
+            "geometric_score": 0.3,
+            "final_confidence": 0.948
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.81202392578125,
+            "y0": 174.56921875,
+            "x1": 546.38814453125,
+            "y1": 254.8668359375
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9475,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9475
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.86834716796875,
+            "y0": 67.11964843750002,
+            "x1": 546.31232421875,
+            "y1": 147.67695312500007
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9473,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9473
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.96701904296874,
+            "y0": 580.431923828125,
+            "x1": 546.1207812499999,
+            "y1": 682.4001318359375
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9441,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9441
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_6",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.98682373046874,
+            "y0": 684.203740234375,
+            "x1": 544.24607421875,
+            "y1": 720.3868188476563
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9429,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9429
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_7",
+          "block_type": "text",
+          "bbox": {
+            "x0": 301.433916015625,
+            "y0": 37.47021484375,
+            "x1": 311.27099609375,
+            "y1": 52.55802734375004
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8858,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8858
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_8",
+          "block_type": "header",
+          "bbox": {
+            "x0": 70.04855224609375,
+            "y0": 151.39240234375006,
+            "x1": 226.94966796875,
+            "y1": 166.94222656249997
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8834,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8834
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_9",
+          "block_type": "header",
+          "bbox": {
+            "x0": 69.81212646484374,
+            "y0": 332.741201171875,
+            "x1": 238.40503906249998,
+            "y1": 348.10349609375004
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8636,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8636
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_10",
+          "block_type": "header",
+          "bbox": {
+            "x0": 70.13363037109374,
+            "y0": 258.27835937500004,
+            "x1": 174.3681494140625,
+            "y1": 273.71222656250006
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8567,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8567
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_11",
+          "block_type": "header",
+          "bbox": {
+            "x0": 69.98159423828125,
+            "y0": 428.480341796875,
+            "x1": 227.321884765625,
+            "y1": 444.086240234375
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8533,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8533
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_12",
+          "block_type": "header",
+          "bbox": {
+            "x0": 69.9585302734375,
+            "y0": 557.3054248046875,
+            "x1": 161.7638720703125,
+            "y1": 572.8481591796875
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.839,
+            "geometric_score": 0.3,
+            "final_confidence": 0.839
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    },
+    {
+      "page_num": 5,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_5_0",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.04484619140625,
+            "y0": 661.9832324218751,
+            "x1": 543.528359375,
+            "y1": 719.073037109375
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9503,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9503
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.78654296875,
+            "y0": 596.257041015625,
+            "x1": 543.423359375,
+            "y1": 631.2385302734375
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9495,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9495
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_2",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.02350341796874,
+            "y0": 378.70685546875,
+            "x1": 543.60048828125,
+            "y1": 424.76902343750004
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9494,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9494
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.85826171875,
+            "y0": 72.67105468750003,
+            "x1": 544.9612109375,
+            "y1": 163.13017578125005
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9485,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9485
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.82154541015625,
+            "y0": 552.620546875,
+            "x1": 543.5118945312499,
+            "y1": 587.5410986328125
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9484,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9484
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.98300048828125,
+            "y0": 237.36566406250006,
+            "x1": 544.795625,
+            "y1": 316.148427734375
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.948,
+            "geometric_score": 0.3,
+            "final_confidence": 0.948
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_6",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.99394287109375,
+            "y0": 465.608359375,
+            "x1": 542.919921875,
+            "y1": 500.939755859375
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.948,
+            "geometric_score": 0.3,
+            "final_confidence": 0.948
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_7",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.98858154296875,
+            "y0": 193.94306640625007,
+            "x1": 544.61498046875,
+            "y1": 229.15460937500006
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9475,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9475
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_8",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.9163134765625,
+            "y0": 324.49369140625004,
+            "x1": 544.072109375,
+            "y1": 370.60080078125003
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9448,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9448
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_9",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.93947998046875,
+            "y0": 509.166630859375,
+            "x1": 543.23591796875,
+            "y1": 544.276162109375
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9432,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9432
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_10",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.100107421875,
+            "y0": 432.96232421875004,
+            "x1": 543.13513671875,
+            "y1": 457.526064453125
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9406,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9406
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_11",
+          "block_type": "text",
+          "bbox": {
+            "x0": 301.139716796875,
+            "y0": 37.626015625000036,
+            "x1": 311.153193359375,
+            "y1": 51.31789062500002
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8874,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8874
+          },
+          "reading_order": 13,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_12",
+          "block_type": "header",
+          "bbox": {
+            "x0": 70.10210693359375,
+            "y0": 169.29238281250002,
+            "x1": 244.151357421875,
+            "y1": 183.07384765625
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8772,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8772
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_13",
+          "block_type": "header",
+          "bbox": {
+            "x0": 70.11230224609375,
+            "y0": 637.9606005859375,
+            "x1": 269.728466796875,
+            "y1": 651.16162109375
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8118,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8118
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    },
+    {
+      "page_num": 6,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_6_0",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.95853759765625,
+            "y0": 586.0227783203125,
+            "x1": 544.7893554687499,
+            "y1": 643.9888671875
+          },
+          "page_num": 6,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.949,
+            "geometric_score": 0.3,
+            "final_confidence": 0.949
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.83182861328125,
+            "y0": 651.5496923828125,
+            "x1": 544.42150390625,
+            "y1": 719.65712890625
+          },
+          "page_num": 6,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9484,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9484
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_2",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.10339599609375,
+            "y0": 433.097705078125,
+            "x1": 545.67166015625,
+            "y1": 578.7189599609375
+          },
+          "page_num": 6,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9481,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9481
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.86070068359375,
+            "y0": 199.005859375,
+            "x1": 545.9196875,
+            "y1": 246.27792968749998
+          },
+          "page_num": 6,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9476,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9476
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.89878662109375,
+            "y0": 67.29900390625005,
+            "x1": 545.67822265625,
+            "y1": 158.68484375000003
+          },
+          "page_num": 6,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9468,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9468
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.7781201171875,
+            "y0": 253.67160156249997,
+            "x1": 545.93263671875,
+            "y1": 322.455869140625
+          },
+          "page_num": 6,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9464,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9464
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_6",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.04663330078125,
+            "y0": 329.533955078125,
+            "x1": 545.7262109375,
+            "y1": 431.655634765625
+          },
+          "page_num": 6,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9426,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9426
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_7",
+          "block_type": "text",
+          "bbox": {
+            "x0": 301.489375,
+            "y0": 37.878964843750055,
+            "x1": 310.95470703125,
+            "y1": 52.41904296874998
+          },
+          "page_num": 6,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8867,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8867
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_8",
+          "block_type": "header",
+          "bbox": {
+            "x0": 70.19862548828125,
+            "y0": 168.24285156250005,
+            "x1": 149.7360693359375,
+            "y1": 184.54449218750005
+          },
+          "page_num": 6,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8417,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8417
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    },
+    {
+      "page_num": 7,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_7_0",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.72298339843749,
+            "y0": 651.3699853515625,
+            "x1": 544.60560546875,
+            "y1": 719.2813891601562
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9405,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9405
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.46892822265625,
+            "y0": 230.81171875000007,
+            "x1": 543.87037109375,
+            "y1": 266.00978515625
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9321,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9321
+          },
+          "reading_order": 16,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_2",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.59264892578125,
+            "y0": 302.478876953125,
+            "x1": 544.19322265625,
+            "y1": 337.706533203125
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9319,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9319
+          },
+          "reading_order": 14,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.17188720703125,
+            "y0": 131.25484375000008,
+            "x1": 544.640234375,
+            "y1": 155.54228515625005
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9317,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9317
+          },
+          "reading_order": 20,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 74.34139404296874,
+            "y0": 487.921767578125,
+            "x1": 543.7902734375,
+            "y1": 523.0581933593751
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9317,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9317
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.5537060546875,
+            "y0": 266.796015625,
+            "x1": 544.21080078125,
+            "y1": 301.92886718750003
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9316,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9316
+          },
+          "reading_order": 15,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_6",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.8194140625,
+            "y0": 70.16212890625002,
+            "x1": 544.28474609375,
+            "y1": 105.81699218749998
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9311,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9311
+          },
+          "reading_order": 22,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_7",
+          "block_type": "text",
+          "bbox": {
+            "x0": 74.34110107421874,
+            "y0": 548.77638671875,
+            "x1": 543.19115234375,
+            "y1": 573.0931982421876
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.93,
+            "geometric_score": 0.3,
+            "final_confidence": 0.93
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_8",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.3348583984375,
+            "y0": 180.92951171875006,
+            "x1": 543.4033789062499,
+            "y1": 205.45097656250005
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9299,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9299
+          },
+          "reading_order": 18,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_9",
+          "block_type": "text",
+          "bbox": {
+            "x0": 74.05522216796875,
+            "y0": 438.199052734375,
+            "x1": 543.81787109375,
+            "y1": 462.3843359375
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9293,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9293
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_10",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.29547607421874,
+            "y0": 205.9551953125,
+            "x1": 543.40537109375,
+            "y1": 230.36796875000005
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9292,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9292
+          },
+          "reading_order": 17,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_11",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.47196044921874,
+            "y0": 338.40610351562503,
+            "x1": 544.231953125,
+            "y1": 362.672392578125
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9291,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9291
+          },
+          "reading_order": 13,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_12",
+          "block_type": "text",
+          "bbox": {
+            "x0": 73.80042724609375,
+            "y0": 413.041591796875,
+            "x1": 543.67115234375,
+            "y1": 437.857724609375
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.929,
+            "geometric_score": 0.3,
+            "final_confidence": 0.929
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_13",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.26886718749999,
+            "y0": 156.22703124999998,
+            "x1": 543.67056640625,
+            "y1": 180.48757812500003
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9289,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9289
+          },
+          "reading_order": 19,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_14",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.29020263671875,
+            "y0": 388.287255859375,
+            "x1": 543.6172460937499,
+            "y1": 412.965517578125
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9282,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9282
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_15",
+          "block_type": "text",
+          "bbox": {
+            "x0": 74.12798095703124,
+            "y0": 524.0863574218749,
+            "x1": 543.855546875,
+            "y1": 548.008671875
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9281,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9281
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_16",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.28648193359375,
+            "y0": 363.426572265625,
+            "x1": 543.91384765625,
+            "y1": 387.75828125000004
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9271,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9271
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_17",
+          "block_type": "text",
+          "bbox": {
+            "x0": 74.2760400390625,
+            "y0": 463.30612304687503,
+            "x1": 543.60951171875,
+            "y1": 487.263857421875
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9261,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9261
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_18",
+          "block_type": "text",
+          "bbox": {
+            "x0": 74.0128369140625,
+            "y0": 601.71115234375,
+            "x1": 429.167978515625,
+            "y1": 615.3546875
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9243,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9243
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_19",
+          "block_type": "text",
+          "bbox": {
+            "x0": 74.38011718749999,
+            "y0": 587.647978515625,
+            "x1": 538.12373046875,
+            "y1": 601.3562744140625
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9222,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9222
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_20",
+          "block_type": "text",
+          "bbox": {
+            "x0": 74.55107177734375,
+            "y0": 573.59306640625,
+            "x1": 422.655517578125,
+            "y1": 587.356630859375
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9185,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9185
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_21",
+          "block_type": "header",
+          "bbox": {
+            "x0": 69.8468212890625,
+            "y0": 623.846875,
+            "x1": 130.0181884765625,
+            "y1": 638.9240673828125
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9058,
+            "geometric_score": 0.3,
+            "final_confidence": 0.9058
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_22",
+          "block_type": "text",
+          "bbox": {
+            "x0": 301.252861328125,
+            "y0": 37.51808593750002,
+            "x1": 310.66531249999997,
+            "y1": 51.49642578125008
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8889,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8889
+          },
+          "reading_order": 23,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_23",
+          "block_type": "text",
+          "bbox": {
+            "x0": 69.5311767578125,
+            "y0": 106.54011718750007,
+            "x1": 543.90833984375,
+            "y1": 130.70937500000002
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8405,
+            "geometric_score": 0.3,
+            "final_confidence": 0.8405
+          },
+          "reading_order": 21,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    }
+  ]
+}

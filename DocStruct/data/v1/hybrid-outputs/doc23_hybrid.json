@@ -1,0 +1,5523 @@
+{
+  "metadata": {
+    "filename": "doc23.pdf",
+    "num_pages": 6,
+    "processing_version": "1.0.0"
+  },
+  "pages": [
+    {
+      "page_num": 0,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_0_0",
+          "block_type": "header",
+          "bbox": {
+            "x0": 167.865,
+            "y0": 645.4858372,
+            "x1": 447.48678419999993,
+            "y1": 677.7650372
+          },
+          "page_num": 0,
+          "text": "Hierarchical Attentional Hybrid Neural Networks for Document Classification",
+          "confidence": {
+            "rule_score": 0.6,
+            "model_score": 0.822,
+            "geometric_score": 1.0,
+            "final_confidence": 0.791
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 163.11099999999993,
+            "y0": 359.5325184000001,
+            "x1": 452.24319391999995,
+            "y1": 401.81291840000006
+          },
+          "page_num": 0,
+          "text": "the current attention-based approaches. Keywords: Textclassification·Attentionmechanisms·Documentclas- · sification Convolutional Neural Networks.",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.9122,
+            "geometric_score": 1.0,
+            "final_confidence": 0.8061
+          },
+          "reading_order": 17,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_2",
+          "block_type": "header",
+          "bbox": {
+            "x0": 16.34,
+            "y0": 232.0,
+            "x1": 36.34,
+            "y1": 398.1
+          },
+          "page_num": 0,
+          "text": "2v01660.1091:viXra",
+          "confidence": {
+            "rule_score": 0.7,
+            "model_score": 0.8853,
+            "geometric_score": 1.0,
+            "final_confidence": 0.8526
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 144.727,
+            "y0": 127.3385184,
+            "x1": 368.47006239999996,
+            "y1": 136.30491840000002
+          },
+          "page_num": 0,
+          "text": "Authors contributed equally and are both first authors.",
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.6013,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7
+          },
+          "reading_order": 33,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.8048681640625,
+            "y0": 195.6566015625,
+            "x1": 480.454599609375,
+            "y1": 311.736533203125
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9447,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8335
+          },
+          "reading_order": 26,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 163.2097119140625,
+            "y0": 392.2209375,
+            "x1": 452.303935546875,
+            "y1": 521.31919921875
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9445,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8334
+          },
+          "reading_order": 16,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_6",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.6300244140625,
+            "y0": 146.93232421875007,
+            "x1": 480.548466796875,
+            "y1": 191.84050781250005
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9042,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8032
+          },
+          "reading_order": 31,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_7",
+          "block_type": "header",
+          "bbox": {
+            "x0": 134.836611328125,
+            "y0": 323.427509765625,
+            "x1": 229.1438818359375,
+            "y1": 333.59897460937503
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8482,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7611
+          },
+          "reading_order": 18,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_8",
+          "block_type": "text",
+          "bbox": {
+            "x0": 165.5627783203125,
+            "y0": 611.1699609375,
+            "x1": 449.37603515625,
+            "y1": 620.3814990234375
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8455,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7591
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_9",
+          "block_type": "text",
+          "bbox": {
+            "x0": 165.89,
+            "y0": 557.4514592000002,
+            "x1": 449.46909504000007,
+            "y1": 622.4348828
+          },
+          "page_num": 0,
+          "text": "Jader Abreu(cid:63), Luis Fred(cid:63), David Macˆedo, and Cleber Zanchettin Centro de Informa´tica Universidade Federal de Pernambuco 50.740-560, Recife, PE, Brazil {jaoa,lfgs,dlm,cz}@cin.ufpe.br",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.4361,
+            "geometric_score": 1.0,
+            "final_confidence": 0.5021
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_10",
+          "block_type": "text",
+          "bbox": {
+            "x0": 262.48494140625,
+            "y0": 590.51783203125,
+            "x1": 353.20253906249997,
+            "y1": 598.9227099609375
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.427,
+            "geometric_score": 0.8,
+            "final_confidence": 0.4452
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_11",
+          "block_type": "text",
+          "bbox": {
+            "x0": 165.89,
+            "y0": 557.4514592000002,
+            "x1": 449.46909504000007,
+            "y1": 622.4348828
+          },
+          "page_num": 0,
+          "text": "Jader Abreu(cid:63), Luis Fred(cid:63), David Macˆedo, and Cleber Zanchettin Centro de Informa´tica Universidade Federal de Pernambuco 50.740-560, Recife, PE, Brazil {jaoa,lfgs,dlm,cz}@cin.ufpe.br",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_12",
+          "block_type": "text",
+          "bbox": {
+            "x0": 163.111,
+            "y0": 480.51751840000014,
+            "x1": 452.24512095999995,
+            "y1": 500.4429184000001
+          },
+          "page_num": 0,
+          "text": "much attention recently. Despite the progress, the proposed models do notincorporatetheknowledgeofthedocumentstructureinthearchitec-",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_13",
+          "block_type": "text",
+          "bbox": {
+            "x0": 163.111,
+            "y0": 447.64051840000013,
+            "x1": 452.24422432,
+            "y1": 478.5249184000001
+          },
+          "page_num": 0,
+          "text": "ture efficiently and not take into account the contexting importance of wordsandsentences.Inthispaper,weproposeanewapproachbasedon a combination of convolutional neural networks, gated recurrent units,",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 13,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_14",
+          "block_type": "text",
+          "bbox": {
+            "x0": 163.111,
+            "y0": 414.7645184000001,
+            "x1": 452.2478108799999,
+            "y1": 445.64891840000007
+          },
+          "page_num": 0,
+          "text": "and attention mechanisms for document classification tasks. The main contributionofthisworkistheuseofconvolutionlayerstoextractmore meaningful, generalizable and abstract features by the hierarchical rep-",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 14,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_15",
+          "block_type": "text",
+          "bbox": {
+            "x0": 163.111,
+            "y0": 403.8055184000001,
+            "x1": 452.2442243199999,
+            "y1": 412.77191840000006
+          },
+          "page_num": 0,
+          "text": "resentation. The proposed method in this paper improves the results of",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 15,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_16",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76499999999993,
+            "y0": 303.3262556000001,
+            "x1": 480.58776746000007,
+            "y1": 335.3248912000001
+          },
+          "page_num": 0,
+          "text": "1 Introduction Text classification is one of the most classical and important tasks in the ma-",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 19,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_17",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76499999999993,
+            "y0": 291.37025560000006,
+            "x1": 480.58776745999984,
+            "y1": 301.3328556000001
+          },
+          "page_num": 0,
+          "text": "chine learning field. The document classification, which is essential to organize",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 20,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_18",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76499999999993,
+            "y0": 267.4602556000001,
+            "x1": 480.59474127999994,
+            "y1": 277.42285560000005
+          },
+          "page_num": 0,
+          "text": "classifiers such as Support Vector Machines or Random Forests. As in different",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 22,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_19",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76499999999993,
+            "y0": 255.50525560000005,
+            "x1": 480.58876372,
+            "y1": 265.4678556000001
+          },
+          "page_num": 0,
+          "text": "areas, the deep learning methods are presenting a performance quite superior",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 23,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_20",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76499999999993,
+            "y0": 243.55025560000013,
+            "x1": 480.5927487599999,
+            "y1": 253.51285560000008
+          },
+          "page_num": 0,
+          "text": "to traditional approaches in this field [5]. Deep learning is also playing a central",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 24,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_21",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76499999999993,
+            "y0": 231.5952556000001,
+            "x1": 480.5897599800001,
+            "y1": 241.55785560000004
+          },
+          "page_num": 0,
+          "text": "role in Natural Language Processing (NLP) through learned word vector repre-",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 25,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_22",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76499999999993,
+            "y0": 183.33625560000007,
+            "x1": 480.5947412800001,
+            "y1": 229.60185560000014
+          },
+          "page_num": 0,
+          "text": "sentations. It aims to represent words in terms of fixed-length, continuous and densefeaturevectors,capturingsemanticwordrelations:similarwordsareclose to each other in the vector space. In most NLP tasks for document classification, the proposed models do not",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 27,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_23",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76499999999993,
+            "y0": 171.38125560000003,
+            "x1": 480.59474128,
+            "y1": 181.3438556000001
+          },
+          "page_num": 0,
+          "text": "incorporate the knowledge of the document structure in the architecture effi-",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 28,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_24",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76499999999993,
+            "y0": 159.4262556000001,
+            "x1": 480.58776746,
+            "y1": 169.38885560000006
+          },
+          "page_num": 0,
+          "text": "ciently and not take into account the contexting importance of words and sen-",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 29,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_25",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76499999999993,
+            "y0": 147.47125560000006,
+            "x1": 480.59573754,
+            "y1": 157.43385560000002
+          },
+          "page_num": 0,
+          "text": "tences. Much of these approaches do not select qualitative or informative words",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 30,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_26",
+          "block_type": "header",
+          "bbox": {
+            "x0": 16.34,
+            "y0": 536.42,
+            "x1": 36.34,
+            "y1": 576.42
+          },
+          "page_num": 0,
+          "text": "9102",
+          "confidence": {
+            "rule_score": 0.7,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_27",
+          "block_type": "text",
+          "bbox": {
+            "x0": 163.111,
+            "y0": 502.43551840000015,
+            "x1": 452.2433276799999,
+            "y1": 511.4019184000001
+          },
+          "page_num": 0,
+          "text": "applications. The deep learning approaches to the problem have gained",
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.36
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_28",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76499999999993,
+            "y0": 279.41525560000014,
+            "x1": 480.58677120000016,
+            "y1": 289.3778556000001
+          },
+          "page_num": 0,
+          "text": "documents for retrieval, analysis, and curation, is traditionally performed by",
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.36
+          },
+          "reading_order": 21,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_29",
+          "block_type": "header",
+          "bbox": {
+            "x0": 16.34,
+            "y0": 503.64,
+            "x1": 36.34,
+            "y1": 531.42
+          },
+          "page_num": 0,
+          "text": "nuJ",
+          "confidence": {
+            "rule_score": 0.7,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_30",
+          "block_type": "header",
+          "bbox": {
+            "x0": 16.34,
+            "y0": 408.1,
+            "x1": 36.34,
+            "y1": 468.64000000000004
+          },
+          "page_num": 0,
+          "text": "]LC.sc[",
+          "confidence": {
+            "rule_score": 0.7,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_31",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 163.111,
+            "y0": 513.3945184000002,
+            "x1": 452.24482719999986,
+            "y1": 522.3609184000002
+          },
+          "page_num": 0,
+          "text": "Abstract. Documentclassificationisachallengingtaskwithimportant",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.58
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_32",
+          "block_type": "text",
+          "bbox": {
+            "x0": 16.34,
+            "y0": 478.64,
+            "x1": 36.34,
+            "y1": 498.64
+          },
+          "page_num": 0,
+          "text": "82",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.5
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_33",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 137.338,
+            "y0": 131.72734560000004,
+            "x1": 141.15708863999998,
+            "y1": 137.70494559999997
+          },
+          "page_num": 0,
+          "text": "(cid:63)",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 32,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    },
+    {
+      "page_num": 1,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_1_0",
+          "block_type": "header",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 378.7636911999997,
+            "x1": 447.91831328,
+            "y1": 390.7188911999997
+          },
+          "page_num": 1,
+          "text": "2 Hierarchical Attentional Hybrid Neural Networks",
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8994,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7
+          },
+          "reading_order": 21,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 640.3582555999999,
+            "x1": 480.5917525000001,
+            "y1": 674.2318556
+          },
+          "page_num": 1,
+          "text": "and sentences since some words are more informative than others in a docu- ment.Moreover,thesemodelsarefrequentlybasedonrecurrentneuralnetworks only [6]. Since CNN has leveraged strong performance on deep learning models",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9322,
+            "geometric_score": 0.8,
+            "final_confidence": 0.9261
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_2",
+          "block_type": "header",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 690.3655184,
+            "x1": 269.35963039999996,
+            "y1": 699.3319184000001
+          },
+          "page_num": 1,
+          "text": "2 Abreu, J., Fred, L., et al.",
+          "confidence": {
+            "rule_score": 0.6,
+            "model_score": 0.7355,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7077
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 127.14425559999972,
+            "x1": 480.59484128,
+            "y1": 268.8848555999998
+          },
+          "page_num": 1,
+          "text": "mechanism on word level context vector. In sequence, a sentence encoder apply- ingtheattentiononsentence-levelcontextvector.ThelastlayerusesaSoftmax function to generate the output probability distribution over the classes. WeuseCNNtoextractmoremeaningful,generalizableandabstractfeatures by the hierarchical representation. Combining convolutional layers in different filtersizeswithbothwordandsentenceencoderinahierarchicalarchitecturelet ourmodelextractmorerichfeaturesandimprovesgeneralizationperformancein documentclassification.Toobtainrepresentationsofmorerarewords,bytaking intoaccountsubwordsinformation,weusedFastText[3]inthewordembedding initialization. Weinvestigatetwovariantsoftheproposedarchitecture.Thereisabasicver- sion,asdescribedinFigure1,andthereisanotherwhichimplementsaTCN[2]",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.8583,
+            "geometric_score": 1.0,
+            "final_confidence": 0.9291
+          },
+          "reading_order": 31,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.5989404296875,
+            "y0": 234.89144531249997,
+            "x1": 480.575595703125,
+            "y1": 363.82921875
+          },
+          "page_num": 1,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9401,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8301
+          },
+          "reading_order": 30,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.47233398437498,
+            "y0": 400.588271484375,
+            "x1": 480.606943359375,
+            "y1": 505.213505859375
+          },
+          "page_num": 1,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9215,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8161
+          },
+          "reading_order": 20,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_6",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.523134765625,
+            "y0": 508.629814453125,
+            "x1": 480.596689453125,
+            "y1": 600.9779443359375
+          },
+          "page_num": 1,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9098,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8074
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_7",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.64439453125,
+            "y0": 126.29542968750002,
+            "x1": 480.02953125,
+            "y1": 147.97546875
+          },
+          "page_num": 1,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8476,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7607
+          },
+          "reading_order": 32,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_8",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 628.4032555999999,
+            "x1": 480.59075624,
+            "y1": 638.3658555999999
+          },
+          "page_num": 1,
+          "text": "by extracting more abundant features and reducing the number of parameters,",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_9",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 616.4482555999998,
+            "x1": 480.59075624,
+            "y1": 626.4108555999999
+          },
+          "page_num": 1,
+          "text": "we guess it not only improves computational performance but also yields better",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_10",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 580.4472555999997,
+            "x1": 480.59175250000027,
+            "y1": 614.4558555999998
+          },
+          "page_num": 1,
+          "text": "generalization on neural models for document classification. ArecenttrendinNLPistouseattentionalmechanismstomodelinginforma- tion dependencies without regard to their distance between words in the input",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_11",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 568.4922555999997,
+            "x1": 480.58876372000014,
+            "y1": 578.4548555999997
+          },
+          "page_num": 1,
+          "text": "sequences. In [6] is proposed a hierarchical neural architecture for document",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_12",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 544.5822555999996,
+            "x1": 480.5877674600001,
+            "y1": 554.5448555999997
+          },
+          "page_num": 1,
+          "text": "archical structure of the document. The intuition underlying the model is that",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_13",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 532.6272555999996,
+            "x1": 480.58975998000017,
+            "y1": 542.5898555999996
+          },
+          "page_num": 1,
+          "text": "not all parts of a text are equally relevant to represent it. Further, determining",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_14",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 496.62625559999964,
+            "x1": 480.5878674599999,
+            "y1": 518.6788555999996
+          },
+          "page_num": 1,
+          "text": "the words and not just their presence in the text. In this paper, we propose a new approach for document classification based",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_15",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 484.67125559999965,
+            "x1": 480.59274876,
+            "y1": 494.63385559999966
+          },
+          "page_num": 1,
+          "text": "on CNN, GRU [4] hidden units and attentional mechanisms to improve the",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_16",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 472.71525559999964,
+            "x1": 480.59075624,
+            "y1": 482.67785559999965
+          },
+          "page_num": 1,
+          "text": "model performance by selectively focusing the network on essential parts of the",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 13,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_17",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 460.76025559999965,
+            "x1": 480.58677120000004,
+            "y1": 470.72285559999966
+          },
+          "page_num": 1,
+          "text": "text sentences during the model training. Inspired by [6], we have used the hi-",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 14,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_18",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 448.80525559999967,
+            "x1": 480.59274875999995,
+            "y1": 458.7678555999997
+          },
+          "page_num": 1,
+          "text": "erarchical concept to better representation of document structure. We call our",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 15,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_19",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 424.8952555999997,
+            "x1": 480.5907562399999,
+            "y1": 434.8578555999997
+          },
+          "page_num": 1,
+          "text": "used temporal convolutions [2], which give us more flexible receptive field sizes.",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 17,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_20",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 342.6082555999997,
+            "x1": 480.58975998,
+            "y1": 352.57085559999973
+          },
+          "page_num": 1,
+          "text": "attention mechanisms. Figure 1 shows the proposed architecture. The first layer",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 23,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_21",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 330.65325559999974,
+            "x1": 480.59474128,
+            "y1": 340.61585559999975
+          },
+          "page_num": 1,
+          "text": "of HAHNN is a pre-processed word embedding layer (black circles in the Fig-",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 24,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_22",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 318.69825559999975,
+            "x1": 480.5927487600001,
+            "y1": 328.66085559999976
+          },
+          "page_num": 1,
+          "text": "ure 1). The second layer contains a stack of CNN layers that consist of con-",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 25,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_23",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 306.74325559999977,
+            "x1": 480.58776746000007,
+            "y1": 316.7058555999998
+          },
+          "page_num": 1,
+          "text": "volutional layers with multiple filters (varying window sizes) and feature maps.",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 26,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_24",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 294.78725559999975,
+            "x1": 480.5867712,
+            "y1": 304.74985559999976
+          },
+          "page_num": 1,
+          "text": "We also have performed some trials with temporal convolutional layers with di-",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 27,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_25",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 282.83225559999977,
+            "x1": 480.59175250000015,
+            "y1": 292.7948555999998
+          },
+          "page_num": 1,
+          "text": "lated convolutions and gotten promising results. Besides, we used Dropout for",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 28,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_26",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 270.8772555999998,
+            "x1": 480.59175250000004,
+            "y1": 280.8398555999998
+          },
+          "page_num": 1,
+          "text": "regularization. In the next layers, we use a word encoder applying the attention",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 29,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_27",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 556.5372555999996,
+            "x1": 480.58975998,
+            "y1": 566.4998555999997
+          },
+          "page_num": 1,
+          "text": "classification, which employs attentional mechanisms, trying to mirror the hier-",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_28",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 520.6712555999995,
+            "x1": 480.5937450200001,
+            "y1": 530.6338555999996
+          },
+          "page_num": 1,
+          "text": "the relevant sections involves modeling the interactions and importance among",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_29",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 436.8502555999997,
+            "x1": 480.5907562399999,
+            "y1": 446.8128555999997
+          },
+          "page_num": 1,
+          "text": "model as Hierarchical Attentional Hybrid Neural Networks (HAHNN). We also",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 16,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_30",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 412.9402555999997,
+            "x1": 480.5867712000002,
+            "y1": 422.9028555999997
+          },
+          "page_num": 1,
+          "text": "We evaluate the proposed approach comparing its results with state-of-the-art",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 18,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_31",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 400.9842555999997,
+            "x1": 360.25051832,
+            "y1": 410.9468555999997
+          },
+          "page_num": 1,
+          "text": "models and the model shows an improved accuracy.",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 19,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_32",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 354.5632555999997,
+            "x1": 480.5877674600002,
+            "y1": 364.5258555999997
+          },
+          "page_num": 1,
+          "text": "The HAHNN model combines convolutional layers, Gated Recurrent Units, and",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 22,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    },
+    {
+      "page_num": 2,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_2_0",
+          "block_type": "figure",
+          "bbox": {
+            "x0": 232.63658203125,
+            "y0": 260.06466796875,
+            "x1": 378.165029296875,
+            "y1": 508.289560546875
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8936,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": {
+            "width": 0,
+            "height": 0,
+            "aspect_ratio": 1.0
+          },
+          "caption_id": "block_2_7",
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 127.14525559999993,
+            "x1": 480.59474128,
+            "y1": 184.92785560000004
+          },
+          "page_num": 2,
+          "text": "sections involves modeling the interactions among the words, not just their iso- latedpresenceinthetext.Therefore,toconsiderthisaspect,themodelincludes twolevelsofattentionmechanisms[1].Onestructureatthewordlevelandother atthesentencelevel,whichletthemodelpaymoreorlessattentiontoindividual words and sentences when constructing the document representation.",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9398,
+            "geometric_score": 1.0,
+            "final_confidence": 0.9699
+          },
+          "reading_order": 17,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_2",
+          "block_type": "header",
+          "bbox": {
+            "x0": 277.447,
+            "y0": 690.3655184,
+            "x1": 480.58886176,
+            "y1": 699.3319184000001
+          },
+          "page_num": 2,
+          "text": "Title Suppressed Due to Excessive Length 3",
+          "confidence": {
+            "rule_score": 0.6,
+            "model_score": 0.8515,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7658
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 616.4482555999998,
+            "x1": 480.59075624000013,
+            "y1": 650.3208556
+          },
+          "page_num": 2,
+          "text": "lated convolutions are considered beneficial in longer sequences as they enable anexponentiallylargerreceptivefieldinconvolutionallayers.Moreformally,for a 1-D sequence input x∈Rn and a filter f : {0,...,k −1} → R, the dilated",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9324,
+            "geometric_score": 0.8,
+            "final_confidence": 0.9262
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 514.1442555999995,
+            "x1": 480.5927487600002,
+            "y1": 536.0618555999996
+          },
+          "page_num": 2,
+          "text": "reduces to a regular convolution. The use of larger dilation enables an output atthetopleveltorepresentawiderrangeofinputs,expandingthereceptivefield.",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.826,
+            "geometric_score": 0.8,
+            "final_confidence": 0.873
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 227.50799999999995,
+            "y0": 583.9712555999996,
+            "x1": 480.59121028,
+            "y1": 599.3530399999997
+          },
+          "page_num": 2,
+          "text": "(cid:88) F(s)=(x∗ f)(s)= f(i)·x (1)",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.7527,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_6",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 230.8402556000001,
+            "x1": 480.59573753999996,
+            "y1": 240.80285560000004
+          },
+          "page_num": 2,
+          "text": "layer. In addition, we have created a variant which includes a temporal convo-",
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.8808,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7406
+          },
+          "reading_order": 13,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": "block_2_0",
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_7",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 242.7962556,
+            "x1": 480.59274876000006,
+            "y1": 252.75885560000006
+          },
+          "page_num": 2,
+          "text": "Fig.1: Our HAHNN Architecture include an CNN layer after the embedding",
+          "confidence": {
+            "rule_score": 0.6,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": "block_2_0",
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_8",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 664.2692556,
+            "x1": 480.58975998,
+            "y1": 674.2318556
+          },
+          "page_num": 2,
+          "text": "layer. The goal is to simulate RNNs with very long memory size by adopting a",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_9",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 604.4932555999998,
+            "x1": 425.8050987799999,
+            "y1": 614.4558555999998
+          },
+          "page_num": 2,
+          "text": "convolution operation F on element s of the sequence is defined as",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_10",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 550.0092555999996,
+            "x1": 480.59673380000027,
+            "y1": 571.9278555999997
+          },
+          "page_num": 2,
+          "text": "where d is the dilatation factor, k is the filter size, and s −d ·i accounts for thepastinformationdirection.Dilationisthus equivalenttointroducinga fixed",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_11",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 538.0542555999996,
+            "x1": 480.59418552,
+            "y1": 548.0168555999996
+          },
+          "page_num": 2,
+          "text": "step between every two adjacent filter maps. When d = 1, a dilated convolution",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_12",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 230.8402556000001,
+            "x1": 480.59573753999996,
+            "y1": 240.80285560000004
+          },
+          "page_num": 2,
+          "text": "layer. In addition, we have created a variant which includes a temporal convo-",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 14,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_13",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 198.87625560000004,
+            "x1": 480.59085624000005,
+            "y1": 228.8478556
+          },
+          "page_num": 2,
+          "text": "lutional layer [2] after the embedding layer. The proposed model takes into account that the different parts of a docu-",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 15,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_14",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 652.3142555999999,
+            "x1": 480.5937450200001,
+            "y1": 662.2768556
+          },
+          "page_num": 2,
+          "text": "combination of dilated and regular convolutions with residual connections. Di-",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_15",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 186.9212556,
+            "x1": 480.5887637200001,
+            "y1": 196.88385560000006
+          },
+          "page_num": 2,
+          "text": "ment have no similar relevant information. Moreover, determining the relevant",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 16,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_16",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 277.76399999999995,
+            "y0": 572.7960827999997,
+            "x1": 386.73345054,
+            "y1": 590.0298827999998
+          },
+          "page_num": 2,
+          "text": "d s−d·i i=o",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_17",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 320.15,
+            "y0": 597.0040827999998,
+            "x1": 334.75157909999996,
+            "y1": 603.9778827999997
+          },
+          "page_num": 2,
+          "text": "k−1",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    },
+    {
+      "page_num": 3,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_3_0",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 592.5382555999997,
+            "x1": 480.59474128000016,
+            "y1": 650.3208556
+          },
+          "page_num": 3,
+          "text": "attention layer. In the word encoder, the model uses bidirectional GRU [1] to produceannotationsofwordsbysummarizinginformationfrombothdirections. Therefore, it incorporates the contextual information in the annotation. The attentionlevelsletthemodelpaymoreorlessattentiontoindividualwordsand sentences when constructing the representation of the document [6].",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9319,
+            "geometric_score": 1.0,
+            "final_confidence": 0.9659
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 139.10025559999997,
+            "x1": 480.59474128000005,
+            "y1": 172.9728556
+          },
+          "page_num": 3,
+          "text": "In the above equation, v is the document vector that summarizes all the in- formationofsentencesinadocument.Similarly,thesentencelevelcontextvector u can be randomly initialized and jointly learned during the training process.",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9231,
+            "geometric_score": 0.8,
+            "final_confidence": 0.9215
+          },
+          "reading_order": 73,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_2",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 426.70608279999976,
+            "x1": 480.5907562399999,
+            "y1": 476.35885559999974
+          },
+          "page_num": 3,
+          "text": "the information of the whole sentence. We use the attention mechanism to eval- uateswordsthatareimportanttothemeaningofthesentenceandtoaggregate therepresentationofthoseinformativewordsintoasentencevector.Specifically, exp(u(cid:62) w) itu",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9277,
+            "geometric_score": 1.0,
+            "final_confidence": 0.9638
+          },
+          "reading_order": 23,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76499999999993,
+            "y0": 553.0152555999996,
+            "x1": 443.7496102799999,
+            "y1": 569.8968555999996
+          },
+          "page_num": 3,
+          "text": "←− from w to w and a backward GRU f which reads from w to w :",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.8563,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8881
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 166.06400000000005,
+            "y0": 288.3572556,
+            "x1": 479.19621028,
+            "y1": 298.3198556
+          },
+          "page_num": 3,
+          "text": "h =GRU(s ),i ∈[1,L], (8) h =GRU(s ),i ∈[L,1]. (9)",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.8089,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7145
+          },
+          "reading_order": 51,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 281.044,
+            "y0": 179.21725560000004,
+            "x1": 480.59151028,
+            "y1": 194.59903999999995
+          },
+          "page_num": 3,
+          "text": "(cid:88) v = α h (12)",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.7181,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7
+          },
+          "reading_order": 71,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_6",
+          "block_type": "text",
+          "bbox": {
+            "x0": 276.634,
+            "y0": 401.68225559999996,
+            "x1": 480.59121028000004,
+            "y1": 417.06503999999995
+          },
+          "page_num": 3,
+          "text": "(cid:88) s = α h (7)",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.6813,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7
+          },
+          "reading_order": 34,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_7",
+          "block_type": "header",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 690.3655184,
+            "x1": 269.35963039999996,
+            "y1": 699.3319184000001
+          },
+          "page_num": 3,
+          "text": "4 Abreu, J., Fred, L., et al.",
+          "confidence": {
+            "rule_score": 0.6,
+            "model_score": 0.4183,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_8",
+          "block_type": "text",
+          "bbox": {
+            "x0": 249.64999999999992,
+            "y0": 509.4602555999997,
+            "x1": 480.59121028,
+            "y1": 526.3418555999997
+          },
+          "page_num": 3,
+          "text": "←− ←−−− h =GRU(x ),t ∈[T,1]. (4)",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.4887,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7
+          },
+          "reading_order": 15,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_9",
+          "block_type": "text",
+          "bbox": {
+            "x0": 261.4849999999999,
+            "y0": 201.11425559999998,
+            "x1": 479.19651028000004,
+            "y1": 215.31585559999996
+          },
+          "page_num": 3,
+          "text": "s) α = (11)",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.628,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7
+          },
+          "reading_order": 67,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_10",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.50492675781248,
+            "y0": 327.81108398437505,
+            "x1": 480.598564453125,
+            "y1": 397.29375
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9118,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8089
+          },
+          "reading_order": 46,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_11",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.499755859375,
+            "y0": 218.51167968750008,
+            "x1": 480.61605468749997,
+            "y1": 277.1689453125
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8752,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7814
+          },
+          "reading_order": 60,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_12",
+          "block_type": "text",
+          "bbox": {
+            "x0": 169.1085791015625,
+            "y0": 412.81625976562503,
+            "x1": 480.52766601562496,
+            "y1": 437.38447265625
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.768,
+            "geometric_score": 0.8,
+            "final_confidence": 0.701
+          },
+          "reading_order": 32,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_13",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.8100244140625,
+            "y0": 304.75382812500004,
+            "x1": 480.21111328125,
+            "y1": 325.081494140625
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.7492,
+            "geometric_score": 0.8,
+            "final_confidence": 0.6869
+          },
+          "reading_order": 49,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_14",
+          "block_type": "text",
+          "bbox": {
+            "x0": 249.64999999999992,
+            "y0": 509.4602555999997,
+            "x1": 480.59121028,
+            "y1": 526.3418555999997
+          },
+          "page_num": 3,
+          "text": "←− ←−−− h =GRU(x ),t ∈[T,1]. (4)",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.5166,
+            "geometric_score": 0.8,
+            "final_confidence": 0.5424
+          },
+          "reading_order": 16,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_15",
+          "block_type": "text",
+          "bbox": {
+            "x0": 149.70899999999997,
+            "y0": 664.2692556,
+            "x1": 480.5928487600001,
+            "y1": 674.2318556
+          },
+          "page_num": 3,
+          "text": "The strategy consists of different parts: 1) A word sequence encoder and",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_16",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 652.3142555999999,
+            "x1": 480.5937450199999,
+            "y1": 662.2768556
+          },
+          "page_num": 3,
+          "text": "a word-level attention layer; and 2) A sentence encoder and a sentence-level",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_17",
+          "block_type": "text",
+          "bbox": {
+            "x0": 149.70899999999997,
+            "y0": 580.5832555999997,
+            "x1": 480.59161027999994,
+            "y1": 590.5458555999998
+          },
+          "page_num": 3,
+          "text": "Given a sentence with words w ,t ∈ [0,T] and an embedding matrix W ,",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_18",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76499999999993,
+            "y0": 566.5222555999997,
+            "x1": 477.2754668799999,
+            "y1": 576.4848555999997
+          },
+          "page_num": 3,
+          "text": "a bidirectional GRU contains the forward GRU f which reads the sentence s",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_19",
+          "block_type": "text",
+          "bbox": {
+            "x0": 170.85099999999994,
+            "y0": 529.7582555999996,
+            "x1": 479.1972102799999,
+            "y1": 539.7208555999997
+          },
+          "page_num": 3,
+          "text": "x =W w ,t ∈[1,T], (2) h =GRU(x ),t ∈[1,T], (3)",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 13,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_20",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 478.3512555999997,
+            "x1": 480.58887909999993,
+            "y1": 488.3138555999997
+          },
+          "page_num": 3,
+          "text": "hidden state and backward hidden state, i.e., h = [h ,h ], which summarizes",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 21,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_21",
+          "block_type": "text",
+          "bbox": {
+            "x0": 149.70900000000006,
+            "y0": 388.31025559999995,
+            "x1": 480.5912757000001,
+            "y1": 398.27285559999996
+          },
+          "page_num": 3,
+          "text": "The model measures the importance of a word as the similarity of u with",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 36,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_22",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000004,
+            "y0": 376.35525559999996,
+            "x1": 474.26507522,
+            "y1": 386.3178556
+          },
+          "page_num": 3,
+          "text": "a word level context vector u and learns a normalized importance weight α",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 38,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_23",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000004,
+            "y0": 364.4002555999999,
+            "x1": 480.5947412800002,
+            "y1": 374.36285559999993
+          },
+          "page_num": 3,
+          "text": "through a softmax function. After that, the architecture computes the sentence",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 41,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_24",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000004,
+            "y0": 352.44525559999994,
+            "x1": 480.58945012000015,
+            "y1": 362.40785559999995
+          },
+          "page_num": 3,
+          "text": "vector s as a weighted sum of the word annotations based on the weights. The",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 42,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_25",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000004,
+            "y0": 340.49025559999995,
+            "x1": 480.5897939800001,
+            "y1": 350.45285559999996
+          },
+          "page_num": 3,
+          "text": "word context vector u is randomly initialized and jointly learned during the",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 44,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_26",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000004,
+            "y0": 316.57925559999995,
+            "x1": 480.59351408000015,
+            "y1": 338.49685559999995
+          },
+          "page_num": 3,
+          "text": "training process. Given the sentence vectors s , and the document vector, the sentence atten-",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 47,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_27",
+          "block_type": "text",
+          "bbox": {
+            "x0": 149.709,
+            "y0": 266.60625559999994,
+            "x1": 480.5880484799999,
+            "y1": 276.5688556
+          },
+          "page_num": 3,
+          "text": "The proposed solution concatenates h = [h ,h ] h which summarizes the",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 54,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_28",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76499999999993,
+            "y0": 254.6512556,
+            "x1": 480.5888991599999,
+            "y1": 264.6138556000001
+          },
+          "page_num": 3,
+          "text": "neighbor sentences around sentence i but still focus on sentence i. To reward",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 56,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_29",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76499999999987,
+            "y0": 242.69625559999997,
+            "x1": 480.59474127999994,
+            "y1": 252.65885559999992
+          },
+          "page_num": 3,
+          "text": "sentences that are relevant to correctly classify a document, the solution again",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 57,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_30",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76499999999987,
+            "y0": 230.74125559999993,
+            "x1": 480.59160083999984,
+            "y1": 240.7038556
+          },
+          "page_num": 3,
+          "text": "use attention mechanism and introduce a sentence level context vector u using",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 58,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_31",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76499999999987,
+            "y0": 206.93908280000005,
+            "x1": 429.8054551399999,
+            "y1": 228.74785559999998
+          },
+          "page_num": 3,
+          "text": "it to measure the importance of the sentences: exp(u(cid:62) u s)",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 61,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_32",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 175.47299999999996,
+            "y0": 528.8440827999997,
+            "x1": 398.65623342,
+            "y1": 535.8178827999997
+          },
+          "page_num": 3,
+          "text": "it e it it it",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.58
+          },
+          "reading_order": 14,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_33",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000004,
+            "y0": 295.1642556,
+            "x1": 387.6942820400001,
+            "y1": 314.5868556
+          },
+          "page_num": 3,
+          "text": "tion is obtained as: −→ ←− −−−→ ←−−−",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 50,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_34",
+          "block_type": "text",
+          "bbox": {
+            "x0": 168.29899999999998,
+            "y0": 426.21925559999977,
+            "x1": 306.28157422000004,
+            "y1": 436.1818555999998
+          },
+          "page_num": 3,
+          "text": "u =tanh(W +b (5)",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 24,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_35",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 171.80400000000006,
+            "y0": 287.4420828,
+            "x1": 398.2074505400001,
+            "y1": 294.41588279999996
+          },
+          "page_num": 3,
+          "text": "it i it i",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.58
+          },
+          "reading_order": 52,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_36",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 317.404,
+            "y0": 265.6920828,
+            "x1": 378.6278099599999,
+            "y1": 272.66588279999996
+          },
+          "page_num": 3,
+          "text": "i i i i",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 55,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_37",
+          "block_type": "text",
+          "bbox": {
+            "x0": 172.65099999999987,
+            "y0": 205.3532556,
+            "x1": 306.28246641999993,
+            "y1": 215.31585559999996
+          },
+          "page_num": 3,
+          "text": "u =tanh(W +b (10)",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 63,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_38",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 340.71799999999996,
+            "y0": 477.4370827999997,
+            "x1": 391.88770203999997,
+            "y1": 484.4108827999997
+          },
+          "page_num": 3,
+          "text": "it it it",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 22,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_39",
+          "block_type": "text",
+          "bbox": {
+            "x0": 349.0280000000001,
+            "y0": 421.97925559999976,
+            "x1": 480.59121028,
+            "y1": 431.9428556
+          },
+          "page_num": 3,
+          "text": "(6) α =",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 29,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_40",
+          "block_type": "text",
+          "bbox": {
+            "x0": 376.206,
+            "y0": 414.8012556,
+            "x1": 439.44045514,
+            "y1": 428.19104000000004
+          },
+          "page_num": 3,
+          "text": "(cid:80) exp(u(cid:62)u )",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 31,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_41",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 386.723,
+            "y0": 412.3920828,
+            "x1": 434.88014832,
+            "y1": 420.86088279999996
+          },
+          "page_num": 3,
+          "text": "w it t",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 33,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_42",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 281.30400000000003,
+            "y0": 400.76808279999995,
+            "x1": 338.22370204000003,
+            "y1": 407.7418827999999
+          },
+          "page_num": 3,
+          "text": "i it it",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 35,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_43",
+          "block_type": "text",
+          "bbox": {
+            "x0": 376.7,
+            "y0": 193.9352556,
+            "x1": 437.55245514,
+            "y1": 207.32503999999994
+          },
+          "page_num": 3,
+          "text": "(cid:80) exp(u(cid:62)u )",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 69,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_44",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 387.216,
+            "y0": 191.52608280000004,
+            "x1": 433.18027296,
+            "y1": 199.9948827999999
+          },
+          "page_num": 3,
+          "text": "s i i",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 70,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_45",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 287.07899999999995,
+            "y0": 579.6680827999998,
+            "x1": 476.8172341,
+            "y1": 586.6418827999997
+          },
+          "page_num": 3,
+          "text": "it e",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.58
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_46",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 165.44799999999995,
+            "y0": 552.1010827999996,
+            "x1": 202.89073019999998,
+            "y1": 559.0748827999996
+          },
+          "page_num": 3,
+          "text": "i1 iT",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_47",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 401.96899999999994,
+            "y0": 552.1010827999996,
+            "x1": 440.4835790999999,
+            "y1": 559.0748827999996
+          },
+          "page_num": 3,
+          "text": "iT i1",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_48",
+          "block_type": "text",
+          "bbox": {
+            "x0": 336.10599999999994,
+            "y0": 536.5662555999996,
+            "x1": 384.82228203999995,
+            "y1": 546.6388555999997
+          },
+          "page_num": 3,
+          "text": "−→ −−−→",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_49",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 255.38999999999993,
+            "y0": 508.5460827999997,
+            "x1": 312.20023342,
+            "y1": 515.5198827999997
+          },
+          "page_num": 3,
+          "text": "it it",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 17,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_50",
+          "block_type": "text",
+          "bbox": {
+            "x0": 149.709,
+            "y0": 491.8582555999997,
+            "x1": 480.58883068000006,
+            "y1": 501.82085559999973
+          },
+          "page_num": 3,
+          "text": "Anannotationforagivenwordw isobtainedbyconcatenatingtheforward",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 18,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_51",
+          "block_type": "text",
+          "bbox": {
+            "x0": 363.82499999999993,
+            "y0": 485.2702555999997,
+            "x1": 392.38171608,
+            "y1": 495.2328555999997
+          },
+          "page_num": 3,
+          "text": "−→ ←−",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.5
+          },
+          "reading_order": 20,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_52",
+          "block_type": "text",
+          "bbox": {
+            "x0": 338.96600748,
+            "y0": 273.52525560000004,
+            "x1": 363.32159999999993,
+            "y1": 283.4878556
+          },
+          "page_num": 3,
+          "text": "→− ←−",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.5
+          },
+          "reading_order": 53,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_53",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 321.938,
+            "y0": 178.3020828,
+            "x1": 333.81380996,
+            "y1": 185.27588279999998
+          },
+          "page_num": 3,
+          "text": "i i",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 72,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_54",
+          "block_type": "text",
+          "bbox": {
+            "x0": 345.46400747999996,
+            "y0": 573.4412555999996,
+            "x1": 355.42660748,
+            "y1": 583.4038555999997
+          },
+          "page_num": 3,
+          "text": "→−",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.5
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_55",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 477.2749999999999,
+            "y0": 565.6080827999997,
+            "x1": 480.09380995999993,
+            "y1": 572.5818827999997
+          },
+          "page_num": 3,
+          "text": "i",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_56",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 294.571,
+            "y0": 490.9440827999997,
+            "x1": 299.91223342000006,
+            "y1": 497.9178827999997
+          },
+          "page_num": 3,
+          "text": "it",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 19,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_57",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 173.646,
+            "y0": 425.3040827999998,
+            "x1": 178.98723341999997,
+            "y1": 432.27788279999976
+          },
+          "page_num": 3,
+          "text": "it",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 25,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_58",
+          "block_type": "text",
+          "bbox": {
+            "x0": 227.16799999999998,
+            "y0": 425.3040827999998,
+            "x1": 238.94388485999997,
+            "y1": 436.1818555999998
+          },
+          "page_num": 3,
+          "text": "wh",
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.25
+          },
+          "reading_order": 26,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_59",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 238.944,
+            "y0": 425.3040827999998,
+            "x1": 244.28523341999997,
+            "y1": 432.27788279999976
+          },
+          "page_num": 3,
+          "text": "it",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 27,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_60",
+          "block_type": "text",
+          "bbox": {
+            "x0": 262.19100000000003,
+            "y0": 425.3040827999998,
+            "x1": 272.74945514000007,
+            "y1": 436.1818555999998
+          },
+          "page_num": 3,
+          "text": "w)",
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.25
+          },
+          "reading_order": 28,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_61",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 355.40100000000007,
+            "y0": 421.06508279999974,
+            "x1": 361.22970204000006,
+            "y1": 428.0388827999997
+          },
+          "page_num": 3,
+          "text": "it",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 30,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_62",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 451.05600000000004,
+            "y0": 387.39608279999993,
+            "x1": 456.3972334200001,
+            "y1": 394.3698827999999
+          },
+          "page_num": 3,
+          "text": "it",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 37,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_63",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 263.36,
+            "y0": 375.44108279999995,
+            "x1": 268.79537972,
+            "y1": 382.41488279999993
+          },
+          "page_num": 3,
+          "text": "w",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 39,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_64",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 474.26500000000004,
+            "y0": 375.44108279999995,
+            "x1": 480.09370204000004,
+            "y1": 382.41488279999993
+          },
+          "page_num": 3,
+          "text": "it",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 40,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_65",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 169.34200000000004,
+            "y0": 351.53008279999995,
+            "x1": 172.16080996000005,
+            "y1": 358.50388279999993
+          },
+          "page_num": 3,
+          "text": "i",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 43,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_66",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 232.88100000000006,
+            "y0": 339.57508279999996,
+            "x1": 238.64414832000006,
+            "y1": 346.54888279999994
+          },
+          "page_num": 3,
+          "text": "w",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 45,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_67",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 273.63300000000004,
+            "y0": 315.66508279999994,
+            "x1": 276.45180996000005,
+            "y1": 322.6388827999999
+          },
+          "page_num": 3,
+          "text": "i",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 48,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_68",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 450.3729999999998,
+            "y0": 229.8260828,
+            "x1": 454.13327295999983,
+            "y1": 236.79988279999998
+          },
+          "page_num": 3,
+          "text": "s",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 59,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_69",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 409.2449999999999,
+            "y0": 205.8400828,
+            "x1": 412.0638099599999,
+            "y1": 212.8138828
+          },
+          "page_num": 3,
+          "text": "i",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 62,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_70",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 177.99799999999988,
+            "y0": 204.43808279999996,
+            "x1": 183.33923341999986,
+            "y1": 211.41188280000006
+          },
+          "page_num": 3,
+          "text": "it",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 64,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_71",
+          "block_type": "text",
+          "bbox": {
+            "x0": 231.51999999999987,
+            "y0": 204.43808279999996,
+            "x1": 241.04288485999987,
+            "y1": 215.31585559999996
+          },
+          "page_num": 3,
+          "text": "sh",
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.25
+          },
+          "reading_order": 65,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_72",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 241.0429999999999,
+            "y0": 204.43808279999996,
+            "x1": 243.61145053999988,
+            "y1": 211.41188280000006
+          },
+          "page_num": 3,
+          "text": "i",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 66,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_73",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 355.8939999999999,
+            "y0": 200.19908280000004,
+            "x1": 361.7227020399999,
+            "y1": 207.17288280000002
+          },
+          "page_num": 3,
+          "text": "it",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 68,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_74",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 140.46800000000002,
+            "y0": 138.18508279999992,
+            "x1": 144.22827296000003,
+            "y1": 145.1588827999999
+          },
+          "page_num": 3,
+          "text": "s",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 74,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_75",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 127.14525559999993,
+            "x1": 480.58677119999993,
+            "y1": 137.1078556
+          },
+          "page_num": 3,
+          "text": "Theoutputofthesentenceattentionlayerfeedsafullyconnectedsoftmaxlayer.",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 75,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    },
+    {
+      "page_num": 4,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_4_0",
+          "block_type": "header",
+          "bbox": {
+            "x0": 277.447,
+            "y0": 690.3655184,
+            "x1": 480.58886176,
+            "y1": 699.3319184000001
+          },
+          "page_num": 4,
+          "text": "Title Suppressed Due to Excessive Length 5",
+          "confidence": {
+            "rule_score": 0.6,
+            "model_score": 0.8605,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7702
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 144.727,
+            "y0": 138.29751839999994,
+            "x1": 336.89578143999995,
+            "y1": 147.26391839999997
+          },
+          "page_num": 4,
+          "text": "http://ai.stanford.edu/ amaas/data/sentiment/",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.8028,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7114
+          },
+          "reading_order": 34,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_2",
+          "block_type": "text",
+          "bbox": {
+            "x0": 144.727,
+            "y0": 149.2565184,
+            "x1": 478.3873667199998,
+            "y1": 158.22291840000003
+          },
+          "page_num": 4,
+          "text": "https://github.com/luisfredgs/cnn-hierarchical-network-for-document-classification",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.7669,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7
+          },
+          "reading_order": 32,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 190.90025560000004,
+            "x1": 480.5917525,
+            "y1": 224.77285559999996
+          },
+          "page_num": 4,
+          "text": "of the attention visualizations for a positive and negative class in test reviews. Everylineisasentence.Bluecolordenotesthesentenceweight,andreddenotes the word weight in determining the sentence meaning. There is a greater focus",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9385,
+            "geometric_score": 0.8,
+            "final_confidence": 0.9293
+          },
+          "reading_order": 28,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 295.68525560000006,
+            "x1": 480.59274876000006,
+            "y1": 329.55785560000004
+          },
+          "page_num": 4,
+          "text": "also outperformed CNN [6] and VDNN [7]. We can see an improvement of the resultsinYelpwithourapproachusingCNNandvaryingwindowsizesinfilters. The model also performs better in the results with IMDb using both CNN and",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9334,
+            "geometric_score": 0.8,
+            "final_confidence": 0.9267
+          },
+          "reading_order": 24,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 664.2692556,
+            "x1": 480.5927487600001,
+            "y1": 674.2318556
+          },
+          "page_num": 4,
+          "text": "It gives us a probability distribution over the classes. The proposed method is",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9422,
+            "geometric_score": 0.8,
+            "final_confidence": 0.9311
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_6",
+          "block_type": "text",
+          "bbox": {
+            "x0": 144.727,
+            "y0": 127.3385184,
+            "x1": 310.20998176,
+            "y1": 136.30491840000002
+          },
+          "page_num": 4,
+          "text": "https://www.yelp.com/dataset/challenge",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.7556,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7
+          },
+          "reading_order": 36,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_7",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.55912597656248,
+            "y0": 491.75419921875,
+            "x1": 480.9609375,
+            "y1": 621.0674267578125
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9429,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8322
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_8",
+          "block_type": "table",
+          "bbox": {
+            "x0": 134.4632958984375,
+            "y0": 379.563984375,
+            "x1": 486.35373046875,
+            "y1": 473.772626953125
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9149,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8112
+          },
+          "reading_order": 20,
+          "table_data": {
+            "has_ruling": false,
+            "num_rows": 0,
+            "num_cols": 0
+          },
+          "image_metadata": null,
+          "caption_id": "block_4_12",
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_9",
+          "block_type": "header",
+          "bbox": {
+            "x0": 134.1763623046875,
+            "y0": 255.91921875000003,
+            "x1": 326.618115234375,
+            "y1": 264.8792578125
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8726,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7794
+          },
+          "reading_order": 26,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_10",
+          "block_type": "header",
+          "bbox": {
+            "x0": 134.3556005859375,
+            "y0": 632.9765185546876,
+            "x1": 302.74233398437497,
+            "y1": 643.32240234375
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8278,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7459
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_11",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 212.0645947265625,
+            "y0": 474.61948242187503,
+            "x1": 402.373095703125,
+            "y1": 483.56408203125
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.739,
+            "geometric_score": 0.8,
+            "final_confidence": 0.6793
+          },
+          "reading_order": 13,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": "block_4_8",
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_12",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 149.709,
+            "y0": 355.4602556,
+            "x1": 480.59484128000014,
+            "y1": 365.4228556
+          },
+          "page_num": 4,
+          "text": "Table 1 shows the experiment results comparing our results with related",
+          "confidence": {
+            "rule_score": 0.6,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 21,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": "block_4_8",
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_13",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 612.0492555999999,
+            "x1": 480.5867712000001,
+            "y1": 663.4828828
+          },
+          "page_num": 4,
+          "text": "openly available in the github repository 1. 3 Experiments and Results We evaluate the proposed model on two document classification datasets using",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_14",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000004,
+            "y0": 600.0942555999999,
+            "x1": 480.58975998000017,
+            "y1": 610.0568556
+          },
+          "page_num": 4,
+          "text": "90% of the data for training and the remaining 10% for tests. We split docu-",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_15",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000004,
+            "y0": 588.1392555999998,
+            "x1": 480.5907562400002,
+            "y1": 598.1018555999999
+          },
+          "page_num": 4,
+          "text": "ments into sentences and tokenize each sentence. The word embeddings have",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_16",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000004,
+            "y0": 576.1842555999998,
+            "x1": 480.5897599799999,
+            "y1": 586.1468555999999
+          },
+          "page_num": 4,
+          "text": "dimension 200 and we use Adam optimizer with a learning rate of 0.001. The",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_17",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000004,
+            "y0": 564.2292555999998,
+            "x1": 480.5940672000001,
+            "y1": 575.3978827999998
+          },
+          "page_num": 4,
+          "text": "datasets used are the IMDb Movie Reviews and Yelp 2018 3. The former con-",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_18",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000004,
+            "y0": 552.2732555999997,
+            "x1": 480.5897599800001,
+            "y1": 562.2358555999998
+          },
+          "page_num": 4,
+          "text": "tains a set of 25k highly polar movie reviews for training and 25k for testing,",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_19",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000004,
+            "y0": 528.3632555999997,
+            "x1": 480.5927487600001,
+            "y1": 538.3258555999997
+          },
+          "page_num": 4,
+          "text": "ter include users ratings and write reviews about stores and services on Yelp,",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_20",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000004,
+            "y0": 444.33951840000003,
+            "x1": 480.5917525000001,
+            "y1": 526.3708555999997
+          },
+          "page_num": 4,
+          "text": "being a dataset for multiclass classification (ratings from 0-5 stars). Yelp 2018 containsaround5Mfullreviewtextdata,butwefixin500kthenumberofused samples for computational purposes. Table 1: Results in classification accuracies. Method Accuracy on test set Yelp 2018 (five classes) IMDb (two classes)",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 14,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_21",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 343.5052556,
+            "x1": 480.5877674600001,
+            "y1": 353.4678556
+          },
+          "page_num": 4,
+          "text": "works. Note that HN-ATT [6] obtained an accuracy of 72,73% in the Yelp test",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 22,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_22",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 331.5502556,
+            "x1": 480.58776746000007,
+            "y1": 341.5128556
+          },
+          "page_num": 4,
+          "text": "set, whereas the proposed model obtained an accuracy of 73,28%. Our results",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 23,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_23",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 226.76525560000005,
+            "x1": 480.5947412800001,
+            "y1": 266.20685560000004
+          },
+          "page_num": 4,
+          "text": "3.1 Attention Weights Visualizations Tovalidatethemodelperformanceinselectinformativewordsandsentences,we present the visualizations of attention weights in Figure 2. There is an example",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 27,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_24",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 178.9452556,
+            "x1": 480.58776746000007,
+            "y1": 188.90785559999995
+          },
+          "page_num": 4,
+          "text": "on more important features despite some exceptions. For example, the word",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 29,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_25",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 166.99025559999995,
+            "x1": 474.16089420000003,
+            "y1": 176.95285560000002
+          },
+          "page_num": 4,
+          "text": "“loving” and “amazed” in Figure 2 (a) and “disappointment” in Figure 2 (b).",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 30,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_26",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000004,
+            "y0": 540.3182555999997,
+            "x1": 480.5927487600001,
+            "y1": 550.2808555999998
+          },
+          "page_num": 4,
+          "text": "whereas the classification involves detecting positive/negative reviews. The lat-",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_27",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 395.5025184,
+            "x1": 383.33023904,
+            "y1": 404.46891839999995
+          },
+          "page_num": 4,
+          "text": "Our model with CNN 73.28 92.26",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 18,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_28",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 384.5435184,
+            "x1": 386.5079312,
+            "y1": 393.50991839999995
+          },
+          "page_num": 4,
+          "text": "Our model with TCN 72.63 95.17",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 19,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_29",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 428.3785184,
+            "x1": 383.33333408,
+            "y1": 437.3449184
+          },
+          "page_num": 4,
+          "text": "VDNN [7] 62.14 79.47",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 15,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_30",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 417.4195184,
+            "x1": 383.32616096,
+            "y1": 426.3859184
+          },
+          "page_num": 4,
+          "text": "HN-ATT [6] 72.73 89.02",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 16,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_31",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 406.4615184,
+            "x1": 383.32974751999996,
+            "y1": 415.42791839999995
+          },
+          "page_num": 4,
+          "text": "CNN [5] 71.81 91.34",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 17,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_32",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 326.96700000000004,
+            "y0": 568.4240827999998,
+            "x1": 330.9385791,
+            "y1": 575.3978827999998
+          },
+          "page_num": 4,
+          "text": "2",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_33",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 283.72925560000004,
+            "x1": 159.39453972000004,
+            "y1": 293.69185560000005
+          },
+          "page_num": 4,
+          "text": "TCN.",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.5
+          },
+          "reading_order": 25,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_34",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 137.504,
+            "y0": 153.64534560000004,
+            "x1": 141.15691135999998,
+            "y1": 159.62294559999998
+          },
+          "page_num": 4,
+          "text": "1",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 31,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_35",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 137.504,
+            "y0": 142.68634559999998,
+            "x1": 141.15691135999998,
+            "y1": 148.66394560000003
+          },
+          "page_num": 4,
+          "text": "2",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 33,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_36",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 137.504,
+            "y0": 131.72734560000004,
+            "x1": 141.15691135999998,
+            "y1": 137.70494559999997
+          },
+          "page_num": 4,
+          "text": "3",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 35,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    },
+    {
+      "page_num": 5,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_5_0",
+          "block_type": "header",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 325.0516912000001,
+            "x1": 197.70075936,
+            "y1": 337.0068912000001
+          },
+          "page_num": 5,
+          "text": "References",
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8933,
+            "geometric_score": 1.0,
+            "final_confidence": 0.7367
+          },
+          "reading_order": 17,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 242.2865184000001,
+            "x1": 480.59366816000005,
+            "y1": 293.56791840000005
+          },
+          "page_num": 5,
+          "text": "arXiv:1409.0473, 2014. 2. BAI, Shaojie; KOLTER, J. Zico; KOLTUN, Vladlen. An empirical evaluation of genericconvolutionalandrecurrentnetworksforsequencemodeling.arXivpreprint arXiv:1803.01271, 2018. 3. BOJANOWSKI, Piotr et al. Enriching word vectors with subword information.",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.8885,
+            "geometric_score": 1.0,
+            "final_confidence": 0.9443
+          },
+          "reading_order": 21,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_2",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 457.1052556000001,
+            "x1": 480.5928487600001,
+            "y1": 479.02285560000007
+          },
+          "page_num": 5,
+          "text": "Occasionally,wehavefoundissuesinsomesentences,wherefewerimportant words are getting higher importance. For example, in Figure 2 (a) notes that",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9297,
+            "geometric_score": 0.8,
+            "final_confidence": 0.9249
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 146.6985184,
+            "x1": 480.5954614399999,
+            "y1": 208.93891840000003
+          },
+          "page_num": 5,
+          "text": "5. KIM,Yoon.Convolutionalneuralnetworksforsentenceclassification.arXivpreprint arXiv:1408.5882, 2014. 6. YANG, Zichao et al. Hierarchical attention networks for document classification. In:Conf.NorthAm.ChapteroftheAssoc.forComp.Ling.2016.p.1480-1489,San Diego, CA, USA. 7. Conneau, Alexis, et al. ”Very deep convolutional networks for text classification.”",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9042,
+            "geometric_score": 1.0,
+            "final_confidence": 0.9521
+          },
+          "reading_order": 25,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 146.913,
+            "y0": 210.1705184,
+            "x1": 474.8779094399999,
+            "y1": 219.1369184
+          },
+          "page_num": 5,
+          "text": "decoder for statistical machine translation. arXiv preprint arXiv:1406.1078, 2014.",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.8883,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7541
+          },
+          "reading_order": 24,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 160.761,
+            "y0": 524.3645184000001,
+            "x1": 454.59710112000005,
+            "y1": 533.3309184000001
+          },
+          "page_num": 5,
+          "text": "(b) A negative example of visualization of a strong word in the sentence.",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.4891,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7046
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_6",
+          "block_type": "text",
+          "bbox": {
+            "x0": 162.145,
+            "y0": 593.2755184,
+            "x1": 453.20779359999995,
+            "y1": 602.2419184
+          },
+          "page_num": 5,
+          "text": "(a) A positive example of visualization of a strong word in the sentence.",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.4571,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_7",
+          "block_type": "text",
+          "bbox": {
+            "x0": 145.065,
+            "y0": 502.24425560000003,
+            "x1": 470.29208448,
+            "y1": 512.2068556
+          },
+          "page_num": 5,
+          "text": "Fig.2: Visualization of attention weights computed by the proposed model",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.4198,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_8",
+          "block_type": "header",
+          "bbox": {
+            "x0": 134.765,
+            "y0": 690.3655184,
+            "x1": 269.35963039999996,
+            "y1": 699.3319184000001
+          },
+          "page_num": 5,
+          "text": "6 Abreu, J., Fred, L., et al.",
+          "confidence": {
+            "rule_score": 0.6,
+            "model_score": 0.4328,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_9",
+          "block_type": "text",
+          "bbox": {
+            "x0": 145.902,
+            "y0": 539.753,
+            "x1": 469.452,
+            "y1": 584.753
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.4513,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_10",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.332763671875,
+            "y0": 343.295126953125,
+            "x1": 480.95370117187497,
+            "y1": 400.126787109375
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9341,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8256
+          },
+          "reading_order": 16,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_11",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.32306640625,
+            "y0": 284.133046875,
+            "x1": 480.64705078124996,
+            "y1": 314.934697265625
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9024,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8018
+          },
+          "reading_order": 20,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_12",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 221.12951840000005,
+            "x1": 480.58828831999995,
+            "y1": 240.29491840000003
+          },
+          "page_num": 5,
+          "text": "arXiv preprint arXiv:1607.04606, 2016. 4. CHO, Kyunghyun et al. Learning phrase representations using RNN encoder-",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.8966,
+            "geometric_score": 0.8,
+            "final_confidence": 0.85
+          },
+          "reading_order": 22,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_13",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 146.6985184,
+            "x1": 480.5954614399999,
+            "y1": 208.93891840000003
+          },
+          "page_num": 5,
+          "text": "5. KIM,Yoon.Convolutionalneuralnetworksforsentenceclassification.arXivpreprint arXiv:1408.5882, 2014. 6. YANG, Zichao et al. Hierarchical attention networks for document classification. In:Conf.NorthAm.ChapteroftheAssoc.forComp.Ling.2016.p.1480-1489,San Diego, CA, USA. 7. Conneau, Alexis, et al. ”Very deep convolutional networks for text classification.”",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.8813,
+            "geometric_score": 1.0,
+            "final_confidence": 0.85
+          },
+          "reading_order": 26,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_14",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.7558544921875,
+            "y0": 135.14396484375004,
+            "x1": 479.3670703125,
+            "y1": 154.67437500000005
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8772,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7829
+          },
+          "reading_order": 28,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_15",
+          "block_type": "header",
+          "bbox": {
+            "x0": 134.5691015625,
+            "y0": 411.5090625,
+            "x1": 241.03132324218748,
+            "y1": 422.469287109375
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8471,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7603
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_16",
+          "block_type": "text",
+          "bbox": {
+            "x0": 148.195400390625,
+            "y0": 542.314248046875,
+            "x1": 241.6958203125,
+            "y1": 549.788994140625
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.4794,
+            "geometric_score": 0.8,
+            "final_confidence": 0.4845
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_17",
+          "block_type": "figure",
+          "bbox": {
+            "x0": 146.352,
+            "y0": 608.664,
+            "x1": 469.00199999999995,
+            "y1": 676.164
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.525
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": {
+            "width": 0,
+            "height": 0,
+            "aspect_ratio": 1.0
+          },
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_18",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 445.14925560000006,
+            "x1": 480.5907562400001,
+            "y1": 455.11185560000007
+          },
+          "page_num": 5,
+          "text": "the word “translate” has received high importance even though it represents a",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_19",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 433.1942556000001,
+            "x1": 459.4122611600002,
+            "y1": 443.1568556000001
+          },
+          "page_num": 5,
+          "text": "neutral word. These drawbacks will be taken into account in future works.",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_20",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 391.37525560000006,
+            "x1": 480.59474128000005,
+            "y1": 423.81189120000005
+          },
+          "page_num": 5,
+          "text": "4 Final Remarks In this paper, we have presented the HAHNN architecture for document classi-",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_21",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 379.4202556000001,
+            "x1": 480.59274876,
+            "y1": 389.3828556000001
+          },
+          "page_num": 5,
+          "text": "fication. The method combines CNN with attention mechanisms in both word",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_22",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 355.5092556000001,
+            "x1": 480.5857749400001,
+            "y1": 365.4718556000001
+          },
+          "page_num": 5,
+          "text": "incorporate the document structure in the model and employing CNN’s for the",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 14,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_23",
+          "block_type": "text",
+          "bbox": {
+            "x0": 146.913,
+            "y0": 295.5605184000001,
+            "x1": 480.59219616,
+            "y1": 304.52691840000006
+          },
+          "page_num": 5,
+          "text": "chine translation by jointly learning to align and translate. arXiv preprint",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 19,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_24",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 221.12951840000005,
+            "x1": 480.58828831999995,
+            "y1": 240.29491840000003
+          },
+          "page_num": 5,
+          "text": "arXiv preprint arXiv:1607.04606, 2016. 4. CHO, Kyunghyun et al. Learning phrase representations using RNN encoder-",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 23,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_25",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 367.46425560000006,
+            "x1": 480.58975998,
+            "y1": 377.42685560000007
+          },
+          "page_num": 5,
+          "text": "and sentence level. HAHNN improves accuracy in document classification by",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 13,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_26",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 343.5542556000001,
+            "x1": 299.83731192000005,
+            "y1": 353.5168556000001
+          },
+          "page_num": 5,
+          "text": "extraction of more abundant features.",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 15,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_27",
+          "block_type": "text",
+          "bbox": {
+            "x0": 134.76500000000001,
+            "y0": 306.5195184000001,
+            "x1": 480.58828831999995,
+            "y1": 315.48591840000006
+          },
+          "page_num": 5,
+          "text": "1. BAHDANAU, Dzmitry; CHO, Kyunghyun; BENGIO, Yoshua. Neural ma-",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 18,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_28",
+          "block_type": "text",
+          "bbox": {
+            "x0": 146.913,
+            "y0": 135.73951839999995,
+            "x1": 308.52339359999996,
+            "y1": 144.70591839999997
+          },
+          "page_num": 5,
+          "text": "arXiv preprint arXiv:1606.01781 (2016).",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 27,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    }
+  ]
+}

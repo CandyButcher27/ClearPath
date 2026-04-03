@@ -1,0 +1,3825 @@
+{
+  "metadata": {
+    "filename": "doc6.pdf",
+    "num_pages": 8,
+    "processing_version": "1.0.0"
+  },
+  "pages": [
+    {
+      "page_num": 0,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_0_0",
+          "block_type": "header",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 245.29236319999995,
+            "x1": 154.8136704,
+            "y1": 257.24756320000006
+          },
+          "page_num": 0,
+          "text": "1 Introduction",
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8725,
+            "geometric_score": 1.0,
+            "final_confidence": 0.7263
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.691,
+            "y0": 69.84807839999996,
+            "x1": 541.2460315759995,
+            "y1": 232.58767839999996
+          },
+          "page_num": 0,
+          "text": "Thefieldofstatisticshaslongplayedacriticalroleininformingpolicydecisions,drivinginnovation,andadvancing scientificknowledge. Traditionalstatisticalmethodssuchassurveysandcensuseshaveprovidedvaluableinsightsinto awiderangeoftopics,frompopulationdemographicstoeconomictrendsandpublicopinion. However,inrecentyears, theincreasingavailabilityofopenandlargedatasourceshasopenedupnewopportunitiesforstatisticalanalysis. In particular,theriseofmachinelearninghastransformedthefieldofstatistics,enablingtheanalysisofmassivedatasets, theidentificationofcomplexpatternsandrelationships,non-linearforecasting,etc. [1,2]. Machinelearningalgorithms canbeusedtoanalyzedatafromawiderangeofsources,providinginsightsthattraditionalsurveymethodsmaynot capture. Theuseofmachinelearningforofficialstatisticshasthepotentialtoprovidemoretimely,accurateandcomprehensive insightsintoawiderangeofsocietaltopics[3]. Byleveragingthevastamountsofdatathataregeneratedbyindividuals andentitiesonadailybasis,statisticalagenciescangainamorenuancedunderstandingoftrendsandpatterns,and respondmorequicklytoemergingissues. However,thisshifttowardsmachinelearningalsopresentsanumberofchallenges. Inparticular,thereareconcerns aboutdataquality,privacy,andsecurity,aswellastheneedforappropriatetechnicalskillsandinfrastructure[4,5],as",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.9417,
+            "geometric_score": 1.0,
+            "final_confidence": 0.8209
+          },
+          "reading_order": 19,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_2",
+          "block_type": "text",
+          "bbox": {
+            "x0": 107.866,
+            "y0": 406.7810784,
+            "x1": 504.13748096599977,
+            "y1": 483.1205632
+          },
+          "page_num": 0,
+          "text": "ABSTRACT Datasciencehasbecomeincreasinglyessentialfortheproductionofofficialstatistics,asitenables theautomatedcollection,processing,andanalysisoflargeamountsofdata. Withsuchdatascience practicesinplace,itenablesmoretimely,moreinsightfulandmoreflexiblereporting. However,the qualityandintegrityofdata-science-drivenstatisticsrelyontheaccuracyandreliabilityofthedata sourcesandthemachinelearningtechniquesthatsupportthem. Inparticular,changesindatasources",
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.9252,
+            "geometric_score": 1.0,
+            "final_confidence": 0.7
+          },
+          "reading_order": 15,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 113.355,
+            "y0": 603.0070784,
+            "x1": 498.6455899999999,
+            "y1": 612.9696784
+          },
+          "page_num": 0,
+          "text": "PRESENTEDATUNECEMACHINELEARNINGFOROFFICIALSTATISTICSWORKSHOP2023",
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.7059,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 107.557,
+            "y0": 317.5700784,
+            "x1": 504.13758059199995,
+            "y1": 405.83367840000005
+          },
+          "page_num": 0,
+          "text": "areinevitabletooccurandposesignificantrisksthatarecrucialtoaddressinthecontextofmachine learningforofficialstatistics. Thispapergivesanoverviewofthemainrisks,liabilities,anduncertaintiesassociatedwithchanging datasourcesinthecontextofmachinelearningforofficialstatistics. Weprovideachecklistofthe mostprevalentoriginsandcausesofchangingdatasources;notonlyonatechnicallevelbutalso regardingownership,ethics,regulation,andpublicperception. Next,wehighlighttherepercussions ofchangingdatasourcesonstatisticalreporting. Theseincludetechnicaleffectssuchasconcept drift, bias, availability, validity, accuracy and completeness, but also the neutrality and potential",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.9006,
+            "geometric_score": 1.0,
+            "final_confidence": 0.8003
+          },
+          "reading_order": 16,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_5",
+          "block_type": "header",
+          "bbox": {
+            "x0": 16.34,
+            "y0": 227.0,
+            "x1": 36.34,
+            "y1": 393.1
+          },
+          "page_num": 0,
+          "text": "1v83340.6032:viXra",
+          "confidence": {
+            "rule_score": 0.7,
+            "model_score": 0.8622,
+            "geometric_score": 1.0,
+            "final_confidence": 0.8411
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_6",
+          "block_type": "header",
+          "bbox": {
+            "x0": 280.68,
+            "y0": 498.2600784,
+            "x1": 331.3198958,
+            "y1": 508.22267839999995
+          },
+          "page_num": 0,
+          "text": "June6,2023",
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.5275,
+            "geometric_score": 1.0,
+            "final_confidence": 0.7
+          },
+          "reading_order": 13,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_7",
+          "block_type": "header",
+          "bbox": {
+            "x0": 148.386,
+            "y0": 657.5774736000001,
+            "x1": 440.4593585,
+            "y1": 694.7178736
+          },
+          "page_num": 0,
+          "text": "CHANGING DATA SOURCES AGE MACHINE LEARNING",
+          "confidence": {
+            "rule_score": 0.6,
+            "model_score": 0.5838,
+            "geometric_score": 1.0,
+            "final_confidence": 0.7
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_8",
+          "block_type": "text",
+          "bbox": {
+            "x0": 128.397,
+            "y0": 538.0243028,
+            "x1": 483.59973086,
+            "y1": 580.8434166
+          },
+          "page_num": 0,
+          "text": "CedricDeBoom MichaelReusens StatisticsFlanders StatisticsFlanders Belgium Belgium cedric.deboom@vlaanderen.be michael.reusens@vlaanderen.be",
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.5264,
+            "geometric_score": 1.0,
+            "final_confidence": 0.7
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_9",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.77601806640625,
+            "y0": 69.62250000000006,
+            "x1": 540.6006445312499,
+            "y1": 89.42994140625001
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9342,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8256
+          },
+          "reading_order": 20,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_10",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.66461669921874,
+            "y0": 97.18880859375008,
+            "x1": 540.7927734374999,
+            "y1": 138.71888671875
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9314,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8236
+          },
+          "reading_order": 18,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_11",
+          "block_type": "header",
+          "bbox": {
+            "x0": 277.37578125,
+            "y0": 471.35282226562504,
+            "x1": 334.98061523437497,
+            "y1": 481.203017578125
+          },
+          "page_num": 0,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8624,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7718
+          },
+          "reading_order": 14,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_12",
+          "block_type": "text",
+          "bbox": {
+            "x0": 128.397,
+            "y0": 538.0243028,
+            "x1": 483.59973086,
+            "y1": 580.8434166
+          },
+          "page_num": 0,
+          "text": "CedricDeBoom MichaelReusens StatisticsFlanders StatisticsFlanders Belgium Belgium cedric.deboom@vlaanderen.be michael.reusens@vlaanderen.be",
+          "confidence": {
+            "rule_score": 0.0,
+            "model_score": 0.4147,
+            "geometric_score": 1.0,
+            "final_confidence": 0.411
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_13",
+          "block_type": "header",
+          "bbox": {
+            "x0": 16.34,
+            "y0": 536.98,
+            "x1": 36.34,
+            "y1": 576.98
+          },
+          "page_num": 0,
+          "text": "3202",
+          "confidence": {
+            "rule_score": 0.7,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_14",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 107.866,
+            "y0": 273.9340784000001,
+            "x1": 504.1361160897997,
+            "y1": 316.6236784
+          },
+          "page_num": 0,
+          "text": "discontinuationofthestatisticaloffering. Weofferafewimportantprecautionarymeasures,suchas enhancingrobustnessinbothdatasourcingandstatisticaltechniques,andthoroughmonitoring. In doingso,machinelearning-basedofficialstatisticscanmaintainintegrity,reliability,consistency,and relevanceinpolicy-making,decision-making,andpublicdiscourse.",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 17,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_15",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 354.4114321,
+            "y0": 678.2461832,
+            "x1": 464.05130840000004,
+            "y1": 692.0184832
+          },
+          "page_num": 0,
+          "text": "IN THE OF",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_16",
+          "block_type": "header",
+          "bbox": {
+            "x0": 16.34,
+            "y0": 403.1,
+            "x1": 36.34,
+            "y1": 479.2
+          },
+          "page_num": 0,
+          "text": "]LM.tats[",
+          "confidence": {
+            "rule_score": 0.7,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_17",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 244.25800000000004,
+            "y0": 637.6524736000001,
+            "x1": 401.3994670000001,
+            "y1": 654.8678736
+          },
+          "page_num": 0,
+          "text": "OFFICIAL STATISTICS",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_18",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 210.61900000000003,
+            "y0": 638.3961832000001,
+            "x1": 239.10011640000002,
+            "y1": 652.1684832000001
+          },
+          "page_num": 0,
+          "text": "FOR",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_19",
+          "block_type": "text",
+          "bbox": {
+            "x0": 16.34,
+            "y0": 504.2,
+            "x1": 36.34,
+            "y1": 531.98
+          },
+          "page_num": 0,
+          "text": "nuJ",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_0_20",
+          "block_type": "caption",
+          "bbox": {
+            "x0": 16.34,
+            "y0": 489.2,
+            "x1": 36.34,
+            "y1": 499.2
+          },
+          "page_num": 0,
+          "text": "7",
+          "confidence": {
+            "rule_score": 0.4,
+            "model_score": 0.0,
+            "geometric_score": 0.5,
+            "final_confidence": 0.445
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    },
+    {
+      "page_num": 1,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_1_0",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 620.6130784,
+            "x1": 540.3478035599996,
+            "y1": 696.0296784000001
+          },
+          "page_num": 1,
+          "text": "against the risks and that the resulting insights are both accurate and representative. In this paper, we explore the changingdatasourcesintheageofmachinelearningforofficialstatistics,aswebelievethatthispervasiveissuelargely remainsunderexposed,aswewillexplaininSection2.2. Inthatrespect,wehighlightsomeofthekeyconsiderations forstatisticalagencieslookingtoincorporatemachinelearningintotheirworkflowsinSection3,byzoominginonthe causesandrisksassociatedwithusingexternaldatasources,theconsequencesonusingsuchsourcesforstatistical production,and,finally,asetofmitigationsthatshouldideallybeincorporatedinanygenuinedeploymentofmachine learningforofficialstatistics.",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9479,
+            "geometric_score": 1.0,
+            "final_confidence": 0.9739
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.691,
+            "y0": 489.8480784,
+            "x1": 541.2460315759994,
+            "y1": 602.0185632
+          },
+          "page_num": 1,
+          "text": "2 Machinelearningforofficialstatistics The data abundance in governmental, corporate, social and personal contexts, both online and offline, becomes a tantalizingsourceandopportunityfortheimprovementandexpansionofofficialstatistics. Forexample,toinquire abouttheoverallsatisfactionwithlifeofitscitizens,anationcouldorganizeperiodicsurveys. Butwhenthisnationhas accesstoitscitizens’socialmediaposts,likes,reader’sletters,mediaconsumption,ticketsales,(online)shoppingcarts, etc.itcoulduseallofthesedataasaproxytoextractnovelandinnovativestatisticalinsights[7]. Typically,theend resultiseitheranewstatistic,astatisticthatcomplementsanexistingone,oranersatzstatisticthataimstoreplace oneormoreexistingstatistics. Wewillbrieflyzoominonthedifferentcomponentsofwhichsuchanovelstatisticis generallycomprised.",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9487,
+            "geometric_score": 1.0,
+            "final_confidence": 0.9744
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_2",
+          "block_type": "text",
+          "bbox": {
+            "x0": 303.509,
+            "y0": 39.96007840000004,
+            "x1": 308.4903,
+            "y1": 49.922678399999995
+          },
+          "page_num": 1,
+          "text": "2",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.8961,
+            "geometric_score": 0.5,
+            "final_confidence": 0.7
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.691,
+            "y0": 350.13107840000004,
+            "x1": 540.3530438875995,
+            "y1": 473.6134166
+          },
+          "page_num": 1,
+          "text": "2.1 Machinelearning Toderivenovelinsightsandinnovativestatisticsfromdata,datascientistsandstatisticalresearchersoftenuseawide varietyofpowerfultoolsthatareintherealmofmachinelearning1. Inthispaperwewillnotgointotoomuchdetail aboutmachinelearning. However,theuseofdatasourcestogetherwithmachinelearningmodelscancauseunwanted effectsregardingstatisticalproduction,seefurtherinSection3. So,wedeemitusefultoprovideahigh-leveloverview ofthetypicalprocessthatinvolvesmachinelearningforofficialstatistics. Machinelearningisasubdisciplineofartificialintelligencethatenablesmachinestolearnfromdataandimprove theirperformanceovertimewithoutbeingexplicitlyprogrammed. Thisapproachinvolvesbuildingalgorithmsthat automaticallylearnfromdatatoidentifypatterns,relationships,andstructuresthatmaybedifficultorimpossiblefor humanstodiscern. Thetypicalprocessofdesigningamachinelearningalgorithmconsistsoftwomainphases: training",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9495,
+            "geometric_score": 1.0,
+            "final_confidence": 0.9748
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.90882080078124,
+            "y0": 273.652734375,
+            "x1": 542.0741015625,
+            "y1": 392.02725585937503
+          },
+          "page_num": 1,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.942,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8315
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.751,
+            "y0": 70.06325760000004,
+            "x1": 541.7398178823995,
+            "y1": 349.18467840000005
+          },
+          "page_num": 1,
+          "text": "andinference. Duringthetrainingphase,theparametersofamachinelearningmodelaretunedtosolveaspecifictask. Forthis,awidevarietyofdatasourcescanbeused,orevenoutputsfromexistingorpre-trainedmachinelearning models. Afterthemodelistrained,itsparametersarekeptfixedsothatthemodelcanbeusedtopredictoutcomesor identifypatternsinneworpreviouslyunseendata. Thisprocessiscalledinference. Itisimportanttokeepinmindthe distinctionbetweentrainingandinference. Aftertraining,themodelremainsunchanged,anditremainsunchanged untilitisretrainedagain. Later,inSection3,wewillfocusonthedisparitiesthatthiscancausew.r.t.theinference phaseand,inconsequence,officialstatisticsproduction. Supervisedlearningisoneofthemostcommontypesofmachinelearningusedforofficialstatistics. Thismethod involvestrainingamodelonalabeleddataset,whereeachdatapointhasaknownoutcomeortargetvariable. The modellearnstoassociatefeaturesinthedatawiththetargetvariable,enablingittomakepredictionsonnewdatawith similarfeatures. Inthecontextofofficialstatistics,supervisedlearningcanforexamplebeusedtopredictthehappiness ofanindividualbasedontheirTwitterprofile[8]. Unsupervisedlearning,ontheotherhand,isusedwhenthetarget variableisunknownorthegoalistoidentifypatternsorrelationshipswithinthedata. Inthisapproach,themachine learningmodellearnstorecognizesimilaritiesanddifferencesamonginputdatawithoutexplicitguidancefromlabeled data. Inthecontextofofficialstatistics,unsupervisedlearningcanforexamplebeusedtoidentifycitizens,companies oreventsthataresimilartoeachotherononeormoreaspectsthatcouldbehiddenfromplainsight[9]. Machinelearningcanbeusedtocomplementorevenreplaceofficialstatistics,anditsabilitytonowcastandforecastis anextremelyvaluableaddition. Modernmachinelearningmodels,toolsandhardwarecananalyzevastamountsofdata inreal-timeornear-real-time,providingmoreup-to-dateandpreciseestimatesofe.g.economicandsocialtrends. By 1Althoughoriginally(andtechnically)theyimplydifferentmethodsandtechniques,thetermsmachinelearning,datascience, artificialintelligence,deeplearning...arenowadaysconsideredinterchangeable.Inthispaperweconsistentlyusethetermmachine learning to denote the scientific discipline concerned with learning the most optimal model parameters based on data. It is a subdisciplineofartificialintelligence,whiledeeplearningisasubdisciplineofmachinelearning.Datascienceencompassesboth machinelearningaswellasdatapreparation,analyticsandvisualization.",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9392,
+            "geometric_score": 1.0,
+            "final_confidence": 0.85
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_6",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.8262109375,
+            "y0": 131.15841796874997,
+            "x1": 541.35509765625,
+            "y1": 162.6151171875
+          },
+          "page_num": 1,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8977,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7983
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_7",
+          "block_type": "header",
+          "bbox": {
+            "x0": 71.9844140625,
+            "y0": 590.1823095703126,
+            "x1": 282.22875,
+            "y1": 601.0689257812501
+          },
+          "page_num": 1,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8892,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7919
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_8",
+          "block_type": "header",
+          "bbox": {
+            "x0": 72.052412109375,
+            "y0": 463.57394531250003,
+            "x1": 169.7362646484375,
+            "y1": 472.68149414062503
+          },
+          "page_num": 1,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8826,
+            "geometric_score": 0.8,
+            "final_confidence": 0.787
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_9",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.5818310546875,
+            "y0": 69.74882812500005,
+            "x1": 541.65609375,
+            "y1": 118.286015625
+          },
+          "page_num": 1,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8453,
+            "geometric_score": 0.8,
+            "final_confidence": 0.759
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_10",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 696.9760784,
+            "x1": 539.9939320079998,
+            "y1": 706.9386784000001
+          },
+          "page_num": 1,
+          "text": "agencies grapple with these challenges, it is essential to ensure that the benefits of machine learning are balanced",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_11",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.751,
+            "y0": 70.06325760000004,
+            "x1": 541.7398178823995,
+            "y1": 349.18467840000005
+          },
+          "page_num": 1,
+          "text": "andinference. Duringthetrainingphase,theparametersofamachinelearningmodelaretunedtosolveaspecifictask. Forthis,awidevarietyofdatasourcescanbeused,orevenoutputsfromexistingorpre-trainedmachinelearning models. Afterthemodelistrained,itsparametersarekeptfixedsothatthemodelcanbeusedtopredictoutcomesor identifypatternsinneworpreviouslyunseendata. Thisprocessiscalledinference. Itisimportanttokeepinmindthe distinctionbetweentrainingandinference. Aftertraining,themodelremainsunchanged,anditremainsunchanged untilitisretrainedagain. Later,inSection3,wewillfocusonthedisparitiesthatthiscancausew.r.t.theinference phaseand,inconsequence,officialstatisticsproduction. Supervisedlearningisoneofthemostcommontypesofmachinelearningusedforofficialstatistics. Thismethod involvestrainingamodelonalabeleddataset,whereeachdatapointhasaknownoutcomeortargetvariable. The modellearnstoassociatefeaturesinthedatawiththetargetvariable,enablingittomakepredictionsonnewdatawith similarfeatures. Inthecontextofofficialstatistics,supervisedlearningcanforexamplebeusedtopredictthehappiness ofanindividualbasedontheirTwitterprofile[8]. Unsupervisedlearning,ontheotherhand,isusedwhenthetarget variableisunknownorthegoalistoidentifypatternsorrelationshipswithinthedata. Inthisapproach,themachine learningmodellearnstorecognizesimilaritiesanddifferencesamonginputdatawithoutexplicitguidancefromlabeled data. Inthecontextofofficialstatistics,unsupervisedlearningcanforexamplebeusedtoidentifycitizens,companies oreventsthataresimilartoeachotherononeormoreaspectsthatcouldbehiddenfromplainsight[9]. Machinelearningcanbeusedtocomplementorevenreplaceofficialstatistics,anditsabilitytonowcastandforecastis anextremelyvaluableaddition. Modernmachinelearningmodels,toolsandhardwarecananalyzevastamountsofdata inreal-timeornear-real-time,providingmoreup-to-dateandpreciseestimatesofe.g.economicandsocialtrends. By 1Althoughoriginally(andtechnically)theyimplydifferentmethodsandtechniques,thetermsmachinelearning,datascience, artificialintelligence,deeplearning...arenowadaysconsideredinterchangeable.Inthispaperweconsistentlyusethetermmachine learning to denote the scientific discipline concerned with learning the most optimal model parameters based on data. It is a subdisciplineofartificialintelligence,whiledeeplearningisasubdisciplineofmachinelearning.Datascienceencompassesboth machinelearningaswellasdatapreparation,analyticsandvisualization.",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_1_12",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.641,
+            "y0": 707.8850784,
+            "x1": 539.9990115239999,
+            "y1": 717.8476784000001
+          },
+          "page_num": 1,
+          "text": "wellaschallengesrelatedtoexplainability,accuracy,reproducibility,timeliness,andcosteffectiveness[6]. Asstatistical",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    },
+    {
+      "page_num": 2,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_2_0",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 696.9760784,
+            "x1": 539.9963230319997,
+            "y1": 717.8476784000001
+          },
+          "page_num": 2,
+          "text": "incorporatingmachinelearningintoofficialstatisticalproduction,onecanbenefitfromthestrengthsofbothapproaches andmakemoreinformeddecisionsbasedonthemostcurrentandaccuratedata[10].",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.9284,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7742
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 303.509,
+            "y0": 39.96007840000004,
+            "x1": 308.4903,
+            "y1": 49.922678399999995
+          },
+          "page_num": 2,
+          "text": "3",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.8938,
+            "geometric_score": 0.5,
+            "final_confidence": 0.7
+          },
+          "reading_order": 25,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_2",
+          "block_type": "header",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 658.8608166,
+            "x1": 186.51012440000005,
+            "y1": 668.8234166
+          },
+          "page_num": 2,
+          "text": "2.2 Externaldatasources",
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8392,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 69.84807839999996,
+            "x1": 539.9939320079997,
+            "y1": 90.71967840000002
+          },
+          "page_num": 2,
+          "text": "needtobepurchased. In2016,McKinseyreportedthatmanycompanieshavestartedtospecializeinacquiringand sellingdata[14].",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.9199,
+            "geometric_score": 0.8,
+            "final_confidence": 0.77
+          },
+          "reading_order": 24,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.014736328125,
+            "y0": 600.64318359375,
+            "x1": 541.94625,
+            "y1": 642.5192578125
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9418,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8314
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.2622509765625,
+            "y0": 178.09617187499998,
+            "x1": 541.0923046875,
+            "y1": 198.34441406250005
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.917,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8128
+          },
+          "reading_order": 19,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_6",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.05642578125,
+            "y0": 275.72015625000006,
+            "x1": 541.2842578125,
+            "y1": 296.20945312500004
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9133,
+            "geometric_score": 0.8,
+            "final_confidence": 0.81
+          },
+          "reading_order": 15,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_7",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0245068359375,
+            "y0": 340.673525390625,
+            "x1": 540.9978515624999,
+            "y1": 361.13537109375
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9096,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8072
+          },
+          "reading_order": 13,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_8",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.20660888671874,
+            "y0": 373.465458984375,
+            "x1": 541.16220703125,
+            "y1": 393.74241210937504
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9096,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8072
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_9",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.30558837890625,
+            "y0": 242.93156250000004,
+            "x1": 541.72201171875,
+            "y1": 263.53458984375004
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9044,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8033
+          },
+          "reading_order": 17,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_10",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.11725341796874,
+            "y0": 308.035634765625,
+            "x1": 541.4185546875,
+            "y1": 328.836123046875
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9038,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8029
+          },
+          "reading_order": 14,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_11",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.3198193359375,
+            "y0": 210.30644531250005,
+            "x1": 542.28884765625,
+            "y1": 231.04423828125005
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9029,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8022
+          },
+          "reading_order": 18,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_12",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.03116455078124,
+            "y0": 156.55324218750002,
+            "x1": 518.7674999999999,
+            "y1": 165.91201171875002
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8204,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7403
+          },
+          "reading_order": 20,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_13",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.14612548828124,
+            "y0": 113.26517578125004,
+            "x1": 532.2499218749999,
+            "y1": 122.83787109374998
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.7694,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7021
+          },
+          "reading_order": 22,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_14",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.98737304687499,
+            "y0": 492.4053515625,
+            "x1": 367.95626953125,
+            "y1": 501.629560546875
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.7339,
+            "geometric_score": 0.8,
+            "final_confidence": 0.6754
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_15",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.04157226562499,
+            "y0": 579.3218408203124,
+            "x1": 278.160966796875,
+            "y1": 588.2536669921875
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.7064,
+            "geometric_score": 0.8,
+            "final_confidence": 0.6548
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_16",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.38946533203125,
+            "y0": 514.3077832031249,
+            "x1": 336.85546875,
+            "y1": 523.567880859375
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.7035,
+            "geometric_score": 0.8,
+            "final_confidence": 0.6526
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_17",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.127412109375,
+            "y0": 134.90185546875,
+            "x1": 365.1209765625,
+            "y1": 144.35554687500007
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.7027,
+            "geometric_score": 0.8,
+            "final_confidence": 0.652
+          },
+          "reading_order": 21,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_18",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.20211181640624,
+            "y0": 557.7098583984375,
+            "x1": 348.70611328125,
+            "y1": 566.8210107421875
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.6629,
+            "geometric_score": 0.8,
+            "final_confidence": 0.6222
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_19",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.87690185546874,
+            "y0": 535.816376953125,
+            "x1": 301.5746484375,
+            "y1": 545.45103515625
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.6581,
+            "geometric_score": 0.8,
+            "final_confidence": 0.6186
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_20",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.931298828125,
+            "y0": 449.210390625,
+            "x1": 352.117470703125,
+            "y1": 458.392705078125
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.6475,
+            "geometric_score": 0.8,
+            "final_confidence": 0.6106
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_21",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.17615478515624,
+            "y0": 470.959013671875,
+            "x1": 304.31208984375,
+            "y1": 480.467841796875
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.636,
+            "geometric_score": 0.8,
+            "final_confidence": 0.602
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_22",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.443876953125,
+            "y0": 427.60763671875003,
+            "x1": 352.38978515625,
+            "y1": 437.172685546875
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.6225,
+            "geometric_score": 0.8,
+            "final_confidence": 0.5919
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_23",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.22876464843749,
+            "y0": 406.09875,
+            "x1": 351.79110351562497,
+            "y1": 415.55689453125
+          },
+          "page_num": 2,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.5578,
+            "geometric_score": 0.8,
+            "final_confidence": 0.5433
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_24",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.64099999999999,
+            "y0": 254.1640784,
+            "x1": 541.2438398039999,
+            "y1": 643.2886784
+          },
+          "page_num": 2,
+          "text": "Let’s focus on the data sources that will power such machine learning models. Their nature, size, structure, frequency...canbevastlydifferent,theymusttypicallybegathered‘inthewild’andshouldoftenbecombinedwith eachothertoextractmeaningfulinsights. Comparedtomoretraditionaldatasourcesforofficialstatistics,theymay presentuniqueandappealingcharacteristicssuchas: Broad-spectrum–Coversawidevarietyoftopics. Diversity–Alargevarietyofsourcestocoverdifferentperspectives. Availability–Lotsofdataisfreelyandeasilyaccessible. Size–Somedatasetscanbeenormous,sometimesevencomplete. Structure–Notonlytabulardata,butalsoimages,video,text,audio,etc. Timeliness–(Near)up-to-dateandreal-timeinformation. Frequency–Rawdataonvarious,evenveryfine-grainedtimescales. Granularity–Rawdataonvarious,evenfine-grainedlevelsofdetail. Coverage–Variouslocationsandregionscanbefilteredandcovered. Ontheotherhand,beforeallthisdataisreadytobeexertedformachinelearningandofficialstatisticalproduction,a fewchallengesneedtobeovercome,suchas: Dataquality–Datamaycontainerrors,biases,ormissingvaluesthatneedtobeaddressedtoensureaccuracyand reliability. Datainterpretation–Understandingthecontextandmeaningofdatacanbedifficult,especiallywhendealingwith unstructureddatasuchastextorimages. Dataintegration–Combiningdatafromdifferentsourceswithvaryingstructuresandformatscanbechallengingand time-consuming. Selection bias – Proper randomization or compiling representative population samples can be challenging, and it",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 16,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_2_25",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 91.66607840000006,
+            "x1": 541.6566045591999,
+            "y1": 253.21767840000007
+          },
+          "page_num": 2,
+          "text": "greatlydependsontheunderlyingdataorigins. Operationalizationbias–Reproducibilitycanbedifficultasitdependsonmanyimplicit,hidden,and/orproduction- specificdesignchoices[11,12]. Computationalresources–Processingandanalyzinglargeamountsofdatamayrequiresignificantcomputational resources. Privacyandsecurity–Sensitivedatamayneedtobeprotectedandanonymizedtoensureprivacyandsecurity. Dataethics–Datacollectionanduseshouldadheretoethicalprinciples. Fairnessandjustness–Theendsolutionshouldideallybeasneutralaspossibleandshouldnotdiscriminate[13]. Cost–Alloftheaboverequiresresources,budgetsandatalentedworkforce. Inaddition,thedatasourceitselfmight",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 23,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    },
+    {
+      "page_num": 3,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_3_0",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.532,
+            "y0": 615.1330783999999,
+            "x1": 541.7444006783995,
+            "y1": 717.8476784000001
+          },
+          "page_num": 3,
+          "text": "Withtherighttools,workforce,technologicaladvances,mindset,andlegislativesupport,thesechallengescanand shouldbemanageable. Themostchallengingpieceofthepuzzle,however–andonethatismorethanoftenignored– isthelackofcontrolyoucanexertoverthedatasourcesthatareexternallygathered. Asanationalstatisticsagency, traditionally,surveydataandadministrativerecordsthatpowerofficialstatisticsarecompletelyunderyourowncontrol. Butonceyoustartexploitingexternaldatasourcestopowernovel,innovative,complimentaryorersatzstatistics,this lackofcontrolofyourdatashouldneverbeignored,andifpossible,shouldbefrontandcenteronyouragendaearlyon intheprocess. Asthepopularsayinggoes: “Withgreatpowercomesgreatresponsibility”(fromSpider-Man,2002). Havingcontrol andpoweroveryourdataisessentialtofulfillingyourresponsibilitiesasastatisticsagency. However,intheworldof",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.947,
+            "geometric_score": 1.0,
+            "final_confidence": 0.9735
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 303.335,
+            "y0": 39.96007840000004,
+            "x1": 308.31629999999996,
+            "y1": 49.922678399999995
+          },
+          "page_num": 3,
+          "text": "4",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.8946,
+            "geometric_score": 0.5,
+            "final_confidence": 0.7
+          },
+          "reading_order": 13,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_2",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.691,
+            "y0": 522.3810784,
+            "x1": 541.2474661919996,
+            "y1": 614.1866784
+          },
+          "page_num": 3,
+          "text": "data,theoppositeisoftentrue: withgreatamountsofexternaldatacomesgreatpowerlessness. Therefore,itiscrucial toprioritizetheissueofdatacontrolwhenincorporatingexternalsourcesintoofficialstatistics. Takingthetimeto establishproperprotocolsandproceduresforexternaldatamanagementcanpreventamultitudeofissuesdowntheline andensurethatthedatayourelyonremainaccurateandtrustworthy. Thispaperdelvesintothepervasiveproblemofpowerlessnessandlackofcontrol,unravelingthemultifacetedaspects, risks, andpitfallsthatarisefromutilizing externaldatasourcesformachinelearning inofficialstatistics. We will exploretheconceptsof‘change’and‘consequence’intheirmostexpansiveinterpretationstocomprehensivelytackle thisquestion.",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9424,
+            "geometric_score": 1.0,
+            "final_confidence": 0.9712
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.72272705078124,
+            "y0": 69.1287890625,
+            "x1": 543.99509765625,
+            "y1": 124.01730468749997
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9491,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8368
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.02115234375,
+            "y0": 404.741953125,
+            "x1": 543.6085546875,
+            "y1": 481.11172851562503
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9486,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8365
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.79057861328124,
+            "y0": 215.26599609375,
+            "x1": 543.805546875,
+            "y1": 302.94041015625004
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9474,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8356
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_6",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.82088623046874,
+            "y0": 155.22498046875,
+            "x1": 543.88599609375,
+            "y1": 209.70486328125003
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9424,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8318
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_7",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.897109375,
+            "y0": 355.555986328125,
+            "x1": 543.4749023437499,
+            "y1": 399.144345703125
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9407,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8305
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_8",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.691,
+            "y0": 522.3810784,
+            "x1": 541.2474661919996,
+            "y1": 614.1866784
+          },
+          "page_num": 3,
+          "text": "data,theoppositeisoftentrue: withgreatamountsofexternaldatacomesgreatpowerlessness. Therefore,itiscrucial toprioritizetheissueofdatacontrolwhenincorporatingexternalsourcesintoofficialstatistics. Takingthetimeto establishproperprotocolsandproceduresforexternaldatamanagementcanpreventamultitudeofissuesdowntheline andensurethatthedatayourelyonremainaccurateandtrustworthy. Thispaperdelvesintothepervasiveproblemofpowerlessnessandlackofcontrol,unravelingthemultifacetedaspects, risks, andpitfallsthatarisefromutilizing externaldatasourcesformachinelearning inofficialstatistics. We will exploretheconceptsof‘change’and‘consequence’intheirmostexpansiveinterpretationstocomprehensivelytackle thisquestion.",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9396,
+            "geometric_score": 1.0,
+            "final_confidence": 0.85
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_9",
+          "block_type": "header",
+          "bbox": {
+            "x0": 71.752470703125,
+            "y0": 492.952705078125,
+            "x1": 290.0494921875,
+            "y1": 505.97812500000003
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8569,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7677
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_10",
+          "block_type": "header",
+          "bbox": {
+            "x0": 71.88662109375,
+            "y0": 131.98042968750008,
+            "x1": 245.847626953125,
+            "y1": 142.92005859375
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8407,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7555
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_11",
+          "block_type": "header",
+          "bbox": {
+            "x0": 71.74787841796875,
+            "y0": 310.69625976562503,
+            "x1": 203.937744140625,
+            "y1": 321.5005078125
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8279,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7459
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_12",
+          "block_type": "header",
+          "bbox": {
+            "x0": 72.02527587890624,
+            "y0": 330.508681640625,
+            "x1": 284.016533203125,
+            "y1": 341.86514648437503
+          },
+          "page_num": 3,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8212,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7409
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_3_13",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.641,
+            "y0": 69.84807839999996,
+            "x1": 541.7444504913997,
+            "y1": 505.25756320000005
+          },
+          "page_num": 3,
+          "text": "3 Thechallengeofchangingdatasources Relyingheavilyonexternaldatasourcesformachinelearninginofficialstatisticscomeswithsignificantrisks. Sucha dependencecanleavestatisticalagenciesvulnerablesincetheyhavelimitedcontroloverthesesources. Thissituation issimilartohowourglobaleconomy,mobility,andprosperitywereoncehighlydependentontheavailabilityofoil. Sincethepricesandavailabilityofthesepreciousresourcesareoftenbeyondourcontrol,countriescandonothingbut endurepricefluctuationsandshortages. CliveHumbyproclaimedin2006that“dataisthenewoil”,givenitspowerful intrinsicvalue. However,hisstatementkeepsholdingtrueintermsofvulnerability,powerlessness,andlackofcontrol overexternalproviders. Inthefollowingparagraphs,wewilldelveintothevarioustypesandcausesofdatachanges. Wewillthendiscussthe ramificationsofchangingdatasourcesformachinelearninginofficialstatistics. Finally,wewillprovidealistofbest practicesandtips,althoughitisimportanttorememberthatthereisnofreelunch: wheneverweincorporateexternal data,weexposeourselvestotheriskoffuturechangesinthesedatasources. 3.1 TypesandCausesofChangingDataSources 3.1.1 Datatypesandschemas Achangeindatatypesorschemasreferstomodificationsmadetothedataformatsorthestructureinwhichthedata arestoredandoffered. Thesetypesofchangesmayariseduetoaneedtoaccommodatefutureusecasesorbusiness requirements,toeliminatetechnicaldebt,ortoimprovedatastorageandretrievalefficiency. Eventhemostinnocent changes–e.g.integersbecomingfloats,datacolumnsthatareaddedorremoved... –canbreakentirepipelines. In themostfortunateofcasestheruntimeenvironmentwillthrowerrorsthatrevealthecauseofthesedatachanges. In othercases,however,thedatachangesremainundetectedandsecretlywreakhavocinthepipeline. Ifthepipeline containsmachinelearningcomponents,datatypechangescane.g.inducefeaturemismatches–discrepanciesbetween thefeaturedistributionsattrainandinferencetime–thatleadtounreliablepredictions. Itisimportanttobevigilantaboutchangesindatatypesorschemas,asevenseeminglyminoradjustmentscanhave significantimpactsfurtherdownthedatapipeline. Tomitigatetheserisks,itisadvisabletostayinformedaboutdata changeannouncementsfromprovidersandimplementrobustdatachecksduringdataingestion,rangingfromsimple data(type)validationtofull-blownautomatedfeatureanalysis,outlierdetection,etc. Additionally,thedeploymentof effectivemonitoringsystemscanhelpcatchmachinelearningfailuresquicklyandpreventpotentiallycostlyerrors. 3.1.2 Sharingandcollectiontechnology Datacanbesharedandcollectedusingmanydifferenttechnologies,suchasAPIs,queues,networkdrives,external drives,e-mail...butalsowebscraping,onlineanalyticstools,sensornetworks...Changesinthesetechnologiesinevitably occurfromtimetotime.Forexample,APIendpointsoftenneedtobeupdatedtoimprovefunctionalityandperformance. ChangesmaybemadetotheAPI’sdatastructuresormethods,toprovidemoreefficientorcomprehensivedataaccess. Inaddition,changesmaybemadetotheAPItoaddresssecurityvulnerabilitiesortoensurecompliancewithnew",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    },
+    {
+      "page_num": 4,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_4_0",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 69.84807839999996,
+            "x1": 540.0040938599997,
+            "y1": 123.4466784
+          },
+          "page_num": 4,
+          "text": "requirearefreshoftheusedmachinelearningmodels. Itcanalsoimpactthewaymachinelearningmodelsaredesigned andtrained. Ifcertainvariablesorfactorsareconsidereddiscriminatoryorunethical,theremaybeapushtowards eliminatingoradjustingthemtoreducealgorithmicbias. Changesinethicsorpublicperceptionscanalsoresultin greateraccountabilityandtheneedfortransparency. Stakeholdersmaydemandmoreopennessandclarityaround theuseofalgorithms,datasources,anddecision-makingprocesses. Thiscanleadtogreaterscrutinyandoversightof",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.9473,
+            "geometric_score": 1.0,
+            "final_confidence": 0.8236
+          },
+          "reading_order": 13,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 303.509,
+            "y0": 39.96007840000004,
+            "x1": 308.4903,
+            "y1": 49.922678399999995
+          },
+          "page_num": 4,
+          "text": "5",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.8858,
+            "geometric_score": 0.5,
+            "final_confidence": 0.7
+          },
+          "reading_order": 14,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_2",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.06208007812499,
+            "y0": 453.32818359375,
+            "x1": 543.87861328125,
+            "y1": 551.9758740234375
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9495,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8371
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.94095947265625,
+            "y0": 357.42758789062503,
+            "x1": 543.9880078125,
+            "y1": 422.86546875
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9488,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8366
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.365517578125,
+            "y0": 283.281796875,
+            "x1": 543.768984375,
+            "y1": 326.796474609375
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.948,
+            "geometric_score": 0.8,
+            "final_confidence": 0.836
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.81202392578125,
+            "y0": 176.56921875,
+            "x1": 544.38814453125,
+            "y1": 252.8668359375
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9475,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8356
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_6",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.96701904296874,
+            "y0": 582.431923828125,
+            "x1": 544.1207812499999,
+            "y1": 680.4001318359375
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9441,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8331
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_7",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.98682373046874,
+            "y0": 686.203740234375,
+            "x1": 542.24607421875,
+            "y1": 718.3868188476563
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9429,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8322
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_8",
+          "block_type": "header",
+          "bbox": {
+            "x0": 72.04855224609375,
+            "y0": 153.39240234375006,
+            "x1": 224.94966796875,
+            "y1": 164.94222656249997
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8834,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7875
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_9",
+          "block_type": "header",
+          "bbox": {
+            "x0": 71.81212646484374,
+            "y0": 334.741201171875,
+            "x1": 236.40503906249998,
+            "y1": 346.10349609375004
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8636,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7727
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_10",
+          "block_type": "header",
+          "bbox": {
+            "x0": 72.13363037109374,
+            "y0": 260.27835937500004,
+            "x1": 172.3681494140625,
+            "y1": 271.71222656250006
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8567,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7675
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_11",
+          "block_type": "header",
+          "bbox": {
+            "x0": 71.98159423828125,
+            "y0": 430.480341796875,
+            "x1": 225.321884765625,
+            "y1": 442.086240234375
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8533,
+            "geometric_score": 0.8,
+            "final_confidence": 0.765
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_12",
+          "block_type": "header",
+          "bbox": {
+            "x0": 71.9585302734375,
+            "y0": 559.3054248046875,
+            "x1": 159.7638720703125,
+            "y1": 570.8481591796875
+          },
+          "page_num": 4,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.839,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7543
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_13",
+          "block_type": "text",
+          "bbox": {
+            "x0": 70.506,
+            "y0": 135.3030784,
+            "x1": 541.7441715385997,
+            "y1": 717.8476784000001
+          },
+          "page_num": 4,
+          "text": "regulationsorstandards. Furthermore,changesinbusinessrequirementsorstrategymayalsoleadtochangesinAPI endpoints. Forinstance,acompanymayintroducenewproductsorservices,modifytheirexistingofferings,orchange theirpricing. Arecent,tellingexampleistheTwitterAPI.In2021,Twitterlaunchedversion2ofitspopularAPIthatintroduced manychangesinendpoints,datafields,pricing...comparedtoversion1.1. Twitterencourageddeveloperstomigrateto thisnewAPIoffering,butformanyusecasessuchamigrationwouldintroducebreakingchangesthat,intheirturn, wouldimpactentiredataprocessingpipelines,statisticsproduction,etc. Forthetimebeing,Twitterofferedbothversion 1.1andversion2oftheirAPIinparallel,whichcausedmanytoburytheirheadsinthesand. Thesituationgoteven worsewhenElonMuskacquiredTwitterin2022anddecidedtosuspendallexistingAPIofferings. Instead,in2023a newenterprisetierwasintroducedthatputapriceofmorethan40thousandUSDpermonthonanyreasonablyeffective useoftheAPI.Thiscausedgreatdissatisfactioninthedevelopmentandresearchcommunityandmanyinitiativeswere abandoned. 3.1.3 Conceptdrift Conceptdriftisrelatedtochangesinthedatadistributionbetweentrainandtesttime,whichcanhavemultiplecauses [15,16]. Changesinbusinesslogiccaninduceinformationshifts,forexample,whencategoricalvariablesareexpanded withadditionalcategoriesorwhenthemeaningofcertaindatafieldsisaltered. Aparticularpervasiveissueisthe calculationofderiveddatafields,especiallywhenthosecalculationsarenottransparentorproprietary. Intheageof machinelearning,youshouldalwaysassumethatderiveddatafieldscanbetheresultofamodelprediction;when thismodelisupdatedwithoutyourknowing,thederiveddatafieldswillhavea(slightly)differentdatadistribution, whichwillcauseissuesindependentmachinelearningmodels. Butevenwhendatafieldsarenottheresultofamodel’s prediction,itisimportanttoperiodicallyreevaluateandretrainmodels,sincemanysociologicalandeconomicprocesses arenaturallypronetoconceptdriftthemselves. 3.1.4 Frequencyandinterruptions Achangeindatafrequencyreferstomodificationsmadetotherateatwhichdataiscollectedorupdated,whichcan happendeliberatelyorrandomly. Deliberatechangesmayariseduetoshiftsinbusinessrequirementsortechnological choices. Randomshiftsaremostoftenattributedtonoisyfactorssuchasnetworkissues,componentfailures,down- time...or(human)errors. Suchchangesinfrequencycanimpactmachinelearningcomponentsdramatically. E.g.when periodicaldataissampledeveryminuteinsteadofeverysecond,thedatadistributionchangesonwhichthemodelwas trained. Tomitigatetheserisks,datapipelinesshouldbedesignedtomonitorchangesinincomingdatafrequency. 3.1.5 Ownershipanddiscontinuation Worsethaninterruptionsisdownrightdiscontinuationofthedatasource,whichhasimmediateconsequencesonthe futureexistenceofthestatistic.Also,achangeofownershipofthedatasource–e.g.whenacquiredbyanothercompany –isnotafictionalscenario,anditcantriggeranyoftherisksthatarediscussedinthissection. Buildingredundancyby diversifyingdatasourcesisausefulmitigatingstrategytoavoidsinglepointsoffailures. 3.1.6 Legalproperties Legalchangesrefertomodificationsmadetothelegallandscapethatgovernsthecollection,storage,anduseofdata. Thistypeofchangemayariseduetonewprivacylaws,contractualobligations,orchangesinthecostofdataaccessor storage. Onecauseofthistypeofchangeistheadoptionofnewregulations,suchasGDPR,whichrequirecompanies tocomplywithstricterrulesforcollectingandprocessingdata. Additionally,changesinthecostofdataaccessor storagemayrequirecompaniestomodifytheirdatasourcesormethodstoreducecosts,whichcanhavecontractual consequences. Ifpossible,negotiateairtightSLAswiththedataproviderandmakesuretoattributeenoughattentionto futuredatachanges. 3.1.7 Ethicsandpublicperception Ethicalconsiderationsandpublicperceptionscanaffectdatacollectionmethodsandsources. Ifcertaindatasources",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_4_14",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 124.39307840000004,
+            "x1": 540.3495968279996,
+            "y1": 134.3556784
+          },
+          "page_num": 4,
+          "text": "or variables are considered controversial or intrusive, there may be a shift towards alternative sources, which may",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    },
+    {
+      "page_num": 5,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_5_0",
+          "block_type": "text",
+          "bbox": {
+            "x0": 303.509,
+            "y0": 39.96007840000004,
+            "x1": 308.4903,
+            "y1": 49.922678399999995
+          },
+          "page_num": 5,
+          "text": "6",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.8874,
+            "geometric_score": 0.5,
+            "final_confidence": 0.7
+          },
+          "reading_order": 16,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.04484619140625,
+            "y0": 663.9832324218751,
+            "x1": 541.528359375,
+            "y1": 717.073037109375
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9503,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8377
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_2",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.78654296875,
+            "y0": 598.257041015625,
+            "x1": 541.423359375,
+            "y1": 629.2385302734375
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9495,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8371
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.02350341796874,
+            "y0": 380.70685546875,
+            "x1": 541.60048828125,
+            "y1": 422.76902343750004
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9494,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8371
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.85826171875,
+            "y0": 74.67105468750003,
+            "x1": 542.9612109375,
+            "y1": 161.13017578125005
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9485,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8364
+          },
+          "reading_order": 15,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.82154541015625,
+            "y0": 554.620546875,
+            "x1": 541.5118945312499,
+            "y1": 585.5410986328125
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9484,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8363
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_6",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.98300048828125,
+            "y0": 239.36566406250006,
+            "x1": 542.795625,
+            "y1": 314.148427734375
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.948,
+            "geometric_score": 0.8,
+            "final_confidence": 0.836
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_7",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.99394287109375,
+            "y0": 467.608359375,
+            "x1": 540.919921875,
+            "y1": 498.939755859375
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.948,
+            "geometric_score": 0.8,
+            "final_confidence": 0.836
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_8",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.98858154296875,
+            "y0": 195.94306640625007,
+            "x1": 542.61498046875,
+            "y1": 227.15460937500006
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9475,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8356
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_9",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.9163134765625,
+            "y0": 326.49369140625004,
+            "x1": 542.072109375,
+            "y1": 368.60080078125003
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9448,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8336
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_10",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.93947998046875,
+            "y0": 511.166630859375,
+            "x1": 541.23591796875,
+            "y1": 542.276162109375
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9432,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8324
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_11",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.100107421875,
+            "y0": 434.96232421875004,
+            "x1": 541.13513671875,
+            "y1": 455.526064453125
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9406,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8305
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_12",
+          "block_type": "header",
+          "bbox": {
+            "x0": 72.10210693359375,
+            "y0": 171.29238281250002,
+            "x1": 242.151357421875,
+            "y1": 181.07384765625
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8772,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7829
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_13",
+          "block_type": "header",
+          "bbox": {
+            "x0": 72.11230224609375,
+            "y0": 639.9606005859375,
+            "x1": 267.728466796875,
+            "y1": 649.16162109375
+          },
+          "page_num": 5,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8118,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7339
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_14",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.532,
+            "y0": 304.7830784,
+            "x1": 541.7474910960001,
+            "y1": 717.8476784000001
+          },
+          "page_num": 5,
+          "text": "machinelearningmodels,whichmayimpacttheirperformanceifnotadequatelyaddressed,especiallywhenblack-box modelsneedtobereplacedbymoreinterpretativevariants[17,18,19]. Finally,publictrustcanbesignificantlyaffected. Ifstakeholdersperceivethatmachinelearningisbeingusedinappropriatelyorunethically,theymaylosefaithinthe integrityandreliabilityofofficialstatistics. Thiscanhavesignificantconsequencesforpublicpolicyanddecision making. 3.2 ConsequencesofChangingDataSources Whendatasourceschange,therewillbeconsequencesforofficialstatisticsproduction,especiallyiftherearemachine learningcomponentsinvolved. Wewillbroadlybutbrieflycoveravarietyofareasthatcanbeimpacted,someofwhich havealreadybeenmentionedabove. Conceptdrift–Conceptdriftmeansthattheunderlyingpatternsandrelationshipsinthedatamaychangeovertime, whichcanleadtomodeldeteriorationorlossofaccuracy. Thisissuecanbeparticularlyrelevantwhendealingwith long-termtrends,aschangesinsocietalnorms,technology,orotherexternalfactorscaninfluencedataovertime[16]. Modelstaleness–Whenamodelbecomesoutdated,itnolongerreflectscurrenttrendsorpatternsinthedata. Thiscan occurifthemachinelearningmodelisnotupdatedfrequentlyenoughtokeeppacewithchangingdatasources. Asa result,themodelmaynotperformaswellasitoncedid,leadingtolessaccurateofficialstatistics. Biasandneutrality–Changingdatasourcescanalsointroducebiasorincorrectdata,whichcanimpacttheneutrality ofthestatisticsproduced,orwhichcanleadtothephenomenon“garbagein,garbageout”[20,21]. Sinceitisessential thatofficialstatisticsremainneutralandobjective,thiswillnegativelyimpacttheaccuracyandvalidityofthesestatistics. Availability–Ifdatabecomeunavailable(foracertainperiodintimeorindefinitely)orarelimitedinscope,thismay impacttheabilitytoproduceaccurateandtimelyofficialstatistics. Integration–Achangeindatasourcescancauseadominoeffectwhenmultiplestatisticsormodelsrelyonthisdata source. Especiallybemindfulwhentheoutputofmachinelearningmodelsisusedasinputforothermachinelearning models,eitherdirectlyorindirectlyaspartofalargerdatapipeline. Sincethepredictionsofamachinelearningmodel canbecomeunreliablewhentheinputdatachange,thispredictionshiftitselfisachangingdatasourceforothermodels. Extralabor–Theriskofchangingdatasourcesrequiresadditionalresourcesandlabortomitigatetheeffectsofsuch changes,monitortheoccurrenceofchanges,andensurethatthenewdataareproperlyintegratedintoexistingmachine learningmodels. Thishastremendousimpactsonthecostsandtimelineoftheproducedstatistics,anditmayalso requireasignificantteamexpansion. Breaking changes or discontinuation – In some cases, changing data sources may cause the impossibility of",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_15",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.641,
+            "y0": 96.90607840000007,
+            "x1": 541.2457326979994,
+            "y1": 303.8366784
+          },
+          "page_num": 5,
+          "text": "producingastatisticanyfurther. Ifthisisthecase,itmaybenecessarytostopofferingthestatisticaltogetherorfind alternativedatasourcesthatcanproduceaccurateandreliableofficialstatistics. Whenalternativedatasourcesare found,therewillalmostalwaysbeamismatchwiththeoriginaldatasourcethathasanimpactontheresultingstatistic, resultinginabreakingchange. Inthatcase,itisimportanttoovercomethemismatchesasbestaspossible–e.g.in termsofstatisticalproperties–and,certainly,tobetransparentaboutthebreakingchange,e.g.byindicatingonagraph whenexactlythedatasourcewaschanged. Quality metrics – Finally, changing data sources imply changes in timeliness, validity, accuracy, completeness, consistencyandotherqualitymetricsw.r.t.theproducedofficialstatistics[6]. Ensuringthatresultingstatisticcontinues tomeetthesequalitymetricsremainscritical. 3.3 MitigatingChangingDataSources Ashasbeenillustratedabove,changesindatasourcescansignificantlyimpacttheperformanceofamachinelearning model. Theeffectscanbediverse,rangingfromintroducingbiasesinthedatatoproducingincorrectresults. Thiscan haveseriousimplications,especiallywhenthemodelisbeingusedforofficialstatistics,whereaccuracyandreliability areofparamountimportance. Therefore,itisessentialtotakemeasurestopreventandmitigatesuchchanges. Thisis notaneasytask,astheconsequencescanbediverse,andtherequiredeffortstomitigatethemareoftentime-consuming andnotstraightforward. Wedonotclaimtohavedefiniteanswers. However,wewillproposeseveralrecommendations",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 13,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_5_16",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 75.08807839999997,
+            "x1": 539.9939320079994,
+            "y1": 95.95967840000003
+          },
+          "page_num": 5,
+          "text": "and best practices, including performing a risk analysis, monitoring, diversifying data sources, building technical robustness,usingdatanormalizationtechniques,andincorporatingdatavalidationprocesses.",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 14,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    },
+    {
+      "page_num": 6,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_6_0",
+          "block_type": "text",
+          "bbox": {
+            "x0": 303.385,
+            "y0": 39.96007840000004,
+            "x1": 308.36629999999997,
+            "y1": 49.922678399999995
+          },
+          "page_num": 6,
+          "text": "7",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.8867,
+            "geometric_score": 0.5,
+            "final_confidence": 0.7
+          },
+          "reading_order": 13,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.671,
+            "y0": 266.6120784,
+            "x1": 541.74295732,
+            "y1": 341.83867840000005
+          },
+          "page_num": 6,
+          "text": "practicaltrade-offs,andisofcoursehighlyuse-case-dependent. Technical robustness – Building technical robustness is paramount and requires significant engineering efforts. Buildinganautomated,data-drivenstatisticthatisresistanttochangingdatasourcessuchaserrors,outliers,outages, time-dependentvariability,etc.ensuresconsistencyinthestatisticaloffering. Usingdatanormalizationtechniquesand incorporatingdatavalidationintothepipelineareessentialmeasures,butrobusttechnicalimplementationsalsorequire thoroughunitandintegrationtesting,failoveranddeduplication,scalabilitysolutions,securitymeasures,etc. Ofcourse,",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9464,
+            "geometric_score": 1.0,
+            "final_confidence": 0.9732
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_2",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 69.84807839999996,
+            "x1": 540.1720632959998,
+            "y1": 123.4466784
+          },
+          "page_num": 6,
+          "text": "strategies. However,weadmitthatthesestrategiesdonotprovidealltheadequateanswersandmightleavethereader unsatisfiedor,worsestill,beguiled,asthesolutionsrequiremanyadditionalresourcesandefforts. Aswehavestressed acoupleoftimesinthispaper,thisisastoryoftrade-offs. Dependingontheusecaseathand,sometrade-offsmightbe easiertohandlethanotherones. However,inthecontextofofficialstatistics,ouradviceistonottreadlightlyonthese mattersandtominimizetheriskoflosingcontroloveryourdatasourcesasmuchaspossible. Thistakestime,effort",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.9468,
+            "geometric_score": 1.0,
+            "final_confidence": 0.8234
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 212.25607839999998,
+            "x1": 541.7417705519996,
+            "y1": 265.66567840000005
+          },
+          "page_num": 6,
+          "text": "thisisanentirefieldofstudyonitsown. Legalrobustness–Finally,webelievethatagreeingonclearlegalguidelinesisthebestmitigationstrategytocounter theriskofchangingdatasources,forexample,byclosingformaldatasharingagreementsorSLAawithdataproviders. Suchagreementsshouldspecifythetermsandconditionsunderwhichthedatacanbeshared, aswellasthelegal",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.9476,
+            "geometric_score": 1.0,
+            "final_confidence": 0.8238
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.641,
+            "y0": 386.42207840000003,
+            "x1": 541.2488861039997,
+            "y1": 717.9174166
+          },
+          "page_num": 6,
+          "text": "Riskanalysis–Performingariskanalysisbeforeincorporatinganewdatasourceisanessentialstepinmitigating theimpactofchangesindatasources. Thisanalysisinvolvesidentifyingthepotentialrisksassociatedwiththedata source,whichwehavecoveredinSection3.1. Theanalysisshouldbecomprehensive,consideringbothtechnicaland non-technicalaspectsofthedatasource,andshouldideallyincludepotentialsolutionsfortheidentifiedrisks. Thiswill oftenforceyoutofacethehardtruthandwillleadyoutodecidethatthecandidatedatasourcesarenotadequateor reliableenough. Trade-offswillneverthelessneedtobeconsidered,dependingontheusecaseathand. Monitoring–Monitoringeverythingthatisrelevantisanothercrucialstepinmitigatingtheimpactofchangingdata sources. Itinvolvestrackingvariousaspectsofthedatasources,themachinelearningmodels,andtheiroutputsto detectandrespondtochangespromptly. Draftalistofvariablesandquantitiesthatmustbecontinuouslytrackedto ensurethatthemodelsremainreliableandaccurateovertime. Forthis,inspirationcanbedrawnfromthediscussed topicsinSection3.1,butitwillvaryfromusecasetousecase,aswellasthenatureofthemodelsthathavebeenused. Supervisedmodels,forexample,canbetestedagainstareferencetestsetorahistoricalreferencemodel;iftheaccuracy, precision or recall starts to deviate significantly from this reference set, it should be flagged. On the other hand, monitoringtheperformanceofunsupervisedmodelscanbemorechallenging,becausethereisnoclearperformance measurethatcanbedirectlycomputed. Oneapproachistomonitorthemodel’sabilitytodetectpatternsandclustersin thedata. Itispossibletouseareferencetestsetorreferencemodelforthis,buttheinformativemetrics–e.g.cluster similarity,homogeneity,separation... –aremoreabstractandsomewhathardertointerpret. Anotherapproachisto visualizeprojectionsofcertaininterestingdatapointsinthelearnedlatentspacesorpreferablyareductionthereof, whichgreatlybenefitsinterpretabilitybutmakesithardertoconvertitintohardnumbers. Asasuggestion,agood balancebetweeninterpretabilityandhardperformancemetricsisfoundwhenclustersaretestedagainstpre-existing domainknowledge,e.g.bylistingsimilardatapointsforgivenqueries.Simplymonitoringwhetherexpectedsimilarities emergeornotcanprovidepowerfulsignalsaboutmodelanddataperformance. Anothereffectiveapproachistocreate proxysupervisedtasksthatrelyontheoutputoftheunsupervisedmodel. Monitoringthemodel’sperformanceonsuch proxytaskscanprovideinsightsintothequalityandusefulnessoftheunsupervisedmodel’soutput. Diversification–Diversifyingdatasourcesisanotherimportantmeasure,butiseasiersaidthandone. Onechallengeof usingmultipledatasourcesisthepotentialforconflictsorinconsistenciesbetweenthesources. Differentdatasources mayhavedifferentformats,schemas,andlevelsofquality,whichcancreatediscrepanciesandinconsistenciesthatmust beresolvedbeforethedatacanbeusedinthemodel. Therefore,datanormalizationiskey. Additionally,integrating",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9481,
+            "geometric_score": 1.0,
+            "final_confidence": 0.9741
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.95853759765625,
+            "y0": 588.0227783203125,
+            "x1": 542.7893554687499,
+            "y1": 641.9888671875
+          },
+          "page_num": 6,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.949,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8368
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_6",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.83182861328125,
+            "y0": 653.5496923828125,
+            "x1": 542.42150390625,
+            "y1": 717.65712890625
+          },
+          "page_num": 6,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9484,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8363
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_7",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.04663330078125,
+            "y0": 331.533955078125,
+            "x1": 543.7262109375,
+            "y1": 429.655634765625
+          },
+          "page_num": 6,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9426,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8319
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_8",
+          "block_type": "header",
+          "bbox": {
+            "x0": 72.19862548828125,
+            "y0": 170.24285156250005,
+            "x1": 147.7360693359375,
+            "y1": 182.54449218750005
+          },
+          "page_num": 6,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8417,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7563
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_9",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 364.6040784,
+            "x1": 540.0028684601997,
+            "y1": 385.4756784
+          },
+          "page_num": 6,
+          "text": "multiple data sources can be a complex and time-consuming process. It can also create additional computational overhead,whichmayimpactthemodel’sscalabilityandportability. Finally,findingrelevantandreliabledatasources",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_10",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 353.6950784,
+            "x1": 539.9939320079998,
+            "y1": 363.6576784
+          },
+          "page_num": 6,
+          "text": "can be a challenging task, particularly for specialized or niche domains. It may require extensive research and",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_11",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 342.7860784,
+            "x1": 539.9939320079994,
+            "y1": 352.7486784
+          },
+          "page_num": 6,
+          "text": "communication with data providers to retrieve relevant data. Again, this story is about economical, technical and",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_12",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 124.39307840000004,
+            "x1": 540.0040938599997,
+            "y1": 182.29456319999997
+          },
+          "page_num": 6,
+          "text": "4 Conclusion Inthispaperwehaveinvestigatedtherisksandconsequencesofchangingdatasourceswhenusingmachinelearning for official statistics. The list is long and covers many different aspects, ranging from statistical issues and model inconsistenciestotechnicalproblemsandethicalconsiderations. Wehavealsolookedatafewpotentialmitigation",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_6_13",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 201.3470784,
+            "x1": 539.2160521999997,
+            "y1": 211.30967839999994
+          },
+          "page_num": 6,
+          "text": "responsibilitiesofeachparty. Inparticular,theagreementsshouldspecifythelegalconsequencesofnon-compliance.",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    },
+    {
+      "page_num": 7,
+      "dimensions": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "blocks": [
+        {
+          "block_id": "block_7_0",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 653.3400783999999,
+            "x1": 540.3447350791995,
+            "y1": 717.8476784000001
+          },
+          "page_num": 7,
+          "text": "andcarefulplanningwithahorizonofmultipleyears. Toendonapositivenote,despitethechallengesassociatedwith changingdatasources,machinelearningoffersmanyopportunitiesforofficialstatistics. Bybeingawareoftherisks andtakingnecessaryprecautions,statisticalagenciescanleveragetheseopportunitieswhilemaintainingtheintegrity andreliabilityoftheirdata-drivenproducts. Wehopethatourchecklistofrisksandmitigationstrategiesprovidesa usefulstartingpointforstatisticalagenciesandpractitionerstoensuretherobustnessoftheirmachinelearning-based statisticalreporting.",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.9405,
+            "geometric_score": 1.0,
+            "final_confidence": 0.8202
+          },
+          "reading_order": 1,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_1",
+          "block_type": "text",
+          "bbox": {
+            "x0": 76.98099999999997,
+            "y0": 589.4500783999999,
+            "x1": 535.5870263999999,
+            "y1": 599.6418182
+          },
+          "page_num": 7,
+          "text": "[2] TrevorHastie,JeromeFriedman,andRobertTisbshirani. TheelementsofStatisticalLearning. Springer,2017.",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.9222,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7711
+          },
+          "reading_order": 4,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_2",
+          "block_type": "text",
+          "bbox": {
+            "x0": 303.509,
+            "y0": 39.96007840000004,
+            "x1": 308.4903,
+            "y1": 49.922678399999995
+          },
+          "page_num": 7,
+          "text": "8",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.8889,
+            "geometric_score": 0.5,
+            "final_confidence": 0.7
+          },
+          "reading_order": 35,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_3",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 72.58807839999997,
+            "x1": 541.7471587559996,
+            "y1": 118.59481819999996
+          },
+          "page_num": 7,
+          "text": "in,garbageout. PLOSONE,15(12):e0243300,December2020. [21] R.StuartGeiger,DominiqueCope,JamieIp,MarshaLotosh,AayushShah,JennyWeng,andRebekahTang. “garbagein,garbageout”revisited: Whatdomachinelearningapplicationpapersreportabouthuman-labeled trainingdata? QuantitativeScienceStudies,2(3):795–827,2021.",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.9311,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7756
+          },
+          "reading_order": 34,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_4",
+          "block_type": "text",
+          "bbox": {
+            "x0": 76.98100000000005,
+            "y0": 415.1030784,
+            "x1": 539.9985431291994,
+            "y1": 450.2018182
+          },
+          "page_num": 7,
+          "text": "sentimentanalysis. SocialScienceResearchNetwork,2022. [9] AnnelienCrijns,VictorVanhullebusch,ManonReusens,MichaelReusens,andBartBaesens. Topicmodelling appliedoninnovationstudiesofflemishcompanies. JournalofBusinessAnalytics,pages1–12,2023.",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.929,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7745
+          },
+          "reading_order": 14,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_5",
+          "block_type": "text",
+          "bbox": {
+            "x0": 76.98099999999994,
+            "y0": 536.5480784,
+            "x1": 541.2454630000001,
+            "y1": 571.4166783999999
+          },
+          "page_num": 7,
+          "text": "[4] presentandthefuture. BigData,2(1):34–43,March2014. [5] MarcoPutsandPietDaas. Machinelearningfromtheperspectiveofofficialstatistic. TheSurveyStatistician,",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.93,
+            "geometric_score": 0.8,
+            "final_confidence": 0.775
+          },
+          "reading_order": 7,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_6",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 183.12307839999994,
+            "x1": 540.0030975999996,
+            "y1": 218.22181819999992
+          },
+          "page_num": 7,
+          "text": "onperformance-awaredriftdetectors. Knowledge-BasedSystems,245:108632,June2022. [17] AlicjaGosiewska,AnnaKozak,andPrzemysławBiecek. Simplerisbetter: Liftinginterpretability-performance trade-offviaautomatedfeatureengineering. DecisionSupportSystems,150:113556,November2021.",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.9299,
+            "geometric_score": 0.8,
+            "final_confidence": 0.775
+          },
+          "reading_order": 29,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_7",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 401.1060784,
+            "x1": 539.9993202119999,
+            "y1": 411.06867839999995
+          },
+          "page_num": 7,
+          "text": "[10] SevguiErman,EricRancourt,YanickBeaucage,andAndreLoranger. TheUseofDataScienceinaNational",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.9282,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7741
+          },
+          "reading_order": 15,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_8",
+          "block_type": "text",
+          "bbox": {
+            "x0": 76.981,
+            "y0": 500.73207840000003,
+            "x1": 541.2455939,
+            "y1": 535.6016784000001
+          },
+          "page_num": 7,
+          "text": "84:12–17,July2021. [6] WesleyYung,Siu-MingTam,BartBuelens,HughChipman,FlorianDumpert,GabrieleAscari,FabianaRocci, JoepBurger,andInKyungChoi. Aqualityframeworkforstatisticalalgorithms. StatisticalJournaloftheIAOS,",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.9317,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7759
+          },
+          "reading_order": 9,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_9",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 243.8460784,
+            "x1": 541.2457809,
+            "y1": 278.7146784
+          },
+          "page_num": 7,
+          "text": "2016. [15] HanqingHu,MehmedKantardzic,andTegjyotSSethi. Nofreelunchtheoremforconceptdriftdetectionin WileyInterdisciplinaryReviews: streamingdataclassification: Areview. DataMiningandKnowledgeDiscovery,",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.9321,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7761
+          },
+          "reading_order": 26,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_10",
+          "block_type": "text",
+          "bbox": {
+            "x0": 93.579,
+            "y0": 315.47707840000004,
+            "x1": 541.7471587559997,
+            "y1": 325.43967840000005
+          },
+          "page_num": 7,
+          "text": "conceptualizing algorithmic fairness and distributive justice in the context of data-driven decision-making.",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9319,
+            "geometric_score": 0.8,
+            "final_confidence": 0.85
+          },
+          "reading_order": 21,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_11",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 119.3130784,
+            "x1": 541.7471587559996,
+            "y1": 179.08867840000005
+          },
+          "page_num": 7,
+          "text": "[18] CynthiaRudin. Stopexplainingblackboxmachinelearningmodelsforhighstakesdecisionsanduseinterpretable modelsinstead. NatureMachineIntelligence,1(5):206–215,May2019. [19] Alex John London. Artificial intelligence and black-box medical decisions: Accuracy versus explainability. HastingsCenterReport,49(1):15–21,January2019. [20] BertieVidgenandLeonDerczynski. Directionsinabusivelanguagetrainingdata,asystematicreview: Garbage",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9317,
+            "geometric_score": 1.0,
+            "final_confidence": 0.85
+          },
+          "reading_order": 30,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_12",
+          "block_type": "text",
+          "bbox": {
+            "x0": 93.579,
+            "y0": 279.66107839999995,
+            "x1": 541.2492280079998,
+            "y1": 289.6236784
+          },
+          "page_num": 7,
+          "text": "Sethupathy. Theageofanalytics: competinginadata-drivenworld. Technicalreport,McKinsey&Company,",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.9316,
+            "geometric_score": 0.8,
+            "final_confidence": 0.85
+          },
+          "reading_order": 24,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_13",
+          "block_type": "text",
+          "bbox": {
+            "x0": 76.05522216796875,
+            "y0": 440.199052734375,
+            "x1": 541.81787109375,
+            "y1": 460.3843359375
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9293,
+            "geometric_score": 0.8,
+            "final_confidence": 0.822
+          },
+          "reading_order": 13,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_14",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.29547607421874,
+            "y0": 207.9551953125,
+            "x1": 541.40537109375,
+            "y1": 228.36796875000005
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9292,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8219
+          },
+          "reading_order": 28,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_15",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.47196044921874,
+            "y0": 340.40610351562503,
+            "x1": 542.231953125,
+            "y1": 360.672392578125
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9291,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8218
+          },
+          "reading_order": 19,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_16",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 119.3130784,
+            "x1": 541.7471587559996,
+            "y1": 179.08867840000005
+          },
+          "page_num": 7,
+          "text": "[18] CynthiaRudin. Stopexplainingblackboxmachinelearningmodelsforhighstakesdecisionsanduseinterpretable modelsinstead. NatureMachineIntelligence,1(5):206–215,May2019. [19] Alex John London. Artificial intelligence and black-box medical decisions: Accuracy versus explainability. HastingsCenterReport,49(1):15–21,January2019. [20] BertieVidgenandLeonDerczynski. Directionsinabusivelanguagetrainingdata,asystematicreview: Garbage",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.9289,
+            "geometric_score": 1.0,
+            "final_confidence": 0.85
+          },
+          "reading_order": 31,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_17",
+          "block_type": "text",
+          "bbox": {
+            "x0": 76.12798095703124,
+            "y0": 526.0863574218749,
+            "x1": 541.855546875,
+            "y1": 546.008671875
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9281,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8211
+          },
+          "reading_order": 8,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_18",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.28648193359375,
+            "y0": 365.426572265625,
+            "x1": 541.91384765625,
+            "y1": 385.75828125000004
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9271,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8203
+          },
+          "reading_order": 17,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_19",
+          "block_type": "text",
+          "bbox": {
+            "x0": 76.2760400390625,
+            "y0": 465.30612304687503,
+            "x1": 541.60951171875,
+            "y1": 485.263857421875
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9261,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8196
+          },
+          "reading_order": 11,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_20",
+          "block_type": "text",
+          "bbox": {
+            "x0": 76.0128369140625,
+            "y0": 603.71115234375,
+            "x1": 427.167978515625,
+            "y1": 613.3546875
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9243,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8182
+          },
+          "reading_order": 2,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_21",
+          "block_type": "text",
+          "bbox": {
+            "x0": 76.98099999999994,
+            "y0": 561.4540784,
+            "x1": 540.0013625449996,
+            "y1": 585.4146784
+          },
+          "page_num": 7,
+          "text": "[3] UNECE. Machinelearningforofficialstatistics. Technicalreport,UNECE,2022. HosseinHassani,GilbertSaporta,andEmmanuelSirimalSilva. Dataminingandofficialstatistics: Thepast,the",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.9185,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8439
+          },
+          "reading_order": 5,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_22",
+          "block_type": "header",
+          "bbox": {
+            "x0": 71.8468212890625,
+            "y0": 625.846875,
+            "x1": 128.0181884765625,
+            "y1": 636.9240673828125
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.9058,
+            "geometric_score": 0.8,
+            "final_confidence": 0.8044
+          },
+          "reading_order": 0,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_23",
+          "block_type": "text",
+          "bbox": {
+            "x0": 71.5311767578125,
+            "y0": 108.54011718750007,
+            "x1": 541.90833984375,
+            "y1": 128.70937500000002
+          },
+          "page_num": 7,
+          "text": null,
+          "confidence": {
+            "rule_score": 0.3,
+            "model_score": 0.8405,
+            "geometric_score": 0.8,
+            "final_confidence": 0.7554
+          },
+          "reading_order": 33,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_24",
+          "block_type": "text",
+          "bbox": {
+            "x0": 76.981,
+            "y0": 450.91907840000005,
+            "x1": 540.1720716959998,
+            "y1": 474.8796784
+          },
+          "page_num": 7,
+          "text": "282021. [8] Manon Reusens, Michael Reusens, Marc Callens, Bart Baesens, et al. Benchmark study for flemish twitter",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 12,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_25",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 376.1990784,
+            "x1": 539.9993202119998,
+            "y1": 400.3888182
+          },
+          "page_num": 7,
+          "text": "StatisticalOffice. HarvardDataScienceReview,4(4),oct272022. [11] Matthias Haucke, Rink Hoekstra, and Don van Ravenzwaaij. When numbers fail: do researchers agree on",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 16,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_26",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 351.2930784,
+            "x1": 541.7471587559997,
+            "y1": 375.4818182
+          },
+          "page_num": 7,
+          "text": "operationalizationofpublishedresearch? RoyalSocietyOpenScience,8(9):191354,September2021. [12] Nagireddy Neelakanteswar Reddy. Operationalization bias: A suboptimal research practice in psychology.",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 18,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_27",
+          "block_type": "text",
+          "bbox": {
+            "x0": 93.579,
+            "y0": 315.47707840000004,
+            "x1": 541.7471587559997,
+            "y1": 325.43967840000005
+          },
+          "page_num": 7,
+          "text": "conceptualizing algorithmic fairness and distributive justice in the context of data-driven decision-making.",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 22,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_28",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.00000000000003,
+            "y0": 290.5700784,
+            "x1": 539.9993202119997,
+            "y1": 314.75981820000004
+          },
+          "page_num": 7,
+          "text": "FrontiersinSociology,2022. [14] Nicolaus Henke, Jacques Bughin, Michael Chui, James Manyika, Tamim Saleh, Bill Wiseman, and Guru",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.65
+          },
+          "reading_order": 23,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_29",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 119.3130784,
+            "x1": 541.7471587559996,
+            "y1": 179.08867840000005
+          },
+          "page_num": 7,
+          "text": "[18] CynthiaRudin. Stopexplainingblackboxmachinelearningmodelsforhighstakesdecisionsanduseinterpretable modelsinstead. NatureMachineIntelligence,1(5):206–215,May2019. [19] Alex John London. Artificial intelligence and black-box medical decisions: Accuracy versus explainability. HastingsCenterReport,49(1):15–21,January2019. [20] BertieVidgenandLeonDerczynski. Directionsinabusivelanguagetrainingdata,asystematicreview: Garbage",
+          "confidence": {
+            "rule_score": 1.0,
+            "model_score": 0.0,
+            "geometric_score": 1.0,
+            "final_confidence": 0.65
+          },
+          "reading_order": 32,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_30",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 603.4470783999999,
+            "x1": 427.4539206,
+            "y1": 637.3615632
+          },
+          "page_num": 7,
+          "text": "References [1] StuartJ.RussellandPeterNorvig. ArtificialIntelligence. PearsonEducation,2009.",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 3,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_31",
+          "block_type": "text",
+          "bbox": {
+            "x0": 76.98099999999994,
+            "y0": 561.4540784,
+            "x1": 540.0013625449996,
+            "y1": 585.4146784
+          },
+          "page_num": 7,
+          "text": "[3] UNECE. Machinelearningforofficialstatistics. Technicalreport,UNECE,2022. HosseinHassani,GilbertSaporta,andEmmanuelSirimalSilva. Dataminingandofficialstatistics: Thepast,the",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 6,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_32",
+          "block_type": "text",
+          "bbox": {
+            "x0": 76.981,
+            "y0": 475.82607840000003,
+            "x1": 539.9975731944,
+            "y1": 499.78567840000005
+          },
+          "page_num": 7,
+          "text": "38(1):291–308,March2022. [7] WesleyYung. TheEvolutionofOfficialStatisticsinaChangingWorld. HarvardDataScienceReview,3(4),oct",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 10,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_33",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 218.93907839999997,
+            "x1": 540.3531220257997,
+            "y1": 242.8986784
+          },
+          "page_num": 7,
+          "text": "10(2):e1327,2020. [16] FirasBayram,BestounS.Ahmed,andAndreasKassler. Fromconceptdrifttomodeldegradation: Anoverview",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 27,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_34",
+          "block_type": "text",
+          "bbox": {
+            "x0": 72.0,
+            "y0": 326.38607840000003,
+            "x1": 540.4366385015998,
+            "y1": 350.3466784
+          },
+          "page_num": 7,
+          "text": "December2022. [13] MatthiasKuppler,ChristophKern,RubenL.Bach,andFraukeKreuter. Fromfairpredictionstojustdecisions?",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 20,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        },
+        {
+          "block_id": "block_7_35",
+          "block_type": "text",
+          "bbox": {
+            "x0": 93.579,
+            "y0": 279.66107839999995,
+            "x1": 541.2492280079998,
+            "y1": 289.6236784
+          },
+          "page_num": 7,
+          "text": "Sethupathy. Theageofanalytics: competinginadata-drivenworld. Technicalreport,McKinsey&Company,",
+          "confidence": {
+            "rule_score": 0.5,
+            "model_score": 0.0,
+            "geometric_score": 0.8,
+            "final_confidence": 0.635
+          },
+          "reading_order": 25,
+          "table_data": null,
+          "image_metadata": null,
+          "caption_id": null,
+          "caption_target_id": null,
+          "parent_id": null
+        }
+      ]
+    }
+  ]
+}
