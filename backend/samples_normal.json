@@ -1,0 +1,247 @@
+[
+  {
+    "shipment_id": "PO-12345",
+    "category": "Perishables",
+    "normalized_aggregates": {
+      "total_weight_reported": 450.0,
+      "total_package_count": 20,
+      "ship_to_address_standardized": "500 Distribution Blvd, Chicago, IL 60609",
+      "total_value": 5425.0,
+      "currency": "USD"
+    },
+    "audit_report": [
+      {
+        "code": "ADDR_MISMATCH",
+        "risk": "HIGH",
+        "desc": "Address match only 76.36%"
+      }
+    ]
+  },
+  {
+    "shipment_id": "PO-882",
+    "category": "Raw Materials",
+    "normalized_aggregates": {
+      "total_weight_reported": 2750.0,
+      "total_package_count": 50,
+      "ship_to_address_standardized": "10 Manufacturing Way, Toledo, OH 43604",
+      "total_value": 1250.0,
+      "currency": "USD"
+    },
+    "audit_report": [
+      {
+        "code": "ADDR_MISMATCH",
+        "risk": "HIGH",
+        "desc": "Address match only 76.92%"
+      },
+      {
+        "code": "INCOTERM_ERR",
+        "risk": "LOW",
+        "desc": "FOB Point vs Collect terms conflict."
+      },
+      {
+        "code": "WT_VARIANCE",
+        "risk": "HIGH",
+        "desc": "Weight difference exceeds 50kg tolerance."
+      }
+    ]
+  },
+  {
+    "shipment_id": "PO-ZEN-01",
+    "category": "Manufactured Goods",
+    "normalized_aggregates": {
+      "total_weight_reported": 475.0,
+      "total_package_count": 100,
+      "ship_to_address_standardized": "777 Commerce St, Los Angeles, CA 90001",
+      "total_value": 54250.0,
+      "currency": "USD"
+    },
+    "audit_report": [
+      {
+        "code": "ADDR_MISMATCH",
+        "risk": "HIGH",
+        "desc": "Address match only 63.83%"
+      },
+      {
+        "code": "OVERCHARGE",
+        "risk": "HIGH",
+        "desc": "Invoiced more than shipped."
+      },
+      {
+        "code": "SHORT_SHIP",
+        "risk": "MEDIUM",
+        "desc": "Shipment quantity is short."
+      }
+    ]
+  },
+  {
+    "shipment_id": "PO-MILK-99",
+    "category": "Perishables",
+    "normalized_aggregates": {
+      "total_weight_reported": 200.0,
+      "total_package_count": 50,
+      "ship_to_address_standardized": "123 Main St, Miami, FL 33101",
+      "total_value": 2000.0,
+      "currency": "USD"
+    },
+    "audit_report": [
+      {
+        "code": "ADDR_MISMATCH",
+        "risk": "HIGH",
+        "desc": "Address match only 28.57%"
+      },
+      {
+        "code": "TEMP_INSTR_MISSING",
+        "risk": "HIGH",
+        "desc": "No temp handling instructions."
+      }
+    ]
+  },
+  {
+    "shipment_id": "PO-SOLV",
+    "category": "Raw Materials",
+    "normalized_aggregates": {
+      "total_weight_reported": 1000.0,
+      "total_package_count": 5,
+      "ship_to_address_standardized": "100 Science Dr, Austin, TX 78701",
+      "total_value": 5412.5,
+      "currency": "USD"
+    },
+    "audit_report": [
+      {
+        "code": "ADDR_MISMATCH",
+        "risk": "HIGH",
+        "desc": "Address match only 70.0%"
+      },
+      {
+        "code": "HAZMAT_MISSING",
+        "risk": "CRITICAL",
+        "desc": "Dangerous goods not marked on BOL."
+      }
+    ]
+  },
+  {
+    "shipment_id": "PO-GEN-1",
+    "category": "Manufactured Goods",
+    "normalized_aggregates": {
+      "total_weight_reported": 800.0,
+      "total_package_count": 1,
+      "ship_to_address_standardized": "500 Energy Rd, Denver, CO 80201",
+      "total_value": 15000.0,
+      "currency": "USD"
+    },
+    "audit_report": [
+      {
+        "code": "ADDR_MISMATCH",
+        "risk": "HIGH",
+        "desc": "Address match only 68.42%"
+      }
+    ]
+  },
+  {
+    "shipment_id": "UNKNOWN",
+    "category": "Unknown",
+    "normalized_aggregates": {
+      "total_weight_reported": 50.0,
+      "total_package_count": 0,
+      "ship_to_address_standardized": "100 Broadway, New York, NY 10013",
+      "total_value": 1200.0,
+      "currency": "USD"
+    },
+    "audit_report": [
+      {
+        "code": "ADDR_MISMATCH",
+        "risk": "HIGH",
+        "desc": "Address match only 0%"
+      },
+      {
+        "code": "ZERO_SHELF_LIFE",
+        "risk": "HIGH",
+        "desc": "Product already expired."
+      },
+      {
+        "code": "TEMP_INSTR_MISSING",
+        "risk": "HIGH",
+        "desc": "No temp handling instructions."
+      },
+      {
+        "code": "INV_TOTAL_ERR",
+        "risk": "HIGH",
+        "desc": "Invoice sums do not add up."
+      }
+    ]
+  },
+  {
+    "shipment_id": "PO-BUILD-08",
+    "category": "Raw Materials",
+    "normalized_aggregates": {
+      "total_weight_reported": 5000.0,
+      "total_package_count": 1,
+      "ship_to_address_standardized": "888 Skyline Way, Phoenix, AZ 85001",
+      "total_value": 1080.0,
+      "currency": "USD"
+    },
+    "audit_report": [
+      {
+        "code": "ADDR_MISMATCH",
+        "risk": "HIGH",
+        "desc": "Address match only 69.77%"
+      },
+      {
+        "code": "SCAC_MISSING",
+        "risk": "LOW",
+        "desc": "No SCAC code for carrier."
+      },
+      {
+        "code": "INCOTERM_ERR",
+        "risk": "LOW",
+        "desc": "FOB Point vs Collect terms conflict."
+      }
+    ]
+  },
+  {
+    "shipment_id": "PO-SS-09",
+    "category": "Manufactured Goods",
+    "normalized_aggregates": {
+      "total_weight_reported": 60.0,
+      "total_package_count": 1,
+      "ship_to_address_standardized": "1200 Sleepy Hollow Rd, Portland, OR 97201",
+      "total_value": 1200.0,
+      "currency": "USD"
+    },
+    "audit_report": [
+      {
+        "code": "ADDR_MISMATCH",
+        "risk": "HIGH",
+        "desc": "Address match only 75.0%"
+      }
+    ]
+  },
+  {
+    "shipment_id": "PO-ICE-10",
+    "category": "Perishables",
+    "normalized_aggregates": {
+      "total_weight_reported": 300.0,
+      "total_package_count": 50,
+      "ship_to_address_standardized": "90 Sugar Blvd, Orlando, FL 32801",
+      "total_value": 1908.0,
+      "currency": "USD"
+    },
+    "audit_report": [
+      {
+        "code": "ADDR_MISMATCH",
+        "risk": "HIGH",
+        "desc": "Address match only 66.67%"
+      },
+      {
+        "code": "CONT_CONFLICT",
+        "risk": "MEDIUM",
+        "desc": "Container IDs mismatch."
+      },
+      {
+        "code": "OVERCHARGE",
+        "risk": "HIGH",
+        "desc": "Invoiced more than shipped."
+      }
+    ]
+  }
+]
