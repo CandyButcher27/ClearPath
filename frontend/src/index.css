@@ -1,0 +1,95 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+    body {
+        font-family: 'Inter', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        scroll-behavior: smooth;
+    }
+}
+
+@layer utilities {
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .reveal-delay-1 {
+        animation-delay: 0.1s;
+    }
+
+    .reveal-delay-2 {
+        animation-delay: 0.2s;
+    }
+
+    .reveal-delay-3 {
+        animation-delay: 0.3s;
+    }
+
+    .grid-overlay {
+        background-image:
+            linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+    }
+
+    /* 3D Wireframe Shape */
+    .wireframe-container {
+        perspective: 1000px;
+    }
+
+    .wireframe-cube {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.1s ease-out;
+    }
+
+    .cube-face {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border: 1px solid rgba(227, 6, 13, 0.3);
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .cube-face.front {
+        transform: rotateY(0deg) translateZ(50px);
+    }
+
+    .cube-face.back {
+        transform: rotateY(180deg) translateZ(50px);
+    }
+
+    .cube-face.right {
+        transform: rotateY(90deg) translateZ(50px);
+    }
+
+    .cube-face.left {
+        transform: rotateY(-90deg) translateZ(50px);
+    }
+
+    .cube-face.top {
+        transform: rotateX(90deg) translateZ(50px);
+    }
+
+    .cube-face.bottom {
+        transform: rotateX(-90deg) translateZ(50px);
+    }
+
+    .scroll-reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .scroll-reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .hero-parallax {
+        transition: transform 0.1s ease-out;
+    }
+}
