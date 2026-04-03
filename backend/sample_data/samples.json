@@ -1,0 +1,442 @@
+[
+  {
+    "product_id": "PRD-001",
+    "status": "CONSISTENT",
+    "category": "Perishables",
+    "category_metadata": {
+      "category": "Perishables",
+      "metadata_fields": {
+        "date_of_harvest": "2026-03-25",
+        "date_of_shipping": "2026-04-01",
+        "expiry_date": "2026-04-20",
+        "temperature_control": { "required": true, "min_temp": 2.0, "max_temp": 4.0, "unit": "Celsius" },
+        "humidity_requirement": 85.0,
+        "ventilation_required": true,
+        "ripening_stage": "Near-Ripe",
+        "is_frozen": false,
+        "shelf_life_remaining_days": 19
+      }
+    },
+    "bill_of_lading": {
+      "bill_of_lading_number": "BOL-77001",
+      "ship_from": { "name": "FreshFarm Agriculture", "address": "100 Green Way", "city_state_zip": "Salinas, CA 93901", "sid_number": "SID-882", "fob_point": true },
+      "ship_to": { "name": "Global Foods DC", "location_number": "LOC-A1", "address": "500 Distribution Blvd", "city_state_zip": "Chicago, IL 60609", "cid_number": "CID-112", "fob_point": false },
+      "third_party_bill_to": { "name": "Logistics Pay Co", "address": "99 Finance St", "city_state_zip": "New York, NY 10001" },
+      "special_instructions": "Maintain temperature between 2-4C at all times. Do not stack higher than 2 pallets.",
+      "carrier_details": { "carrier_name": "ColdChain Express", "trailer_number": "TR-990", "seal_numbers": "SEAL-001, SEAL-002", "scac": "CCEX", "pro_number": "PRO-4421", "freight_charge_terms": "Prepaid" },
+      "customer_order_info": [{ "order_number": "PO-12345", "pkgs_count": 20, "weight": 450.0, "pallet_slip": true, "additional_info": "Standard Wood Pallets" }],
+      "carrier_commodity_info": [{ "handling_unit_qty": 20, "handling_unit_type": "Pallets", "package_qty": 400, "package_type": "Crates", "weight": 450.0, "is_hazardous": false, "commodity_description": "Fresh Strawberries", "nmfc_number": "12345-01", "class": "70" }],
+      "cod_details": { "amount": 0.0, "fee_terms": "None", "customer_check_acceptable": false }
+    },
+    "invoice": {
+      "invoice_number": "INV-2026-001",
+      "seller_info": { "company_name": "FreshFarm Agriculture", "address": "100 Green Way, Salinas, CA", "reg_number": "REG-8821", "tax_number": "TAX-9900" },
+      "bill_to_info": { "client_name": "Global Foods DC", "address": "500 Distribution Blvd, Chicago, IL", "reg_number": "REG-1102", "tax_number": "TAX-1122" },
+      "payment_details": { "bank_name": "AgriBank", "bic": "AGRIUS33", "account_number": "123456789", "invoice_date": "2026-04-01", "due_date": "2026-04-15" },
+      "line_items": [{ "hs_code": "0810.10", "container_number": "CONT-772", "description": "Fresh Strawberries", "quantity": 400.0, "unit_of_measure": "Crates", "unit_price": 12.50, "subtotal": 5000.00, "tax_amount": 425.00, "tax_percentage": 8.5 }],
+      "totals": { "subtotal": 5000.00, "tax_total": 425.00, "grand_total": 5425.00, "currency": "USD", "amount_in_words": "Five Thousand Four Hundred Twenty Five USD" }
+    },
+    "packing_list": {
+      "delivery_to": { "customer_name": "Global Foods DC", "address_lines": ["500 Distribution Blvd", "Receiving Dock 4"], "telephone": "555-0199", "email": "receiving@globalfoods.com" },
+      "from_business": { "business_name": "FreshFarm Agriculture", "address_lines": ["100 Green Way", "Salinas, CA 93901"] },
+      "shipping_refs": { "order_reference": "PO-12345", "order_date": "2026-03-28", "delivery_method": "Refrigerated Truck", "delivery_number": "DLV-9901", "delivery_date": "2026-04-03" },
+      "items": [{ "item_number": "STRAW-01", "description": "Fresh Strawberries", "qty_ordered": 400, "qty_shipped": 400, "weight_kg": 450.0, "volume_cbm": 12.5, "container_number": "CONT-772" }],
+      "notes": "Fragile perishables. Keep cool."
+    }
+  },
+  {
+    "product_id": "PRD-002",
+    "status": "INCONSISTENCY: WEIGHT MISMATCH (BOL 2500kg vs PL 2750kg)",
+    "category": "Raw Materials",
+    "category_metadata": {
+      "category": "Raw Materials",
+      "metadata_fields": {
+        "net_weight": 2500.0,
+        "gross_weight": 2550.0,
+        "volume": { "value": 4.2, "unit": "m3" },
+        "purity_percentage": 99.5,
+        "grade_quality": "High-Grade Silica",
+        "country_of_origin": "Brazil",
+        "batch_lot_number": "SIL-2026-B1",
+        "msds_link": "https://rawmats.com/msds/silica-01",
+        "is_hazardous_material": false,
+        "storage_container_type": "Reinforced Sacks"
+      }
+    },
+    "bill_of_lading": {
+      "bill_of_lading_number": "BOL-RM-002",
+      "ship_from": { "name": "Brazil Mining Co", "address": "123 Ore Rd", "city_state_zip": "Rio, BR", "sid_number": "SID-BR-1", "fob_point": true },
+      "ship_to": { "name": "Glass Makers Inc", "location_number": "FAC-2", "address": "10 Manufacturing Way", "city_state_zip": "Toledo, OH 43604", "cid_number": "CID-OH-9", "fob_point": false },
+      "third_party_bill_to": { "name": "Parent Co Billing", "address": "1 Corporate Dr", "city_state_zip": "New York, NY 10001" },
+      "special_instructions": "Avoid moisture.",
+      "carrier_details": { "carrier_name": "Oceanic Bulk", "trailer_number": "CONT-101", "seal_numbers": "S-992", "scac": "OCBK", "pro_number": "PRO-99", "freight_charge_terms": "Collect" },
+      "customer_order_info": [{ "order_number": "PO-882", "pkgs_count": 50, "weight": 2500.0, "pallet_slip": false, "additional_info": "Bulk Sacks" }],
+      "carrier_commodity_info": [{ "handling_unit_qty": 50, "handling_unit_type": "Sacks", "package_qty": 50, "package_type": "Bags", "weight": 2500.0, "is_hazardous": false, "commodity_description": "Silica Sand", "nmfc_number": "NM-11", "class": "50" }],
+      "cod_details": { "amount": 0.0, "fee_terms": "None", "customer_check_acceptable": false }
+    },
+    "invoice": {
+      "invoice_number": "INV-RM-002",
+      "seller_info": { "company_name": "Brazil Mining Co", "address": "123 Ore Rd, Rio, BR", "reg_number": "BR-99", "tax_number": "TX-BR" },
+      "bill_to_info": { "client_name": "Glass Makers Inc", "address": "10 Manufacturing Way, Toledo, OH", "reg_number": "REG-OH", "tax_number": "TX-OH" },
+      "payment_details": { "bank_name": "International Bank", "bic": "IBANKBR1", "account_number": "999888", "invoice_date": "2026-03-20", "due_date": "2026-04-20" },
+      "line_items": [{ "hs_code": "2505.10", "container_number": "C-99", "description": "Silica Sand", "quantity": 2500.0, "unit_of_measure": "kg", "unit_price": 0.50, "subtotal": 1250.00, "tax_amount": 0.0, "tax_percentage": 0.0 }],
+      "totals": { "subtotal": 1250.00, "tax_total": 0.0, "grand_total": 1250.00, "currency": "USD", "amount_in_words": "One Thousand Two Hundred Fifty USD" }
+    },
+    "packing_list": {
+      "delivery_to": { "customer_name": "Glass Makers Inc", "address_lines": ["10 Manufacturing Way", "Silo A"], "telephone": "555-4433", "email": "ops@glassmakers.com" },
+      "from_business": { "business_name": "Brazil Mining Co", "address_lines": ["123 Ore Rd", "Rio, BR"] },
+      "shipping_refs": { "order_reference": "PO-882", "order_date": "2026-03-15", "delivery_method": "Sea Freight", "delivery_number": "DLV-772", "delivery_date": "2026-04-10" },
+      "items": [{ "item_number": "SIL-01", "description": "Silica Sand", "qty_ordered": 2500, "qty_shipped": 2500, "weight_kg": 2750.0, "volume_cbm": 4.5, "container_number": "C-99" }],
+      "notes": "Check for sack integrity upon arrival."
+    }
+  },
+  {
+    "product_id": "PRD-003",
+    "status": "INCONSISTENCY: QTY MISMATCH (INV 100 units vs PL 95 units)",
+    "category": "Manufactured Goods",
+    "category_metadata": {
+      "category": "Manufactured Goods",
+      "metadata_fields": {
+        "serial_number": "SN-MGD-001 TO SN-MGD-095",
+        "model_number": "MOD-Z1",
+        "brand_name": "ZenithTech",
+        "dimensions": { "length": 40.0, "width": 30.0, "height": 15.0, "unit": "cm" },
+        "warranty_period_months": 24,
+        "fragility_rating": "3",
+        "assembly_required": false,
+        "upc_ean_code": "0123456789012",
+        "packaging_material": "Anti-static Foam"
+      }
+    },
+    "bill_of_lading": {
+      "bill_of_lading_number": "BOL-MGD-003",
+      "ship_from": { "name": "ZenithTech Factory", "address": "1 Innovation Blvd", "city_state_zip": "Shenzhen, CN", "sid_number": "SID-SZ", "fob_point": true },
+      "ship_to": { "name": "Retailer Central", "location_number": "WH-5", "address": "777 Commerce St", "city_state_zip": "Los Angeles, CA 90001", "cid_number": "CID-LAX", "fob_point": false },
+      "third_party_bill_to": { "name": "Global Logistics Hub", "address": "55 Port Rd", "city_state_zip": "Long Beach, CA 90802" },
+      "special_instructions": "Handle with care. Electronics.",
+      "carrier_details": { "carrier_name": "FastTrack Air", "trailer_number": "FLT-102", "seal_numbers": "SEAL-Z", "scac": "FTAK", "pro_number": "PRO-Z", "freight_charge_terms": "Prepaid" },
+      "customer_order_info": [{ "order_number": "PO-ZEN-01", "pkgs_count": 100, "weight": 500.0, "pallet_slip": true, "additional_info": "Retail boxes" }],
+      "carrier_commodity_info": [{ "handling_unit_qty": 2, "handling_unit_type": "Pallets", "package_qty": 100, "package_type": "Boxes", "weight": 500.0, "is_hazardous": false, "commodity_description": "Consumer Electronics", "nmfc_number": "NM-ZEN", "class": "100" }],
+      "cod_details": { "amount": 0.0, "fee_terms": "None", "customer_check_acceptable": false }
+    },
+    "invoice": {
+      "invoice_number": "INV-ZEN-003",
+      "seller_info": { "company_name": "ZenithTech", "address": "1 Innovation Blvd, Shenzhen", "reg_number": "SZ-88", "tax_number": "TAX-CN-1" },
+      "bill_to_info": { "client_name": "Retailer Central", "address": "777 Commerce St, Los Angeles, CA", "reg_number": "REG-US-9", "tax_number": "TX-CA-1" },
+      "payment_details": { "bank_name": "Industrial Bank", "bic": "INDBCCN", "account_number": "111222333", "invoice_date": "2026-03-25", "due_date": "2026-04-05" },
+      "line_items": [{ "hs_code": "8517.12", "container_number": "CONT-Z", "description": "Model Z1 Smart Device", "quantity": 100.0, "unit_of_measure": "units", "unit_price": 500.00, "subtotal": 50000.00, "tax_amount": 4250.00, "tax_percentage": 8.5 }],
+      "totals": { "subtotal": 50000.00, "tax_total": 4250.00, "grand_total": 54250.00, "currency": "USD", "amount_in_words": "Fifty Four Thousand Two Hundred Fifty USD" }
+    },
+    "packing_list": {
+      "delivery_to": { "customer_name": "Retailer Central", "address_lines": ["777 Commerce St", "Dock 1"], "telephone": "555-9000", "email": "logistics@retailer.com" },
+      "from_business": { "business_name": "ZenithTech", "address_lines": ["1 Innovation Blvd", "Shenzhen, CN"] },
+      "shipping_refs": { "order_reference": "PO-ZEN-01", "order_date": "2026-03-20", "delivery_method": "Air Freight", "delivery_number": "DLV-ZEN-1", "delivery_date": "2026-03-28" },
+      "items": [{ "item_number": "Z1-BLACK", "description": "Model Z1 Smart Device", "qty_ordered": 100, "qty_shipped": 95, "weight_kg": 475.0, "volume_cbm": 2.0, "container_number": "CONT-Z" }],
+      "notes": "Short shipment due to stock shortage. 5 units backordered."
+    }
+  }, {
+    "product_id": "PRD-004",
+    "status": "INCONSISTENCY: ADDRESS MISMATCH (BOL Ship-To vs INV Bill-To)",
+    "category": "Perishables",
+    "category_metadata": {
+      "category": "Perishables",
+      "metadata_fields": {
+        "date_of_harvest": "2026-03-20",
+        "date_of_shipping": "2026-04-01",
+        "expiry_date": "2026-04-15",
+        "temperature_control": { "required": true, "min_temp": 1.0, "max_temp": 3.0, "unit": "Celsius" },
+        "humidity_requirement": 80.0,
+        "ventilation_required": false,
+        "ripening_stage": "N/A",
+        "is_frozen": false,
+        "shelf_life_remaining_days": 12
+      }
+    },
+    "bill_of_lading": {
+      "bill_of_lading_number": "BOL-MILK-004",
+      "ship_from": { "name": "Dairy Delight", "address": "44 Pasture Ln", "city_state_zip": "Madison, WI 53703", "sid_number": "SID-M1", "fob_point": true },
+      "ship_to": { "name": "Target Store 101", "location_number": "T-101", "address": "123 Main St", "city_state_zip": "Miami, FL 33101", "cid_number": "CID-FL", "fob_point": false },
+      "third_party_bill_to": { "name": "Target Corporate Logistics", "address": "999 Business Pkwy", "city_state_zip": "Minneapolis, MN 55401" },
+      "special_instructions": "Refrigerated transport required.",
+      "carrier_details": { "carrier_name": "SwiftChill", "trailer_number": "REEF-10", "seal_numbers": "S-441", "scac": "SWCH", "pro_number": "PRO-MILK", "freight_charge_terms": "3rd Party" },
+      "customer_order_info": [{ "order_number": "PO-MILK-99", "pkgs_count": 50, "weight": 200.0, "pallet_slip": true, "additional_info": "Plastic Crates" }],
+      "carrier_commodity_info": [{ "handling_unit_qty": 2, "handling_unit_type": "Pallets", "package_qty": 50, "package_type": "Crates", "weight": 200.0, "is_hazardous": false, "commodity_description": "Organic Whole Milk", "nmfc_number": "NM-440", "class": "60" }],
+      "cod_details": { "amount": 0.0, "fee_terms": "N/A", "customer_check_acceptable": false }
+    },
+    "invoice": {
+      "invoice_number": "INV-MILK-004",
+      "seller_info": { "company_name": "Dairy Delight", "address": "44 Pasture Ln, Madison, WI", "reg_number": "REG-W1", "tax_number": "TX-W1" },
+      "bill_to_info": { "client_name": "Target Corporate", "address": "999 Business Pkwy", "city_state_zip": "Minneapolis, MN 55401", "reg_number": "REG-MN", "tax_number": "TX-MN" },
+      "payment_details": { "bank_name": "Midwest Bank", "bic": "MIDWUS", "account_number": "445566", "invoice_date": "2026-04-01", "due_date": "2026-04-10" },
+      "line_items": [{ "hs_code": "0401.20", "container_number": "CONT-M1", "description": "Organic Whole Milk", "quantity": 50.0, "unit_of_measure": "Crates", "unit_price": 40.00, "subtotal": 2000.00, "tax_amount": 0.0, "tax_percentage": 0.0 }],
+      "totals": { "subtotal": 2000.00, "tax_total": 0.0, "grand_total": 2000.00, "currency": "USD", "amount_in_words": "Two Thousand USD" }
+    },
+    "packing_list": {
+      "delivery_to": { "customer_name": "Target Store 101", "address_lines": ["123 Main St", "Receiving Bay 2"], "telephone": "555-0101", "email": "store101@target.com" },
+      "from_business": { "business_name": "Dairy Delight", "address_lines": ["44 Pasture Ln", "Madison, WI"] },
+      "shipping_refs": { "order_reference": "PO-MILK-99", "order_date": "2026-03-25", "delivery_method": "Truck", "delivery_number": "DEL-MILK", "delivery_date": "2026-04-03" },
+      "items": [{ "item_number": "MILK-ORG", "description": "Organic Whole Milk", "qty_ordered": 50, "qty_shipped": 50, "weight_kg": 200.0, "volume_cbm": 1.5, "container_number": "CONT-M1" }],
+      "notes": "Store in fridge immediately."
+    }
+  },
+  {
+    "product_id": "PRD-005",
+    "status": "INCONSISTENCY: HAZMAT MISMATCH (BOL False vs Metadata True)",
+    "category": "Raw Materials",
+    "category_metadata": {
+      "category": "Raw Materials",
+      "metadata_fields": {
+        "net_weight": 1000.0,
+        "gross_weight": 1050.0,
+        "volume": { "value": 2.5, "unit": "m3" },
+        "purity_percentage": 98.0,
+        "grade_quality": "Industrial Grade",
+        "country_of_origin": "USA",
+        "batch_lot_number": "LOT-ACID-01",
+        "msds_link": "http://hazmat.com/msds/solvent-x",
+        "is_hazardous_material": true,
+        "storage_container_type": "Teflon Drums"
+      }
+    },
+    "bill_of_lading": {
+      "bill_of_lading_number": "BOL-SOLV-005",
+      "ship_from": { "name": "ChemX Supply", "address": "50 Acid Alley", "city_state_zip": "Houston, TX 77001", "sid_number": "SID-TX", "fob_point": true },
+      "ship_to": { "name": "Polymer Labs", "location_number": "PL-1", "address": "100 Science Dr", "city_state_zip": "Austin, TX 78701", "cid_number": "CID-TX", "fob_point": false },
+      "third_party_bill_to": { "name": "Same as Ship To", "address": "100 Science Dr", "city_state_zip": "Austin, TX 78701" },
+      "special_instructions": "Wear PPE during unloading.",
+      "carrier_details": { "carrier_name": "HazMat Haulers", "trailer_number": "HZ-1", "seal_numbers": "S-005", "scac": "HMHL", "pro_number": "PRO-5", "freight_charge_terms": "Prepaid" },
+      "customer_order_info": [{ "order_number": "PO-SOLV", "pkgs_count": 5, "weight": 1000.0, "pallet_slip": true, "additional_info": "Steel Drums" }],
+      "carrier_commodity_info": [{ "handling_unit_qty": 1, "handling_unit_type": "Pallet", "package_qty": 5, "package_type": "Drums", "weight": 1000.0, "is_hazardous": false, "commodity_description": "Industrial Solvent", "nmfc_number": "NM-99", "class": "85" }],
+      "cod_details": { "amount": 0.0, "fee_terms": "None", "customer_check_acceptable": false }
+    },
+    "invoice": {
+      "invoice_number": "INV-SOLV-005",
+      "seller_info": { "company_name": "ChemX Supply", "address": "50 Acid Alley, Houston, TX", "reg_number": "REG-TX", "tax_number": "TX-TX" },
+      "bill_to_info": { "client_name": "Polymer Labs", "address": "100 Science Dr, Austin, TX", "reg_number": "REG-PL", "tax_number": "TX-PL" },
+      "payment_details": { "bank_name": "Texas Bank", "bic": "TXBNK", "account_number": "778899", "invoice_date": "2026-04-01", "due_date": "2026-04-15" },
+      "line_items": [{ "hs_code": "3814.00", "container_number": "CONT-S5", "description": "Industrial Solvent", "quantity": 1000.0, "unit_of_measure": "kg", "unit_price": 5.00, "subtotal": 5000.00, "tax_amount": 412.50, "tax_percentage": 8.25 }],
+      "totals": { "subtotal": 5000.00, "tax_total": 412.50, "grand_total": 5412.50, "currency": "USD", "amount_in_words": "Five Thousand Four Hundred Twelve USD and Fifty Cents" }
+    },
+    "packing_list": {
+      "delivery_to": { "customer_name": "Polymer Labs", "address_lines": ["100 Science Dr", "Building B"], "telephone": "555-5555", "email": "lab@polymer.com" },
+      "from_business": { "business_name": "ChemX Supply", "address_lines": ["50 Acid Alley", "Houston, TX"] },
+      "shipping_refs": { "order_reference": "PO-SOLV", "order_date": "2026-03-28", "delivery_method": "Road", "delivery_number": "DLV-S5", "delivery_date": "2026-04-02" },
+      "items": [{ "item_number": "SOLV-X", "description": "Industrial Solvent", "qty_ordered": 1000, "qty_shipped": 1000, "weight_kg": 1000.0, "volume_cbm": 2.5, "container_number": "CONT-S5" }],
+      "notes": "Handle per MSDS."
+    }
+  },
+  {
+    "product_id": "PRD-006",
+    "status": "CONSISTENT",
+    "category": "Manufactured Goods",
+    "category_metadata": {
+      "category": "Manufactured Goods",
+      "metadata_fields": {
+        "serial_number": "IB-GEN-500-X1",
+        "model_number": "G-500",
+        "brand_name": "IronBuilt",
+        "dimensions": { "length": 150.0, "width": 100.0, "height": 120.0, "unit": "cm" },
+        "warranty_period_months": 12,
+        "fragility_rating": "2",
+        "assembly_required": false,
+        "upc_ean_code": "998877665544",
+        "packaging_material": "Wooden Crate"
+      }
+    },
+    "bill_of_lading": {
+      "bill_of_lading_number": "BOL-006",
+      "ship_from": { "name": "IronBuilt Heavy", "address": "1 Iron Way", "city_state_zip": "Detroit, MI 48201", "sid_number": "SID-D1", "fob_point": true },
+      "ship_to": { "name": "City Power Substation", "location_number": "CPS-9", "address": "500 Energy Rd", "city_state_zip": "Denver, CO 80201", "cid_number": "CID-C1", "fob_point": false },
+      "third_party_bill_to": { "name": "City of Denver Finance", "address": "1 Govt Plaza", "city_state_zip": "Denver, CO 80202" },
+      "special_instructions": "Lift gate required. Heavy equipment.",
+      "carrier_details": { "carrier_name": "HeavyHaul Co", "trailer_number": "FLAT-22", "seal_numbers": "N/A", "scac": "HVHL", "pro_number": "PRO-6", "freight_charge_terms": "Prepaid" },
+      "customer_order_info": [{ "order_number": "PO-GEN-1", "pkgs_count": 1, "weight": 800.0, "pallet_slip": false, "additional_info": "Crated Generator" }],
+      "carrier_commodity_info": [{ "handling_unit_qty": 1, "handling_unit_type": "Crate", "package_qty": 1, "package_type": "Unit", "weight": 800.0, "is_hazardous": false, "commodity_description": "Industrial Generator", "nmfc_number": "NM-600", "class": "92" }],
+      "cod_details": { "amount": 0.0, "fee_terms": "None", "customer_check_acceptable": false }
+    },
+    "invoice": {
+      "invoice_number": "INV-006",
+      "seller_info": { "company_name": "IronBuilt Heavy", "address": "1 Iron Way, Detroit, MI", "reg_number": "REG-D1", "tax_number": "TX-D1" },
+      "bill_to_info": { "client_name": "City Power", "address": "500 Energy Rd, Denver, CO", "reg_number": "REG-D2", "tax_number": "TX-D2" },
+      "payment_details": { "bank_name": "Motor City Bank", "bic": "MCBNK", "account_number": "100200", "invoice_date": "2026-04-01", "due_date": "2026-05-01" },
+      "line_items": [{ "hs_code": "8502.11", "container_number": "N/A", "description": "G-500 Industrial Generator", "quantity": 1.0, "unit_of_measure": "Unit", "unit_price": 15000.00, "subtotal": 15000.00, "tax_amount": 0.0, "tax_percentage": 0.0 }],
+      "totals": { "subtotal": 15000.00, "tax_total": 0.0, "grand_total": 15000.00, "currency": "USD", "amount_in_words": "Fifteen Thousand USD" }
+    },
+    "packing_list": {
+      "delivery_to": { "customer_name": "City Power Substation", "address_lines": ["500 Energy Rd", "Rear Gate"], "telephone": "555-2222", "email": "power@denver.gov" },
+      "from_business": { "business_name": "IronBuilt Heavy", "address_lines": ["1 Iron Way", "Detroit, MI"] },
+      "shipping_refs": { "order_reference": "PO-GEN-1", "order_date": "2026-03-20", "delivery_method": "Flatbed Truck", "delivery_number": "DLV-6", "delivery_date": "2026-04-05" },
+      "items": [{ "item_number": "G-500", "description": "Industrial Generator", "qty_ordered": 1, "qty_shipped": 1, "weight_kg": 800.0, "volume_cbm": 1.8, "container_number": "N/A" }],
+      "notes": "Verify fuel lines before testing."
+    }
+  },
+  {
+    "product_id": "PRD-007",
+    "status": "INCONSISTENCY: EXPIRED PRODUCT (Expiry Date in Past)",
+    "category": "Perishables",
+    "category_metadata": {
+      "category": "Perishables",
+      "metadata_fields": {
+        "date_of_harvest": "2026-02-15",
+        "date_of_shipping": "2026-04-01",
+        "expiry_date": "2026-03-01",
+        "temperature_control": { "required": true, "min_temp": 4.0, "max_temp": 6.0, "unit": "Celsius" },
+        "humidity_requirement": 70.0,
+        "ventilation_required": false,
+        "ripening_stage": "Aged",
+        "is_frozen": false,
+        "shelf_life_remaining_days": -31
+      }
+    },
+    "bill_of_lading": {
+      "bill_of_lading_number": "BOL-007",
+      "ship_from": { "name": "Vintage Cheese Co", "address": "1 Alpine Dr", "city_state_zip": "Bern, CH", "sid_number": "SID-CH", "fob_point": true },
+      "ship_to": { "name": "Gourmet Deli", "location_number": "GD-1", "address": "100 Broadway", "city_state_zip": "New York, NY 10013", "cid_number": "CID-NY", "fob_point": false },
+      "carrier_details": { "carrier_name": "EuroExport", "scac": "EEXP", "freight_charge_terms": "Prepaid" },
+      "carrier_commodity_info": [{ "weight": 50.0, "commodity_description": "Aged Artisanal Cheese" }]
+    },
+    "invoice": {
+      "invoice_number": "INV-007",
+      "totals": { "grand_total": 1200.00, "currency": "USD" }
+    },
+    "packing_list": {
+      "items": [{ "description": "Aged Artisanal Cheese", "qty_shipped": 50, "weight_kg": 50.0 }]
+    }
+  }, 
+  {
+    "product_id": "PRD-008",
+    "status": "INCONSISTENCY: MISSING FIELD (BOL SCAC code is empty)",
+    "category": "Raw Materials",
+    "category_metadata": {
+      "category": "Raw Materials",
+      "metadata_fields": {
+        "net_weight": 5000.0,
+        "gross_weight": 5100.0,
+        "volume": { "value": 3.5, "unit": "m3" },
+        "purity_percentage": 95.0,
+        "grade_quality": "Construction Grade",
+        "country_of_origin": "USA",
+        "batch_lot_number": "GRV-2026-08",
+        "msds_link": "https://build-mats.com/msds/gravel-08",
+        "is_hazardous_material": false,
+        "storage_container_type": "Bulk Tipper"
+      }
+    },
+    "bill_of_lading": {
+      "bill_of_lading_number": "BOL-RM-008",
+      "ship_from": { "name": "Quarry Source Inc", "address": "500 Stone Rd", "city_state_zip": "Denver, CO 80201", "sid_number": "SID-Q1", "fob_point": true },
+      "ship_to": { "name": "Skyline Construction", "location_number": "SITE-B", "address": "888 Skyline Way", "city_state_zip": "Phoenix, AZ 85001", "cid_number": "CID-PHX", "fob_point": false },
+      "third_party_bill_to": { "name": "Main Office Billing", "address": "100 Finance Plaza", "city_state_zip": "Chicago, IL 60601" },
+      "special_instructions": "Dump at south gate only. Signature required.",
+      "carrier_details": { "carrier_name": "Mountain Movers Trucking", "trailer_number": "DUMP-44", "seal_numbers": "N/A", "scac": "", "pro_number": "PRO-8812", "freight_charge_terms": "Collect" },
+      "customer_order_info": [{ "order_number": "PO-BUILD-08", "pkgs_count": 1, "weight": 5000.0, "pallet_slip": false, "additional_info": "Loose Bulk" }],
+      "carrier_commodity_info": [{ "handling_unit_qty": 1, "handling_unit_type": "Load", "package_qty": 1, "package_type": "Bulk", "weight": 5000.0, "is_hazardous": false, "commodity_description": "Construction Gravel", "nmfc_number": "NM-G1", "class": "50" }],
+      "cod_details": { "amount": 0.0, "fee_terms": "None", "customer_check_acceptable": false }
+    },
+    "invoice": {
+      "invoice_number": "INV-RM-008",
+      "seller_info": { "company_name": "Quarry Source Inc", "address": "500 Stone Rd, Denver, CO", "reg_number": "REG-Q1", "tax_number": "TAX-Q1" },
+      "bill_to_info": { "client_name": "Skyline Construction", "address": "888 Skyline Way, Phoenix, AZ", "reg_number": "REG-S1", "tax_number": "TAX-S1" },
+      "payment_details": { "bank_name": "Rock Bank", "bic": "ROCKUS33", "account_number": "888777666", "invoice_date": "2026-03-30", "due_date": "2026-04-30" },
+      "line_items": [{ "hs_code": "2517.10", "container_number": "N/A", "description": "Construction Grade Gravel", "quantity": 5000.0, "unit_of_measure": "kg", "unit_price": 0.20, "subtotal": 1000.00, "tax_amount": 80.00, "tax_percentage": 8.0 }],
+      "totals": { "subtotal": 1000.00, "tax_total": 80.00, "grand_total": 1080.00, "currency": "USD", "amount_in_words": "One Thousand Eighty USD" }
+    },
+    "packing_list": {
+      "delivery_to": { "customer_name": "Skyline Construction", "address_lines": ["888 Skyline Way", "Site B Entrance"], "telephone": "555-8800", "email": "site-b@skyline.com" },
+      "from_business": { "business_name": "Quarry Source Inc", "address_lines": ["500 Stone Rd", "Denver, CO 80201"] },
+      "shipping_refs": { "order_reference": "PO-BUILD-08", "order_date": "2026-03-25", "delivery_method": "Truck", "delivery_number": "DLV-8812", "delivery_date": "2026-04-01" },
+      "items": [{ "item_number": "GRAV-01", "description": "Construction Grade Gravel", "qty_ordered": 5000, "qty_shipped": 5000, "weight_kg": 5000.0, "volume_cbm": 3.5, "container_number": "N/A" }],
+      "notes": "Loose bulk delivery."
+    }
+  },
+  {
+    "product_id": "PRD-009",
+    "status": "CONSISTENT",
+    "category": "Manufactured Goods",
+    "category_metadata": {
+      "category": "Manufactured Goods",
+      "metadata_fields": {
+        "serial_number": "SN-MAT-9901",
+        "model_number": "M-Queen",
+        "brand_name": "SoftSleep",
+        "dimensions": { "length": 203.0, "width": 152.0, "height": 30.0, "unit": "cm" },
+        "warranty_period_months": 120,
+        "fragility_rating": "1",
+        "assembly_required": false,
+        "upc_ean_code": "112233445566",
+        "packaging_material": "Heavy Duty Poly Wrap"
+      }
+    },
+    "bill_of_lading": {
+      "bill_of_lading_number": "BOL-MGD-009",
+      "ship_from": { "name": "SoftSleep Mfg", "address": "77 Bedding Way", "city_state_zip": "High Point, NC 27260", "sid_number": "SID-SS9", "fob_point": true },
+      "ship_to": { "name": "Mattress Kingdom", "location_number": "WH-9", "address": "1200 Sleepy Hollow Rd", "city_state_zip": "Portland, OR 97201", "cid_number": "CID-MK9", "fob_point": false },
+      "third_party_bill_to": { "name": "Mattress Kingdom HQ", "address": "50 Sleep Plaza", "city_state_zip": "Portland, OR 97201" },
+      "special_instructions": "Keep dry. Do not bend.",
+      "carrier_details": { "carrier_name": "Furniture Freight", "trailer_number": "VAN-99", "seal_numbers": "S-9912", "scac": "FRFT", "pro_number": "PRO-9009", "freight_charge_terms": "Prepaid" },
+      "customer_order_info": [{ "order_number": "PO-SS-09", "pkgs_count": 1, "weight": 60.0, "pallet_slip": false, "additional_info": "Rolled & Wrapped" }],
+      "carrier_commodity_info": [{ "handling_unit_qty": 1, "handling_unit_type": "Unit", "package_qty": 1, "package_type": "Roll", "weight": 60.0, "is_hazardous": false, "commodity_description": "Memory Foam Mattress", "nmfc_number": "NM-882", "class": "125" }],
+      "cod_details": { "amount": 0.0, "fee_terms": "None", "customer_check_acceptable": false }
+    },
+    "invoice": {
+      "invoice_number": "INV-MGD-009",
+      "seller_info": { "company_name": "SoftSleep Mfg", "address": "77 Bedding Way, High Point, NC", "reg_number": "REG-NC", "tax_number": "TAX-NC" },
+      "bill_to_info": { "client_name": "Mattress Kingdom", "address": "1200 Sleepy Hollow Rd, Portland, OR", "reg_number": "REG-OR", "tax_number": "TAX-OR" },
+      "payment_details": { "bank_name": "Coastal Bank", "bic": "COASTUS44", "account_number": "99008811", "invoice_date": "2026-03-31", "due_date": "2026-04-15" },
+      "line_items": [{ "hs_code": "9404.29", "container_number": "N/A", "description": "SoftSleep M-Queen Memory Foam Mattress", "quantity": 1.0, "unit_of_measure": "unit", "unit_price": 1200.00, "subtotal": 1200.00, "tax_amount": 0.0, "tax_percentage": 0.0 }],
+      "totals": { "subtotal": 1200.00, "tax_total": 0.0, "grand_total": 1200.00, "currency": "USD", "amount_in_words": "One Thousand Two Hundred USD" }
+    },
+    "packing_list": {
+      "delivery_to": { "customer_name": "Mattress Kingdom", "address_lines": ["1200 Sleepy Hollow Rd", "Dock 9"], "telephone": "555-7722", "email": "wh@mattresskingdom.com" },
+      "from_business": { "business_name": "SoftSleep Mfg", "address_lines": ["77 Bedding Way", "High Point, NC 27260"] },
+      "shipping_refs": { "order_reference": "PO-SS-09", "order_date": "2026-03-25", "delivery_method": "Furniture Van", "delivery_number": "DLV-9009", "delivery_date": "2026-04-05" },
+      "items": [{ "item_number": "SS-MQ-01", "description": "M-Queen Memory Foam Mattress", "qty_ordered": 1, "qty_shipped": 1, "weight_kg": 60.0, "volume_cbm": 1.2, "container_number": "N/A" }],
+      "notes": "Fragile wrap. Handle with care."
+    }
+  },
+  {
+    "product_id": "PRD-010",
+    "status": "INCONSISTENCY: CONTAINER MISMATCH (INV CONT-ABC vs PL CONT-XYZ)",
+    "category": "Perishables",
+    "category_metadata": {
+      "category": "Perishables",
+      "metadata_fields": {
+        "date_of_harvest": "2026-03-20",
+        "date_of_shipping": "2026-04-01",
+        "expiry_date": "2026-10-01",
+        "temperature_control": { "required": true, "min_temp": -22.0, "max_temp": -18.0, "unit": "Celsius" },
+        "humidity_requirement": 45.0,
+        "ventilation_required": false,
+        "ripening_stage": "N/A",
+        "is_frozen": true,
+        "shelf_life_remaining_days": 180
+      }
+    },
+    "bill_of_lading": {
+      "bill_of_lading_number": "BOL-COLD-010",
+      "ship_from": { "name": "Ice Cream Dreams", "address": "1 Freezing Way", "city_state_zip": "Minneapolis, MN 55401", "sid_number": "SID-ICE", "fob_point": true },
+      "ship_to": { "name": "Sweet Shop Supply", "location_number": "SS-WH", "address": "90 Sugar Blvd", "city_state_zip": "Orlando, FL 32801", "cid_number": "CID-SUG", "fob_point": false },
+      "third_party_bill_to": { "name": "Sweet Shop Supply Finance", "address": "90 Sugar Blvd", "city_state_zip": "Orlando, FL 32801" },
+      "special_instructions": "Keep deep frozen. Use temperature logger.",
+      "carrier_details": { "carrier_name": "Arctic Transport", "trailer_number": "RE-100", "seal_numbers": "S-1010", "scac": "ARCT", "pro_number": "PRO-10", "freight_charge_terms": "Prepaid" },
+      "customer_order_info": [{ "order_number": "PO-ICE-10", "pkgs_count": 50, "weight": 300.0, "pallet_slip": true, "additional_info": "Insulated Containers" }],
+      "carrier_commodity_info": [{ "handling_unit_qty": 2, "handling_unit_type": "Pallets", "package_qty": 50, "package_type": "Tubs", "weight": 300.0, "is_hazardous": false, "commodity_description": "Premium Vanilla Ice Cream", "nmfc_number": "NM-ICE", "class": "92.5" }],
+      "cod_details": { "amount": 0.0, "fee_terms": "None", "customer_check_acceptable": false }
+    },
+    "invoice": {
+      "invoice_number": "INV-ICE-010",
+      "seller_info": { "company_name": "Ice Cream Dreams", "address": "1 Freezing Way, Minneapolis, MN", "reg_number": "REG-MN", "tax_number": "TX-MN" },
+      "bill_to_info": { "client_name": "Sweet Shop Supply", "address": "90 Sugar Blvd, Orlando, FL", "reg_number": "REG-FL", "tax_number": "TX-FL" },
+      "payment_details": { "bank_name": "Frozen Funds Bank", "bic": "FROZUS22", "account_number": "10101010", "invoice_date": "2026-04-01", "due_date": "2026-04-15" },
+      "line_items": [{ "hs_code": "2105.00", "container_number": "CONT-ABC", "description": "Premium Vanilla Ice Cream Bulks", "quantity": 300.0, "unit_of_measure": "kg", "unit_price": 6.00, "subtotal": 1800.00, "tax_amount": 108.00, "tax_percentage": 6.0 }],
+      "totals": { "subtotal": 1800.00, "tax_total": 108.00, "grand_total": 1908.00, "currency": "USD", "amount_in_words": "One Thousand Nine Hundred Eight USD" }
+    },
+    "packing_list": {
+      "delivery_to": { "customer_name": "Sweet Shop Supply", "address_lines": ["90 Sugar Blvd", "Freezer Entrance"], "telephone": "555-1100", "email": "inventory@sweetshop.com" },
+      "from_business": { "business_name": "Ice Cream Dreams", "address_lines": ["1 Freezing Way", "Minneapolis, MN 55401"] },
+      "shipping_refs": { "order_reference": "PO-ICE-10", "order_date": "2026-03-28", "delivery_method": "Refrigerated Van", "delivery_number": "DLV-ICE10", "delivery_date": "2026-04-05" },
+      "items": [{ "item_number": "VAN-5L", "description": "Premium Vanilla Ice Cream Bulks", "qty_ordered": 50, "qty_shipped": 50, "weight_kg": 300.0, "volume_cbm": 1.5, "container_number": "CONT-XYZ" }],
+      "notes": "Check CONT-XYZ temperature seal on arrival."
+    }
+  }
+]
