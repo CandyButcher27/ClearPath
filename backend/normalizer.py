@@ -20,6 +20,23 @@ HS_DENSITY_BOUNDS = {
 # Default bounds used when the HS chapter is not in the table above.
 DEFAULT_DENSITY_BOUNDS = (50, 5000)
 
+# UoM type classification sets used by check_overcharge and check_uom.
+# If invoice quantity is in WEIGHT_UOMS but PL qty_shipped is a unit count,
+# the two numbers are dimensionally incompatible and must not be compared.
+WEIGHT_UOMS = {
+    "kg", "g", "gram", "grams", "kilogram", "kilograms",
+    "lbs", "lb", "pound", "pounds",
+    "tonne", "tonnes", "ton", "mt",
+}
+COUNT_UOMS = {
+    "unit", "units", "pcs", "pc", "piece", "pieces",
+    "carton", "cartons", "crate", "crates",
+    "box", "boxes", "tub", "tubs",
+    "pallet", "pallets", "bag", "bags",
+    "sack", "sacks", "drum", "drums",
+    "each", "ea", "set", "sets", "roll", "rolls",
+}
+
 # Cold-chain keywords used by check_temp.
 COLD_CHAIN_KEYWORDS = {
     "temperature", "refriger", "reefer", "cool", "frozen",
@@ -67,7 +84,8 @@ class ShipmentProcessor:
         return None  # unparseable — caller treats as missing
 
     def _get_category(self):
-        line_items = self.inv.get("line_items", [])
+        # Primary: derive from invoice HS code (most authoritative for a complete doc)
+        line_items = self.inv.get("line_items") or []
         hs = line_items[0].get("hs_code", "") if line_items else ""
         if hs.startswith(("07", "08", "04", "21")):
             return "Perishables"
@@ -75,12 +93,31 @@ class ShipmentProcessor:
             return "Manufactured Goods"
         if hs.startswith(("25", "26", "27", "28", "29", "38")):
             return "Raw Materials"
+        # Fallback: use the category declared at the top level of the raw shipment
+        # (set by the document parser or the test harness). This handles the case
+        # where the invoice is missing or has null line_items — without this,
+        # a perishable with a broken invoice would be classified as "General" and
+        # skip all perishable-specific checks including expiry.
+        declared = self.raw.get("category")
+        if declared in ("Perishables", "Manufactured Goods", "Raw Materials"):
+            return declared
         return "General"
 
     def _pl_address(self):
         """Join the packing-list address_lines list into a single string."""
         lines = self.pl.get("delivery_to", {}).get("address_lines", [])
         return ", ".join(lines)
+
+    def _classify_uom(self, uom_str):
+        """Return 'weight', 'count', or 'unknown' for a unit-of-measure string."""
+        if not uom_str:
+            return "unknown"
+        uom = uom_str.lower().strip()
+        if uom in WEIGHT_UOMS:
+            return "weight"
+        if uom in COUNT_UOMS:
+            return "count"
+        return "unknown"
 
     # -----------------------------------------------------------------------
     # Main processor
@@ -155,7 +192,7 @@ class ShipmentProcessor:
         if not a1 or not a2:
             return None
         score = self._calculate_similarity(a1, a2)
-        return {"is_flagged": score < 70, "bol_ship_to": a1, "pl_delivery_to": a2, "score": score}
+        return {"is_flagged": score < 75, "bol_ship_to": a1, "pl_delivery_to": a2, "score": score}
 
     # FIX 1b — origin address: new check comparing BoL ship_from vs Invoice
     # seller_info. These must match; a discrepancy means the carrier's record of
@@ -169,7 +206,7 @@ class ShipmentProcessor:
         if not a1 or not a2:
             return None
         score = self._calculate_similarity(a1, a2)
-        return {"is_flagged": score < 70, "bol_ship_from": a1, "inv_seller": a2, "score": score}
+        return {"is_flagged": score < 75, "bol_ship_from": a1, "inv_seller": a2, "score": score}
 
     # FIX 6a — container check now uses set comparison across ALL line items
     # instead of [0] index, so a shipment with multiple containers is fully checked.
@@ -256,22 +293,48 @@ class ShipmentProcessor:
             return None
         return {"is_flagged": g < n, "net": n, "gross": g}
 
-    # FIX 6b — overcharge now sums ALL invoice line items vs ALL PL shipped
-    # quantities instead of only [0], so multi-item shipments are fully covered.
-    # The match key is container_number; items without one fall back to index order.
+    # FIX: UoM trap — check_overcharge now classifies the invoice unit_of_measure
+    # before comparing numbers. If the invoice bills in a weight unit (kg) but the
+    # PL counts discrete items (tubs, crates), the raw numbers are dimensionally
+    # incompatible and comparing them produces a guaranteed false positive.
+    # e.g. invoice_qty=300 kg vs pl_qty=50 tubs is not an overcharge — 50 tubs
+    # may weigh exactly 300 kg. When a type mismatch is detected the check returns
+    # is_flagged=False with a clear reason so the output stays informative.
     def check_overcharge(self):
-        inv_qty = sum(
-            li.get("quantity", 0) for li in self.inv.get("line_items", [])
-        )
-        pl_qty = sum(
-            i.get("qty_shipped", 0) for i in self.pl.get("items", [])
-        )
+        inv_items = self.inv.get("line_items", [])
+        pl_items  = self.pl.get("items", [])
+        if not inv_items or not pl_items:
+            return None
+
+        # Use the first invoice line's UoM as representative for the shipment.
+        inv_uom      = inv_items[0].get("unit_of_measure", "")
+        uom_type     = self._classify_uom(inv_uom)
+
+        inv_qty = sum(li.get("quantity", 0) for li in inv_items)
+        pl_qty  = sum(i.get("qty_shipped", 0) for i in pl_items)
+
         if inv_qty == 0 or pl_qty == 0:
             return None
+
+        # If the invoice is denominated in weight units, the qty number represents
+        # a mass (e.g. 300 kg). PL qty_shipped is always a unit count (50 tubs).
+        # These cannot be compared numerically — bail out rather than false-flag.
+        if uom_type == "weight":
+            return {
+                "is_flagged": False,
+                "reason": "uom_incompatible",
+                "note": (
+                    f"Invoice qty ({inv_qty}) is in weight unit '{inv_uom}'; "
+                    f"PL qty_shipped ({pl_qty}) is a unit count. "
+                    "Numeric comparison suppressed to prevent false positive."
+                ),
+            }
+
         return {
             "is_flagged": inv_qty > pl_qty,
             "invoice_total_qty": inv_qty,
             "pl_total_shipped":  pl_qty,
+            "uom": inv_uom,
         }
 
     # FIX 6c — short_ship now iterates ALL PL items, not just [0].
@@ -296,13 +359,38 @@ class ShipmentProcessor:
                 })
         return {"is_flagged": bool(per_item), "short_items": per_item}
 
-    # Stub — returning None (not checked) instead of {"is_flagged": False}
-    # (falsely passing). A stub that says "no problem" is worse than one that
-    # says "not evaluated yet".
+    # FIX: check_uom is now a real check instead of a stub returning None.
+    # Classifies the invoice unit_of_measure and flags when the invoice and PL
+    # are using units from different families (weight vs count), which makes every
+    # downstream quantity comparison meaningless. This is the root-cause detection
+    # that check_overcharge uses to decide whether to proceed with its math.
     def check_uom(self):
-        # TODO: build a UoM normalisation map (kg/lbs, crates/units, etc.)
-        # and compare invoice unit_of_measure against PL weight_kg unit context.
-        return None
+        inv_uom = self.inv.get("line_items", [{}])[0].get("unit_of_measure")
+        if not inv_uom:
+            return None
+        uom_type = self._classify_uom(inv_uom)
+        # PL qty_shipped is always a unit count by schema definition.
+        # If the invoice is also count-based, the types are compatible.
+        # If the invoice is weight-based, the types are incompatible.
+        if uom_type == "weight":
+            return {
+                "is_flagged": True,
+                "reason": "invoice_uses_weight_unit_pl_uses_count",
+                "invoice_uom": inv_uom,
+                "note": (
+                    "Invoice quantity is denominated in a weight unit. "
+                    "PL qty_shipped is a unit count. "
+                    "Direct quantity comparison will produce false positives."
+                ),
+            }
+        if uom_type == "unknown":
+            return {
+                "is_flagged": False,
+                "reason": "unrecognised_uom",
+                "invoice_uom": inv_uom,
+                "note": f"UoM '{inv_uom}' not in known weight or count sets — manual review recommended.",
+            }
+        return {"is_flagged": False, "invoice_uom": inv_uom, "uom_type": uom_type}
 
     # -----------------------------------------------------------------------
     # PRODUCT SPECIFIC (all category-gated)
@@ -319,19 +407,44 @@ class ShipmentProcessor:
             return None
         return {"is_flagged": m_h != b_h, "meta_hazmat": m_h, "bol_hazmat": b_h}
 
-    # FIX 4a — expiry date now uses _parse_date; previously relied on ISO string
-    # ordering which breaks silently for any non-ISO input format.
+    # FIX: Missing data fail-safe — previously returned None whenever delivery_date
+    # was absent from shipping_refs, meaning a shipment with a fully missing
+    # shipping_refs block (like PRD-007) silently passed expiry checks even when
+    # the product was already expired.
+    #
+    # Fallback chain (most → least authoritative):
+    #   1. PL delivery_date      — scheduled delivery, most relevant reference
+    #   2. Invoice invoice_date  — at minimum, goods must not be expired at billing
+    #   3. datetime.now()        — last resort: is the product already expired today?
+    #
+    # The fallback used is recorded in the output so auditors know what was compared.
     def check_expiry(self):
         if self.category != "Perishables":
             return None
         exp = self._parse_date(self.meta.get("expiry_date"))
+        if not exp:
+            return None  # No expiry date in metadata — nothing to check
+
         dlv = self._parse_date(self.pl.get("shipping_refs", {}).get("delivery_date"))
-        if not exp or not dlv:
-            return None
+        fallback_used = None
+
+        if not dlv:
+            # Fallback 1: invoice date
+            dlv = self._parse_date(
+                self.inv.get("payment_details", {}).get("invoice_date")
+            )
+            fallback_used = "invoice_date"
+
+        if not dlv:
+            # Fallback 2: today
+            dlv = datetime.now()
+            fallback_used = "system_date"
+
         return {
-            "is_flagged": exp < dlv,
-            "expiry":   self.meta.get("expiry_date"),
-            "delivery": self.pl.get("shipping_refs", {}).get("delivery_date"),
+            "is_flagged":    exp < dlv,
+            "expiry":        self.meta.get("expiry_date"),
+            "compared_against": str(dlv.date()),
+            "reference_source": fallback_used or "delivery_date",
         }
 
     def check_shelf_life(self):
