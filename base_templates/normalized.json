@@ -12,9 +12,36 @@
     "total_value": "number"
   },
   "inconsistency_flags": {
-    "weight_mismatch": "boolean",
-    "quantity_mismatch": "boolean",
-    "address_mismatch": "boolean",
-    "missing_signatures": "boolean"
+    "weight_mismatch": {
+      "is_flagged": "boolean",
+      "bol_weight": "number",
+      "packing_list_weight": "number",
+      "variance": "number"
+    },
+    "quantity_mismatch": {
+      "is_flagged": true,
+      "bol_package_count": "number",
+      "packing_list_package_count": "number",
+      "invoice_total_items": "number",
+      "variance": "number",
+      "discrepancy_source": "string"
+    },
+    "address_mismatch": {
+      "is_flagged": true,
+      "mismatched_party": "string",
+      "bol_address": "string",
+      "invoice_address": "string",
+      "packing_list_address": "string",
+      "similarity_score": "number"
+    },
+    "missing_signatures": {
+      "is_flagged": true,
+      "bol_signed": "boolean",
+      "invoice_signed": "boolean",
+      "packing_list_signed": "boolean",
+      "missing_from": [
+        "string"
+      ]
+    }
   }
 }

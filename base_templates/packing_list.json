@@ -21,7 +21,10 @@
       "item_number": "string",
       "description": "string",
       "qty_ordered": "number",
-      "qty_shipped": "number"
+      "qty_shipped": "number",
+      "weight_kg": "number",
+      "volume_cbm": "number",
+      "container_number": "string"
     }
   ],
   "notes": "string"

@@ -21,6 +21,8 @@
   },
   "line_items": [
     {
+      "hs_code": "string",
+      "container_number": "string",
       "description": "string",
       "quantity": "number",
       "unit_of_measure": "string",
