@@ -43,5 +43,9 @@
         "string"
       ]
     }
+  },
+  "category_metadata": {
+    "applied_category": "string",
+    "fields": "object"
   }
 }

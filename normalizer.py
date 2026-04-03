@@ -134,6 +134,72 @@ class ShippingDocumentNormalizer:
 
         self.normalized_record["inconsistency_flags"] = flags
 
+    def generate_normalized_record(self):
+        # 1. Setup Base Record
+        self.normalized_record = {
+            "shipment_id": self.pl_data.get("shipping_refs", {}).get("order_reference", "UNKNOWN"),
+            "source_documents": { ... },
+            "normalized_aggregates": {},
+            "inconsistency_flags": {},
+            "category_metadata": {} # Initialize new section
+        }
+
+        self._calculate_aggregates()
+        self._run_inconsistency_engine()
+        
+        # 2. Run the Category logic
+        self._apply_category_metadata()
+
+        return self.normalized_record
+
+    def _determine_category(self, hs_code):
+        """Mock router: Maps HS codes to your category templates."""
+        if hs_code.startswith("08") or hs_code.startswith("07"):
+            return "Perishables"
+        elif hs_code.startswith("85") or hs_code.startswith("84"):
+            return "Manufactured Goods"
+        elif hs_code.startswith("28") or hs_code.startswith("29"):
+            return "Raw Materials"
+        return "Unknown"
+
+    def _apply_category_metadata(self):
+        """Extracts category-specific data based on the identified category."""
+        
+        # 1. Find the primary HS Code (usually from the first invoice line item)
+        line_items = self.invoice_data.get("line_items", [])
+        primary_hs_code = line_items[0].get("hs_code", "") if line_items else ""
+        
+        # 2. Route to the correct category
+        category = self._determine_category(primary_hs_code)
+        
+        metadata_fields = {}
+
+        # 3. Extract the specific fields based on the template
+        if category == "Perishables":
+            # If perishable, check BoL special instructions for temperature logic
+            special_instructions = self.bol_data.get("special_instructions", "").lower()
+            
+            metadata_fields = {
+                "temperature_control": {
+                    "required": "keep frozen" in special_instructions or "reefer" in special_instructions,
+                    # In a real system, you'd regex extract the exact temp numbers here
+                },
+                "is_frozen": "frozen" in special_instructions
+            }
+
+        elif category == "Manufactured Goods":
+            # If manufactured, look for dimensions or fragility in the Packing List
+            # (Assuming you updated PL items to have dimensions)
+            metadata_fields = {
+                "fragility_rating": "Handle with Care" in self.bol_data.get("special_instructions", "")
+            }
+
+        # 4. Save to the normalized record
+        self.normalized_record["category_metadata"] = {
+            "applied_category": category,
+            "fields": metadata_fields
+        }
+
 
 # ==========================================
 # Example Usage
