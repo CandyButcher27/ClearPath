@@ -1,51 +1,44 @@
 {
   "shipment_id": "string", 
-  "source_documents": {
-    "bol_data": "object",
-    "invoice_data": "object",
-    "packing_list_data": "object"
-  },
-  "normalized_aggregates": {
-    "total_weight_reported": "number",
-    "total_package_count": "number",
-    "ship_to_address_standardized": "string",
-    "total_value": "number"
-  },
-  "inconsistency_flags": {
-    "weight_mismatch": {
-      "is_flagged": "boolean",
-      "bol_weight": "number",
-      "packing_list_weight": "number",
-      "variance": "number"
-    },
-    "quantity_mismatch": {
-      "is_flagged": true,
-      "bol_package_count": "number",
-      "packing_list_package_count": "number",
-      "invoice_total_items": "number",
-      "variance": "number",
-      "discrepancy_source": "string"
-    },
-    "address_mismatch": {
-      "is_flagged": true,
-      "mismatched_party": "string",
-      "bol_address": "string",
-      "invoice_address": "string",
-      "packing_list_address": "string",
-      "similarity_score": "number"
-    },
-    "missing_signatures": {
-      "is_flagged": true,
-      "bol_signed": "boolean",
-      "invoice_signed": "boolean",
-      "packing_list_signed": "boolean",
-      "missing_from": [
-        "string"
-      ]
-    }
-  },
   "category_metadata": {
     "applied_category": "string",
     "fields": "object"
+  },
+  "normalized_aggregates": {
+    "total_weight_reported_kg": "number",
+    "total_package_count": "number",
+    "ship_to_address_standardized": "string",
+    "total_value": "number",
+    "currency": "string"
+  },
+  "inconsistency_flags": {
+    "logistics_flags": {
+      "address_mismatch": "object",
+      "container_conflict": "object",
+      "scac_missing": "object",
+      "po_mismatch": "object",
+      "incoterm_conflict": "object"
+    },
+    "quantity_weight_flags": {
+      "weight_mismatch": "object",
+      "gross_net_logic": "object",
+      "overcharge_risk": "object",
+      "short_shipment": "object",
+      "uom_mismatch": "object"
+    },
+    "product_specific_flags": {
+      "hazmat_mismatch": "object",
+      "expiry_check": "object",
+      "shelf_life_error": "object",
+      "temp_control_missing": "object",
+      "serial_count_mismatch": "object",
+      "density_anomaly": "object"
+    },
+    "financial_timing_flags": {
+      "tax_calculation_error": "object",
+      "total_value_mismatch": "object",
+      "payment_due_logic": "object",
+      "lead_time_anomaly": "object"
+    }
   }
 }
