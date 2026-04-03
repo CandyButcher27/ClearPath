@@ -1,247 +1,1082 @@
 [
   {
     "shipment_id": "PO-12345",
-    "category": "Perishables",
+    "category_metadata": {
+      "applied_category": "Perishables",
+      "fields": {
+        "date_of_harvest": "2026-03-25",
+        "date_of_shipping": "2026-04-01",
+        "expiry_date": "2026-04-20",
+        "temperature_control": {
+          "required": true,
+          "min_temp": 2.0,
+          "max_temp": 4.0,
+          "unit": "Celsius"
+        },
+        "humidity_requirement": 85.0,
+        "ventilation_required": true,
+        "ripening_stage": "Near-Ripe",
+        "is_frozen": false,
+        "shelf_life_remaining_days": 19
+      }
+    },
     "normalized_aggregates": {
-      "total_weight_reported": 450.0,
+      "total_weight_reported_kg": 450.0,
       "total_package_count": 20,
       "ship_to_address_standardized": "500 Distribution Blvd, Chicago, IL 60609",
       "total_value": 5425.0,
       "currency": "USD"
     },
-    "audit_report": [
-      {
-        "code": "ADDR_MISMATCH",
-        "risk": "HIGH",
-        "desc": "Address match only 76.36%"
+    "inconsistency_flags": {
+      "logistics_flags": {
+        "address_mismatch": {
+          "is_flagged": true,
+          "score": 76.36
+        },
+        "container_conflict": {
+          "is_flagged": false,
+          "inv_cont": "CONT-772",
+          "pl_cont": "CONT-772"
+        },
+        "scac_missing": {
+          "is_flagged": false,
+          "value": "CCEX"
+        },
+        "po_mismatch": {
+          "is_flagged": false,
+          "bol_po": "PO-12345",
+          "pl_po": "PO-12345"
+        },
+        "incoterm_conflict": {
+          "is_flagged": false
+        }
+      },
+      "quantity_weight_flags": {
+        "weight_mismatch": {
+          "is_flagged": false,
+          "bol": 450.0,
+          "pl": 450.0
+        },
+        "gross_net_logic": {
+          "is_flagged": false
+        },
+        "overcharge_risk": {
+          "is_flagged": false
+        },
+        "short_shipment": {
+          "is_flagged": false
+        },
+        "uom_mismatch": {
+          "is_flagged": false
+        }
+      },
+      "product_specific_flags": {
+        "hazmat_mismatch": {
+          "is_flagged": false
+        },
+        "expiry_check": {
+          "is_flagged": false
+        },
+        "shelf_life_error": {
+          "is_flagged": false,
+          "days_left": 19
+        },
+        "temp_control_missing": {
+          "is_flagged": false
+        },
+        "serial_count_mismatch": {
+          "is_flagged": false
+        },
+        "density_anomaly": {
+          "is_flagged": false
+        }
+      },
+      "financial_timing_flags": {
+        "tax_calculation_error": {
+          "is_flagged": false
+        },
+        "total_value_mismatch": {
+          "is_flagged": false
+        },
+        "payment_due_logic": {
+          "is_flagged": false
+        },
+        "lead_time_anomaly": {
+          "is_flagged": false
+        }
       }
-    ]
+    }
   },
   {
     "shipment_id": "PO-882",
-    "category": "Raw Materials",
+    "category_metadata": {
+      "applied_category": "Raw Materials",
+      "fields": {
+        "net_weight": 2500.0,
+        "gross_weight": 2550.0,
+        "volume": {
+          "value": 4.2,
+          "unit": "m3"
+        },
+        "purity_percentage": 99.5,
+        "grade_quality": "High-Grade Silica",
+        "country_of_origin": "Brazil",
+        "batch_lot_number": "SIL-2026-B1",
+        "msds_link": "https://rawmats.com/msds/silica-01",
+        "is_hazardous_material": false,
+        "storage_container_type": "Reinforced Sacks"
+      }
+    },
     "normalized_aggregates": {
-      "total_weight_reported": 2750.0,
+      "total_weight_reported_kg": 2750.0,
       "total_package_count": 50,
       "ship_to_address_standardized": "10 Manufacturing Way, Toledo, OH 43604",
       "total_value": 1250.0,
       "currency": "USD"
     },
-    "audit_report": [
-      {
-        "code": "ADDR_MISMATCH",
-        "risk": "HIGH",
-        "desc": "Address match only 76.92%"
+    "inconsistency_flags": {
+      "logistics_flags": {
+        "address_mismatch": {
+          "is_flagged": true,
+          "score": 76.92
+        },
+        "container_conflict": {
+          "is_flagged": false,
+          "inv_cont": "C-99",
+          "pl_cont": "C-99"
+        },
+        "scac_missing": {
+          "is_flagged": false,
+          "value": "OCBK"
+        },
+        "po_mismatch": {
+          "is_flagged": false,
+          "bol_po": "PO-882",
+          "pl_po": "PO-882"
+        },
+        "incoterm_conflict": {
+          "is_flagged": true
+        }
       },
-      {
-        "code": "INCOTERM_ERR",
-        "risk": "LOW",
-        "desc": "FOB Point vs Collect terms conflict."
+      "quantity_weight_flags": {
+        "weight_mismatch": {
+          "is_flagged": true,
+          "bol": 2500.0,
+          "pl": 2750.0
+        },
+        "gross_net_logic": {
+          "is_flagged": false
+        },
+        "overcharge_risk": {
+          "is_flagged": false
+        },
+        "short_shipment": {
+          "is_flagged": false
+        },
+        "uom_mismatch": {
+          "is_flagged": false
+        }
       },
-      {
-        "code": "WT_VARIANCE",
-        "risk": "HIGH",
-        "desc": "Weight difference exceeds 50kg tolerance."
+      "product_specific_flags": {
+        "hazmat_mismatch": {
+          "is_flagged": false
+        },
+        "expiry_check": {
+          "is_flagged": false
+        },
+        "shelf_life_error": {
+          "is_flagged": true,
+          "days_left": 0
+        },
+        "temp_control_missing": {
+          "is_flagged": null
+        },
+        "serial_count_mismatch": {
+          "is_flagged": false
+        },
+        "density_anomaly": {
+          "is_flagged": false,
+          "calculated": 595.24
+        }
+      },
+      "financial_timing_flags": {
+        "tax_calculation_error": {
+          "is_flagged": false
+        },
+        "total_value_mismatch": {
+          "is_flagged": false
+        },
+        "payment_due_logic": {
+          "is_flagged": false
+        },
+        "lead_time_anomaly": {
+          "is_flagged": false
+        }
       }
-    ]
+    }
   },
   {
     "shipment_id": "PO-ZEN-01",
-    "category": "Manufactured Goods",
+    "category_metadata": {
+      "applied_category": "Manufactured Goods",
+      "fields": {
+        "serial_number": "SN-MGD-001 TO SN-MGD-095",
+        "model_number": "MOD-Z1",
+        "brand_name": "ZenithTech",
+        "dimensions": {
+          "length": 40.0,
+          "width": 30.0,
+          "height": 15.0,
+          "unit": "cm"
+        },
+        "warranty_period_months": 24,
+        "fragility_rating": "3",
+        "assembly_required": false,
+        "upc_ean_code": "0123456789012",
+        "packaging_material": "Anti-static Foam"
+      }
+    },
     "normalized_aggregates": {
-      "total_weight_reported": 475.0,
+      "total_weight_reported_kg": 475.0,
       "total_package_count": 100,
       "ship_to_address_standardized": "777 Commerce St, Los Angeles, CA 90001",
       "total_value": 54250.0,
       "currency": "USD"
     },
-    "audit_report": [
-      {
-        "code": "ADDR_MISMATCH",
-        "risk": "HIGH",
-        "desc": "Address match only 63.83%"
+    "inconsistency_flags": {
+      "logistics_flags": {
+        "address_mismatch": {
+          "is_flagged": true,
+          "score": 63.83
+        },
+        "container_conflict": {
+          "is_flagged": false,
+          "inv_cont": "CONT-Z",
+          "pl_cont": "CONT-Z"
+        },
+        "scac_missing": {
+          "is_flagged": false,
+          "value": "FTAK"
+        },
+        "po_mismatch": {
+          "is_flagged": false,
+          "bol_po": "PO-ZEN-01",
+          "pl_po": "PO-ZEN-01"
+        },
+        "incoterm_conflict": {
+          "is_flagged": false
+        }
       },
-      {
-        "code": "OVERCHARGE",
-        "risk": "HIGH",
-        "desc": "Invoiced more than shipped."
+      "quantity_weight_flags": {
+        "weight_mismatch": {
+          "is_flagged": true,
+          "bol": 500.0,
+          "pl": 475.0
+        },
+        "gross_net_logic": {
+          "is_flagged": false
+        },
+        "overcharge_risk": {
+          "is_flagged": true
+        },
+        "short_shipment": {
+          "is_flagged": true
+        },
+        "uom_mismatch": {
+          "is_flagged": false
+        }
       },
-      {
-        "code": "SHORT_SHIP",
-        "risk": "MEDIUM",
-        "desc": "Shipment quantity is short."
+      "product_specific_flags": {
+        "hazmat_mismatch": {
+          "is_flagged": false
+        },
+        "expiry_check": {
+          "is_flagged": false
+        },
+        "shelf_life_error": {
+          "is_flagged": true,
+          "days_left": 0
+        },
+        "temp_control_missing": {
+          "is_flagged": null
+        },
+        "serial_count_mismatch": {
+          "is_flagged": false
+        },
+        "density_anomaly": {
+          "is_flagged": false
+        }
+      },
+      "financial_timing_flags": {
+        "tax_calculation_error": {
+          "is_flagged": false
+        },
+        "total_value_mismatch": {
+          "is_flagged": false
+        },
+        "payment_due_logic": {
+          "is_flagged": false
+        },
+        "lead_time_anomaly": {
+          "is_flagged": false
+        }
       }
-    ]
+    }
   },
   {
     "shipment_id": "PO-MILK-99",
-    "category": "Perishables",
+    "category_metadata": {
+      "applied_category": "Perishables",
+      "fields": {
+        "date_of_harvest": "2026-03-20",
+        "date_of_shipping": "2026-04-01",
+        "expiry_date": "2026-04-15",
+        "temperature_control": {
+          "required": true,
+          "min_temp": 1.0,
+          "max_temp": 3.0,
+          "unit": "Celsius"
+        },
+        "humidity_requirement": 80.0,
+        "ventilation_required": false,
+        "ripening_stage": "N/A",
+        "is_frozen": false,
+        "shelf_life_remaining_days": 12
+      }
+    },
     "normalized_aggregates": {
-      "total_weight_reported": 200.0,
+      "total_weight_reported_kg": 200.0,
       "total_package_count": 50,
       "ship_to_address_standardized": "123 Main St, Miami, FL 33101",
       "total_value": 2000.0,
       "currency": "USD"
     },
-    "audit_report": [
-      {
-        "code": "ADDR_MISMATCH",
-        "risk": "HIGH",
-        "desc": "Address match only 28.57%"
+    "inconsistency_flags": {
+      "logistics_flags": {
+        "address_mismatch": {
+          "is_flagged": true,
+          "score": 28.57
+        },
+        "container_conflict": {
+          "is_flagged": false,
+          "inv_cont": "CONT-M1",
+          "pl_cont": "CONT-M1"
+        },
+        "scac_missing": {
+          "is_flagged": false,
+          "value": "SWCH"
+        },
+        "po_mismatch": {
+          "is_flagged": false,
+          "bol_po": "PO-MILK-99",
+          "pl_po": "PO-MILK-99"
+        },
+        "incoterm_conflict": {
+          "is_flagged": false
+        }
       },
-      {
-        "code": "TEMP_INSTR_MISSING",
-        "risk": "HIGH",
-        "desc": "No temp handling instructions."
+      "quantity_weight_flags": {
+        "weight_mismatch": {
+          "is_flagged": false,
+          "bol": 200.0,
+          "pl": 200.0
+        },
+        "gross_net_logic": {
+          "is_flagged": false
+        },
+        "overcharge_risk": {
+          "is_flagged": false
+        },
+        "short_shipment": {
+          "is_flagged": false
+        },
+        "uom_mismatch": {
+          "is_flagged": false
+        }
+      },
+      "product_specific_flags": {
+        "hazmat_mismatch": {
+          "is_flagged": false
+        },
+        "expiry_check": {
+          "is_flagged": false
+        },
+        "shelf_life_error": {
+          "is_flagged": false,
+          "days_left": 12
+        },
+        "temp_control_missing": {
+          "is_flagged": true
+        },
+        "serial_count_mismatch": {
+          "is_flagged": false
+        },
+        "density_anomaly": {
+          "is_flagged": false
+        }
+      },
+      "financial_timing_flags": {
+        "tax_calculation_error": {
+          "is_flagged": false
+        },
+        "total_value_mismatch": {
+          "is_flagged": false
+        },
+        "payment_due_logic": {
+          "is_flagged": false
+        },
+        "lead_time_anomaly": {
+          "is_flagged": false
+        }
       }
-    ]
+    }
   },
   {
     "shipment_id": "PO-SOLV",
-    "category": "Raw Materials",
+    "category_metadata": {
+      "applied_category": "Raw Materials",
+      "fields": {
+        "net_weight": 1000.0,
+        "gross_weight": 1050.0,
+        "volume": {
+          "value": 2.5,
+          "unit": "m3"
+        },
+        "purity_percentage": 98.0,
+        "grade_quality": "Industrial Grade",
+        "country_of_origin": "USA",
+        "batch_lot_number": "LOT-ACID-01",
+        "msds_link": "http://hazmat.com/msds/solvent-x",
+        "is_hazardous_material": true,
+        "storage_container_type": "Teflon Drums"
+      }
+    },
     "normalized_aggregates": {
-      "total_weight_reported": 1000.0,
+      "total_weight_reported_kg": 1000.0,
       "total_package_count": 5,
       "ship_to_address_standardized": "100 Science Dr, Austin, TX 78701",
       "total_value": 5412.5,
       "currency": "USD"
     },
-    "audit_report": [
-      {
-        "code": "ADDR_MISMATCH",
-        "risk": "HIGH",
-        "desc": "Address match only 70.0%"
+    "inconsistency_flags": {
+      "logistics_flags": {
+        "address_mismatch": {
+          "is_flagged": true,
+          "score": 70.0
+        },
+        "container_conflict": {
+          "is_flagged": false,
+          "inv_cont": "CONT-S5",
+          "pl_cont": "CONT-S5"
+        },
+        "scac_missing": {
+          "is_flagged": false,
+          "value": "HMHL"
+        },
+        "po_mismatch": {
+          "is_flagged": false,
+          "bol_po": "PO-SOLV",
+          "pl_po": "PO-SOLV"
+        },
+        "incoterm_conflict": {
+          "is_flagged": false
+        }
       },
-      {
-        "code": "HAZMAT_MISSING",
-        "risk": "CRITICAL",
-        "desc": "Dangerous goods not marked on BOL."
+      "quantity_weight_flags": {
+        "weight_mismatch": {
+          "is_flagged": false,
+          "bol": 1000.0,
+          "pl": 1000.0
+        },
+        "gross_net_logic": {
+          "is_flagged": false
+        },
+        "overcharge_risk": {
+          "is_flagged": false
+        },
+        "short_shipment": {
+          "is_flagged": false
+        },
+        "uom_mismatch": {
+          "is_flagged": false
+        }
+      },
+      "product_specific_flags": {
+        "hazmat_mismatch": {
+          "is_flagged": true
+        },
+        "expiry_check": {
+          "is_flagged": false
+        },
+        "shelf_life_error": {
+          "is_flagged": true,
+          "days_left": 0
+        },
+        "temp_control_missing": {
+          "is_flagged": null
+        },
+        "serial_count_mismatch": {
+          "is_flagged": false
+        },
+        "density_anomaly": {
+          "is_flagged": true,
+          "calculated": 400.0
+        }
+      },
+      "financial_timing_flags": {
+        "tax_calculation_error": {
+          "is_flagged": false
+        },
+        "total_value_mismatch": {
+          "is_flagged": false
+        },
+        "payment_due_logic": {
+          "is_flagged": false
+        },
+        "lead_time_anomaly": {
+          "is_flagged": false
+        }
       }
-    ]
+    }
   },
   {
     "shipment_id": "PO-GEN-1",
-    "category": "Manufactured Goods",
+    "category_metadata": {
+      "applied_category": "Manufactured Goods",
+      "fields": {
+        "serial_number": "IB-GEN-500-X1",
+        "model_number": "G-500",
+        "brand_name": "IronBuilt",
+        "dimensions": {
+          "length": 150.0,
+          "width": 100.0,
+          "height": 120.0,
+          "unit": "cm"
+        },
+        "warranty_period_months": 12,
+        "fragility_rating": "2",
+        "assembly_required": false,
+        "upc_ean_code": "998877665544",
+        "packaging_material": "Wooden Crate"
+      }
+    },
     "normalized_aggregates": {
-      "total_weight_reported": 800.0,
+      "total_weight_reported_kg": 800.0,
       "total_package_count": 1,
       "ship_to_address_standardized": "500 Energy Rd, Denver, CO 80201",
       "total_value": 15000.0,
       "currency": "USD"
     },
-    "audit_report": [
-      {
-        "code": "ADDR_MISMATCH",
-        "risk": "HIGH",
-        "desc": "Address match only 68.42%"
+    "inconsistency_flags": {
+      "logistics_flags": {
+        "address_mismatch": {
+          "is_flagged": true,
+          "score": 68.42
+        },
+        "container_conflict": {
+          "is_flagged": false,
+          "inv_cont": "N/A",
+          "pl_cont": "N/A"
+        },
+        "scac_missing": {
+          "is_flagged": false,
+          "value": "HVHL"
+        },
+        "po_mismatch": {
+          "is_flagged": false,
+          "bol_po": "PO-GEN-1",
+          "pl_po": "PO-GEN-1"
+        },
+        "incoterm_conflict": {
+          "is_flagged": false
+        }
+      },
+      "quantity_weight_flags": {
+        "weight_mismatch": {
+          "is_flagged": false,
+          "bol": 800.0,
+          "pl": 800.0
+        },
+        "gross_net_logic": {
+          "is_flagged": false
+        },
+        "overcharge_risk": {
+          "is_flagged": false
+        },
+        "short_shipment": {
+          "is_flagged": false
+        },
+        "uom_mismatch": {
+          "is_flagged": false
+        }
+      },
+      "product_specific_flags": {
+        "hazmat_mismatch": {
+          "is_flagged": false
+        },
+        "expiry_check": {
+          "is_flagged": false
+        },
+        "shelf_life_error": {
+          "is_flagged": true,
+          "days_left": 0
+        },
+        "temp_control_missing": {
+          "is_flagged": null
+        },
+        "serial_count_mismatch": {
+          "is_flagged": false
+        },
+        "density_anomaly": {
+          "is_flagged": false
+        }
+      },
+      "financial_timing_flags": {
+        "tax_calculation_error": {
+          "is_flagged": false
+        },
+        "total_value_mismatch": {
+          "is_flagged": false
+        },
+        "payment_due_logic": {
+          "is_flagged": false
+        },
+        "lead_time_anomaly": {
+          "is_flagged": false
+        }
       }
-    ]
+    }
   },
   {
-    "shipment_id": "UNKNOWN",
-    "category": "Unknown",
+    "shipment_id": "N/A",
+    "category_metadata": {
+      "applied_category": "General",
+      "fields": {
+        "date_of_harvest": "2026-02-15",
+        "date_of_shipping": "2026-04-01",
+        "expiry_date": "2026-03-01",
+        "temperature_control": {
+          "required": true,
+          "min_temp": 4.0,
+          "max_temp": 6.0,
+          "unit": "Celsius"
+        },
+        "humidity_requirement": 70.0,
+        "ventilation_required": false,
+        "ripening_stage": "Aged",
+        "is_frozen": false,
+        "shelf_life_remaining_days": -31
+      }
+    },
     "normalized_aggregates": {
-      "total_weight_reported": 50.0,
+      "total_weight_reported_kg": 50.0,
       "total_package_count": 0,
       "ship_to_address_standardized": "100 Broadway, New York, NY 10013",
       "total_value": 1200.0,
       "currency": "USD"
     },
-    "audit_report": [
-      {
-        "code": "ADDR_MISMATCH",
-        "risk": "HIGH",
-        "desc": "Address match only 0%"
+    "inconsistency_flags": {
+      "logistics_flags": {
+        "address_mismatch": {
+          "is_flagged": true,
+          "score": 0
+        },
+        "container_conflict": {
+          "is_flagged": false,
+          "inv_cont": null,
+          "pl_cont": null
+        },
+        "scac_missing": {
+          "is_flagged": false,
+          "value": "EEXP"
+        },
+        "po_mismatch": {
+          "is_flagged": false,
+          "bol_po": null,
+          "pl_po": null
+        },
+        "incoterm_conflict": {
+          "is_flagged": false
+        }
       },
-      {
-        "code": "ZERO_SHELF_LIFE",
-        "risk": "HIGH",
-        "desc": "Product already expired."
+      "quantity_weight_flags": {
+        "weight_mismatch": {
+          "is_flagged": false,
+          "bol": 50.0,
+          "pl": 50.0
+        },
+        "gross_net_logic": {
+          "is_flagged": false
+        },
+        "overcharge_risk": {
+          "is_flagged": false
+        },
+        "short_shipment": {
+          "is_flagged": false
+        },
+        "uom_mismatch": {
+          "is_flagged": false
+        }
       },
-      {
-        "code": "TEMP_INSTR_MISSING",
-        "risk": "HIGH",
-        "desc": "No temp handling instructions."
+      "product_specific_flags": {
+        "hazmat_mismatch": {
+          "is_flagged": false
+        },
+        "expiry_check": {
+          "is_flagged": false
+        },
+        "shelf_life_error": {
+          "is_flagged": true,
+          "days_left": -31
+        },
+        "temp_control_missing": {
+          "is_flagged": true
+        },
+        "serial_count_mismatch": {
+          "is_flagged": false
+        },
+        "density_anomaly": {
+          "is_flagged": false
+        }
       },
-      {
-        "code": "INV_TOTAL_ERR",
-        "risk": "HIGH",
-        "desc": "Invoice sums do not add up."
+      "financial_timing_flags": {
+        "tax_calculation_error": {
+          "is_flagged": false
+        },
+        "total_value_mismatch": {
+          "is_flagged": true
+        },
+        "payment_due_logic": {
+          "is_flagged": false
+        },
+        "lead_time_anomaly": {
+          "is_flagged": false
+        }
       }
-    ]
+    }
   },
   {
     "shipment_id": "PO-BUILD-08",
-    "category": "Raw Materials",
+    "category_metadata": {
+      "applied_category": "Raw Materials",
+      "fields": {
+        "net_weight": 5000.0,
+        "gross_weight": 5100.0,
+        "volume": {
+          "value": 3.5,
+          "unit": "m3"
+        },
+        "purity_percentage": 95.0,
+        "grade_quality": "Construction Grade",
+        "country_of_origin": "USA",
+        "batch_lot_number": "GRV-2026-08",
+        "msds_link": "https://build-mats.com/msds/gravel-08",
+        "is_hazardous_material": false,
+        "storage_container_type": "Bulk Tipper"
+      }
+    },
     "normalized_aggregates": {
-      "total_weight_reported": 5000.0,
+      "total_weight_reported_kg": 5000.0,
       "total_package_count": 1,
       "ship_to_address_standardized": "888 Skyline Way, Phoenix, AZ 85001",
       "total_value": 1080.0,
       "currency": "USD"
     },
-    "audit_report": [
-      {
-        "code": "ADDR_MISMATCH",
-        "risk": "HIGH",
-        "desc": "Address match only 69.77%"
+    "inconsistency_flags": {
+      "logistics_flags": {
+        "address_mismatch": {
+          "is_flagged": true,
+          "score": 69.77
+        },
+        "container_conflict": {
+          "is_flagged": false,
+          "inv_cont": "N/A",
+          "pl_cont": "N/A"
+        },
+        "scac_missing": {
+          "is_flagged": true,
+          "value": ""
+        },
+        "po_mismatch": {
+          "is_flagged": false,
+          "bol_po": "PO-BUILD-08",
+          "pl_po": "PO-BUILD-08"
+        },
+        "incoterm_conflict": {
+          "is_flagged": true
+        }
       },
-      {
-        "code": "SCAC_MISSING",
-        "risk": "LOW",
-        "desc": "No SCAC code for carrier."
+      "quantity_weight_flags": {
+        "weight_mismatch": {
+          "is_flagged": false,
+          "bol": 5000.0,
+          "pl": 5000.0
+        },
+        "gross_net_logic": {
+          "is_flagged": false
+        },
+        "overcharge_risk": {
+          "is_flagged": false
+        },
+        "short_shipment": {
+          "is_flagged": false
+        },
+        "uom_mismatch": {
+          "is_flagged": false
+        }
       },
-      {
-        "code": "INCOTERM_ERR",
-        "risk": "LOW",
-        "desc": "FOB Point vs Collect terms conflict."
+      "product_specific_flags": {
+        "hazmat_mismatch": {
+          "is_flagged": false
+        },
+        "expiry_check": {
+          "is_flagged": false
+        },
+        "shelf_life_error": {
+          "is_flagged": true,
+          "days_left": 0
+        },
+        "temp_control_missing": {
+          "is_flagged": null
+        },
+        "serial_count_mismatch": {
+          "is_flagged": false
+        },
+        "density_anomaly": {
+          "is_flagged": false,
+          "calculated": 1428.57
+        }
+      },
+      "financial_timing_flags": {
+        "tax_calculation_error": {
+          "is_flagged": false
+        },
+        "total_value_mismatch": {
+          "is_flagged": false
+        },
+        "payment_due_logic": {
+          "is_flagged": false
+        },
+        "lead_time_anomaly": {
+          "is_flagged": false
+        }
       }
-    ]
+    }
   },
   {
     "shipment_id": "PO-SS-09",
-    "category": "Manufactured Goods",
+    "category_metadata": {
+      "applied_category": "General",
+      "fields": {
+        "serial_number": "SN-MAT-9901",
+        "model_number": "M-Queen",
+        "brand_name": "SoftSleep",
+        "dimensions": {
+          "length": 203.0,
+          "width": 152.0,
+          "height": 30.0,
+          "unit": "cm"
+        },
+        "warranty_period_months": 120,
+        "fragility_rating": "1",
+        "assembly_required": false,
+        "upc_ean_code": "112233445566",
+        "packaging_material": "Heavy Duty Poly Wrap"
+      }
+    },
     "normalized_aggregates": {
-      "total_weight_reported": 60.0,
+      "total_weight_reported_kg": 60.0,
       "total_package_count": 1,
       "ship_to_address_standardized": "1200 Sleepy Hollow Rd, Portland, OR 97201",
       "total_value": 1200.0,
       "currency": "USD"
     },
-    "audit_report": [
-      {
-        "code": "ADDR_MISMATCH",
-        "risk": "HIGH",
-        "desc": "Address match only 75.0%"
+    "inconsistency_flags": {
+      "logistics_flags": {
+        "address_mismatch": {
+          "is_flagged": true,
+          "score": 75.0
+        },
+        "container_conflict": {
+          "is_flagged": false,
+          "inv_cont": "N/A",
+          "pl_cont": "N/A"
+        },
+        "scac_missing": {
+          "is_flagged": false,
+          "value": "FRFT"
+        },
+        "po_mismatch": {
+          "is_flagged": false,
+          "bol_po": "PO-SS-09",
+          "pl_po": "PO-SS-09"
+        },
+        "incoterm_conflict": {
+          "is_flagged": false
+        }
+      },
+      "quantity_weight_flags": {
+        "weight_mismatch": {
+          "is_flagged": false,
+          "bol": 60.0,
+          "pl": 60.0
+        },
+        "gross_net_logic": {
+          "is_flagged": false
+        },
+        "overcharge_risk": {
+          "is_flagged": false
+        },
+        "short_shipment": {
+          "is_flagged": false
+        },
+        "uom_mismatch": {
+          "is_flagged": false
+        }
+      },
+      "product_specific_flags": {
+        "hazmat_mismatch": {
+          "is_flagged": false
+        },
+        "expiry_check": {
+          "is_flagged": false
+        },
+        "shelf_life_error": {
+          "is_flagged": true,
+          "days_left": 0
+        },
+        "temp_control_missing": {
+          "is_flagged": null
+        },
+        "serial_count_mismatch": {
+          "is_flagged": false
+        },
+        "density_anomaly": {
+          "is_flagged": false
+        }
+      },
+      "financial_timing_flags": {
+        "tax_calculation_error": {
+          "is_flagged": false
+        },
+        "total_value_mismatch": {
+          "is_flagged": false
+        },
+        "payment_due_logic": {
+          "is_flagged": false
+        },
+        "lead_time_anomaly": {
+          "is_flagged": false
+        }
       }
-    ]
+    }
   },
   {
     "shipment_id": "PO-ICE-10",
-    "category": "Perishables",
+    "category_metadata": {
+      "applied_category": "General",
+      "fields": {
+        "date_of_harvest": "2026-03-20",
+        "date_of_shipping": "2026-04-01",
+        "expiry_date": "2026-10-01",
+        "temperature_control": {
+          "required": true,
+          "min_temp": -22.0,
+          "max_temp": -18.0,
+          "unit": "Celsius"
+        },
+        "humidity_requirement": 45.0,
+        "ventilation_required": false,
+        "ripening_stage": "N/A",
+        "is_frozen": true,
+        "shelf_life_remaining_days": 180
+      }
+    },
     "normalized_aggregates": {
-      "total_weight_reported": 300.0,
+      "total_weight_reported_kg": 300.0,
       "total_package_count": 50,
       "ship_to_address_standardized": "90 Sugar Blvd, Orlando, FL 32801",
       "total_value": 1908.0,
       "currency": "USD"
     },
-    "audit_report": [
-      {
-        "code": "ADDR_MISMATCH",
-        "risk": "HIGH",
-        "desc": "Address match only 66.67%"
+    "inconsistency_flags": {
+      "logistics_flags": {
+        "address_mismatch": {
+          "is_flagged": true,
+          "score": 66.67
+        },
+        "container_conflict": {
+          "is_flagged": true,
+          "inv_cont": "CONT-ABC",
+          "pl_cont": "CONT-XYZ"
+        },
+        "scac_missing": {
+          "is_flagged": false,
+          "value": "ARCT"
+        },
+        "po_mismatch": {
+          "is_flagged": false,
+          "bol_po": "PO-ICE-10",
+          "pl_po": "PO-ICE-10"
+        },
+        "incoterm_conflict": {
+          "is_flagged": false
+        }
       },
-      {
-        "code": "CONT_CONFLICT",
-        "risk": "MEDIUM",
-        "desc": "Container IDs mismatch."
+      "quantity_weight_flags": {
+        "weight_mismatch": {
+          "is_flagged": false,
+          "bol": 300.0,
+          "pl": 300.0
+        },
+        "gross_net_logic": {
+          "is_flagged": false
+        },
+        "overcharge_risk": {
+          "is_flagged": true
+        },
+        "short_shipment": {
+          "is_flagged": false
+        },
+        "uom_mismatch": {
+          "is_flagged": false
+        }
       },
-      {
-        "code": "OVERCHARGE",
-        "risk": "HIGH",
-        "desc": "Invoiced more than shipped."
+      "product_specific_flags": {
+        "hazmat_mismatch": {
+          "is_flagged": false
+        },
+        "expiry_check": {
+          "is_flagged": false
+        },
+        "shelf_life_error": {
+          "is_flagged": false,
+          "days_left": 180
+        },
+        "temp_control_missing": {
+          "is_flagged": false
+        },
+        "serial_count_mismatch": {
+          "is_flagged": false
+        },
+        "density_anomaly": {
+          "is_flagged": false
+        }
+      },
+      "financial_timing_flags": {
+        "tax_calculation_error": {
+          "is_flagged": false
+        },
+        "total_value_mismatch": {
+          "is_flagged": false
+        },
+        "payment_due_logic": {
+          "is_flagged": false
+        },
+        "lead_time_anomaly": {
+          "is_flagged": false
+        }
       }
-    ]
+    }
   }
 ]
