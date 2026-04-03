@@ -1,0 +1,28 @@
+{
+  "delivery_to": {
+    "customer_name": "string",
+    "address_lines": ["string"],
+    "telephone": "string",
+    "email": "string"
+  },
+  "from_business": {
+    "business_name": "string",
+    "address_lines": ["string"]
+  },
+  "shipping_refs": {
+    "order_reference": "string",
+    "order_date": "string",
+    "delivery_method": "string",
+    "delivery_number": "string",
+    "delivery_date": "string"
+  },
+  "items": [
+    {
+      "item_number": "string",
+      "description": "string",
+      "qty_ordered": "number",
+      "qty_shipped": "number"
+    }
+  ],
+  "notes": "string"
+}

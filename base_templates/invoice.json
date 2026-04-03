@@ -1,0 +1,40 @@
+{
+  "invoice_number": "string",
+  "seller_info": {
+    "company_name": "string",
+    "address": "string",
+    "reg_number": "string",
+    "tax_number": "string"
+  },
+  "bill_to_info": {
+    "client_name": "string",
+    "address": "string",
+    "reg_number": "string",
+    "tax_number": "string"
+  },
+  "payment_details": {
+    "bank_name": "string",
+    "bic": "string",
+    "account_number": "string",
+    "invoice_date": "string",
+    "due_date": "string"
+  },
+  "line_items": [
+    {
+      "description": "string",
+      "quantity": "number",
+      "unit_of_measure": "string",
+      "unit_price": "number",
+      "subtotal": "number",
+      "tax_amount": "number",
+      "tax_percentage": "number"
+    }
+  ],
+  "totals": {
+    "subtotal": "number",
+    "tax_total": "number",
+    "grand_total": "number",
+    "currency": "string",
+    "amount_in_words": "string"
+  }
+}

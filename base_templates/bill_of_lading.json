@@ -1,0 +1,59 @@
+{
+  "bill_of_lading_number": "string",
+  "ship_from": {
+    "name": "string",
+    "address": "string",
+    "city_state_zip": "string",
+    "sid_number": "string",
+    "fob_point": "boolean"
+  },
+  "ship_to": {
+    "name": "string",
+    "location_number": "string",
+    "address": "string",
+    "city_state_zip": "string",
+    "cid_number": "string",
+    "fob_point": "boolean"
+  },
+  "third_party_bill_to": {
+    "name": "string",
+    "address": "string",
+    "city_state_zip": "string"
+  },
+  "special_instructions": "string",
+  "carrier_details": {
+    "carrier_name": "string",
+    "trailer_number": "string",
+    "seal_numbers": "string",
+    "scac": "string",
+    "pro_number": "string",
+    "freight_charge_terms": "string"
+  },
+  "customer_order_info": [
+    {
+      "order_number": "string",
+      "pkgs_count": "number",
+      "weight": "number",
+      "pallet_slip": "boolean",
+      "additional_info": "string"
+    }
+  ],
+  "carrier_commodity_info": [
+    {
+      "handling_unit_qty": "number",
+      "handling_unit_type": "string",
+      "package_qty": "number",
+      "package_type": "string",
+      "weight": "number",
+      "is_hazardous": "boolean",
+      "commodity_description": "string",
+      "nmfc_number": "string",
+      "class": "string"
+    }
+  ],
+  "cod_details": {
+    "amount": "number",
+    "fee_terms": "string",
+    "customer_check_acceptable": "boolean"
+  }
+}
