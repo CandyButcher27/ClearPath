@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any, Dict, Optional, Tuple
 
 _DEFAULT_CONFIG_PATH = Path(__file__).parent.parent / "config" / "defaults.yaml"
+_DEFAULT_KEYWORDS_PATH = Path(__file__).parent.parent / "config" / "keywords.yaml"
 
 # ---------------------------------------------------------------------------
 # Internal loader (cached after first call)
@@ -86,6 +87,24 @@ def get_doclaynet_confidence(cfg: Dict[str, Any]) -> float:
     """Return the doclaynet model confidence threshold."""
     dt = cfg.get("detector_thresholds", {}) or {}
     return float(dt.get("doclaynet_confidence", 0.50))
+
+
+def load_keywords(lang: str = "en") -> Dict[str, Any]:
+    """Return the keyword lists for the given language code.
+
+    Falls back to English if the language is not found in keywords.yaml.
+
+    Args:
+        lang: ISO 639-1 language code (e.g. "en", "fr", "de").
+
+    Returns:
+        Dict with key ``caption_prefixes`` (list of lowercase strings).
+    """
+    data = _load_yaml(str(_DEFAULT_KEYWORDS_PATH))
+    entry = data.get(lang) or data.get("en") or {}
+    return {
+        "caption_prefixes": [str(p).lower() for p in entry.get("caption_prefixes", [])],
+    }
 
 
 def get_table_candidate_params(cfg: Dict[str, Any]) -> Dict[str, float]:

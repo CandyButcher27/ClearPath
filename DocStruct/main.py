@@ -35,6 +35,7 @@ from utils.config import (
     get_doclaynet_confidence,
     get_table_candidate_params,
     load_config,
+    load_keywords,
 )
 from utils.geometry import bbox_overlap, extract_text_from_bbox, refine_bbox_with_lines
 from utils.logging import log_pipeline_stage, setup_logger
@@ -247,7 +248,9 @@ def process_pdf_true_hybrid(
     proposal_iou_threshold: float = 0.35,
     nms_iou_threshold: float = 0.50,
     config_path: str | None = None,
-) -> None:
+    language: str | None = None,
+):
+    # Returns the Document object (callers can ignore)
     """
     TRUE HYBRID pipeline: Model detects + Geometry confirms/fills gaps.
 
@@ -270,7 +273,9 @@ def process_pdf_true_hybrid(
     """
     logger.info(f"[TRUE-HYBRID] Processing PDF: {pdf_path}")
 
-    cfg = load_config(config_path)
+    cfg = dict(load_config(config_path))  # shallow copy so we can override without mutating cache
+    if language is not None:
+        cfg["language"] = language
     cfg_doclaynet = get_doclaynet_confidence(cfg)
     _doclaynet_conf = (
         doclaynet_confidence_threshold
@@ -278,6 +283,7 @@ def process_pdf_true_hybrid(
         else cfg_doclaynet
     )
     thresholds = get_classification_thresholds(cfg)
+    caption_prefixes = tuple(load_keywords(cfg.get("language", "en")).get("caption_prefixes", []))
 
     detector = create_detector(
         detector_type=detector_type,
@@ -301,7 +307,8 @@ def process_pdf_true_hybrid(
         log_pipeline_stage(logger, "Layout & Geometry Proposals", page_num)
         layout_blocks, image_blocks = process_page_layout(page_data)
         geo_proposals = generate_geometry_proposals(
-            page_data, layout_blocks, page_data.lines
+            page_data, layout_blocks, page_data.lines,
+            caption_prefixes=caption_prefixes,
         )
         logger.info(f"[Page {page_num}] Geometry proposals: {len(geo_proposals)}")
 
@@ -425,6 +432,7 @@ def process_pdf_true_hybrid(
         logger.info(f"  {block_type}: {count}")
 
     logger.info("Pipeline complete!")
+    return document
 
 
 def process_pdf(
@@ -639,6 +647,13 @@ Examples:
     parser.add_argument("--model-confidence-threshold", type=float, default=None)
     parser.add_argument("--doclaynet-confidence-threshold", type=float, default=None)
     parser.add_argument("--table-match-threshold", type=float, default=None)
+    parser.add_argument(
+        "--language",
+        type=str,
+        default=None,
+        metavar="LANG",
+        help="ISO 639-1 language code for caption keyword matching (e.g. en, fr, de). Overrides config.",
+    )
     parser.add_argument("--verbose", action="store_true")
     args = parser.parse_args()
 
@@ -670,6 +685,7 @@ Examples:
                 detector_type=args.detector,
                 doclaynet_confidence_threshold=args.doclaynet_confidence_threshold,
                 config_path=args.config,
+                language=args.language,
             )
         else:
             process_pdf(

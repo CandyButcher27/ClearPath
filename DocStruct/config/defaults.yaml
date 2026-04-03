@@ -1,6 +1,12 @@
 # DocStruct: Pipeline Configuration Parameters
 # These values control the decision-making "brain" of the system.
 
+# --- Language ---
+# ISO 639-1 language code for the input document.
+# Controls caption keyword matching and numeric separator handling.
+# Supported: en, es, fr, de, it, pt
+language: en
+
 # --- Ensemble Blend Weights ---
 # These control how much we trust different classification sub-systems.
 ensemble:

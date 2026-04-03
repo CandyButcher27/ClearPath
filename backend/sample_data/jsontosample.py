@@ -243,7 +243,7 @@ def generate_packing_list(data, product_id):
 
 def main():
     try:
-        with open("samples.json", "r") as file:
+        with open("C:\\Users\\sriva\\Documents\\codestuff\\projects\\dp_world\\backend\\sample_data\\samples.json", "r") as file:
             records = json.load(file)
             
         print(f"Found {len(records)} records. Generating professional PDFs...")

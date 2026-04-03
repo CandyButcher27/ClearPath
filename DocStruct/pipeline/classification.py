@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional, Tuple
 from models.detector import Detection
 from pipeline.layout import LayoutBlock
 from pipeline.proposal_fusion import CONFIDENCE_BOUNDS, HYBRID_SOURCE_WEIGHTS
-from pipeline.table_candidates import block_table_match
+from pipeline.table_candidates import _token_is_numeric as _is_numeric_token, block_table_match
 from schemas.block import BoundingBox
 from utils.geometry import bbox_overlap
 from utils.logging import setup_logger
@@ -29,6 +29,19 @@ _DEFAULT_THRESHOLDS: Dict[str, float] = {
 _DEFAULT_WEIGHTS: Tuple[float, float, float] = (0.60, 0.25, 0.15)  # model, rule, geo
 
 
+_DEFAULT_CAPTION_PREFIXES = ("fig", "figure", "table", "image")
+
+
+def _resolve_caption_prefixes(cfg: Optional[Dict[str, Any]]) -> tuple:
+    if cfg is None:
+        return _DEFAULT_CAPTION_PREFIXES
+    from utils.config import load_keywords
+    lang = cfg.get("language", "en")
+    keywords = load_keywords(lang)
+    prefixes = keywords.get("caption_prefixes", list(_DEFAULT_CAPTION_PREFIXES))
+    return tuple(prefixes) if prefixes else _DEFAULT_CAPTION_PREFIXES
+
+
 def _resolve_thresholds(cfg: Optional[Dict[str, Any]]) -> Dict[str, float]:
     if cfg is None:
         return _DEFAULT_THRESHOLDS
@@ -43,8 +56,15 @@ def _resolve_weights(cfg: Optional[Dict[str, Any]]) -> Tuple[float, float, float
     return get_ensemble_weights(cfg)
 
 
-def compute_rule_score(block: LayoutBlock, block_type: str, avg_font_size: float, page_height: float) -> float:
+def compute_rule_score(
+    block: LayoutBlock,
+    block_type: str,
+    avg_font_size: float,
+    page_height: float,
+    caption_prefixes: Optional[tuple] = None,
+) -> float:
     score = 0.0
+    _prefixes = caption_prefixes if caption_prefixes is not None else _DEFAULT_CAPTION_PREFIXES
 
     if block_type == "header":
         if block.avg_font_size > avg_font_size * 1.3:
@@ -61,13 +81,13 @@ def compute_rule_score(block: LayoutBlock, block_type: str, avg_font_size: float
     elif block_type == "caption":
         if block.avg_font_size < avg_font_size * 0.9:
             score += 0.4
-        if block.text.lower().startswith(("fig", "figure", "table", "image")):
+        if block.text.lower().startswith(_prefixes):
             score += 0.6
     elif block_type == "table":
         if any(char in block.text for char in ["\t", "|"]):
             score += 0.3
         words = block.text.split()
-        if len(words) > 5 and sum(1 for w in words if w.replace(".", "").isdigit()) > len(words) * 0.3:
+        if len(words) > 5 and sum(1 for w in words if _is_numeric_token(w)) > len(words) * 0.3:
             score += 0.3
     return min(1.0, score)
 
@@ -119,8 +139,12 @@ def _score_text_block(
     detections: List[Detection],
     avg_font_size: float,
     page_height: float,
+    caption_prefixes: Optional[tuple] = None,
 ) -> tuple[Dict[str, float], Dict[str, float]]:
-    rule_scores = {block_type: compute_rule_score(block, block_type, avg_font_size, page_height) for block_type in TEXT_BLOCK_TYPES}
+    rule_scores = {
+        block_type: compute_rule_score(block, block_type, avg_font_size, page_height, caption_prefixes)
+        for block_type in TEXT_BLOCK_TYPES
+    }
     if not block.bbox:
         model_scores = {block_type: 0.0 for block_type in TEXT_BLOCK_TYPES}
     else:
@@ -149,7 +173,8 @@ def classify_block(
     cfg: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     model_w, rule_w, geo_w = _resolve_weights(cfg)
-    rule_scores, model_scores = _score_text_block(block, detections, avg_font_size, page_height)
+    caption_prefixes = _resolve_caption_prefixes(cfg)
+    rule_scores, model_scores = _score_text_block(block, detections, avg_font_size, page_height, caption_prefixes)
     geometric_score = compute_geometric_score(block, page_width, page_height)
     best_rule_type, best_rule_score = _max_score(rule_scores)
     best_model_type, best_model_score = _max_score(model_scores)
@@ -448,8 +473,9 @@ def classify_fused_proposal(
 
     # Compute individual scores
     if layout_block is not None:
+        caption_prefixes = _resolve_caption_prefixes(cfg)
         rule_score = compute_rule_score(
-            layout_block, proposal.block_type, avg_font_size, page_height
+            layout_block, proposal.block_type, avg_font_size, page_height, caption_prefixes
         )
         geometric_score = compute_geometric_score(layout_block, page_width, page_height)
     else:

@@ -15,12 +15,35 @@ def _clip01(value: float) -> float:
 
 
 def _token_is_numeric(token: str) -> bool:
-    cleaned = token.strip().replace(",", "")
+    """Return True if token looks like a number in any European locale.
+
+    Handles:
+      - Plain integers: "42", "1234"
+      - EN thousands separator: "1,234" or "1,234.56"
+      - DE/FR thousands separator: "1.234" or "1.234,56"
+      - Simple decimals: "3.14", "99,9"
+    """
+    import re
+    cleaned = token.strip()
     if not cleaned:
         return False
-    if cleaned.count(".") <= 1:
-        cleaned = cleaned.replace(".", "")
-    return cleaned.isdigit()
+    # Strip a leading sign
+    if cleaned[0] in ("+", "-"):
+        cleaned = cleaned[1:]
+    if not cleaned:
+        return False
+    dot_count = cleaned.count(".")
+    comma_count = cleaned.count(",")
+    # Reject if both separators appear more than once each (ambiguous / not numeric)
+    if dot_count > 1 and comma_count > 1:
+        return False
+    # Reject if more than one of the same separator without the other acting as decimal
+    if dot_count > 1 and comma_count == 0:
+        return False
+    if comma_count > 1 and dot_count == 0:
+        return False
+    # Match: optional thousands groups (sep every 3 digits) + optional decimal
+    return bool(re.fullmatch(r"\d{1,3}(?:[.,]\d{3})*(?:[.,]\d+)?|\d+[.,]?\d*", cleaned))
 
 
 def _line_counts_in_bbox(bbox: BoundingBox, page_lines: List[Dict[str, Any]]) -> Tuple[int, int, int]:

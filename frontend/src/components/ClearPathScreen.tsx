@@ -1,14 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { clearPathData } from '../data/mockData'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
+import { submitDocuments } from '../lib/api'
 
 export interface ReadonlyClearPathScreenProps {
-  onSubmit: () => void
+  onSubmit: (jobId: string) => void
 }
+
+type DocKey = 'bol' | 'invoice' | 'packingList'
+
+const DOC_KEYS: DocKey[] = ['bol', 'invoice', 'packingList']
 
 export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubmit }) => {
   const scrollY = useScrollAnimation()
   const [gridPos, setGridPos] = useState({ x: 0, y: 0 })
+  const [files, setFiles] = useState<Partial<Record<DocKey, File>>>({})
+  const [dragOver, setDragOver] = useState<Partial<Record<DocKey, boolean>>>({})
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
+
+  const inputRefs = {
+    bol: useRef<HTMLInputElement>(null),
+    invoice: useRef<HTMLInputElement>(null),
+    packingList: useRef<HTMLInputElement>(null),
+  }
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -19,6 +34,38 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubm
     window.addEventListener('mousemove', handleMouseMove)
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [])
+
+  const handleFileSelect = (key: DocKey, file: File | null) => {
+    if (file && file.type === 'application/pdf') {
+      setFiles(prev => ({ ...prev, [key]: file }))
+      setSubmitError(null)
+    }
+  }
+
+  const handleDrop = (key: DocKey, e: React.DragEvent) => {
+    e.preventDefault()
+    setDragOver(prev => ({ ...prev, [key]: false }))
+    const file = e.dataTransfer.files[0]
+    if (file) handleFileSelect(key, file)
+  }
+
+  const handleSubmit = async () => {
+    if (!files.bol || !files.invoice || !files.packingList) {
+      setSubmitError('Please upload all three documents before submitting.')
+      return
+    }
+    setSubmitting(true)
+    setSubmitError(null)
+    try {
+      const { job_id } = await submitDocuments(files.bol, files.invoice, files.packingList)
+      onSubmit(job_id)
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : 'Upload failed. Please try again.')
+      setSubmitting(false)
+    }
+  }
+
+  const allUploaded = DOC_KEYS.every(k => !!files[k])
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-surface text-on-surface selection:bg-secondary/30">
@@ -80,7 +127,7 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubm
               </p>
               <div className="flex flex-wrap gap-4">
                 <button
-                  onClick={onSubmit}
+                  onClick={() => document.getElementById('upload-section')?.scrollIntoView({ behavior: 'smooth' })}
                   className="group relative flex items-center gap-4 overflow-hidden bg-red-600 px-10 py-5 text-xs font-black uppercase tracking-widest text-white transition-all duration-500 hover:bg-primary"
                 >
                   <span className="relative z-10 flex items-center gap-4">
@@ -119,7 +166,7 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubm
           </div>
         </section>
 
-        <section className="relative overflow-hidden bg-surface-container-highest py-32">
+        <section id="upload-section" className="relative overflow-hidden bg-surface-container-highest py-32">
           <div className="relative z-10 mx-auto max-w-[1440px] px-8">
             <div className="scroll-reveal mb-20">
               <h2 className="text-5xl font-black uppercase leading-none tracking-tighter text-primary">Direct ingestion</h2>
@@ -128,35 +175,109 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubm
             </div>
 
             <div className="stagger-children grid gap-8 md:grid-cols-3">
-              {clearPathData.documents.map((doc, idx) => (
-                <div
-                  key={doc.title}
-                  className={`scroll-reveal group relative border border-white/5 bg-surface-container/60 p-12 backdrop-blur-sm transition-all duration-500 hover:border-secondary/30 hover:shadow-[0_0_0_1px_rgba(233,7,22,0.12),0_20px_60px_rgba(0,0,0,0.3)] ${idx > 0 ? `reveal-delay-${idx}` : ''}`}
-                >
-                  <img
-                    src="/circle.png"
-                    alt="verified"
-                    className="animated-check absolute right-4 top-4 inline-block h-6 w-6 object-contain"
-                    style={{ animationDelay: `${0.1 + idx * 0.1}s` }}
-                  />
-                  <div className="mb-10 h-12 w-12">
-                    <img src={doc.icon} alt={doc.title} className="h-full w-full object-contain" />
-                  </div>
-                  <h3 className="mb-4 text-2xl font-black uppercase tracking-tighter text-primary">{doc.title}</h3>
-                  <p className="mb-10 text-xs font-bold uppercase leading-relaxed tracking-tight text-on-surface-variant">{doc.description}</p>
+              {clearPathData.documents.map((doc, idx) => {
+                const key = DOC_KEYS[idx]
+                const selectedFile = files[key]
+                const isDragOver = !!dragOver[key]
+                const inputRef = inputRefs[key]
 
-                  <div className="flex h-40 w-full flex-col items-center justify-center border border-dashed border-white/10 transition-all duration-500 group-hover:border-secondary/30 group-hover:bg-secondary/5">
-                    <span className="material-symbols-outlined mb-2 text-on-surface-variant transition-colors group-hover:text-secondary">upload_file</span>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-on-surface-variant transition-colors group-hover:text-secondary">Drag &amp; Drop</span>
+                return (
+                  <div
+                    key={doc.title}
+                    className={`scroll-reveal group relative border bg-surface-container/60 p-12 backdrop-blur-sm transition-all duration-500 ${
+                      selectedFile
+                        ? 'border-emerald-500/40 shadow-[0_0_0_1px_rgba(16,185,129,0.2)]'
+                        : 'border-white/5 hover:border-secondary/30 hover:shadow-[0_0_0_1px_rgba(233,7,22,0.12),0_20px_60px_rgba(0,0,0,0.3)]'
+                    } ${idx > 0 ? `reveal-delay-${idx}` : ''}`}
+                  >
+                    {selectedFile ? (
+                      <img src="/circle.png" alt="verified" className="animated-check absolute right-4 top-4 inline-block h-6 w-6 object-contain" />
+                    ) : (
+                      <img src="/circle.png" alt="pending" className="absolute right-4 top-4 inline-block h-6 w-6 object-contain opacity-20" />
+                    )}
+
+                    <div className="mb-10 h-12 w-12">
+                      <img src={doc.icon} alt={doc.title} className="h-full w-full object-contain" />
+                    </div>
+                    <h3 className="mb-4 text-2xl font-black uppercase tracking-tighter text-primary">{doc.title}</h3>
+                    <p className="mb-10 text-xs font-bold uppercase leading-relaxed tracking-tight text-on-surface-variant">{doc.description}</p>
+
+                    {/* Hidden file input */}
+                    <input
+                      ref={inputRef}
+                      type="file"
+                      accept=".pdf,application/pdf"
+                      className="hidden"
+                      onChange={e => handleFileSelect(key, e.target.files?.[0] ?? null)}
+                    />
+
+                    {/* Drop zone */}
+                    <div
+                      className={`flex h-40 w-full flex-col items-center justify-center border border-dashed transition-all duration-300 cursor-pointer ${
+                        isDragOver
+                          ? 'border-secondary bg-secondary/10'
+                          : selectedFile
+                          ? 'border-emerald-500/40 bg-emerald-500/5'
+                          : 'border-white/10 group-hover:border-secondary/30 group-hover:bg-secondary/5'
+                      }`}
+                      onClick={() => inputRef.current?.click()}
+                      onDragOver={e => { e.preventDefault(); setDragOver(prev => ({ ...prev, [key]: true })) }}
+                      onDragEnter={e => { e.preventDefault(); setDragOver(prev => ({ ...prev, [key]: true })) }}
+                      onDragLeave={() => setDragOver(prev => ({ ...prev, [key]: false }))}
+                      onDrop={e => handleDrop(key, e)}
+                    >
+                      {selectedFile ? (
+                        <>
+                          <span className="material-symbols-outlined mb-2 text-emerald-400">check_circle</span>
+                          <span className="max-w-[80%] truncate text-center text-[10px] font-black uppercase tracking-widest text-emerald-400">
+                            {selectedFile.name}
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="material-symbols-outlined mb-2 text-on-surface-variant transition-colors group-hover:text-secondary">upload_file</span>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-on-surface-variant transition-colors group-hover:text-secondary">Drag &amp; Drop</span>
+                        </>
+                      )}
+                    </div>
+
+                    <button
+                      onClick={() => inputRef.current?.click()}
+                      className={`mt-6 w-full py-4 text-[10px] font-black uppercase tracking-widest transition-colors duration-300 ${
+                        selectedFile
+                          ? 'bg-emerald-600 text-white hover:bg-emerald-700'
+                          : 'bg-primary text-on-primary hover:bg-secondary'
+                      }`}
+                    >
+                      {selectedFile ? 'Replace File' : 'Upload File'}
+                    </button>
                   </div>
-                  <button className="mt-6 w-full bg-primary py-4 text-[10px] font-black uppercase tracking-widest text-on-primary transition-colors duration-300 hover:bg-secondary">Upload File</button>
-                </div>
-              ))}
+                )
+              })}
             </div>
 
-            <div className="scroll-reveal mt-20 flex justify-center">
-              <button onClick={onSubmit} className="animate-pulse-accent flex items-center gap-5 bg-red-600 px-16 py-6 text-sm font-black uppercase tracking-[0.3em] text-white transition-all duration-300 hover:bg-red-700">
-                Submit for Verification
+            {submitError && (
+              <div className="mt-8 border border-red-600/40 bg-red-600/10 px-6 py-4 text-center text-xs font-bold uppercase tracking-widest text-red-400">
+                {submitError}
+              </div>
+            )}
+
+            <div className="scroll-reveal mt-20 flex flex-col items-center gap-4">
+              {!allUploaded && (
+                <p className="text-[10px] font-black uppercase tracking-widest text-on-surface-variant">
+                  {DOC_KEYS.filter(k => !files[k]).length} document(s) remaining
+                </p>
+              )}
+              <button
+                onClick={handleSubmit}
+                disabled={!allUploaded || submitting}
+                className={`animate-pulse-accent flex items-center gap-5 px-16 py-6 text-sm font-black uppercase tracking-[0.3em] text-white transition-all duration-300 ${
+                  allUploaded && !submitting
+                    ? 'bg-red-600 hover:bg-red-700 cursor-pointer'
+                    : 'bg-zinc-700 cursor-not-allowed opacity-60'
+                }`}
+              >
+                {submitting ? 'Uploading…' : 'Submit for Verification'}
               </button>
             </div>
           </div>

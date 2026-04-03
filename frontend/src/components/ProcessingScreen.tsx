@@ -1,40 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { createStatusStream, parseCompleteEvent } from '../lib/api'
+import type { LogLine, VerificationResults } from '../types/api'
 
 type LogLevel = 'SYSTEM' | 'INFO' | 'OK' | 'WARN' | 'HASH'
-
-interface LogLine {
-  timestamp: string
-  level: LogLevel
-  message: string
-  delay: number
-}
-
-export interface ReadonlyProcessingScreenProps {
-  onComplete: () => void
-}
-
-const LOG_LINES: LogLine[] = [
-  { timestamp: '14:22:01.003', level: 'SYSTEM', message: 'ClearPath Verification Engine v3.1.4 -- initializing', delay: 200 },
-  { timestamp: '14:22:01.011', level: 'INFO', message: 'Session ID: CP-992-X | Region: EU-WEST-2', delay: 120 },
-  { timestamp: '14:22:01.089', level: 'INFO', message: 'Received 3 document payloads -- staging ingestion queue', delay: 300 },
-  { timestamp: '14:22:01.201', level: 'INFO', message: 'Extracting metadata: BillOfLading_RU92841B.pdf', delay: 400 },
-  { timestamp: '14:22:01.598', level: 'INFO', message: 'OCR pipeline: 847 tokens parsed, confidence 99.7%', delay: 350 },
-  { timestamp: '14:22:01.950', level: 'OK', message: 'Bill of Lading structure validated -- ISO 28005 compliant', delay: 250 },
-  { timestamp: '14:22:02.203', level: 'INFO', message: 'Extracting metadata: CommercialInvoice_EU2024.pdf', delay: 450 },
-  { timestamp: '14:22:02.651', level: 'INFO', message: 'VAT registry cross-reference: checking 14 line items', delay: 600 },
-  { timestamp: '14:22:03.254', level: 'WARN', message: 'Line item 7: currency notation ambiguity -- applying EUR normalization', delay: 500 },
-  { timestamp: '14:22:03.757', level: 'OK', message: 'Invoice VAT compliance verified -- 14/14 line items resolved', delay: 300 },
-  { timestamp: '14:22:04.059', level: 'INFO', message: 'Extracting metadata: PackingList_MANIFEST_7G.xlsx', delay: 380 },
-  { timestamp: '14:22:04.440', level: 'INFO', message: 'Cargo weight delta check: declared 18,440 kg vs manifest 18,440 kg', delay: 420 },
-  { timestamp: '14:22:04.862', level: 'OK', message: 'Packing list quantity matched -- zero discrepancy', delay: 250 },
-  { timestamp: '14:22:05.115', level: 'INFO', message: 'Dispatching to distributed hash oracle -- 14 active nodes', delay: 700 },
-  { timestamp: '14:22:05.818', level: 'INFO', message: 'Node consensus: 14/14 responded within SLA threshold', delay: 400 },
-  { timestamp: '14:22:06.221', level: 'HASH', message: 'Merkle root: 8E3B-A92C-44F1-9920-BC34-DE01-FC99-8821-44B0-C221', delay: 300 },
-  { timestamp: '14:22:06.524', level: 'INFO', message: 'Cross-referencing Baltic corridor compliance registry', delay: 450 },
-  { timestamp: '14:22:06.977', level: 'OK', message: 'All documents: cryptographic fingerprints matched', delay: 300 },
-  { timestamp: '14:22:07.280', level: 'SYSTEM', message: 'Verification complete -- generating certificate payload', delay: 500 },
-  { timestamp: '14:22:07.783', level: 'OK', message: '>>> AUDIT PASSED -- redirecting to results', delay: 800 },
-]
 
 const levelColor: Record<LogLevel, string> = {
   OK: 'text-emerald-400',
@@ -44,43 +12,68 @@ const levelColor: Record<LogLevel, string> = {
   INFO: 'text-sky-400/70',
 }
 
-export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ onComplete }) => {
+export interface ReadonlyProcessingScreenProps {
+  jobId: string
+  onComplete: (results: VerificationResults | null) => void
+}
+
+export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ jobId, onComplete }) => {
   const [visibleLines, setVisibleLines] = useState<LogLine[]>([])
-  const [currentIndex, setCurrentIndex] = useState(0)
   const [phase, setPhase] = useState<'running' | 'complete'>('running')
   const [cursorBlink, setCursorBlink] = useState(true)
+  const [totalExpected] = useState(20) // approximate for progress bar
 
   const terminalRef = useRef<HTMLDivElement | null>(null)
+  const resultsRef = useRef<VerificationResults | null>(null)
 
-  const progressPct = useMemo(() => (currentIndex / LOG_LINES.length) * 100, [currentIndex])
+  const progressPct = useMemo(
+    () => Math.min((visibleLines.length / totalExpected) * 100, 95),
+    [visibleLines.length, totalExpected],
+  )
 
+  // Cursor blink interval
   useEffect(() => {
-    const cursorInterval = window.setInterval(() => {
-      setCursorBlink((prev) => !prev)
-    }, 530)
-
-    return () => window.clearInterval(cursorInterval)
+    const id = window.setInterval(() => setCursorBlink(p => !p), 530)
+    return () => window.clearInterval(id)
   }, [])
 
+  // Connect SSE stream
   useEffect(() => {
-    if (currentIndex >= LOG_LINES.length) {
-      setPhase('complete')
-      const completeTimer = window.setTimeout(() => {
-        onComplete()
-      }, 1200)
+    const es = createStatusStream(jobId)
 
-      return () => window.clearTimeout(completeTimer)
+    es.onmessage = (event) => {
+      try {
+        const line = JSON.parse(event.data) as LogLine
+        setVisibleLines(prev => [...prev, line])
+      } catch {
+        // ignore malformed
+      }
     }
 
-    const line = LOG_LINES[currentIndex]
-    const timer = window.setTimeout(() => {
-      setVisibleLines((prev) => [...prev, line])
-      setCurrentIndex((prev) => prev + 1)
-    }, line.delay)
+    es.addEventListener('complete', (event: Event) => {
+      const messageEvent = event as MessageEvent
+      const payload = parseCompleteEvent(messageEvent.data)
+      resultsRef.current = payload.results
+      setPhase('complete')
+      es.close()
+      window.setTimeout(() => onComplete(resultsRef.current), 1200)
+    })
 
-    return () => window.clearTimeout(timer)
-  }, [currentIndex, onComplete])
+    es.addEventListener('ping', () => { /* keep-alive, ignore */ })
 
+    es.onerror = () => {
+      // Connection error — treat as complete with no results
+      if (phase !== 'complete') {
+        setPhase('complete')
+        es.close()
+        window.setTimeout(() => onComplete(null), 1200)
+      }
+    }
+
+    return () => es.close()
+  }, [jobId]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Auto-scroll terminal
   useEffect(() => {
     if (terminalRef.current) {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight
@@ -94,7 +87,9 @@ export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ onCo
           <div className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
           <div className="h-2.5 w-2.5 rounded-full bg-white/25" />
           <div className="h-2.5 w-2.5 rounded-full bg-white/25" />
-          <span className="ml-3 font-mono text-[10px] uppercase tracking-[0.22em] text-white/45">session cp-992-x :: clearpath verification</span>
+          <span className="ml-3 font-mono text-[10px] uppercase tracking-[0.22em] text-white/45">
+            session {jobId.slice(0, 8)} :: clearpath verification
+          </span>
         </div>
 
         <div
@@ -104,15 +99,15 @@ export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ onCo
           {visibleLines.map((line, index) => (
             <div key={`${line.timestamp}-${index}`} className="animate-log-line whitespace-pre-wrap break-words">
               <span className="text-white/25">{line.timestamp}</span>{' '}
-              <span className={levelColor[line.level]}>[{line.level}]</span>{' '}
+              <span className={levelColor[line.level as LogLevel] ?? 'text-white/50'}>[{line.level}]</span>{' '}
               <span className="text-[#c8c8d8]">{line.message}</span>
             </div>
           ))}
 
           {phase === 'running' ? (
             <div className="mt-1 flex items-center gap-2">
-              <span className="text-white/35">{`[${currentIndex >= LOG_LINES.length ? 'OK' : 'SYSTEM'}]`}</span>
-              <span className="text-white/50">awaiting input</span>
+              <span className="text-white/35">[SYSTEM]</span>
+              <span className="text-white/50">awaiting pipeline…</span>
               <span className={`h-4 w-2 bg-secondary transition-opacity ${cursorBlink ? 'opacity-100' : 'opacity-20'}`} />
             </div>
           ) : null}
@@ -120,10 +115,15 @@ export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ onCo
 
         <div className="border-t border-white/10 px-5 py-4">
           <div className="mb-2 text-xs font-semibold uppercase tracking-[0.15em] text-white/55">
-            Processing {Math.min(currentIndex, LOG_LINES.length)}/{LOG_LINES.length} operations...
+            {phase === 'complete'
+              ? 'Processing complete'
+              : `Processing ${visibleLines.length} operations…`}
           </div>
           <div className="h-1.5 w-full bg-white/10">
-            <div className="h-full bg-secondary transition-all duration-300" style={{ width: `${progressPct}%` }} />
+            <div
+              className="h-full bg-secondary transition-all duration-500"
+              style={{ width: phase === 'complete' ? '100%' : `${progressPct}%` }}
+            />
           </div>
         </div>
 
@@ -136,4 +136,3 @@ export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ onCo
     </div>
   )
 }
-

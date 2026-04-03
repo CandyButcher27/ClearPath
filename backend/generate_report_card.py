@@ -23,8 +23,13 @@ try:
     from reportlab.platypus.tableofcontents import TableOfContents
     from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT
 except ImportError:
-    print("Error: reportlab is required. Install with: pip install reportlab")
-    sys.exit(1)
+    letter = A4 = None
+    getSampleStyleSheet = ParagraphStyle = None
+    inch = None
+    HexColor = black = white = red = green = orange = None
+    SimpleDocTemplate = Paragraph = Spacer = Table = TableStyle = PageBreak = None
+    TableOfContents = None
+    TA_CENTER = TA_LEFT = TA_RIGHT = None
 
 
 @dataclass
@@ -40,11 +45,28 @@ class FlagAnalysis:
 
 
 class ReportCardGenerator:
+    @staticmethod
+    def _ensure_reportlab() -> None:
+        if getSampleStyleSheet is None:
+            raise RuntimeError("reportlab is required. Install with: pip install reportlab")
+
     def __init__(self, json_file_path: str):
+        self._ensure_reportlab()
         self.json_file_path = json_file_path
         self.data = self._load_data()
         self.styles = getSampleStyleSheet()
         self._setup_custom_styles()
+
+    @classmethod
+    def from_data(cls, normalized_data_list: List[Dict[str, Any]]) -> "ReportCardGenerator":
+        """Create a report generator from in-memory normalized data."""
+        instance = cls.__new__(cls)
+        instance._ensure_reportlab()
+        instance.json_file_path = None
+        instance.data = normalized_data_list
+        instance.styles = getSampleStyleSheet()
+        instance._setup_custom_styles()
+        return instance
         
     def _load_data(self) -> List[Dict]:
         """Load normalized data from JSON file"""
@@ -52,11 +74,9 @@ class ReportCardGenerator:
             with open(self.json_file_path, 'r', encoding='utf-8') as f:
                 return json.load(f)
         except FileNotFoundError:
-            print(f"Error: File {self.json_file_path} not found")
-            sys.exit(1)
+            raise FileNotFoundError(f"File {self.json_file_path} not found")
         except json.JSONDecodeError as e:
-            print(f"Error: Invalid JSON in {self.json_file_path}: {e}")
-            sys.exit(1)
+            raise ValueError(f"Invalid JSON in {self.json_file_path}: {e}") from e
     
     def _setup_custom_styles(self):
         """Setup custom styles for the PDF report"""
@@ -533,6 +553,23 @@ class ReportCardGenerator:
             return True
         except Exception as e:
             print(f"Error generating PDF: {e}")
+            return False
+
+    @classmethod
+    def generate_from_data(
+        cls,
+        normalized_data_list: List[Dict[str, Any]],
+        product_id: str,
+        output_path: str,
+    ) -> bool:
+        """
+        Generate PDF report card from in-memory normalized payload(s).
+        """
+        try:
+            generator = cls.from_data(normalized_data_list)
+            return generator.generate_report_card(product_id, output_path)
+        except Exception as e:
+            print(f"Error generating report from data: {e}")
             return False
 
 

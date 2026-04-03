@@ -1,13 +1,81 @@
 import React from 'react'
 import { verificationResultsData } from '../data/mockData'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
+import { getReportUrl } from '../lib/api'
+import type { FlagResult, VerificationResults } from '../types/api'
 
 export interface ReadonlyVerificationResultsScreenProps {
   onNavigateHome: () => void
+  results: VerificationResults | null
+  jobId: string
 }
 
-export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScreenProps> = ({ onNavigateHome }) => {
+// ---------------------------------------------------------------------------
+// Build display points from the inconsistency_flags object
+// ---------------------------------------------------------------------------
+interface DisplayPoint {
+  id: string
+  title: string
+  flagged: boolean
+}
+
+function buildPoints(results: VerificationResults | null): DisplayPoint[] {
+  if (!results) {
+    return verificationResultsData.points.map((p, i) => ({
+      id: String(i + 1).padStart(2, '0'),
+      title: p.title,
+      flagged: false,
+    }))
+  }
+
+  const flags = results.inconsistency_flags ?? {}
+  const categories: [string, Record<string, FlagResult | null>][] = [
+    ['Logistics', flags.logistics_flags ?? {}],
+    ['Quantity & Weight', flags.quantity_weight_flags ?? {}],
+    ['Product-Specific', flags.product_specific_flags ?? {}],
+    ['Financial & Timing', flags.financial_timing_flags ?? {}],
+  ]
+
+  const points: DisplayPoint[] = []
+  let counter = 1
+  for (const [catLabel, catData] of categories) {
+    const flagged = Object.values(catData).some(f => f?.is_flagged)
+    points.push({
+      id: String(counter).padStart(2, '0'),
+      title: `${catLabel} Checks ${flagged ? '— Issues Detected' : '— All Clear'}`,
+      flagged,
+    })
+    counter++
+  }
+  return points
+}
+
+// ---------------------------------------------------------------------------
+// Component
+// ---------------------------------------------------------------------------
+export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScreenProps> = ({
+  onNavigateHome,
+  results,
+  jobId,
+}) => {
   const scrollY = useScrollAnimation()
+  const points = buildPoints(results)
+
+  const processId = results?.product_id ?? verificationResultsData.header.processId
+  const category = results?.category_metadata?.applied_category ?? '—'
+  const totalWeight = results?.normalized_aggregates?.total_weight_reported_kg ?? null
+  const totalValue = results?.normalized_aggregates?.total_value ?? null
+  const currency = results?.normalized_aggregates?.currency ?? 'USD'
+  const inconsistencyFlags = results?.inconsistency_flags ?? {}
+  const flaggedCount = results
+    ? Object.values(inconsistencyFlags)
+        .flatMap(c => Object.values(c ?? {}))
+        .filter(f => f?.is_flagged).length
+    : 0
+
+  const handleDownloadReport = () => {
+    window.open(getReportUrl(jobId), '_blank')
+  }
 
   return (
     <div className="min-h-screen bg-surface text-on-surface selection:bg-secondary/20">
@@ -53,56 +121,127 @@ export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScre
               <img src="/circle.png" alt="check circle" className="inline-block h-8 w-8 object-contain" />
             </div>
             <div className="flex flex-col">
-              <span className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-secondary">Process ID: {verificationResultsData.header.processId}</span>
-              <h1 className="text-7xl font-black uppercase leading-[0.9] tracking-tighter text-primary md:text-8xl">{verificationResultsData.header.title}</h1>
+              <span className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-secondary">
+                Process ID: {processId}
+              </span>
+              <h1 className="text-7xl font-black uppercase leading-[0.9] tracking-tighter text-primary md:text-8xl">
+                {verificationResultsData.header.title}
+              </h1>
             </div>
           </div>
           <p className="mt-4 max-w-2xl border-l-4 border-secondary pl-6 text-lg leading-relaxed text-on-surface-variant">
-            {verificationResultsData.header.description}
+            {results
+              ? `${flaggedCount} inconsistency flag(s) detected across ${points.length} check categories.`
+              : verificationResultsData.header.description}
           </p>
         </header>
 
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
+          {/* Left: check points */}
           <div className="stagger-children lg:col-span-8 space-y-4">
-            {verificationResultsData.points.map((point, index) => (
+            {points.map((point, index) => (
               <div
                 key={point.id}
-                className={`reveal point-${index} group rounded-sm border-l-8 border-primary bg-surface-container-lowest p-8 shadow-sm transition-all duration-500 hover:bg-surface-container hover:shadow-xl`}
+                className={`reveal point-${index} group rounded-sm border-l-8 bg-surface-container-lowest p-8 shadow-sm transition-all duration-500 hover:bg-surface-container hover:shadow-xl ${
+                  point.flagged ? 'border-secondary' : 'border-primary'
+                }`}
                 style={{ transform: `translateY(${index % 2 === 0 ? scrollY * 0.02 : scrollY * -0.015}px)` }}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex flex-col gap-1">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant">Metadata Point {point.id}</span>
-                    <h3 className="text-2xl font-bold tracking-tight text-primary">{point.title}</h3>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant">Check Group {point.id}</span>
+                    <h3 className={`text-2xl font-bold tracking-tight ${point.flagged ? 'text-secondary' : 'text-primary'}`}>
+                      {point.title}
+                    </h3>
                   </div>
                   <img
-                    src="/ccircle.png"
-                    alt="verified"
+                    src={point.flagged ? '/circle.png' : '/ccircle.png'}
+                    alt={point.flagged ? 'flagged' : 'verified'}
                     className="animated-check inline-block"
-                    style={{ width: '32px', height: '32px', objectFit: 'contain', animationDelay: `${0.1 + index * 0.1}s` }}
+                    style={{
+                      width: '32px', height: '32px', objectFit: 'contain',
+                      animationDelay: `${0.1 + index * 0.1}s`,
+                      filter: point.flagged ? 'hue-rotate(0deg)' : 'none',
+                    }}
                   />
                 </div>
               </div>
             ))}
+
+            {/* Detailed flags table */}
+            {results && flaggedCount > 0 && (
+              <div className="mt-8 border border-secondary/20 bg-surface-container-lowest p-8">
+                <h4 className="mb-4 text-xs font-black uppercase tracking-widest text-secondary">Detailed Flag Analysis</h4>
+                <div className="space-y-3">
+                  {Object.entries(inconsistencyFlags).flatMap(([catName, catData]) =>
+                    Object.entries(catData ?? {})
+                      .filter(([, f]) => f?.is_flagged)
+                      .map(([flagName, flagData]) => (
+                        <div key={`${catName}-${flagName}`} className="border-l-2 border-secondary/40 pl-4">
+                          <span className="text-[10px] font-black uppercase tracking-widest text-secondary">
+                            {flagName.replace(/_/g, ' ')}
+                          </span>
+                          <div className="mt-1 text-xs text-on-surface-variant">
+                            {Object.entries(flagData as FlagResult)
+                              .filter(([k]) => k !== 'is_flagged')
+                              .slice(0, 3)
+                              .map(([k, v]) => (
+                                <span key={k} className="mr-3">
+                                  <span className="font-bold">{k.replace(/_/g, ' ')}:</span>{' '}
+                                  {typeof v === 'object' ? JSON.stringify(v) : String(v)}
+                                </span>
+                              ))}
+                          </div>
+                        </div>
+                      ))
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
+          {/* Right: sidebar */}
           <div className="scroll-reveal-left lg:col-span-4 sticky top-32 space-y-8">
             <div className="group relative overflow-hidden rounded-sm border border-white/8 bg-surface-container-high p-8 shadow-xl">
               <div className="absolute inset-0 bg-gradient-to-br from-surface-container-high via-surface-container-high to-secondary/10 opacity-50" />
               <div className="relative z-10">
-                <h4 className="mb-6 text-[10px] font-bold uppercase tracking-[0.3em] text-on-surface-variant">Final Hash Signature</h4>
-                <div className="break-all font-mono text-sm leading-relaxed tracking-wider text-on-surface opacity-90">
-                  {verificationResultsData.sidebar.hash}
-                </div>
+                <h4 className="mb-6 text-[10px] font-bold uppercase tracking-[0.3em] text-on-surface-variant">Shipment Summary</h4>
+
+                {results ? (
+                  <div className="space-y-3 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-on-surface-variant text-[10px] font-bold uppercase">Category</span>
+                      <span className="font-bold text-on-surface">{category}</span>
+                    </div>
+                    {totalWeight !== null && (
+                      <div className="flex justify-between">
+                        <span className="text-on-surface-variant text-[10px] font-bold uppercase">Total Weight</span>
+                        <span className="font-bold text-on-surface">{totalWeight.toFixed(1)} kg</span>
+                      </div>
+                    )}
+                    {totalValue !== null && (
+                      <div className="flex justify-between">
+                        <span className="text-on-surface-variant text-[10px] font-bold uppercase">Total Value</span>
+                        <span className="font-bold text-on-surface">{currency} {totalValue.toFixed(2)}</span>
+                      </div>
+                    )}
+                    <div className="flex justify-between pt-2 border-t border-white/10">
+                      <span className="text-on-surface-variant text-[10px] font-bold uppercase">Flags Raised</span>
+                      <span className={`font-bold ${flaggedCount > 0 ? 'text-secondary' : 'text-emerald-400'}`}>
+                        {flaggedCount}
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="break-all font-mono text-sm leading-relaxed tracking-wider text-on-surface opacity-90">
+                    {verificationResultsData.sidebar.hash}
+                  </div>
+                )}
 
                 <div className="mt-8 border-t border-white/10 pt-8">
-                  <div className="mb-2 flex justify-between">
-                    <span className="text-[10px] font-bold uppercase text-on-surface-variant">Verified At</span>
-                    <span className="text-xs font-bold text-on-surface">{verificationResultsData.sidebar.verifiedAt}</span>
-                  </div>
                   <div className="flex justify-between">
-                    <span className="text-[10px] font-bold uppercase text-on-surface-variant">Nodes Checked</span>
-                    <span className="text-xs font-bold text-secondary">{verificationResultsData.sidebar.nodesChecked}</span>
+                    <span className="text-[10px] font-bold uppercase text-on-surface-variant">Job ID</span>
+                    <span className="text-xs font-bold text-on-surface font-mono">{jobId.slice(0, 8)}</span>
                   </div>
                 </div>
               </div>
@@ -127,8 +266,11 @@ export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScre
               </div>
             </div>
 
-            <button className="btn-glow relative w-full overflow-hidden rounded-sm bg-secondary py-5 text-sm font-black uppercase tracking-[0.2em] text-white shadow-[0_0_15px_rgba(227,30,36,0.2)] transition-all hover:bg-[#f12a31] hover:shadow-[0_0_30px_rgba(227,30,36,0.5)] active:scale-[0.98]">
-              Generate Final Certificate
+            <button
+              onClick={handleDownloadReport}
+              className="btn-glow relative w-full overflow-hidden rounded-sm bg-secondary py-5 text-sm font-black uppercase tracking-[0.2em] text-white shadow-[0_0_15px_rgba(227,30,36,0.2)] transition-all hover:bg-[#f12a31] hover:shadow-[0_0_30px_rgba(227,30,36,0.5)] active:scale-[0.98]"
+            >
+              Download Report PDF
             </button>
           </div>
         </div>

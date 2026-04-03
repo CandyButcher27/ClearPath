@@ -1,0 +1,55 @@
+# Per-language caption prefix keywords.
+# Used by classification and proposal generation to detect caption blocks.
+# Keys are ISO 639-1 language codes.
+
+en:
+  caption_prefixes:
+    - figure
+    - "fig."
+    - fig
+    - table
+    - image
+    - chart
+    - graph
+
+es:
+  caption_prefixes:
+    - figura
+    - "fig."
+    - tabla
+    - imagen
+    - "gráfico"
+    - cuadro
+
+fr:
+  caption_prefixes:
+    - figure
+    - "fig."
+    - tableau
+    - image
+    - graphique
+
+de:
+  caption_prefixes:
+    - abbildung
+    - "abb."
+    - tabelle
+    - bild
+    - grafik
+    - diagramm
+
+it:
+  caption_prefixes:
+    - figura
+    - "fig."
+    - tabella
+    - immagine
+    - grafico
+
+pt:
+  caption_prefixes:
+    - figura
+    - "fig."
+    - tabela
+    - imagem
+    - "gráfico"

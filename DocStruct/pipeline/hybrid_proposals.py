@@ -13,6 +13,8 @@ from typing import Any, Dict, List, Literal, Optional
 from schemas.block import BoundingBox
 from utils.geometry import bbox_overlap, merge_bboxes
 
+_DEFAULT_CAPTION_PREFIXES = ("figure", "fig.", "fig ", "table", "image", "chart", "graph")
+
 
 @dataclass
 class RegionProposal:
@@ -32,6 +34,7 @@ def _infer_type_from_text_features(
     text: str,
     y_position: float,
     page_height: float,
+    caption_prefixes: tuple = _DEFAULT_CAPTION_PREFIXES,
 ) -> tuple[str, float]:
     """
     Infer block type from text features using heuristics.
@@ -47,7 +50,6 @@ def _infer_type_from_text_features(
 
     # Caption detection
     text_lower = text.lower().strip()
-    caption_prefixes = ("figure", "fig.", "fig ", "table", "image", "chart", "graph")
     if text_lower.startswith(caption_prefixes) and word_count < 30:
         return "caption", 0.75
 
@@ -63,6 +65,7 @@ def _infer_type_from_text_features(
 def _generate_text_cluster_proposals(
     layout_blocks: List,
     page_data,
+    caption_prefixes: tuple = _DEFAULT_CAPTION_PREFIXES,
 ) -> List[RegionProposal]:
     """
     Generate proposals from text cluster blocks (LayoutBlocks).
@@ -99,6 +102,7 @@ def _generate_text_cluster_proposals(
             text=text,
             y_position=bbox.y1,  # Top of bbox
             page_height=page_data.height,
+            caption_prefixes=caption_prefixes,
         )
 
         # Base confidence from clustering quality
@@ -293,6 +297,7 @@ def generate_geometry_proposals(
     layout_blocks: List,
     page_lines: List[Dict[str, Any]],
     min_line_bounded_area: float = 1000.0,
+    caption_prefixes: tuple = _DEFAULT_CAPTION_PREFIXES,
 ) -> List[RegionProposal]:
     """
     Generate geometry-based region proposals independently of model detections.
@@ -313,7 +318,7 @@ def generate_geometry_proposals(
     all_proposals = []
 
     # Strategy 1: Text cluster proposals
-    text_proposals = _generate_text_cluster_proposals(layout_blocks, page_data)
+    text_proposals = _generate_text_cluster_proposals(layout_blocks, page_data, caption_prefixes)
     all_proposals.extend(text_proposals)
 
     # Strategy 2: Line-bounded regions (tables)
