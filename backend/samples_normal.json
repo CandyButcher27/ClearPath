@@ -30,7 +30,7 @@
     "inconsistency_flags": {
       "logistics_flags": {
         "address_mismatch": {
-          "is_flagged": true,
+          "is_flagged": false,
           "score": 76.36
         },
         "container_conflict": {
@@ -39,8 +39,7 @@
           "pl_cont": "CONT-772"
         },
         "scac_missing": {
-          "is_flagged": false,
-          "value": "CCEX"
+          "is_flagged": false
         },
         "po_mismatch": {
           "is_flagged": false,
@@ -57,11 +56,7 @@
           "bol": 450.0,
           "pl": 450.0
         },
-        "gross_net_logic": {
-          "is_flagged": false,
-          "net": 0,
-          "gross": 0
-        },
+        "gross_net_logic": null,
         "overcharge_risk": {
           "is_flagged": false,
           "invoice_qty": 400.0,
@@ -73,15 +68,11 @@
           "shipped": 400
         },
         "uom_mismatch": {
-          "is_flagged": false,
-          "inv_uom": "Crates",
-          "bol_uom": "Pallets"
+          "is_flagged": false
         }
       },
       "product_specific_flags": {
-        "hazmat_mismatch": {
-          "is_flagged": false
-        },
+        "hazmat_mismatch": null,
         "expiry_check": {
           "is_flagged": false,
           "expiry": "2026-04-20",
@@ -94,12 +85,8 @@
         "temp_control_missing": {
           "is_flagged": false
         },
-        "serial_count_mismatch": {
-          "is_flagged": false
-        },
-        "density_anomaly": {
-          "is_flagged": false
-        }
+        "serial_count_mismatch": null,
+        "density_anomaly": null
       },
       "financial_timing_flags": {
         "tax_calculation_error": {
@@ -149,7 +136,7 @@
     "inconsistency_flags": {
       "logistics_flags": {
         "address_mismatch": {
-          "is_flagged": true,
+          "is_flagged": false,
           "score": 76.92
         },
         "container_conflict": {
@@ -158,8 +145,7 @@
           "pl_cont": "C-99"
         },
         "scac_missing": {
-          "is_flagged": false,
-          "value": "OCBK"
+          "is_flagged": false
         },
         "po_mismatch": {
           "is_flagged": false,
@@ -192,30 +178,17 @@
           "shipped": 2500
         },
         "uom_mismatch": {
-          "is_flagged": false,
-          "inv_uom": "kg",
-          "bol_uom": "Sacks"
+          "is_flagged": false
         }
       },
       "product_specific_flags": {
         "hazmat_mismatch": {
           "is_flagged": false
         },
-        "expiry_check": {
-          "is_flagged": false,
-          "expiry": null,
-          "delivery": "2026-04-10"
-        },
-        "shelf_life_error": {
-          "is_flagged": false,
-          "days_remaining": 100
-        },
-        "temp_control_missing": {
-          "is_flagged": null
-        },
-        "serial_count_mismatch": {
-          "is_flagged": false
-        },
+        "expiry_check": null,
+        "shelf_life_error": null,
+        "temp_control_missing": null,
+        "serial_count_mismatch": null,
         "density_anomaly": {
           "is_flagged": false,
           "calculated": 595.24
@@ -270,7 +243,7 @@
     "inconsistency_flags": {
       "logistics_flags": {
         "address_mismatch": {
-          "is_flagged": true,
+          "is_flagged": false,
           "score": 63.83
         },
         "container_conflict": {
@@ -279,8 +252,7 @@
           "pl_cont": "CONT-Z"
         },
         "scac_missing": {
-          "is_flagged": false,
-          "value": "FTAK"
+          "is_flagged": false
         },
         "po_mismatch": {
           "is_flagged": false,
@@ -297,11 +269,7 @@
           "bol": 500.0,
           "pl": 475.0
         },
-        "gross_net_logic": {
-          "is_flagged": false,
-          "net": 0,
-          "gross": 0
-        },
+        "gross_net_logic": null,
         "overcharge_risk": {
           "is_flagged": true,
           "invoice_qty": 100.0,
@@ -313,33 +281,18 @@
           "shipped": 95
         },
         "uom_mismatch": {
-          "is_flagged": false,
-          "inv_uom": "units",
-          "bol_uom": "Pallets"
+          "is_flagged": false
         }
       },
       "product_specific_flags": {
-        "hazmat_mismatch": {
-          "is_flagged": false
-        },
-        "expiry_check": {
-          "is_flagged": false,
-          "expiry": null,
-          "delivery": "2026-03-28"
-        },
-        "shelf_life_error": {
-          "is_flagged": false,
-          "days_remaining": 100
-        },
-        "temp_control_missing": {
-          "is_flagged": null
-        },
+        "hazmat_mismatch": null,
+        "expiry_check": null,
+        "shelf_life_error": null,
+        "temp_control_missing": null,
         "serial_count_mismatch": {
           "is_flagged": false
         },
-        "density_anomaly": {
-          "is_flagged": false
-        }
+        "density_anomaly": null
       },
       "financial_timing_flags": {
         "tax_calculation_error": {
@@ -399,8 +352,7 @@
           "pl_cont": "CONT-M1"
         },
         "scac_missing": {
-          "is_flagged": false,
-          "value": "SWCH"
+          "is_flagged": false
         },
         "po_mismatch": {
           "is_flagged": false,
@@ -417,11 +369,7 @@
           "bol": 200.0,
           "pl": 200.0
         },
-        "gross_net_logic": {
-          "is_flagged": false,
-          "net": 0,
-          "gross": 0
-        },
+        "gross_net_logic": null,
         "overcharge_risk": {
           "is_flagged": false,
           "invoice_qty": 50.0,
@@ -433,15 +381,11 @@
           "shipped": 50
         },
         "uom_mismatch": {
-          "is_flagged": false,
-          "inv_uom": "Crates",
-          "bol_uom": "Pallets"
+          "is_flagged": false
         }
       },
       "product_specific_flags": {
-        "hazmat_mismatch": {
-          "is_flagged": false
-        },
+        "hazmat_mismatch": null,
         "expiry_check": {
           "is_flagged": false,
           "expiry": "2026-04-15",
@@ -454,12 +398,8 @@
         "temp_control_missing": {
           "is_flagged": true
         },
-        "serial_count_mismatch": {
-          "is_flagged": false
-        },
-        "density_anomaly": {
-          "is_flagged": false
-        }
+        "serial_count_mismatch": null,
+        "density_anomaly": null
       },
       "financial_timing_flags": {
         "tax_calculation_error": {
@@ -509,7 +449,7 @@
     "inconsistency_flags": {
       "logistics_flags": {
         "address_mismatch": {
-          "is_flagged": true,
+          "is_flagged": false,
           "score": 70.0
         },
         "container_conflict": {
@@ -518,8 +458,7 @@
           "pl_cont": "CONT-S5"
         },
         "scac_missing": {
-          "is_flagged": false,
-          "value": "HMHL"
+          "is_flagged": false
         },
         "po_mismatch": {
           "is_flagged": false,
@@ -552,30 +491,17 @@
           "shipped": 1000
         },
         "uom_mismatch": {
-          "is_flagged": false,
-          "inv_uom": "kg",
-          "bol_uom": "Pallet"
+          "is_flagged": false
         }
       },
       "product_specific_flags": {
         "hazmat_mismatch": {
           "is_flagged": true
         },
-        "expiry_check": {
-          "is_flagged": false,
-          "expiry": null,
-          "delivery": "2026-04-02"
-        },
-        "shelf_life_error": {
-          "is_flagged": false,
-          "days_remaining": 100
-        },
-        "temp_control_missing": {
-          "is_flagged": null
-        },
-        "serial_count_mismatch": {
-          "is_flagged": false
-        },
+        "expiry_check": null,
+        "shelf_life_error": null,
+        "temp_control_missing": null,
+        "serial_count_mismatch": null,
         "density_anomaly": {
           "is_flagged": false,
           "calculated": 400.0
@@ -630,17 +556,12 @@
     "inconsistency_flags": {
       "logistics_flags": {
         "address_mismatch": {
-          "is_flagged": true,
+          "is_flagged": false,
           "score": 68.42
         },
-        "container_conflict": {
-          "is_flagged": false,
-          "inv_cont": "N/A",
-          "pl_cont": "N/A"
-        },
+        "container_conflict": null,
         "scac_missing": {
-          "is_flagged": false,
-          "value": "HVHL"
+          "is_flagged": false
         },
         "po_mismatch": {
           "is_flagged": false,
@@ -657,11 +578,7 @@
           "bol": 800.0,
           "pl": 800.0
         },
-        "gross_net_logic": {
-          "is_flagged": false,
-          "net": 0,
-          "gross": 0
-        },
+        "gross_net_logic": null,
         "overcharge_risk": {
           "is_flagged": false,
           "invoice_qty": 1.0,
@@ -673,33 +590,18 @@
           "shipped": 1
         },
         "uom_mismatch": {
-          "is_flagged": false,
-          "inv_uom": "Unit",
-          "bol_uom": "Crate"
+          "is_flagged": false
         }
       },
       "product_specific_flags": {
-        "hazmat_mismatch": {
-          "is_flagged": false
-        },
-        "expiry_check": {
-          "is_flagged": false,
-          "expiry": null,
-          "delivery": "2026-04-05"
-        },
-        "shelf_life_error": {
-          "is_flagged": false,
-          "days_remaining": 100
-        },
-        "temp_control_missing": {
-          "is_flagged": null
-        },
+        "hazmat_mismatch": null,
+        "expiry_check": null,
+        "shelf_life_error": null,
+        "temp_control_missing": null,
         "serial_count_mismatch": {
           "is_flagged": false
         },
-        "density_anomaly": {
-          "is_flagged": false
-        }
+        "density_anomaly": null
       },
       "financial_timing_flags": {
         "tax_calculation_error": {
@@ -749,24 +651,12 @@
     },
     "inconsistency_flags": {
       "logistics_flags": {
-        "address_mismatch": {
-          "is_flagged": true,
-          "score": 0
-        },
-        "container_conflict": {
-          "is_flagged": false,
-          "inv_cont": null,
-          "pl_cont": null
-        },
+        "address_mismatch": null,
+        "container_conflict": null,
         "scac_missing": {
-          "is_flagged": false,
-          "value": "EEXP"
+          "is_flagged": false
         },
-        "po_mismatch": {
-          "is_flagged": false,
-          "bol_po": null,
-          "pl_po": null
-        },
+        "po_mismatch": null,
         "incoterm_conflict": {
           "is_flagged": false
         }
@@ -777,65 +667,24 @@
           "bol": 50.0,
           "pl": 50.0
         },
-        "gross_net_logic": {
-          "is_flagged": false,
-          "net": 0,
-          "gross": 0
-        },
-        "overcharge_risk": {
-          "is_flagged": false,
-          "invoice_qty": 0,
-          "shipped_qty": 50
-        },
-        "short_shipment": {
-          "is_flagged": false,
-          "ordered": 0,
-          "shipped": 50
-        },
-        "uom_mismatch": {
-          "is_flagged": false,
-          "inv_uom": null,
-          "bol_uom": null
-        }
+        "gross_net_logic": null,
+        "overcharge_risk": null,
+        "short_shipment": null,
+        "uom_mismatch": null
       },
       "product_specific_flags": {
-        "hazmat_mismatch": {
-          "is_flagged": false
-        },
-        "expiry_check": {
-          "is_flagged": false,
-          "expiry": "2026-03-01",
-          "delivery": null
-        },
-        "shelf_life_error": {
-          "is_flagged": true,
-          "days_remaining": -31
-        },
-        "temp_control_missing": {
-          "is_flagged": true
-        },
-        "serial_count_mismatch": {
-          "is_flagged": false
-        },
-        "density_anomaly": {
-          "is_flagged": false
-        }
+        "hazmat_mismatch": null,
+        "expiry_check": null,
+        "shelf_life_error": null,
+        "temp_control_missing": null,
+        "serial_count_mismatch": null,
+        "density_anomaly": null
       },
       "financial_timing_flags": {
-        "tax_calculation_error": {
-          "is_flagged": false,
-          "expected": 0.0,
-          "actual": 0
-        },
-        "total_value_mismatch": {
-          "is_flagged": true
-        },
-        "payment_due_logic": {
-          "is_flagged": false
-        },
-        "lead_time_anomaly": {
-          "is_flagged": false
-        }
+        "tax_calculation_error": null,
+        "total_value_mismatch": null,
+        "payment_due_logic": null,
+        "lead_time_anomaly": null
       }
     }
   },
@@ -869,17 +718,12 @@
     "inconsistency_flags": {
       "logistics_flags": {
         "address_mismatch": {
-          "is_flagged": true,
+          "is_flagged": false,
           "score": 69.77
         },
-        "container_conflict": {
-          "is_flagged": false,
-          "inv_cont": "N/A",
-          "pl_cont": "N/A"
-        },
+        "container_conflict": null,
         "scac_missing": {
-          "is_flagged": true,
-          "value": ""
+          "is_flagged": true
         },
         "po_mismatch": {
           "is_flagged": false,
@@ -912,30 +756,17 @@
           "shipped": 5000
         },
         "uom_mismatch": {
-          "is_flagged": false,
-          "inv_uom": "kg",
-          "bol_uom": "Load"
+          "is_flagged": false
         }
       },
       "product_specific_flags": {
         "hazmat_mismatch": {
           "is_flagged": false
         },
-        "expiry_check": {
-          "is_flagged": false,
-          "expiry": null,
-          "delivery": "2026-04-01"
-        },
-        "shelf_life_error": {
-          "is_flagged": false,
-          "days_remaining": 100
-        },
-        "temp_control_missing": {
-          "is_flagged": null
-        },
-        "serial_count_mismatch": {
-          "is_flagged": false
-        },
+        "expiry_check": null,
+        "shelf_life_error": null,
+        "temp_control_missing": null,
+        "serial_count_mismatch": null,
         "density_anomaly": {
           "is_flagged": false,
           "calculated": 1428.57
@@ -962,7 +793,7 @@
   {
     "product_id": "PRD-009",
     "category_metadata": {
-      "applied_category": "General",
+      "applied_category": "Manufactured Goods",
       "fields": {
         "serial_number": "SN-MAT-9901",
         "model_number": "M-Queen",
@@ -990,17 +821,12 @@
     "inconsistency_flags": {
       "logistics_flags": {
         "address_mismatch": {
-          "is_flagged": true,
+          "is_flagged": false,
           "score": 75.0
         },
-        "container_conflict": {
-          "is_flagged": false,
-          "inv_cont": "N/A",
-          "pl_cont": "N/A"
-        },
+        "container_conflict": null,
         "scac_missing": {
-          "is_flagged": false,
-          "value": "FRFT"
+          "is_flagged": false
         },
         "po_mismatch": {
           "is_flagged": false,
@@ -1017,11 +843,7 @@
           "bol": 60.0,
           "pl": 60.0
         },
-        "gross_net_logic": {
-          "is_flagged": false,
-          "net": 0,
-          "gross": 0
-        },
+        "gross_net_logic": null,
         "overcharge_risk": {
           "is_flagged": false,
           "invoice_qty": 1.0,
@@ -1033,33 +855,18 @@
           "shipped": 1
         },
         "uom_mismatch": {
-          "is_flagged": false,
-          "inv_uom": "unit",
-          "bol_uom": "Unit"
+          "is_flagged": false
         }
       },
       "product_specific_flags": {
-        "hazmat_mismatch": {
-          "is_flagged": false
-        },
-        "expiry_check": {
-          "is_flagged": false,
-          "expiry": null,
-          "delivery": "2026-04-05"
-        },
-        "shelf_life_error": {
-          "is_flagged": false,
-          "days_remaining": 100
-        },
-        "temp_control_missing": {
-          "is_flagged": null
-        },
+        "hazmat_mismatch": null,
+        "expiry_check": null,
+        "shelf_life_error": null,
+        "temp_control_missing": null,
         "serial_count_mismatch": {
           "is_flagged": false
         },
-        "density_anomaly": {
-          "is_flagged": false
-        }
+        "density_anomaly": null
       },
       "financial_timing_flags": {
         "tax_calculation_error": {
@@ -1082,7 +889,7 @@
   {
     "product_id": "PRD-010",
     "category_metadata": {
-      "applied_category": "General",
+      "applied_category": "Perishables",
       "fields": {
         "date_of_harvest": "2026-03-20",
         "date_of_shipping": "2026-04-01",
@@ -1110,7 +917,7 @@
     "inconsistency_flags": {
       "logistics_flags": {
         "address_mismatch": {
-          "is_flagged": true,
+          "is_flagged": false,
           "score": 66.67
         },
         "container_conflict": {
@@ -1119,8 +926,7 @@
           "pl_cont": "CONT-XYZ"
         },
         "scac_missing": {
-          "is_flagged": false,
-          "value": "ARCT"
+          "is_flagged": false
         },
         "po_mismatch": {
           "is_flagged": false,
@@ -1137,11 +943,7 @@
           "bol": 300.0,
           "pl": 300.0
         },
-        "gross_net_logic": {
-          "is_flagged": false,
-          "net": 0,
-          "gross": 0
-        },
+        "gross_net_logic": null,
         "overcharge_risk": {
           "is_flagged": true,
           "invoice_qty": 300.0,
@@ -1153,15 +955,11 @@
           "shipped": 50
         },
         "uom_mismatch": {
-          "is_flagged": false,
-          "inv_uom": "kg",
-          "bol_uom": "Pallets"
+          "is_flagged": false
         }
       },
       "product_specific_flags": {
-        "hazmat_mismatch": {
-          "is_flagged": false
-        },
+        "hazmat_mismatch": null,
         "expiry_check": {
           "is_flagged": false,
           "expiry": "2026-10-01",
@@ -1174,12 +972,8 @@
         "temp_control_missing": {
           "is_flagged": false
         },
-        "serial_count_mismatch": {
-          "is_flagged": false
-        },
-        "density_anomaly": {
-          "is_flagged": false
-        }
+        "serial_count_mismatch": null,
+        "density_anomaly": null
       },
       "financial_timing_flags": {
         "tax_calculation_error": {
