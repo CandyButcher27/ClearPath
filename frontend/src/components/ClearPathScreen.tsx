@@ -1,118 +1,117 @@
-import React, { useEffect, useState } from 'react';
-import { clearPathData } from '../data/mockData';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import React, { useEffect, useState } from 'react'
+import { clearPathData } from '../data/mockData'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 export interface ReadonlyClearPathScreenProps {
-  onNavigateToResults: () => void;
+  onSubmit: () => void
 }
 
-export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onNavigateToResults }) => {
-  const scrollY = useScrollAnimation();
-  const [gridPos, setGridPos] = useState({ x: 0, y: 0 });
+export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubmit }) => {
+  const scrollY = useScrollAnimation()
+  const [gridPos, setGridPos] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      const x = e.clientX / window.innerWidth;
-      const y = e.clientY / window.innerHeight;
-      setGridPos({ x: x * 20, y: y * 20 });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+      const x = e.clientX / window.innerWidth
+      const y = e.clientY / window.innerHeight
+      setGridPos({ x: x * 20, y: y * 20 })
+    }
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
 
   return (
-    <div className="bg-surface text-on-surface selection:bg-secondary/30 overflow-x-hidden min-h-screen">
-      {/* Floating 3D Component */}
-      <div className="fixed top-1/2 -right-12 z-40 hidden xl:block pointer-events-none wireframe-container">
+    <div className="min-h-screen overflow-x-hidden bg-surface text-on-surface selection:bg-secondary/30">
+      <div className="wireframe-container pointer-events-none fixed top-1/2 -right-12 z-40 hidden xl:block">
         <div
           className="wireframe-cube"
           style={{ transform: `rotateX(${scrollY * 0.1}deg) rotateY(${scrollY * 0.15}deg)` }}
         >
-          <div className="cube-face front"></div>
-          <div className="cube-face back"></div>
-          <div className="cube-face right"></div>
-          <div className="cube-face left"></div>
-          <div className="cube-face top"></div>
-          <div className="cube-face bottom"></div>
+          <div className="cube-face front" />
+          <div className="cube-face back" />
+          <div className="cube-face right" />
+          <div className="cube-face left" />
+          <div className="cube-face top" />
+          <div className="cube-face bottom" />
         </div>
       </div>
 
-      {/* Grid Overlay */}
       <div
-        className="fixed inset-0 grid-overlay pointer-events-none z-0 opacity-50 transition-transform duration-100 ease-out"
+        className="fixed inset-0 z-0 grid-overlay opacity-50 transition-transform duration-100 ease-out pointer-events-none"
         style={{ transform: `translate(${gridPos.x}px, ${gridPos.y}px)` }}
-      ></div>
+      />
 
-      {/* Top Navigation Bar */}
-      <nav className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl border-b border-zinc-200">
-        <div className="flex justify-between items-center px-8 h-20 max-w-[1440px] mx-auto">
-          <div className="text-2xl font-black tracking-tighter text-black uppercase">VERIFY_LOGIC</div>
-          <div className="hidden md:flex gap-10 items-center">
-            <a className="font-inter tracking-tighter font-extrabold text-xs uppercase text-black border-b-2 border-black pb-1" href="#docs">Documents</a>
-            <a className="font-inter tracking-tighter font-extrabold text-xs uppercase text-zinc-400 hover:text-black transition-colors" href="#verify">Verification</a>
-            <a className="font-inter tracking-tighter font-extrabold text-xs uppercase text-zinc-400 hover:text-black transition-colors" href="#logs">Audit Logs</a>
-            <a className="font-inter tracking-tighter font-extrabold text-xs uppercase text-zinc-400 hover:text-black transition-colors" href="#compliance">Compliance</a>
+      <nav className="fixed top-0 z-50 w-full border-b border-outline-variant/20 bg-surface/80 shadow-[0_1px_0_rgba(255,255,255,0.04),0_4px_24px_rgba(0,0,0,0.4)] backdrop-blur-xl">
+        <div className="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-8">
+          <div className="logo-glow text-2xl font-black uppercase tracking-tighter text-primary">VERIFY_LOGIC</div>
+          <div className="hidden items-center gap-10 md:flex">
+            <a className="border-b-2 border-on-surface pb-1 font-inter text-xs font-extrabold uppercase tracking-tighter text-primary" href="#docs">Documents</a>
+            <a className="font-inter text-xs font-extrabold uppercase tracking-tighter text-on-surface-variant transition-colors hover:text-primary" href="#verify">Verification</a>
+            <a className="font-inter text-xs font-extrabold uppercase tracking-tighter text-on-surface-variant transition-colors hover:text-primary" href="#logs">Audit Logs</a>
+            <a className="font-inter text-xs font-extrabold uppercase tracking-tighter text-on-surface-variant transition-colors hover:text-primary" href="#compliance">Compliance</a>
           </div>
-          <div className="flex gap-6 items-center">
-            <button className="font-inter tracking-tighter font-extrabold text-xs uppercase text-zinc-400 hover:text-black transition-colors">System Status</button>
-            <button className="bg-primary text-on-primary px-8 py-3 font-inter tracking-tighter font-extrabold text-xs uppercase hover:bg-secondary transition-all duration-300">Secure Login</button>
+          <div className="flex items-center gap-6">
+            <button className="font-inter text-xs font-extrabold uppercase tracking-tighter text-on-surface-variant transition-colors hover:text-primary">System Status</button>
+            <button className="bg-primary px-8 py-3 font-inter text-xs font-extrabold uppercase tracking-tighter text-on-primary transition-all duration-300 hover:bg-secondary">Secure Login</button>
           </div>
         </div>
+        <div className="absolute bottom-0 left-0 h-[2px] w-16 bg-secondary" />
       </nav>
 
       <main className="pt-20">
-        {/* Hero Section */}
-        <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-surface">
-          <div className="max-w-[1440px] mx-auto px-8 w-full grid lg:grid-cols-2 gap-16 items-center py-24 relative z-10">
+        <section className="relative flex min-h-[80vh] items-center overflow-hidden bg-surface">
+          <div className="hero-glow" />
+          <div className="relative z-10 mx-auto grid w-full max-w-[1440px] items-center gap-16 px-8 py-24 lg:grid-cols-2">
             <div className="animate-fade-up">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-high mb-10">
+              <div className="mb-10 inline-flex items-center gap-2 bg-surface-container-high px-3 py-1">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-status-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+                  <span className="animate-status-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary" />
                 </span>
                 <span className="text-[10px] font-black uppercase tracking-[0.25em] text-on-surface-variant">{clearPathData.hero.badge}</span>
               </div>
-              <h1 className="text-7xl md:text-9xl font-black tracking-tighter leading-[0.85] text-primary mb-10">
-                {clearPathData.hero.title[0]}<br />
+              <h1 className="mb-10 text-7xl font-black leading-[0.85] tracking-tighter text-primary md:text-9xl">
+                {clearPathData.hero.title[0]}
+                <br />
                 <span className="text-red-600">{clearPathData.hero.title[1]}</span>.
               </h1>
-              <p className="text-xl text-on-surface-variant max-w-lg font-bold leading-tight mb-12 uppercase tracking-tight">
+              <p className="mb-12 max-w-lg text-xl font-bold uppercase leading-tight tracking-tight text-on-surface-variant">
                 {clearPathData.hero.description}
               </p>
               <div className="flex flex-wrap gap-4">
                 <button
-                  onClick={onNavigateToResults}
-                  className="bg-red-600 text-white px-10 py-5 font-black uppercase tracking-widest text-xs flex items-center gap-4 hover:bg-primary transition-all duration-500 group relative overflow-hidden"
+                  onClick={onSubmit}
+                  className="group relative flex items-center gap-4 overflow-hidden bg-red-600 px-10 py-5 text-xs font-black uppercase tracking-widest text-white transition-all duration-500 hover:bg-primary"
                 >
                   <span className="relative z-10 flex items-center gap-4">
                     Initiate Audit
-                    <img src="/arrow.webp" alt="arrow" className="w-4 h-4 inline-block group-hover:translate-x-1 transition-transform object-contain" />
+                    <img src="/arrow.webp" alt="arrow" className="inline-block h-4 w-4 object-contain transition-transform group-hover:translate-x-1" />
                   </span>
                 </button>
-                <button className="border-2 border-black px-10 py-5 font-black uppercase tracking-widest text-xs hover:bg-black hover:text-white transition-all duration-500">
+                <button className="border-2 border-on-surface/30 px-10 py-5 text-xs font-black uppercase tracking-widest transition-all duration-500 hover:border-on-surface hover:bg-on-surface hover:text-surface">
                   API Specs
                 </button>
               </div>
             </div>
-            <div className="relative h-[600px] w-full overflow-hidden animate-fade-up hero-parallax flex items-center justify-center reveal-delay-2">
+
+            <div className="hero-parallax reveal-delay-2 relative flex h-[600px] w-full animate-fade-up items-center justify-center overflow-hidden">
               <img
                 alt="Modern Cargo Ship"
-                className="w-full h-full object-contain grayscale-0 contrast-110"
+                className="h-full w-full object-contain grayscale-0 contrast-110"
                 src={clearPathData.hero.heroImage}
                 style={{ transform: `translate(${scrollY * 0.2}px, ${scrollY * 0.1}px) scale(1.05)` }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent pointer-events-none"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent pointer-events-none" />
 
-              {/* Status Pulse Indicator */}
-              <div className="absolute bottom-10 left-10 p-8 bg-white border-l-8 border-secondary max-w-sm shadow-2xl animate-float">
-                <div className="flex items-center gap-2 mb-3">
+              <div className="animate-float absolute bottom-10 left-10 max-w-sm border-l-8 border-secondary bg-surface-container p-8 shadow-2xl backdrop-blur-sm">
+                <div className="mb-3 flex items-center gap-2">
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-status-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+                    <span className="animate-status-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary" />
                   </span>
                   <span className="block text-[11px] font-black uppercase tracking-widest text-secondary">Live Status</span>
                 </div>
-                <p className="text-sm font-black text-primary leading-tight uppercase tracking-tight">
+                <p className="text-sm font-black uppercase leading-tight tracking-tight text-primary">
                   {clearPathData.hero.statusText}
                 </p>
               </div>
@@ -120,80 +119,89 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onNavi
           </div>
         </section>
 
-        {/* Document Upload Grid */}
-        <section className="bg-surface-container-highest py-32 relative overflow-hidden">
-          <div className="max-w-[1440px] mx-auto px-8 relative z-10">
-            <div className="mb-20 scroll-reveal">
-              <h2 className="text-5xl font-black tracking-tighter text-primary uppercase leading-none">Direct ingestion</h2>
-              <div className="h-1.5 w-24 bg-secondary mt-6"></div>
-              <p className="text-xs font-black uppercase tracking-widest text-on-surface-variant mt-8">Deploy your documents into the verification pipeline.</p>
+        <section className="relative overflow-hidden bg-surface-container-highest py-32">
+          <div className="relative z-10 mx-auto max-w-[1440px] px-8">
+            <div className="scroll-reveal mb-20">
+              <h2 className="text-5xl font-black uppercase leading-none tracking-tighter text-primary">Direct ingestion</h2>
+              <div className="reveal-line scroll-reveal mt-6" />
+              <p className="mt-8 text-xs font-black uppercase tracking-widest text-on-surface-variant">Deploy your documents into the verification pipeline.</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="stagger-children grid gap-8 md:grid-cols-3">
               {clearPathData.documents.map((doc, idx) => (
-                <div key={idx} className={`scroll-reveal ${idx > 0 ? `reveal-delay-${idx}` : ''} group relative bg-white p-12 border border-zinc-100 hover:shadow-xl transition-all duration-500`}>
-                  <div className="mb-10 w-12 h-12">
-                    <img src={doc.icon} alt={doc.title} className="w-full h-full object-contain" />
+                <div
+                  key={doc.title}
+                  className={`scroll-reveal group relative border border-white/5 bg-surface-container/60 p-12 backdrop-blur-sm transition-all duration-500 hover:border-secondary/30 hover:shadow-[0_0_0_1px_rgba(233,7,22,0.12),0_20px_60px_rgba(0,0,0,0.3)] ${idx > 0 ? `reveal-delay-${idx}` : ''}`}
+                >
+                  <img
+                    src="/circle.png"
+                    alt="verified"
+                    className="animated-check absolute right-4 top-4 inline-block h-6 w-6 object-contain"
+                    style={{ animationDelay: `${0.1 + idx * 0.1}s` }}
+                  />
+                  <div className="mb-10 h-12 w-12">
+                    <img src={doc.icon} alt={doc.title} className="h-full w-full object-contain" />
                   </div>
-                  <h3 className="text-2xl font-black uppercase tracking-tighter text-primary mb-4">{doc.title}</h3>
-                  <p className="text-xs font-bold text-on-surface-variant mb-10 leading-relaxed uppercase tracking-tight">{doc.description}</p>
+                  <h3 className="mb-4 text-2xl font-black uppercase tracking-tighter text-primary">{doc.title}</h3>
+                  <p className="mb-10 text-xs font-bold uppercase leading-relaxed tracking-tight text-on-surface-variant">{doc.description}</p>
 
-                  <div className="w-full h-40 border-2 border-dashed border-zinc-200 flex flex-col items-center justify-center group-hover:border-secondary transition-colors duration-500">
-                    <span className="material-symbols-outlined text-zinc-300 mb-2 group-hover:text-secondary transition-colors">upload_file</span>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 group-hover:text-secondary transition-colors">Drag &amp; Drop</span>
+                  <div className="flex h-40 w-full flex-col items-center justify-center border border-dashed border-white/10 transition-all duration-500 group-hover:border-secondary/30 group-hover:bg-secondary/5">
+                    <span className="material-symbols-outlined mb-2 text-on-surface-variant transition-colors group-hover:text-secondary">upload_file</span>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-on-surface-variant transition-colors group-hover:text-secondary">Drag &amp; Drop</span>
                   </div>
-                  <button className="mt-6 w-full bg-black text-white py-4 font-black uppercase tracking-widest text-[10px] hover:bg-secondary transition-colors duration-300">Upload File</button>
+                  <button className="mt-6 w-full bg-primary py-4 text-[10px] font-black uppercase tracking-widest text-on-primary transition-colors duration-300 hover:bg-secondary">Upload File</button>
                 </div>
               ))}
             </div>
 
-            <div className="mt-20 flex justify-center scroll-reveal">
-              <button onClick={onNavigateToResults} className="bg-red-600 text-white px-16 py-6 font-black uppercase tracking-[0.3em] text-sm flex items-center gap-5 hover:bg-red-700 transition-all duration-300 animate-pulse-accent">
+            <div className="scroll-reveal mt-20 flex justify-center">
+              <button onClick={onSubmit} className="animate-pulse-accent flex items-center gap-5 bg-red-600 px-16 py-6 text-sm font-black uppercase tracking-[0.3em] text-white transition-all duration-300 hover:bg-red-700">
                 Submit for Verification
               </button>
             </div>
           </div>
         </section>
 
-        {/* Stats Section */}
-        <section className="py-32 bg-white relative overflow-hidden">
-          <div className="max-w-[1440px] mx-auto px-8 grid lg:grid-cols-4 gap-16 items-end relative z-10">
-            <div className="lg:col-span-2 scroll-reveal">
-              <h2 className="text-6xl font-black tracking-tighter text-primary leading-[0.9] uppercase mb-8">Architects of<br />Global Trade.</h2>
-              <p className="text-on-surface-variant text-xs font-black uppercase tracking-widest leading-relaxed max-w-md">
+        <section className="relative overflow-hidden bg-surface-container-lowest py-32">
+          <div className="relative z-10 mx-auto grid max-w-[1440px] items-end gap-16 px-8 lg:grid-cols-4">
+            <div className="scroll-reveal-left lg:col-span-2">
+              <h2 className="mb-8 text-6xl font-black uppercase leading-[0.9] tracking-tighter text-primary">
+                Architects of
+                <br />
+                Global Trade.
+              </h2>
+              <p className="max-w-md text-xs font-black uppercase leading-relaxed tracking-widest text-on-surface-variant">
                 Our infrastructure processes over 4.2 million logistics documents monthly with a verified accuracy rate of 99.98%.
               </p>
             </div>
             {clearPathData.stats.map((stat, idx) => (
-              <div key={idx} className={`flex flex-col pb-2 border-l-4 border-${idx % 2 === 0 ? 'secondary' : 'black'} pl-10 scroll-reveal reveal-delay-${idx + 1}`}>
-                <span className="text-6xl font-black text-primary tracking-tighter">{stat.value}</span>
-                <span className="text-[11px] font-black uppercase tracking-widest text-on-surface-variant mt-2">{stat.label}</span>
+              <div key={stat.label} className={`scroll-reveal flex flex-col border-l-4 ${idx % 2 === 0 ? 'border-secondary' : 'border-primary'} pb-2 pl-10 reveal-delay-${idx + 1}`}>
+                <span className="scroll-reveal-scale text-6xl font-black tracking-tighter text-primary">{stat.value}</span>
+                <span className="mt-2 text-[11px] font-black uppercase tracking-widest text-on-surface-variant">{stat.label}</span>
               </div>
             ))}
           </div>
         </section>
       </main>
 
-      <footer className="bg-black text-white py-20 relative overflow-hidden">
-        <div className="max-w-[1440px] mx-auto px-8 relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
-            <div className="text-3xl font-black tracking-tighter uppercase">VERIFY_LOGIC</div>
-            <div className="grid grid-cols-2 md:flex gap-x-12 gap-y-6">
-              <a className="font-inter text-[10px] tracking-widest uppercase font-black text-zinc-500 hover:text-secondary transition-colors" href="#">Privacy Policy</a>
-              <a className="font-inter text-[10px] tracking-widest uppercase font-black text-zinc-500 hover:text-secondary transition-colors" href="#">Terms of Service</a>
-              <a className="font-inter text-[10px] tracking-widest uppercase font-black text-zinc-500 hover:text-secondary transition-colors" href="#">Security Whitepaper</a>
-              <a className="font-inter text-[10px] tracking-widest uppercase font-black text-zinc-500 hover:text-secondary transition-colors" href="#">API Documentation</a>
+      <footer className="relative overflow-hidden bg-black py-20 text-white">
+        <div className="relative z-10 mx-auto max-w-[1440px] px-8">
+          <div className="flex flex-col items-start justify-between gap-12 md:flex-row md:items-center">
+            <div className="text-3xl font-black uppercase tracking-tighter">VERIFY_LOGIC</div>
+            <div className="grid grid-cols-2 gap-x-12 gap-y-6 md:flex">
+              <a className="font-inter text-[10px] font-black uppercase tracking-widest text-zinc-500 transition-colors hover:text-secondary" href="#">Privacy Policy</a>
+              <a className="font-inter text-[10px] font-black uppercase tracking-widest text-zinc-500 transition-colors hover:text-secondary" href="#">Terms of Service</a>
+              <a className="font-inter text-[10px] font-black uppercase tracking-widest text-zinc-500 transition-colors hover:text-secondary" href="#">Security Whitepaper</a>
+              <a className="font-inter text-[10px] font-black uppercase tracking-widest text-zinc-500 transition-colors hover:text-secondary" href="#">API Documentation</a>
             </div>
           </div>
-          <div className="mt-20 pt-10 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="font-inter text-[10px] tracking-widest uppercase font-black text-zinc-600">
-              © 2024 Industrial Architect Verification Systems.
-            </p>
+          <div className="mt-20 flex flex-col items-center justify-between gap-6 border-t border-zinc-800 pt-10 md:flex-row">
+            <p className="font-inter text-[10px] font-black uppercase tracking-widest text-zinc-600">(c) 2024 Industrial Architect Verification Systems.</p>
             <div className="flex gap-4">
-              <div className="w-8 h-8 bg-zinc-900 flex items-center justify-center hover:bg-secondary transition-colors cursor-pointer">
+              <div className="flex h-8 w-8 cursor-pointer items-center justify-center bg-zinc-900 transition-colors hover:bg-secondary">
                 <span className="material-symbols-outlined text-sm">terminal</span>
               </div>
-              <div className="w-8 h-8 bg-zinc-900 flex items-center justify-center hover:bg-secondary transition-colors cursor-pointer">
+              <div className="flex h-8 w-8 cursor-pointer items-center justify-center bg-zinc-900 transition-colors hover:bg-secondary">
                 <span className="material-symbols-outlined text-sm">hub</span>
               </div>
             </div>
@@ -201,5 +209,5 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onNavi
         </div>
       </footer>
     </div>
-  );
-};
+  )
+}
