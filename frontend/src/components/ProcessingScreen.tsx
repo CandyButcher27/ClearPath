@@ -69,6 +69,21 @@ export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ file
   }, [])
 
   useEffect(() => {
+    const formData = new FormData()
+    formData.append('bill_of_lading', files.bill_of_lading!)
+    formData.append('invoice', files.invoice!)
+    formData.append('packing_list', files.packing_list!)
+
+    fetch('http://localhost:5000/api/process-shipment', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => { resultRef.current = data })
+      .catch((err) => setApiError(String(err)))
+  }, []) // run once on mount
+
+  useEffect(() => {
     if (currentIndex >= LOG_LINES.length) {
       setPhase('complete')
       const completeTimer = window.setTimeout(() => {
