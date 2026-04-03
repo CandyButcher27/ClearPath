@@ -1,0 +1,19 @@
+{
+  "category": "Manufactured Goods",
+  "metadata_fields": {
+    "serial_number": "string",
+    "model_number": "string",
+    "brand_name": "string",
+    "dimensions": {
+      "length": "number",
+      "width": "number",
+      "height": "number",
+      "unit": "cm/in"
+    },
+    "warranty_period_months": "number",
+    "fragility_rating": "1-5_scale",
+    "assembly_required": "boolean",
+    "upc_ean_code": "string",
+    "packaging_material": "string"
+  }
+}

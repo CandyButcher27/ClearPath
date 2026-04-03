@@ -1,0 +1,18 @@
+{
+  "category": "Raw Materials",
+  "metadata_fields": {
+    "net_weight": "number",
+    "gross_weight": "number",
+    "volume": {
+      "value": "number",
+      "unit": "m3/liters"
+    },
+    "purity_percentage": "number",
+    "grade_quality": "string",
+    "country_of_origin": "string",
+    "batch_lot_number": "string",
+    "msds_link": "url_string",
+    "is_hazardous_material": "boolean",
+    "storage_container_type": "string"
+  }
+}

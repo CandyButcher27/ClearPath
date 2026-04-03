@@ -1,0 +1,19 @@
+{
+  "category": "Perishables",
+  "metadata_fields": {
+    "date_of_harvest": "ISO8601_date",
+    "date_of_shipping": "ISO8601_date",
+    "expiry_date": "ISO8601_date",
+    "temperature_control": {
+      "required": "boolean",
+      "min_temp": "number",
+      "max_temp": "number",
+      "unit": "Celsius/Fahrenheit"
+    },
+    "humidity_requirement": "percentage",
+    "ventilation_required": "boolean",
+    "ripening_stage": "string",
+    "is_frozen": "boolean",
+    "shelf_life_remaining_days": "number"
+  }
+}
