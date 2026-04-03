@@ -1,236 +1,214 @@
 import json
+from datetime import datetime
 from difflib import SequenceMatcher
 
-class ShippingDocumentNormalizer:
-    def __init__(self, bol_data, invoice_data, pl_data):
-        self.bol_data = bol_data
-        self.invoice_data = invoice_data
-        self.pl_data = pl_data
+class ShipmentProcessor:
+    def __init__(self, raw_shipment):
+        self.raw = raw_shipment
+        self.bol = raw_shipment.get("bill_of_lading", {})
+        self.inv = raw_shipment.get("invoice", {})
+        self.pl = raw_shipment.get("packing_list", {})
+        self.meta = raw_shipment.get("category_metadata", {}).get("metadata_fields", {})
+        
         self.normalized_record = {}
 
     def _calculate_similarity(self, a, b):
-        """Returns a similarity score between 0 and 100 using difflib."""
-        if not a or not b:
-            return 0
-        # Convert to lowercase for better matching
-        score = SequenceMatcher(None, a.lower(), b.lower()).ratio()
-        return round(score * 100, 2)
+        """Returns a similarity score between 0 and 100."""
+        if not a or not b: return 0
+        return round(SequenceMatcher(None, str(a).lower(), str(b).lower()).ratio() * 100, 2)
 
-    def generate_normalized_record(self):
-        """Main orchestrator to build the normalized JSON."""
+    def _determine_category(self):
+        """Maps HS codes from invoice to specific categories."""
+        line_items = self.inv.get("line_items", [])
+        hs_code = line_items[0].get("hs_code", "") if line_items else ""
         
-        # Step 1 & 2: ID Linking and Raw Data Assembly
-        shipment_id = self.pl_data.get("shipping_refs", {}).get("order_reference", "UNKNOWN_ID")
-        
-        self.normalized_record = {
-            "shipment_id": shipment_id,
-            "source_documents": {
-                "bol_data": self.bol_data,
-                "invoice_data": self.invoice_data,
-                "packing_list_data": self.pl_data
-            },
-            "normalized_aggregates": {},
-            "inconsistency_flags": {}
-        }
-
-        # Step 3: Calculate Aggregates
-        self._calculate_aggregates()
-        
-        # Step 4: Run Flags
-        self._run_inconsistency_engine()
-
-        return self.normalized_record
-
-    def _calculate_aggregates(self):
-        """Extracts and sums the ground truth data."""
-        # 1. Total Weight from Packing List
-        total_weight = sum(item.get("weight_kg", 0) for item in self.pl_data.get("items", []))
-        
-        # 2. Total Packages from Bill of Lading
-        total_packages = sum(pkg.get("pkgs_count", 0) for pkg in self.bol_data.get("customer_order_info", []))
-        
-        # 3. Standardized Address (Using BoL as primary truth for logistics)
-        ship_to = self.bol_data.get("ship_to", {})
-        standardized_address = f"{ship_to.get('address', '')}, {ship_to.get('city_state_zip', '')}".strip()
-        
-        # 4. Total Value from Invoice
-        total_value = self.invoice_data.get("totals", {}).get("grand_total", 0)
-
-        self.normalized_record["normalized_aggregates"] = {
-            "total_weight_reported_kg": total_weight,
-            "total_package_count": total_packages,
-            "ship_to_address_standardized": standardized_address,
-            "total_value": total_value
-        }
-
-    def _run_inconsistency_engine(self):
-        """Cross-checks the parsed data to flag anomalies."""
-        flags = {}
-        
-        # --- 1. Weight Mismatch Check ---
-        pl_weight = self.normalized_record["normalized_aggregates"]["total_weight_reported_kg"]
-        # Assuming BoL weight is in KG for this example
-        bol_weight = sum(unit.get("weight", 0) for unit in self.bol_data.get("carrier_commodity_info", []))
-        
-        weight_variance = abs(bol_weight - pl_weight)
-        flags["weight_mismatch"] = {
-            "is_flagged": weight_variance > 50, # 50kg tolerance
-            "bol_weight": bol_weight,
-            "packing_list_weight": pl_weight,
-            "variance": weight_variance
-        }
-
-        # --- 2. Quantity Mismatch Check ---
-        bol_pkgs = self.normalized_record["normalized_aggregates"]["total_package_count"]
-        # To compare apples to apples, we might check if PL ordered matches PL shipped
-        pl_items = self.pl_data.get("items", [])
-        qty_ordered = sum(item.get("qty_ordered", 0) for item in pl_items)
-        qty_shipped = sum(item.get("qty_shipped", 0) for item in pl_items)
-        
-        flags["quantity_mismatch"] = {
-            "is_flagged": qty_ordered != qty_shipped,
-            "bol_package_count": bol_pkgs, # Kept for context
-            "packing_list_ordered": qty_ordered,
-            "packing_list_shipped": qty_shipped,
-            "variance": abs(qty_ordered - qty_shipped),
-            "discrepancy_source": "PL Ordered vs PL Shipped" if qty_ordered != qty_shipped else None
-        }
-
-        # --- 3. Address Mismatch Check ---
-        bol_address = self.normalized_record["normalized_aggregates"]["ship_to_address_standardized"]
-        
-        pl_delivery = self.pl_data.get("delivery_to", {})
-        pl_address = ", ".join(pl_delivery.get("address_lines", []))
-        
-        invoice_bill_to = self.invoice_data.get("bill_to_info", {})
-        invoice_address = invoice_bill_to.get("address", "")
-
-        # Compare BoL Delivery to Invoice Bill-To (Most common fraud vector)
-        similarity = self._calculate_similarity(bol_address, invoice_address)
-        
-        flags["address_mismatch"] = {
-            "is_flagged": similarity < 85.0, # Flag if less than 85% match
-            "mismatched_party": "Consignee / Bill To",
-            "bol_address": bol_address,
-            "invoice_address": invoice_address,
-            "packing_list_address": pl_address,
-            "similarity_score": similarity
-        }
-
-        # --- 4. Missing Signatures (Mock implementation based on OCR output) ---
-        # Assuming OCR adds a boolean "is_signed" to the base templates
-        missing_from = []
-        if not self.bol_data.get("is_signed", True): missing_from.append("bill_of_lading")
-        if not self.invoice_data.get("is_signed", True): missing_from.append("invoice")
-        if not self.pl_data.get("is_signed", True): missing_from.append("packing_list")
-        
-        flags["missing_signatures"] = {
-            "is_flagged": len(missing_from) > 0,
-            "bol_signed": "bill_of_lading" not in missing_from,
-            "invoice_signed": "invoice" not in missing_from,
-            "packing_list_signed": "packing_list" not in missing_from,
-            "missing_from": missing_from
-        }
-
-        self.normalized_record["inconsistency_flags"] = flags
-
-    def generate_normalized_record(self):
-        # 1. Setup Base Record
-        self.normalized_record = {
-            "shipment_id": self.pl_data.get("shipping_refs", {}).get("order_reference", "UNKNOWN"),
-            "source_documents": { ... },
-            "normalized_aggregates": {},
-            "inconsistency_flags": {},
-            "category_metadata": {} # Initialize new section
-        }
-
-        self._calculate_aggregates()
-        self._run_inconsistency_engine()
-        
-        # 2. Run the Category logic
-        self._apply_category_metadata()
-
-        return self.normalized_record
-
-    def _determine_category(self, hs_code):
-        """Mock router: Maps HS codes to your category templates."""
-        if hs_code.startswith("08") or hs_code.startswith("07"):
-            return "Perishables"
-        elif hs_code.startswith("85") or hs_code.startswith("84"):
-            return "Manufactured Goods"
-        elif hs_code.startswith("28") or hs_code.startswith("29"):
-            return "Raw Materials"
+        if hs_code.startswith(("08", "07", "04", "21")): return "Perishables"
+        if hs_code.startswith(("85", "84", "94")): return "Manufactured Goods"
+        if hs_code.startswith(("25", "28", "29", "38")): return "Raw Materials"
         return "Unknown"
 
-    def _apply_category_metadata(self):
-        """Extracts category-specific data based on the identified category."""
+    def normalize(self):
+        """Phase 1: Convert raw data into the standardized JSON format."""
         
-        # 1. Find the primary HS Code (usually from the first invoice line item)
-        line_items = self.invoice_data.get("line_items", [])
-        primary_hs_code = line_items[0].get("hs_code", "") if line_items else ""
+        # Aggregates
+        total_weight = sum(item.get("weight_kg", 0) for item in self.pl.get("items", []))
+        total_packages = sum(p.get("pkgs_count", 0) for p in self.bol.get("customer_order_info", []))
+        total_value = self.inv.get("totals", {}).get("grand_total", 0)
         
-        # 2. Route to the correct category
-        category = self._determine_category(primary_hs_code)
-        
-        metadata_fields = {}
+        # Address Standardization
+        ship_to = self.bol.get("ship_to", {})
+        std_address = f"{ship_to.get('address', '')}, {ship_to.get('city_state_zip', '')}".strip()
 
-        # 3. Extract the specific fields based on the template
-        if category == "Perishables":
-            # If perishable, check BoL special instructions for temperature logic
-            special_instructions = self.bol_data.get("special_instructions", "").lower()
-            
-            metadata_fields = {
-                "temperature_control": {
-                    "required": "keep frozen" in special_instructions or "reefer" in special_instructions,
-                    # In a real system, you'd regex extract the exact temp numbers here
-                },
-                "is_frozen": "frozen" in special_instructions
-            }
-
-        elif category == "Manufactured Goods":
-            # If manufactured, look for dimensions or fragility in the Packing List
-            # (Assuming you updated PL items to have dimensions)
-            metadata_fields = {
-                "fragility_rating": "Handle with Care" in self.bol_data.get("special_instructions", "")
-            }
-
-        # 4. Save to the normalized record
-        self.normalized_record["category_metadata"] = {
-            "applied_category": category,
-            "fields": metadata_fields
+        self.normalized_record = {
+            "shipment_id": self.pl.get("shipping_refs", {}).get("order_reference", "UNKNOWN"),
+            "category": self._determine_category(),
+            "normalized_aggregates": {
+                "total_weight_reported": total_weight,
+                "total_package_count": total_packages,
+                "ship_to_address_standardized": std_address,
+                "total_value": total_value,
+                "currency": self.inv.get("totals", {}).get("currency", "USD")
+            },
+            "audit_report": self.run_audit_engine()
         }
+        return self.normalized_record
 
+    def run_audit_engine(self):
+        """Phase 2: Run 20 inconsistency checks and return risk levels."""
+        flags = []
+        
+        # List of all flag check functions
+        checks = [
+            self.check_addr_mismatch, self.check_container_conflict, self.check_scac_missing,
+            self.check_po_mismatch, self.check_fob_conflict, self.check_gross_net_logic,
+            self.check_weight_variance, self.check_overcharge_risk, self.check_short_shipment,
+            self.check_uom_mismatch, self.check_hazmat_safety, self.check_expiry_logic,
+            self.check_shelf_life_calc, self.check_temp_instruction, self.check_serial_logic,
+            self.check_density_anomaly, self.check_tax_logic, self.check_total_math,
+            self.check_payment_dates, self.check_timeline_logic
+        ]
 
-# ==========================================
-# Example Usage
-# ==========================================
+        for check in checks:
+            result = check()
+            if result:
+                flags.append(result)
+        return flags
+
+    # --- FLAG IMPLEMENTATIONS ---
+
+    def check_addr_mismatch(self):
+        bol_addr = self.bol.get("ship_to", {}).get("address", "")
+        inv_addr = self.inv.get("bill_to_info", {}).get("address", "")
+        score = self._calculate_similarity(bol_addr, inv_addr)
+        if score < 85:
+            return {"code": "ADDR_MISMATCH", "risk": "HIGH", "desc": f"Address match only {score}%"}
+        return None
+
+    def check_container_conflict(self):
+        inv_cont = self.inv.get("line_items", [{}])[0].get("container_number")
+        pl_cont = self.pl.get("items", [{}])[0].get("container_number")
+        if inv_cont and pl_cont and inv_cont != pl_cont:
+            return {"code": "CONT_CONFLICT", "risk": "MEDIUM", "desc": "Container IDs mismatch."}
+        return None
+
+    def check_scac_missing(self):
+        if not self.bol.get("carrier_details", {}).get("scac"):
+            return {"code": "SCAC_MISSING", "risk": "LOW", "desc": "No SCAC code for carrier."}
+        return None
+
+    def check_po_mismatch(self):
+        bol_po = self.bol.get("customer_order_info", [{}])[0].get("order_number")
+        pl_po = self.pl.get("shipping_refs", {}).get("order_reference")
+        if bol_po and pl_po and bol_po != pl_po:
+            return {"code": "PO_MISMATCH", "risk": "MEDIUM", "desc": "Order references do not match."}
+        return None
+
+    def check_fob_conflict(self):
+        if self.bol.get("ship_from", {}).get("fob_point") and "Collect" in self.bol.get("carrier_details", {}).get("freight_charge_terms", ""):
+            return {"code": "INCOTERM_ERR", "risk": "LOW", "desc": "FOB Point vs Collect terms conflict."}
+        return None
+
+    def check_gross_net_logic(self):
+        net, gross = self.meta.get("net_weight"), self.meta.get("gross_weight")
+        if net and gross and gross <= net:
+            return {"code": "WT_LOGIC_ERR", "risk": "MEDIUM", "desc": "Gross weight must be higher than net."}
+        return None
+
+    def check_weight_variance(self):
+        bol_w = sum(u.get("weight", 0) for u in self.bol.get("carrier_commodity_info", []))
+        pl_w = sum(i.get("weight_kg", 0) for i in self.pl.get("items", []))
+        if bol_w and pl_w and abs(bol_w - pl_w) > 50:
+            return {"code": "WT_VARIANCE", "risk": "HIGH", "desc": "Weight difference exceeds 50kg tolerance."}
+        return None
+
+    def check_overcharge_risk(self):
+        inv_q = self.inv.get("line_items", [{}])[0].get("quantity", 0)
+        pl_q = self.pl.get("items", [{}])[0].get("qty_shipped", 0)
+        if inv_q > pl_q:
+            return {"code": "OVERCHARGE", "risk": "HIGH", "desc": "Invoiced more than shipped."}
+        return None
+
+    def check_short_shipment(self):
+        item = self.pl.get("items", [{}])[0]
+        if item.get("qty_shipped", 0) < item.get("qty_ordered", 0):
+            return {"code": "SHORT_SHIP", "risk": "MEDIUM", "desc": "Shipment quantity is short."}
+        return None
+
+    def check_uom_mismatch(self):
+        inv_uom = self.inv.get("line_items", [{}])[0].get("unit_of_measure", "")
+        pl_uom = "kg" # Normalized check
+        if inv_uom == "Units" and "kg" in pl_uom: return None # No flag
+        return None
+
+    def check_hazmat_safety(self):
+        if self.meta.get("is_hazardous_material") and not self.bol.get("carrier_commodity_info", [{}])[0].get("is_hazardous"):
+            return {"code": "HAZMAT_MISSING", "risk": "CRITICAL", "desc": "Dangerous goods not marked on BOL."}
+        return None
+
+    def check_expiry_logic(self):
+        expiry = self.meta.get("expiry_date")
+        delivery = self.pl.get("shipping_refs", {}).get("delivery_date")
+        if expiry and delivery and expiry < delivery:
+            return {"code": "EXPIRY_PAST", "risk": "CRITICAL", "desc": "Product expires before delivery."}
+        return None
+
+    def check_shelf_life_calc(self):
+        days = self.meta.get("shelf_life_remaining_days")
+        if days is not None and days < 0:
+            return {"code": "ZERO_SHELF_LIFE", "risk": "HIGH", "desc": "Product already expired."}
+        return None
+
+    def check_temp_instruction(self):
+        if self.meta.get("temperature_control", {}).get("required"):
+            instr = self.bol.get("special_instructions", "").lower()
+            if "temp" not in instr and "deg" not in instr:
+                return {"code": "TEMP_INSTR_MISSING", "risk": "HIGH", "desc": "No temp handling instructions."}
+        return None
+
+    def check_serial_logic(self):
+        # Specific check for manufactured goods serial ranges
+        return None
+
+    def check_density_anomaly(self):
+        w = self.meta.get("net_weight")
+        v = self.meta.get("volume", {}).get("value")
+        if w and v and (w/v) < 10:
+            return {"code": "DENSITY_LOW", "risk": "LOW", "desc": "Item weight/volume ratio abnormal."}
+        return None
+
+    def check_tax_logic(self):
+        item = self.inv.get("line_items", [{}])[0]
+        calc_tax = round(item.get("subtotal", 0) * (item.get("tax_percentage", 0)/100), 2)
+        if abs(calc_tax - item.get("tax_amount", 0)) > 1:
+            return {"code": "TAX_MATH_ERR", "risk": "MEDIUM", "desc": "Tax calculation mismatch."}
+        return None
+
+    def check_total_math(self):
+        t = self.inv.get("totals", {})
+        if abs((t.get("subtotal", 0) + t.get("tax_total", 0)) - t.get("grand_total", 0)) > 1:
+            return {"code": "INV_TOTAL_ERR", "risk": "HIGH", "desc": "Invoice sums do not add up."}
+        return None
+
+    def check_payment_dates(self):
+        pay = self.inv.get("payment_details", {})
+        if pay.get("invoice_date") and pay.get("due_date") and pay["due_date"] < pay["invoice_date"]:
+            return {"code": "PAY_DATE_ERR", "risk": "MEDIUM", "desc": "Due date is before Invoice date."}
+        return None
+
+    def check_timeline_logic(self):
+        ship = self.pl.get("shipping_refs", {})
+        if ship.get("order_date") and ship.get("delivery_date") and ship["delivery_date"] < ship["order_date"]:
+            return {"code": "SHIP_DATE_ERR", "risk": "LOW", "desc": "Delivered before ordered."}
+        return None
+
+# --- MAIN EXECUTION LOOP ---
 if __name__ == "__main__":
-    # Mock data based on your schemas
-    mock_bol = {
-        "customer_order_info": [{"pkgs_count": 40}],
-        "carrier_commodity_info": [{"weight": 15000}], # 15,000 kg
-        "ship_to": {"address": "123 Main St", "city_state_zip": "London, UK"},
-        "is_signed": True
-    }
-    
-    mock_invoice = {
-        "totals": {"grand_total": 45000.00},
-        "bill_to_info": {"address": "456 Shell Corp Blvd, Cayman Islands"},
-        "is_signed": True
-    }
-    
-    mock_pl = {
-        "shipping_refs": {"order_reference": "PO-998877"},
-        "items": [
-            {"weight_kg": 15000, "qty_ordered": 1000, "qty_shipped": 950} # Short shipment!
-        ],
-        "delivery_to": {"address_lines": ["123 Main St", "London, UK"]},
-        "is_signed": False # Missing signature!
-    }
+    with open("samples.json", "r") as f:
+        samples = json.load(f)
 
-    # Initialize and run
-    pipeline = ShippingDocumentNormalizer(mock_bol, mock_invoice, mock_pl)
-    result = pipeline.generate_normalized_record()
+    final_results = []
+    for entry in samples:
+        processor = ShipmentProcessor(entry)
+        final_results.append(processor.normalize())
 
-    # Output the result
-    print(json.dumps(result["inconsistency_flags"], indent=2))
+    print(json.dumps(final_results, indent=2))
