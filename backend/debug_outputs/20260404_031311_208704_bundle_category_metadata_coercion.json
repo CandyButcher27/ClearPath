@@ -1,0 +1,40 @@
+{
+  "timestamp_utc": "2026-04-04T03:13:11Z",
+  "tag": "bundle_category_metadata_coercion",
+  "model": "llama-3.3-70b-versatile",
+  "attempt": null,
+  "mode": "bundle",
+  "parse_error": null,
+  "raw_output": {
+    "raw_structured": {
+      "net_weight": 2500.0,
+      "gross_weight": 2750.0,
+      "volume": {
+        "value": 4.5,
+        "unit": "cbm"
+      },
+      "purity_percentage": 0,
+      "grade_quality": "",
+      "country_of_origin": "Brazil",
+      "batch_lot_number": "",
+      "msds_link": "",
+      "is_hazardous_material": false,
+      "storage_container_type": "Sacks"
+    },
+    "coerced_structured": {
+      "net_weight": 2500.0,
+      "gross_weight": 2750.0,
+      "volume": {
+        "value": 4.5,
+        "unit": "cbm"
+      },
+      "purity_percentage": 0,
+      "grade_quality": "",
+      "country_of_origin": "Brazil",
+      "batch_lot_number": "",
+      "msds_link": "",
+      "is_hazardous_material": false,
+      "storage_container_type": "Sacks"
+    }
+  }
+}

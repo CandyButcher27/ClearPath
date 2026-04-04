@@ -1,0 +1,277 @@
+{
+  "timestamp_utc": "2026-04-04T03:13:11Z",
+  "tag": "bundle_documents_coercion",
+  "model": "llama-3.3-70b-versatile",
+  "attempt": null,
+  "mode": "bundle",
+  "parse_error": null,
+  "raw_output": {
+    "raw_structured": {
+      "bill_of_lading": {
+        "bill_of_lading_number": "BOL-RM-002",
+        "ship_from": {
+          "name": "Brazil Mining Co",
+          "address": "123 Ore Rd",
+          "city_state_zip": "Rio, BR",
+          "sid_number": "SID-BR-1",
+          "fob_point": true
+        },
+        "ship_to": {
+          "name": "Glass Makers Inc",
+          "location_number": "Loc#: FAC-2",
+          "address": "10 Manufacturing Way",
+          "city_state_zip": "Toledo, OH 43604",
+          "cid_number": "CID-OH-9",
+          "fob_point": false
+        },
+        "carrier_details": {
+          "carrier_name": "Oceanic Bulk",
+          "trailer_number": "CONT-101",
+          "seal_numbers": "S-992",
+          "scac": "OCBK",
+          "pro_number": "PRO-99",
+          "freight_charge_terms": "Collect"
+        },
+        "customer_order_info": [
+          {
+            "order_number": "PO-882",
+            "pkgs_count": 50,
+            "weight": 2500.0,
+            "pallet_slip": false,
+            "additional_info": "Bulk Sacks"
+          }
+        ],
+        "carrier_commodity_info": [
+          {
+            "handling_unit_qty": 50,
+            "handling_unit_type": "Sacks",
+            "package_qty": 50,
+            "package_type": "Bags",
+            "weight": 2500.0,
+            "is_hazardous": false,
+            "commodity_description": "Silica Sand",
+            "nmfc_number": "NM-11",
+            "class": "50"
+          }
+        ]
+      },
+      "invoice": {
+        "invoice_number": "INV-RM-002",
+        "seller_info": {
+          "company_name": "Brazil Mining Co",
+          "address": "123 Ore Rd, Rio, BR",
+          "reg_number": "BR-99",
+          "tax_number": "TX-BR"
+        },
+        "bill_to_info": {
+          "client_name": "Glass Makers Inc",
+          "address": "10 Manufacturing Way, Toledo, OH",
+          "reg_number": "REG-OH",
+          "tax_number": "TX-OH"
+        },
+        "payment_details": {
+          "bank_name": "International Bank",
+          "bic": "IBANKBR1",
+          "account_number": "999888",
+          "invoice_date": "2026-03-20",
+          "due_date": "2026-04-20"
+        },
+        "line_items": [
+          {
+            "hs_code": "2505.10",
+            "container_number": "C-99",
+            "description": "Silica Sand",
+            "quantity": 2500.0,
+            "unit_of_measure": "kg",
+            "unit_price": 0.5,
+            "subtotal": 1250.0,
+            "tax_amount": 0.0,
+            "tax_percentage": 0.0
+          }
+        ],
+        "totals": {
+          "subtotal": 1250.0,
+          "tax_total": 0.0,
+          "grand_total": 1250.0,
+          "currency": "USD",
+          "amount_in_words": ""
+        }
+      },
+      "packing_list": {
+        "delivery_to": {
+          "customer_name": "Glass Makers Inc",
+          "address_lines": [
+            "10 Manufacturing Way",
+            "Silo A"
+          ],
+          "telephone": "555-4433",
+          "email": "ops@glassmakers.com"
+        },
+        "from_business": {
+          "business_name": "Brazil Mining Co",
+          "address_lines": [
+            "123 Ore Rd"
+          ]
+        },
+        "shipping_refs": {
+          "order_reference": "PO-882",
+          "order_date": "2026-03-15",
+          "delivery_method": "Sea Freight",
+          "delivery_number": "DLV-772",
+          "delivery_date": ""
+        },
+        "items": [
+          {
+            "item_number": "SIL-01",
+            "description": "Silica Sand",
+            "qty_ordered": 2500,
+            "qty_shipped": 2500,
+            "weight_kg": 2750.0,
+            "volume_cbm": 4.5,
+            "container_number": "C-99"
+          }
+        ],
+        "notes": "Check for sack integrity upon arrival."
+      }
+    },
+    "coerced_structured": {
+      "bill_of_lading": {
+        "bill_of_lading_number": "BOL-RM-002",
+        "ship_from": {
+          "name": "Brazil Mining Co",
+          "address": "123 Ore Rd",
+          "city_state_zip": "Rio, BR",
+          "sid_number": "SID-BR-1",
+          "fob_point": true
+        },
+        "ship_to": {
+          "name": "Glass Makers Inc",
+          "location_number": "Loc#: FAC-2",
+          "address": "10 Manufacturing Way",
+          "city_state_zip": "Toledo, OH 43604",
+          "cid_number": "CID-OH-9",
+          "fob_point": false
+        },
+        "third_party_bill_to": {
+          "name": "",
+          "address": "",
+          "city_state_zip": ""
+        },
+        "special_instructions": "",
+        "carrier_details": {
+          "carrier_name": "Oceanic Bulk",
+          "trailer_number": "CONT-101",
+          "seal_numbers": "S-992",
+          "scac": "OCBK",
+          "pro_number": "PRO-99",
+          "freight_charge_terms": "Collect"
+        },
+        "customer_order_info": [
+          {
+            "order_number": "PO-882",
+            "pkgs_count": 50,
+            "weight": 2500.0,
+            "pallet_slip": false,
+            "additional_info": "Bulk Sacks"
+          }
+        ],
+        "carrier_commodity_info": [
+          {
+            "handling_unit_qty": 50,
+            "handling_unit_type": "Sacks",
+            "package_qty": 50,
+            "package_type": "Bags",
+            "weight": 2500.0,
+            "is_hazardous": false,
+            "commodity_description": "Silica Sand",
+            "nmfc_number": "NM-11",
+            "class": "50"
+          }
+        ],
+        "cod_details": {
+          "amount": 0,
+          "fee_terms": "",
+          "customer_check_acceptable": false
+        }
+      },
+      "invoice": {
+        "invoice_number": "INV-RM-002",
+        "seller_info": {
+          "company_name": "Brazil Mining Co",
+          "address": "123 Ore Rd, Rio, BR",
+          "reg_number": "BR-99",
+          "tax_number": "TX-BR"
+        },
+        "bill_to_info": {
+          "client_name": "Glass Makers Inc",
+          "address": "10 Manufacturing Way, Toledo, OH",
+          "reg_number": "REG-OH",
+          "tax_number": "TX-OH"
+        },
+        "payment_details": {
+          "bank_name": "International Bank",
+          "bic": "IBANKBR1",
+          "account_number": "999888",
+          "invoice_date": "2026-03-20",
+          "due_date": "2026-04-20"
+        },
+        "line_items": [
+          {
+            "hs_code": "2505.10",
+            "container_number": "C-99",
+            "description": "Silica Sand",
+            "quantity": 2500.0,
+            "unit_of_measure": "kg",
+            "unit_price": 0.5,
+            "subtotal": 1250.0,
+            "tax_amount": 0.0,
+            "tax_percentage": 0.0
+          }
+        ],
+        "totals": {
+          "subtotal": 1250.0,
+          "tax_total": 0.0,
+          "grand_total": 1250.0,
+          "currency": "USD",
+          "amount_in_words": ""
+        }
+      },
+      "packing_list": {
+        "delivery_to": {
+          "customer_name": "Glass Makers Inc",
+          "address_lines": [
+            "10 Manufacturing Way",
+            "Silo A"
+          ],
+          "telephone": "555-4433",
+          "email": "ops@glassmakers.com"
+        },
+        "from_business": {
+          "business_name": "Brazil Mining Co",
+          "address_lines": [
+            "123 Ore Rd"
+          ]
+        },
+        "shipping_refs": {
+          "order_reference": "PO-882",
+          "order_date": "2026-03-15",
+          "delivery_method": "Sea Freight",
+          "delivery_number": "DLV-772",
+          "delivery_date": ""
+        },
+        "items": [
+          {
+            "item_number": "SIL-01",
+            "description": "Silica Sand",
+            "qty_ordered": 2500,
+            "qty_shipped": 2500,
+            "weight_kg": 2750.0,
+            "volume_cbm": 4.5,
+            "container_number": "C-99"
+          }
+        ],
+        "notes": "Check for sack integrity upon arrival."
+      }
+    }
+  }
+}

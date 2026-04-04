@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import type { ApiResult } from '../App'
 
 function useCountUp(target: number, duration = 900): number {
