@@ -1,0 +1,18 @@
+Extract all data from this {{DOC_TYPE}} and return a JSON object matching the schema exactly.
+
+SCHEMA:
+{{SCHEMA}}
+
+RULES:
+- Extract every row/item visible in table-like sections.
+- For missing values, use type-safe defaults:
+  - string -> ""
+  - number -> 0
+  - boolean -> false
+  - object -> {}
+  - array -> []
+- Return only valid JSON.
+
+DOCUMENT TEXT:
+{{DOCUMENT_TEXT}}
+

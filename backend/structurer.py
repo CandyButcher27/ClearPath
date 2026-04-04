@@ -1,5 +1,5 @@
-"""
-Text → Structured JSON using Groq API (free tier).
+﻿"""
+Text â†’ Structured JSON using Groq API (free tier).
 
 Takes raw text extracted from shipping PDFs and structures it into JSON
 matching the base_templates and category_templates schemas used by
@@ -9,11 +9,16 @@ normalizer.py's ShipmentProcessor.
 import json
 import logging
 import os
+import re
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, Optional, Tuple
 
 from groq import Groq
+try:
+    from .prompts import get_prompt
+except ImportError:
+    from prompts import get_prompt
 
 logger = logging.getLogger(__name__)
 
@@ -22,6 +27,101 @@ _BASE = Path(__file__).parent
 _BASE_TEMPLATES = _BASE / "base_templates"
 _CATEGORY_TEMPLATES = _BASE / "category_templates"
 _DEBUG_OUTPUTS = _BASE / "debug_outputs"
+_DEFAULT_MODEL = os.environ.get("STRUCTURER_MODEL", "llama-3.3-70b-versatile")
+_MAX_DOC_CHARS = int(os.environ.get("STRUCTURER_MAX_DOC_CHARS", "12000"))
+_BUNDLE_MAX_TOTAL_CHARS = int(os.environ.get("STRUCTURER_BUNDLE_MAX_TOTAL_CHARS", "30000"))
+_USE_BUNDLE_FIRST = os.environ.get("STRUCTURER_USE_BUNDLE_FIRST", "true").lower() in ("1", "true", "yes")
+
+
+def _render_prompt(name: str, values: Dict[str, Any]) -> str:
+    template = get_prompt(name)
+    rendered = template
+    for key, value in values.items():
+        rendered = rendered.replace(f"{{{{{key}}}}}", str(value))
+    return rendered
+
+
+def _default_for_template(template: Any) -> Any:
+    if isinstance(template, dict):
+        return {k: _default_for_template(v) for k, v in template.items()}
+    if isinstance(template, list):
+        return []
+    if isinstance(template, str):
+        hint = template.lower()
+        if hint == "number":
+            return 0
+        if hint == "boolean":
+            return False
+        return ""
+    return ""
+
+
+def _is_table_like_line(line: str) -> bool:
+    s = line.strip()
+    if not s:
+        return False
+    lower = s.lower()
+    keywords = (
+        "item",
+        "qty",
+        "quantity",
+        "unit",
+        "subtotal",
+        "total",
+        "container",
+        "weight",
+        "volume",
+        "tax",
+        "hs code",
+    )
+    has_keyword = any(k in lower for k in keywords)
+    has_numeric = bool(re.search(r"\d", s))
+    dense_cols = s.count("  ") >= 2 or "|" in s
+    return has_keyword or (has_numeric and dense_cols)
+
+
+def _prepare_doc_text(text: str, max_chars: int) -> str:
+    raw = (text or "").strip()
+    if len(raw) <= max_chars:
+        return raw
+
+    lines = raw.splitlines()
+    table_lines = [ln for ln in lines if _is_table_like_line(ln)]
+
+    head_budget = max_chars // 3
+    table_budget = max_chars // 3
+    tail_budget = max_chars - head_budget - table_budget
+
+    head = raw[:head_budget]
+    table = "\n".join(table_lines)[:table_budget]
+    tail = raw[-tail_budget:] if tail_budget > 0 else ""
+
+    merged = f"{head}\n\n[TABLE_SECTION]\n{table}\n\n[FOOTER_SECTION]\n{tail}".strip()
+    return merged[:max_chars]
+
+
+def _log_doc_coverage(label: str, original_text: str, sent_text: str) -> None:
+    original_len = len((original_text or "").strip())
+    sent_len = len((sent_text or "").strip())
+    ratio = 0.0 if original_len == 0 else sent_len / original_len
+    logger.info(
+        "[coverage] %s chars_sent=%d chars_extracted=%d ratio=%.3f",
+        label,
+        sent_len,
+        original_len,
+        ratio,
+    )
+
+
+def _dump_structured_snapshot(tag: str, raw_structured: Any, coerced_structured: Any, *, mode: str) -> None:
+    _dump_groq_output(
+        tag,
+        {
+            "raw_structured": raw_structured,
+            "coerced_structured": coerced_structured,
+        },
+        mode=mode,
+    )
 
 
 def _dump_groq_output(
@@ -29,7 +129,7 @@ def _dump_groq_output(
     raw_output: Any,
     parse_error: Optional[str] = None,
     *,
-    model: str = "llama-3.3-70b-versatile",
+    model: str = _DEFAULT_MODEL,
     attempt: Optional[int] = None,
     mode: Optional[str] = None,
 ) -> None:
@@ -131,7 +231,7 @@ def _coerce_types(data: Any, template: Any) -> Any:
             if key in data:
                 result[key] = _coerce_types(data[key], tmpl_val)
             else:
-                result[key] = None
+                result[key] = _default_for_template(tmpl_val)
         # Keep any extra keys model returned that aren't in the template
         for key in data:
             if key not in result:
@@ -152,7 +252,7 @@ def _coerce_types(data: Any, template: Any) -> Any:
             return [_coerce_types(data, template[0])]
         return [_coerce_types(data, template[0])]
 
-    # Leaf — coerce based on template type hint string
+    # Leaf â€” coerce based on template type hint string
     if isinstance(template, str):
         hint = template.lower()
         if hint == "number":
@@ -172,16 +272,16 @@ def _coerce_types(data: Any, template: Any) -> Any:
             if isinstance(data, str):
                 return data.lower() in ("true", "yes", "1")
             return bool(data)
-        # "string" or any other hint — return as-is
+        # "string" or any other hint â€” return as-is
         if data is None:
             return ""
-        return data
+        return str(data)
 
     return data
 
 
 # ---------------------------------------------------------------------------
-# Public API — one function per document type
+# Public API â€” one function per document type
 # ---------------------------------------------------------------------------
 
 def structure_bill_of_lading(text: str) -> dict:
@@ -208,11 +308,27 @@ def structure_packing_list(text: str) -> dict:
     return _structure_document(text, template, "Packing List")
 
 
+def _structure_with_per_document(texts: Dict[str, str]) -> Tuple[dict, dict, dict, dict]:
+    bol = structure_bill_of_lading(texts.get("bill_of_lading", ""))
+    inv = structure_invoice(texts.get("invoice", ""))
+    pl = structure_packing_list(texts.get("packing_list", ""))
+    category = detect_category(inv)
+    all_text = "\n\n".join(
+        [
+            texts.get("bill_of_lading", ""),
+            texts.get("invoice", ""),
+            texts.get("packing_list", ""),
+        ]
+    )
+    category_meta = structure_category_metadata(all_text, category)
+    return bol, inv, pl, category_meta
+
+
 def structure_shipment_document_bundle(texts: Dict[str, str]) -> Tuple[dict, dict, dict, dict]:
     """Structure all three shipment docs and category metadata in one AI request."""
     use_mock = os.environ.get("USE_MOCK_DATA", "").lower() == "true"
     if use_mock:
-        logger.info("Mock mode enabled — returning mock data for all documents")
+        logger.info("Mock mode enabled - returning mock data for all documents")
         bol = _coerce_types(_get_mock_data("Bill of Lading"), _load_template(_BASE_TEMPLATES / "bill_of_lading.json"))
         inv = _coerce_types(_get_mock_data("Commercial Invoice"), _load_template(_BASE_TEMPLATES / "invoice.json"))
         pl = _coerce_types(_get_mock_data("Packing List"), _load_template(_BASE_TEMPLATES / "packing_list.json"))
@@ -228,57 +344,39 @@ def structure_shipment_document_bundle(texts: Dict[str, str]) -> Tuple[dict, dic
         "Raw Materials": _load_template(_CATEGORY_TEMPLATES / "raw_materials.json"),
     }
 
-    bol_schema = json.dumps(bol_template, separators=(",", ":"))
-    inv_schema = json.dumps(inv_template, separators=(",", ":"))
-    pl_schema = json.dumps(pl_template, separators=(",", ":"))
+    if not _USE_BUNDLE_FIRST:
+        logger.info("STRUCTURER_USE_BUNDLE_FIRST=false; using per-document extraction path.")
+        return _structure_with_per_document(texts)
 
-    prompt = f"""Extract logistics data from three documents and return a JSON object with keys: bill_of_lading, invoice, packing_list, category_metadata.
+    bol_text = _prepare_doc_text(texts.get("bill_of_lading", ""), _MAX_DOC_CHARS)
+    inv_text = _prepare_doc_text(texts.get("invoice", ""), _MAX_DOC_CHARS)
+    pl_text = _prepare_doc_text(texts.get("packing_list", ""), _MAX_DOC_CHARS)
 
-Use these field names only:
+    _log_doc_coverage("bill_of_lading", texts.get("bill_of_lading", ""), bol_text)
+    _log_doc_coverage("invoice", texts.get("invoice", ""), inv_text)
+    _log_doc_coverage("packing_list", texts.get("packing_list", ""), pl_text)
 
-BILL_OF_LADING: bill_of_lading_number, ship_from (name, address, city_state_zip, sid_number, fob_point), ship_to (name, location_number, address, city_state_zip, cid_number, fob_point), carrier_details (carrier_name, trailer_number, seal_numbers, scac, pro_number, freight_charge_terms), customer_order_info (order_number, pkgs_count, weight, pallet_slip, additional_info), carrier_commodity_info (handling_unit_qty, handling_unit_type, package_qty, package_type, weight, is_hazardous, commodity_description, nmfc_number)
+    bundle_total_chars = len(bol_text) + len(inv_text) + len(pl_text)
+    if bundle_total_chars > _BUNDLE_MAX_TOTAL_CHARS:
+        logger.warning(
+            "Bundle prompt budget exceeded (chars=%d > %d). Switching to per-document extraction first.",
+            bundle_total_chars,
+            _BUNDLE_MAX_TOTAL_CHARS,
+        )
+        return _structure_with_per_document(texts)
 
-INVOICE: invoice_number, seller_info (company_name, address, reg_number, tax_number), bill_to_info (client_name, address, reg_number, tax_number), payment_details (bank_name, bic, account_number, invoice_date, due_date), line_items (hs_code, container_number, description, quantity, unit_of_measure, unit_price, subtotal, tax_amount, tax_percentage), totals (subtotal, tax_total, grand_total, currency, amount_in_words)
-
-PACKING_LIST: delivery_to (customer_name, address_lines, telephone, email), from_business (business_name, address_lines), shipping_refs (order_reference, order_date, delivery_method, delivery_number, delivery_date), items (item_number, description, qty_ordered, qty_shipped, weight_kg, volume_cbm, container_number), notes
-
-category_metadata: category (one of: Perishables, Manufactured Goods, Raw Materials, General), metadata_fields (empty object if General)
-
-STRICT TYPE RULES (MUST FOLLOW):
-- Output must be a single JSON object starting with {{ and ending with }}.
-- Do not output markdown, comments, prose, or code fences.
-- If unknown, use type-safe defaults instead of null:
-  - string -> ""
-  - number -> 0
-  - boolean -> false
-  - object -> {{}}
-  - array -> []
-- Never return object fields as strings, and never return array fields as objects/strings.
-- Required array fields:
-  - bill_of_lading.customer_order_info
-  - bill_of_lading.carrier_commodity_info
-  - invoice.line_items
-  - packing_list.delivery_to.address_lines
-  - packing_list.from_business.address_lines
-  - packing_list.items
-- category_metadata must always be an object with:
-  - category: "Perishables" | "Manufactured Goods" | "Raw Materials" | "General"
-  - metadata_fields: object ({{}} if unknown)
-
-TARGET SHAPES (match these exactly):
-bill_of_lading schema: {bol_schema}
-invoice schema: {inv_schema}
-packing_list schema: {pl_schema}
-
-BILL OF LADING:
-{texts["bill_of_lading"][:800]}
-
-COMMERCIAL INVOICE:
-{texts["invoice"][:800]}
-
-PACKING LIST:
-{texts["packing_list"][:800]}
-"""
+    prompt = _render_prompt(
+        "bundle_user.txt",
+        {
+            "BOL_SCHEMA": json.dumps(bol_template, separators=(",", ":")),
+            "INV_SCHEMA": json.dumps(inv_template, separators=(",", ":")),
+            "PL_SCHEMA": json.dumps(pl_template, separators=(",", ":")),
+            "BILL_OF_LADING_TEXT": bol_text,
+            "INVOICE_TEXT": inv_text,
+            "PACKING_LIST_TEXT": pl_text,
+        },
+    )
+    system_prompt = get_prompt("bundle_system.txt")
 
     logger.info("Requesting Groq to structure all documents in one request")
     client = _get_groq_client()
@@ -289,8 +387,11 @@ PACKING LIST:
         temperature = 0.1 if attempt == 1 else 0.0
         try:
             response = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
-                messages=[{"role": "user", "content": prompt}],
+                model=_DEFAULT_MODEL,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": prompt},
+                ],
                 response_format={"type": "json_object"},
                 temperature=temperature,
                 max_tokens=3072,
@@ -299,6 +400,7 @@ PACKING LIST:
             _dump_groq_output(
                 "bundle_response",
                 raw_json,
+                model=_DEFAULT_MODEL,
                 attempt=attempt,
                 mode="bundle",
             )
@@ -327,6 +429,7 @@ PACKING LIST:
                 "bundle_parse_error",
                 raw_json,
                 parse_error=str(exc),
+                model=_DEFAULT_MODEL,
                 attempt=attempt,
                 mode="bundle",
             )
@@ -343,6 +446,7 @@ PACKING LIST:
                 "bundle_parse_error",
                 raw_json,
                 parse_error=str(exc),
+                model=_DEFAULT_MODEL,
                 attempt=attempt,
                 mode="bundle",
             )
@@ -353,18 +457,7 @@ PACKING LIST:
     if parsed is None:
         logger.info("Falling back to per-document parsing")
         try:
-            bol = structure_bill_of_lading(texts["bill_of_lading"])
-            inv = structure_invoice(texts["invoice"])
-            pl = structure_packing_list(texts["packing_list"])
-            category = detect_category(inv)
-            all_text = "\n\n".join(
-                [
-                    texts.get("bill_of_lading", ""),
-                    texts.get("invoice", ""),
-                    texts.get("packing_list", ""),
-                ]
-            )
-            category_meta = structure_category_metadata(all_text, category)
+            bol, inv, pl, category_meta = _structure_with_per_document(texts)
             logger.info("Per-document fallback parsing succeeded")
             return bol, inv, pl, category_meta
         except Exception as exc:
@@ -379,9 +472,18 @@ PACKING LIST:
             return bol, inv, pl, {"category": category, "metadata_fields": {}}
 
     try:
-        bol = _coerce_types(parsed.get("bill_of_lading", {}), bol_template)
-        inv = _coerce_types(parsed.get("invoice", {}), inv_template)
-        pl = _coerce_types(parsed.get("packing_list", {}), pl_template)
+        raw_bol = parsed.get("bill_of_lading", {})
+        raw_inv = parsed.get("invoice", {})
+        raw_pl = parsed.get("packing_list", {})
+        bol = _coerce_types(raw_bol, bol_template)
+        inv = _coerce_types(raw_inv, inv_template)
+        pl = _coerce_types(raw_pl, pl_template)
+        _dump_structured_snapshot(
+            "bundle_documents_coercion",
+            {"bill_of_lading": raw_bol, "invoice": raw_inv, "packing_list": raw_pl},
+            {"bill_of_lading": bol, "invoice": inv, "packing_list": pl},
+            mode="bundle",
+        )
     except Exception as exc:
         logger.error("Failed to extract document types from response: %s", exc)
         logger.warning("Falling back to mock data")
@@ -398,14 +500,20 @@ PACKING LIST:
         category = category_data.get("category", "General")
         metadata_fields = category_data.get("metadata_fields", {}) or {}
         if category in category_templates:
-            metadata_fields = _coerce_types(metadata_fields, category_templates[category].get("metadata_fields", {}))
+            coerced_metadata = _coerce_types(metadata_fields, category_templates[category].get("metadata_fields", {}))
+            _dump_structured_snapshot(
+                "bundle_category_metadata_coercion",
+                metadata_fields,
+                coerced_metadata,
+                mode="bundle",
+            )
+            metadata_fields = coerced_metadata
     except Exception as exc:
         logger.error("Failed to extract category metadata: %s", exc)
         category = "General"
         metadata_fields = {}
 
     return bol, inv, pl, {"category": category, "metadata_fields": metadata_fields}
-
 
 def _get_mock_data(doc_type: str) -> dict:
     """Return mock document data for testing without API calls."""
@@ -554,41 +662,41 @@ def _should_fallback_to_mock(exc: Exception) -> bool:
 
 
 def _structure_document(text: str, template: dict, doc_type: str) -> dict:
-    """Common helper — sends the extracted text + schema to Groq and
+    """Common helper â€” sends the extracted text + schema to Groq and
     parses/validates the response."""
 
     # Check if mock mode is enabled
     use_mock = os.environ.get("USE_MOCK_DATA", "").lower() == "true"
     if use_mock:
-        logger.info("Mock mode enabled — returning mock data for %s", doc_type)
+        logger.info("Mock mode enabled â€” returning mock data for %s", doc_type)
         mock_data = _get_mock_data(doc_type)
         return _coerce_types(mock_data, template)
 
     schema_str = json.dumps(template, indent=2)
+    prepared_text = _prepare_doc_text(text, _MAX_DOC_CHARS)
+    _log_doc_coverage(doc_type.lower().replace(" ", "_"), text, prepared_text)
 
-    prompt = f"""You are a logistics document parsing expert. Extract all data from the following {doc_type} document text and return it as a JSON object that exactly matches this schema.
-
-SCHEMA (use these exact keys, with proper types — "number" means a numeric value, "boolean" means true/false, "string" means text):
-{schema_str}
-
-RULES:
-- For arrays (like line_items or items), extract ALL entries found in the document.
-- If a field is not found in the document, use null.
-- For numbers, return actual numeric values, not strings.
-- For booleans, return true or false, not strings.
-- Return ONLY valid JSON matching the schema. No markdown, no explanation.
-
-DOCUMENT TEXT:
-{text}
-"""
+    prompt = _render_prompt(
+        "per_document_user.txt",
+        {
+            "DOC_TYPE": doc_type,
+            "SCHEMA": schema_str,
+            "DOCUMENT_TEXT": prepared_text,
+        },
+    )
+    system_prompt = get_prompt("per_document_system.txt")
 
     logger.info("Requesting Groq to structure %s", doc_type)
 
     try:
         client = _get_groq_client()
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model=_DEFAULT_MODEL,
             messages=[
+                {
+                    "role": "system",
+                    "content": system_prompt,
+                },
                 {
                     "role": "user",
                     "content": prompt,
@@ -602,6 +710,7 @@ DOCUMENT TEXT:
         _dump_groq_output(
             f"{doc_type.lower().replace(' ', '_')}_response",
             raw_json,
+            model=_DEFAULT_MODEL,
             mode="per_document",
         )
     except Exception as exc:
@@ -631,6 +740,12 @@ DOCUMENT TEXT:
 
     # Coerce types to match template expectations
     structured = _coerce_types(parsed, template)
+    _dump_structured_snapshot(
+        f"{doc_type.lower().replace(' ', '_')}_coercion",
+        parsed,
+        structured,
+        mode="per_document",
+    )
     logger.info("Successfully structured %s (%d keys)", doc_type, len(structured))
     return structured
 
@@ -642,7 +757,7 @@ DOCUMENT TEXT:
 def detect_category(invoice_data: dict) -> str:
     """Determine the product category from HS codes in the invoice.
 
-    Mirrors the logic in ``normalizer.py → ShipmentProcessor._get_category``.
+    Mirrors the logic in ``normalizer.py â†’ ShipmentProcessor._get_category``.
     """
     line_items = invoice_data.get("line_items") or []
     hs = line_items[0].get("hs_code", "") if line_items else ""
@@ -688,7 +803,7 @@ def structure_category_metadata(
 
     template_file = template_map.get(category)
     if not template_file:
-        # General category — no category-specific metadata
+        # General category â€” no category-specific metadata
         return {"category": "General", "metadata_fields": {}}
 
     template = _load_template(_CATEGORY_TEMPLATES / template_file)
@@ -697,7 +812,7 @@ def structure_category_metadata(
     # Check if mock mode is enabled
     use_mock = os.environ.get("USE_MOCK_DATA", "").lower() == "true"
     if use_mock:
-        logger.info("Mock mode enabled — returning mock category metadata for %s", category)
+        logger.info("Mock mode enabled â€” returning mock category metadata for %s", category)
         mock_metadata = {}
         if category == "Manufactured Goods":
             mock_metadata = {
@@ -728,28 +843,28 @@ def structure_category_metadata(
         }
 
     schema_str = json.dumps(metadata_schema, indent=2)
+    prepared_text = _prepare_doc_text(all_text, _MAX_DOC_CHARS * 2)
+    _log_doc_coverage("category_metadata_input", all_text, prepared_text)
 
-    prompt = f"""You are a logistics document parsing expert. Based on the following shipping document texts, extract category-specific metadata for a "{category}" shipment.
-
-Return a JSON object matching this schema (use these exact keys):
-{schema_str}
-
-RULES:
-- For numbers, return actual numeric values.
-- For booleans, return true or false.
-- For dates, use ISO 8601 format (YYYY-MM-DD).
-- If a field cannot be determined from the documents, use null.
-- Return ONLY valid JSON. No markdown, no explanation.
-
-DOCUMENT TEXTS:
-{all_text}
-"""
+    prompt = (
+        f'Extract category-specific metadata for a "{category}" shipment.\n\n'
+        f"Return a JSON object matching this schema:\n{schema_str}\n\n"
+        "Rules:\n"
+        "- Use type-safe defaults when fields are absent.\n"
+        "- Return only valid JSON.\n\n"
+        f"DOCUMENT TEXTS:\n{prepared_text}\n"
+    )
+    system_prompt = get_prompt("category_metadata_system.txt")
 
     try:
         client = _get_groq_client()
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model=_DEFAULT_MODEL,
             messages=[
+                {
+                    "role": "system",
+                    "content": system_prompt,
+                },
                 {
                     "role": "user",
                     "content": prompt,
@@ -763,6 +878,7 @@ DOCUMENT TEXTS:
         _dump_groq_output(
             f"category_{category.lower().replace(' ', '_')}_response",
             raw_json,
+            model=_DEFAULT_MODEL,
             mode="category_metadata",
         )
         if isinstance(raw_json, dict):
@@ -792,7 +908,14 @@ DOCUMENT TEXTS:
             metadata_fields = {}
 
     # Coerce types
+    raw_metadata_fields = metadata_fields
     metadata_fields = _coerce_types(metadata_fields, metadata_schema)
+    _dump_structured_snapshot(
+        f"category_{category.lower().replace(' ', '_')}_coercion",
+        raw_metadata_fields,
+        metadata_fields,
+        mode="category_metadata",
+    )
 
     return {
         "category": category,
@@ -827,3 +950,4 @@ def build_shipment(
         "invoice": invoice,
         "packing_list": packing_list,
     }
+

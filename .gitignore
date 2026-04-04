@@ -62,6 +62,7 @@ check_*.py
 *.tmp
 *.bak
 *.txt
+!backend/prompts/*.txt
 .claude
 CLaude.md
 uploads/

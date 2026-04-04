@@ -1,0 +1,46 @@
+Extract logistics data from three documents and return a JSON object with keys:
+bill_of_lading, invoice, packing_list, category_metadata.
+
+Use these field names only:
+
+BILL_OF_LADING: bill_of_lading_number, ship_from (name, address, city_state_zip, sid_number, fob_point), ship_to (name, location_number, address, city_state_zip, cid_number, fob_point), carrier_details (carrier_name, trailer_number, seal_numbers, scac, pro_number, freight_charge_terms), customer_order_info (order_number, pkgs_count, weight, pallet_slip, additional_info), carrier_commodity_info (handling_unit_qty, handling_unit_type, package_qty, package_type, weight, is_hazardous, commodity_description, nmfc_number)
+
+INVOICE: invoice_number, seller_info (company_name, address, reg_number, tax_number), bill_to_info (client_name, address, reg_number, tax_number), payment_details (bank_name, bic, account_number, invoice_date, due_date), line_items (hs_code, container_number, description, quantity, unit_of_measure, unit_price, subtotal, tax_amount, tax_percentage), totals (subtotal, tax_total, grand_total, currency, amount_in_words)
+
+PACKING_LIST: delivery_to (customer_name, address_lines, telephone, email), from_business (business_name, address_lines), shipping_refs (order_reference, order_date, delivery_method, delivery_number, delivery_date), items (item_number, description, qty_ordered, qty_shipped, weight_kg, volume_cbm, container_number), notes
+
+category_metadata: category (one of: Perishables, Manufactured Goods, Raw Materials, General), metadata_fields (empty object if General)
+
+STRICT TYPE RULES:
+- Output must be a single JSON object.
+- If unknown, use type-safe defaults:
+  - string -> ""
+  - number -> 0
+  - boolean -> false
+  - object -> {}
+  - array -> []
+- Never return object fields as strings.
+- Never return array fields as objects/strings.
+- Required array fields:
+  - bill_of_lading.customer_order_info
+  - bill_of_lading.carrier_commodity_info
+  - invoice.line_items
+  - packing_list.delivery_to.address_lines
+  - packing_list.from_business.address_lines
+  - packing_list.items
+- Do not output empty arrays if rows/items are visible in document text.
+
+TARGET SHAPES (match exactly):
+bill_of_lading schema: {{BOL_SCHEMA}}
+invoice schema: {{INV_SCHEMA}}
+packing_list schema: {{PL_SCHEMA}}
+
+BILL OF LADING:
+{{BILL_OF_LADING_TEXT}}
+
+COMMERCIAL INVOICE:
+{{INVOICE_TEXT}}
+
+PACKING LIST:
+{{PACKING_LIST_TEXT}}
+
