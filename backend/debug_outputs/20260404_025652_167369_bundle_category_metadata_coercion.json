@@ -1,0 +1,42 @@
+{
+  "timestamp_utc": "2026-04-04T02:56:52Z",
+  "tag": "bundle_category_metadata_coercion",
+  "model": "llama-3.3-70b-versatile",
+  "attempt": null,
+  "mode": "bundle",
+  "parse_error": null,
+  "raw_output": {
+    "raw_structured": {
+      "date_of_harvest": "",
+      "date_of_shipping": "",
+      "expiry_date": "",
+      "temperature_control": {
+        "required": true,
+        "min_temp": 2,
+        "max_temp": 4,
+        "unit": "Celsius"
+      },
+      "humidity_requirement": "",
+      "ventilation_required": false,
+      "ripening_stage": "",
+      "is_frozen": false,
+      "shelf_life_remaining_days": 0
+    },
+    "coerced_structured": {
+      "date_of_harvest": "",
+      "date_of_shipping": "",
+      "expiry_date": "",
+      "temperature_control": {
+        "required": true,
+        "min_temp": 2,
+        "max_temp": 4,
+        "unit": "Celsius"
+      },
+      "humidity_requirement": "",
+      "ventilation_required": false,
+      "ripening_stage": "",
+      "is_frozen": false,
+      "shelf_life_remaining_days": 0
+    }
+  }
+}

@@ -1,144 +1,122 @@
-# ClearPath: Intelligent Shipment Verification
+# ClearPath: Shipment Verification Pipeline
 
-ClearPath is a full-stack document intelligence workflow for logistics verification.  
-Upload a Bill of Lading, Invoice, and Packing List; the system extracts structure, runs consistency/compliance checks, streams live processing logs, and generates a final PDF certificate.
+## 1) How to Run the Full App
 
-## Why This Matters
-
-Manual shipment verification is slow, error-prone, and expensive in high-volume operations.  
-ClearPath provides:
-
-- Automated cross-document checks
-- Explainable flagged issues with evidence
-- Business-facing KPI framing (risk, checks passed, time saved, completeness)
-- One-click final certificate generation
-
-## Demo Flow (60–90s Pitch)
-
-1. Upload 3 documents (`bill_of_lading`, `invoice`, `packing_list`).
-2. Show the live processing terminal with backend-driven session logs.
-3. Open the trust dashboard:
-   - KPI strip (risk score, checks passed, time saved, completeness)
-   - Operations brief and decision trace
-   - Explainability evidence panels for flagged checks
-4. Download the generated PDF certificate.
-
-## Architecture
-
-Frontend (`React + Vite + Tailwind`)
-- Upload flow and processing console
-- SSE log stream + fallback simulation
-- Explainability dashboard and report actions
-
-Backend (`Flask`)
-- `/api/process-shipment`: ingest, extraction, structuring, normalization
-- `/api/process-shipment/logs/<session_id>`: real-time SSE event stream
-- `/api/process-shipment/logs/<session_id>/snapshot`: polling fallback
-- `/api/generate-report`: PDF certificate generation
-
-ML/Rule Pipeline
-- PDF extraction (`pdf_parser.py`)
-- Structured parsing (`structurer.py`)
-- Rule-based normalization and inconsistency detection (`normalizer.py`)
-- Report rendering (`generate_report_card.py`)
-
-## Project Structure
-
-```text
-backend/
-  app.py
-  pdf_parser.py
-  structurer.py
-  normalizer.py
-  generate_report_card.py
-  prompts/
-frontend/
-  src/
-    components/
-      ClearPathScreen.tsx
-      ProcessingScreen.tsx
-      VerificationResultsScreen.tsx
-```
-
-## Setup
-
-### 1) Backend
-
-```bash
+### Start Backend
+```powershell
 cd backend
 python -m venv .venv
-.venv\Scripts\activate
+.\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 python app.py
 ```
 
-### 2) Frontend
-
-```bash
+### Start Frontend
+```powershell
 cd frontend
 npm install
 npm run dev
 ```
 
-Frontend: `http://localhost:5173`  
-Backend: `http://localhost:5000`
+Open `http://localhost:5173`, upload the 3 PDFs:
+- `bill_of_lading`
+- `invoice`
+- `packing_list`
 
-## Environment Variables (`backend/.env`)
+After processing, you are taken to the dashboard where you can review flags and download the PDF report.
 
-Required:
+---
 
-- `LLMWHISPERER_API_KEY`
-- `GROQ_API_KEY`
+## 2) Extraction Layer (DocStruct Primary, Unstract Backup)
 
-Optional:
+We support two extraction providers:
+- **Primary:** locally hosted **DocStruct**
+- **Fallback:** **Unstract LLMWhisperer**
 
-- `USE_MOCK_DATA=true|false`
-- `STRUCTURER_MODEL`
-- `STRUCTURER_MAX_DOC_CHARS`
-- `STRUCTURER_BUNDLE_MAX_TOTAL_CHARS`
-- `STRUCTURER_USE_BUNDLE_FIRST`
+The backend defaults to DocStruct-first and automatically falls back to Unstract if DocStruct fails or returns near-empty output.
 
-## API Contracts
+### DocStruct 11-Stage Pipeline Modules
+From `DocStruct/pipeline`:
+1. `decomposition.py`
+2. `layout.py`
+3. `hybrid_proposals.py`
+4. `proposal_fusion.py`
+5. `classification.py`
+6. `table_candidates.py`
+7. `tables_figures.py`
+8. `reading_order.py`
+9. `confidence.py`
+10. `markdown_serializer.py`
+11. `validator.py`
 
-### `POST /api/process-shipment`
+### 3-Level Schema Validation in DocStruct
+From `DocStruct/schemas`:
+- `document.py` (document-level contract)
+- `page.py` (page-level contract)
+- `block.py` (block-level contract)
 
-Form-data inputs:
-- `bill_of_lading` (pdf)
-- `invoice` (pdf)
-- `packing_list` (pdf)
-- `session_id` (optional string for live log streaming)
+### Model Support in DocStruct
+From `DocStruct/hf_models`:
+- `deformable-detr-doclaynet`
+- `table-transformer`
 
-Response includes:
-- `normalized`
-- `raw_shipment`
-- `telemetry` (timing/extraction/kpi)
-- `explainability` (items + summary)
+### Modes You Can Use
+DocStruct runtime modes in backend config:
+- **standard**: geometry/visual heuristics driven extraction
+- **model-only** (implemented as model-driven `model-first` path): extraction driven by model detections
+- **hybrid** (true-hybrid): combines geometry + model outputs and reconciles using confidence/fusion logic
 
-### `GET /api/process-shipment/logs/<session_id>`
+### Backend Env Controls for Extraction
+Set these in `backend/.env`:
+```env
+PDF_EXTRACTOR_PROVIDER=docstruct   # docstruct | unstract | auto
+DOCSTRUCT_ROOT=..\DocStruct
+DOCSTRUCT_PYTHON=
+DOCSTRUCT_MODE=standard
+DOCSTRUCT_DETECTOR=stub
+DOCSTRUCT_TIMEOUT_SEC=120
+DOCSTRUCT_MIN_CHARS=80
+```
 
-Server-sent events stream:
-- lifecycle steps
-- extraction/structuring/normalization progress
-- completion/error status event
+---
 
-### `POST /api/generate-report`
+## 3) Document Intelligence + Consistency Checks
 
-Input:
-- `{ "normalized": { ... } }`
+We process 3 logistics documents:
+- Bill of Lading
+- Invoice
+- Packing List
 
-Output:
-- PDF download stream
+### Multi-Language Support
+The pipeline supports shipment documents written in:
+- English
+- Spanish
+- Italian
+- German
+- French
+- Portuguese
 
-## Known Limitations
+Pipeline behavior:
+1. Extract text/layout from PDFs (DocStruct primary).
+2. Convert extracted content into structured JSON.
+3. Run cross-document consistency checks and category-aware validation.
+4. Return normalized results, explainability evidence, and KPIs to the dashboard.
 
-- In-memory session logs are process-local (not distributed).
-- KPI values are heuristic for demo framing.
-- Extraction quality depends on source PDF quality and parser model behavior.
+### Supported Shipment Categories
+- Manufactured Goods
+- Perishables
+- Raw Materials
 
-## Roadmap
+### Examples of Inconsistency Checks
+- Destination address mismatch
+- Weight mismatch (for example, per-box weight x quantity vs declared total)
+- Tax calculation mismatch
+- Hazardous material consistency checks
+- Missing carrier identifiers (for example SCAC/pro details)
 
-- Persist session logs and audit traces in Redis/Postgres
-- Multi-provider parser A/B with quality scoring
-- Human-in-the-loop correction UI with instant re-evaluation
-- Multi-shipment batch processing and queueing
-- Judge-ready architecture diagram image (`docs/architecture.png`)
+All detected issues are surfaced in the dashboard as explainable flags with evidence, and the user can generate/download a final PDF verification report.
+
+---
+
+## Notes
+- If DocStruct cannot run (missing venv/model/runtime issue), the backend falls back to Unstract automatically.

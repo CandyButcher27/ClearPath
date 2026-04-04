@@ -23,7 +23,7 @@ from flask import Flask, Response, after_this_request, jsonify, request, send_fi
 from flask_cors import CORS
 
 from normalizer import ShipmentProcessor
-from pdf_parser import extract_text_from_pdf
+from pdf_parser import extract_text_from_pdf_with_source
 from structurer import (
     build_shipment,
     detect_category,
@@ -219,6 +219,7 @@ def _build_telemetry(
     *,
     started_at: float,
     extracted_texts: dict[str, str],
+    extractor_sources: dict[str, str],
     explainability: dict,
     fallback_used: bool,
     parse_retries: int,
@@ -241,6 +242,12 @@ def _build_telemetry(
             "coverage_ratio": round(0 if chars_extracted == 0 else chars_sent / chars_extracted, 3),
             "parse_retries": parse_retries,
             "fallback_used": fallback_used,
+            "providers_by_document": extractor_sources,
+            "provider_counts": {
+                "docstruct": sum(1 for s in extractor_sources.values() if s == "docstruct"),
+                "unstract": sum(1 for s in extractor_sources.values() if s == "unstract"),
+                "unstract_fallback": sum(1 for s in extractor_sources.values() if s == "unstract_fallback"),
+            },
         },
         "kpis": {
             "risk_score": risk_score,
@@ -357,6 +364,7 @@ def process_shipment():
 
     saved_paths: dict[str, str] = {}
     extracted_texts: dict[str, str] = {}
+    extractor_sources: dict[str, str] = {}
     fallback_used = False
     parse_retries = 0
 
@@ -376,18 +384,21 @@ def process_shipment():
 
         def _extract(name_path):
             name, path = name_path
-            text = extract_text_from_pdf(path)
-            return name, text
+            text, source = extract_text_from_pdf_with_source(path)
+            return name, text, source
 
         with ThreadPoolExecutor(max_workers=3) as executor:
             futures = {executor.submit(_extract, item): item[0] for item in saved_paths.items()}
             for future in as_completed(futures):
-                name, text = future.result()
+                name, text, source = future.result()
                 extracted_texts[name] = text
+                extractor_sources[name] = source
+                if source == "unstract_fallback":
+                    fallback_used = True
                 _append_session_event(
                     session_id,
                     "OK",
-                    f"Extracted {name} text ({len(text)} chars)",
+                    f"Extracted {name} text ({len(text)} chars) via {source}",
                     phase="extract",
                 )
 
@@ -415,6 +426,7 @@ def process_shipment():
         telemetry = _build_telemetry(
             started_at=started_at,
             extracted_texts=extracted_texts,
+            extractor_sources=extractor_sources,
             explainability=explainability,
             fallback_used=fallback_used,
             parse_retries=parse_retries,
