@@ -14,6 +14,7 @@ import tempfile
 import threading
 import time
 import uuid
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -370,16 +371,25 @@ def process_shipment():
             logger.info("Saved %s -> %s", name, path)
             _append_session_event(session_id, "INFO", f"Saved {name}: {f.filename}", phase="ingest")
 
-        logger.info("[%s] Step 1/4: Extracting text from PDFs...", session_id)
-        _append_session_event(session_id, "INFO", "Extracting text from PDFs...", phase="extract")
-        for name, path in saved_paths.items():
-            extracted_texts[name] = extract_text_from_pdf(path)
-            _append_session_event(
-                session_id,
-                "OK",
-                f"Extracted {name} text ({len(extracted_texts[name])} chars)",
-                phase="extract",
-            )
+        logger.info("[%s] Step 1/4: Extracting text from PDFs (parallel)...", session_id)
+        _append_session_event(session_id, "INFO", "Extracting text from PDFs (parallel)...", phase="extract")
+
+        def _extract(name_path):
+            name, path = name_path
+            text = extract_text_from_pdf(path)
+            return name, text
+
+        with ThreadPoolExecutor(max_workers=3) as executor:
+            futures = {executor.submit(_extract, item): item[0] for item in saved_paths.items()}
+            for future in as_completed(futures):
+                name, text = future.result()
+                extracted_texts[name] = text
+                _append_session_event(
+                    session_id,
+                    "OK",
+                    f"Extracted {name} text ({len(text)} chars)",
+                    phase="extract",
+                )
 
         logger.info("[%s] Step 2/4: Structuring extracted text and category metadata...", session_id)
         _append_session_event(session_id, "INFO", "Structuring documents with LLM parser...", phase="structure")

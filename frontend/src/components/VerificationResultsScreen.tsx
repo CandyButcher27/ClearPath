@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import type { ApiResult } from '../App'
 
 function useCountUp(target: number, duration = 900): number {
@@ -33,7 +33,6 @@ export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScre
   const [reportError, setReportError] = useState<string | null>(null)
   const [hasGeneratedReport, setHasGeneratedReport] = useState(false)
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set())
-  const hasAutoTriggeredRef = useRef(false)
 
   const sessionId = result?.session_id ?? 'N/A'
   const normalized = result?.normalized ?? {}
@@ -118,12 +117,7 @@ export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScre
     }
   }, [result])
 
-  useEffect(() => {
-    if (!result?.normalized) return
-    if (hasAutoTriggeredRef.current) return
-    hasAutoTriggeredRef.current = true
-    void handleGenerateReport()
-  }, [result, handleGenerateReport])
+  // Report is generated only when the user explicitly clicks the button.
 
   return (
     <div className="ux-shell min-h-screen text-zinc-100">

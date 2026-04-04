@@ -46,8 +46,8 @@ export default {
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         pulseAccent: {
-          '0%, 100%': { boxShadow: '0 0 0 0 rgba(227, 6, 19, 0.4)' },
-          '50%': { boxShadow: '0 0 0 15px rgba(227, 6, 19, 0)' },
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.75' },
         },
         statusPing: {
           '75%, 100%': { transform: 'scale(2.5)', opacity: '0' },

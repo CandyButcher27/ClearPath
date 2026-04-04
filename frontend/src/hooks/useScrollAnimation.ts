@@ -4,10 +4,15 @@ export function useScrollAnimation() {
   const [scrollY, setScrollY] = useState(0)
 
   useEffect(() => {
+    let rafId: number | null = null
     const handleScroll = () => {
-      setScrollY(window.scrollY)
+      if (rafId !== null) return
+      rafId = requestAnimationFrame(() => {
+        setScrollY(window.scrollY)
+        rafId = null
+      })
     }
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
 
     const observerOptions = {
       threshold: 0.1,
@@ -28,6 +33,7 @@ export function useScrollAnimation() {
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
+      if (rafId !== null) cancelAnimationFrame(rafId)
       observer.disconnect()
     }
   }, [])

@@ -1,0 +1,277 @@
+{
+  "timestamp_utc": "2026-04-04T02:23:21Z",
+  "tag": "bundle_documents_coercion",
+  "model": "llama-3.3-70b-versatile",
+  "attempt": null,
+  "mode": "bundle",
+  "parse_error": null,
+  "raw_output": {
+    "raw_structured": {
+      "bill_of_lading": {
+        "bill_of_lading_number": "BOL-COLD-010",
+        "ship_from": {
+          "name": "Ice Cream Dreams",
+          "address": "1 Freezing Way",
+          "city_state_zip": "Minneapolis, MN 55401",
+          "sid_number": "SID-ICE",
+          "fob_point": true
+        },
+        "ship_to": {
+          "name": "Sweet Shop Supply",
+          "location_number": "SS-WH",
+          "address": "90 Sugar Blvd",
+          "city_state_zip": "Orlando, FL 32801",
+          "cid_number": "CID-SUG",
+          "fob_point": false
+        },
+        "carrier_details": {
+          "carrier_name": "Arctic Transport",
+          "trailer_number": "RE-100",
+          "seal_numbers": "S-1010",
+          "scac": "ARCT",
+          "pro_number": "PRO-10",
+          "freight_charge_terms": "Prepaid"
+        },
+        "customer_order_info": [
+          {
+            "order_number": "PO-ICE-10",
+            "pkgs_count": 50,
+            "weight": 300.0,
+            "pallet_slip": true,
+            "additional_info": "Insulated Containers"
+          }
+        ],
+        "carrier_commodity_info": [
+          {
+            "handling_unit_qty": 2,
+            "handling_unit_type": "Pallets",
+            "package_qty": 50,
+            "package_type": "Tubs",
+            "weight": 300.0,
+            "is_hazardous": false,
+            "commodity_description": "Premium Vanilla Ice Cream",
+            "nmfc_number": "NM-ICE",
+            "class": "92.5"
+          }
+        ]
+      },
+      "invoice": {
+        "invoice_number": "",
+        "seller_info": {
+          "company_name": "ZenithTech",
+          "address": "1 Innovation Blvd",
+          "reg_number": "",
+          "tax_number": ""
+        },
+        "bill_to_info": {
+          "client_name": "Retailer Central",
+          "address": "777 Commerce St",
+          "reg_number": "",
+          "tax_number": ""
+        },
+        "payment_details": {
+          "bank_name": "",
+          "bic": "",
+          "account_number": "",
+          "invoice_date": "",
+          "due_date": ""
+        },
+        "line_items": [
+          {
+            "hs_code": "",
+            "container_number": "CONT-Z",
+            "description": "Model Z1 Smart Device",
+            "quantity": 95,
+            "unit_of_measure": "",
+            "unit_price": 0,
+            "subtotal": 0,
+            "tax_amount": 0,
+            "tax_percentage": 0
+          }
+        ],
+        "totals": {
+          "subtotal": 0,
+          "tax_total": 0,
+          "grand_total": 0,
+          "currency": "",
+          "amount_in_words": ""
+        }
+      },
+      "packing_list": {
+        "delivery_to": {
+          "customer_name": "Retailer Central",
+          "address_lines": [
+            "777 Commerce St",
+            "Dock 1"
+          ],
+          "telephone": "555-9000",
+          "email": "logistics@retailer.com"
+        },
+        "from_business": {
+          "business_name": "ZenithTech",
+          "address_lines": [
+            "1 Innovation Blvd"
+          ]
+        },
+        "shipping_refs": {
+          "order_reference": "PO-ZEN-01",
+          "order_date": "2026-03-20",
+          "delivery_method": "Air Freight",
+          "delivery_number": "DLV-ZEN-1",
+          "delivery_date": ""
+        },
+        "items": [
+          {
+            "item_number": "Z1-BLACK",
+            "description": "Model Z1 Smart Device",
+            "qty_ordered": 100,
+            "qty_shipped": 95,
+            "weight_kg": 475.0,
+            "volume_cbm": 2.0,
+            "container_number": "CONT-Z"
+          }
+        ],
+        "notes": "Short shipment due to stock shortage. 5 units backordered."
+      }
+    },
+    "coerced_structured": {
+      "bill_of_lading": {
+        "bill_of_lading_number": "BOL-COLD-010",
+        "ship_from": {
+          "name": "Ice Cream Dreams",
+          "address": "1 Freezing Way",
+          "city_state_zip": "Minneapolis, MN 55401",
+          "sid_number": "SID-ICE",
+          "fob_point": true
+        },
+        "ship_to": {
+          "name": "Sweet Shop Supply",
+          "location_number": "SS-WH",
+          "address": "90 Sugar Blvd",
+          "city_state_zip": "Orlando, FL 32801",
+          "cid_number": "CID-SUG",
+          "fob_point": false
+        },
+        "third_party_bill_to": {
+          "name": "",
+          "address": "",
+          "city_state_zip": ""
+        },
+        "special_instructions": "",
+        "carrier_details": {
+          "carrier_name": "Arctic Transport",
+          "trailer_number": "RE-100",
+          "seal_numbers": "S-1010",
+          "scac": "ARCT",
+          "pro_number": "PRO-10",
+          "freight_charge_terms": "Prepaid"
+        },
+        "customer_order_info": [
+          {
+            "order_number": "PO-ICE-10",
+            "pkgs_count": 50,
+            "weight": 300.0,
+            "pallet_slip": true,
+            "additional_info": "Insulated Containers"
+          }
+        ],
+        "carrier_commodity_info": [
+          {
+            "handling_unit_qty": 2,
+            "handling_unit_type": "Pallets",
+            "package_qty": 50,
+            "package_type": "Tubs",
+            "weight": 300.0,
+            "is_hazardous": false,
+            "commodity_description": "Premium Vanilla Ice Cream",
+            "nmfc_number": "NM-ICE",
+            "class": "92.5"
+          }
+        ],
+        "cod_details": {
+          "amount": 0,
+          "fee_terms": "",
+          "customer_check_acceptable": false
+        }
+      },
+      "invoice": {
+        "invoice_number": "",
+        "seller_info": {
+          "company_name": "ZenithTech",
+          "address": "1 Innovation Blvd",
+          "reg_number": "",
+          "tax_number": ""
+        },
+        "bill_to_info": {
+          "client_name": "Retailer Central",
+          "address": "777 Commerce St",
+          "reg_number": "",
+          "tax_number": ""
+        },
+        "payment_details": {
+          "bank_name": "",
+          "bic": "",
+          "account_number": "",
+          "invoice_date": "",
+          "due_date": ""
+        },
+        "line_items": [
+          {
+            "hs_code": "",
+            "container_number": "CONT-Z",
+            "description": "Model Z1 Smart Device",
+            "quantity": 95,
+            "unit_of_measure": "",
+            "unit_price": 0,
+            "subtotal": 0,
+            "tax_amount": 0,
+            "tax_percentage": 0
+          }
+        ],
+        "totals": {
+          "subtotal": 0,
+          "tax_total": 0,
+          "grand_total": 0,
+          "currency": "",
+          "amount_in_words": ""
+        }
+      },
+      "packing_list": {
+        "delivery_to": {
+          "customer_name": "Retailer Central",
+          "address_lines": [
+            "777 Commerce St",
+            "Dock 1"
+          ],
+          "telephone": "555-9000",
+          "email": "logistics@retailer.com"
+        },
+        "from_business": {
+          "business_name": "ZenithTech",
+          "address_lines": [
+            "1 Innovation Blvd"
+          ]
+        },
+        "shipping_refs": {
+          "order_reference": "PO-ZEN-01",
+          "order_date": "2026-03-20",
+          "delivery_method": "Air Freight",
+          "delivery_number": "DLV-ZEN-1",
+          "delivery_date": ""
+        },
+        "items": [
+          {
+            "item_number": "Z1-BLACK",
+            "description": "Model Z1 Smart Device",
+            "qty_ordered": 100,
+            "qty_shipped": 95,
+            "weight_kg": 475.0,
+            "volume_cbm": 2.0,
+            "container_number": "CONT-Z"
+          }
+        ],
+        "notes": "Short shipment due to stock shortage. 5 units backordered."
+      }
+    }
+  }
+}

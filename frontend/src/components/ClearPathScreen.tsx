@@ -35,13 +35,21 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubm
   }
 
   useEffect(() => {
+    let rafId: number | null = null
     const handleMouseMove = (e: MouseEvent) => {
-      const x = e.clientX / window.innerWidth
-      const y = e.clientY / window.innerHeight
-      setGridPos({ x: x * 20, y: y * 20 })
+      if (rafId !== null) return
+      rafId = requestAnimationFrame(() => {
+        const x = e.clientX / window.innerWidth
+        const y = e.clientY / window.innerHeight
+        setGridPos({ x: x * 20, y: y * 20 })
+        rafId = null
+      })
     }
     window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+      if (rafId !== null) cancelAnimationFrame(rafId)
+    }
   }, [])
 
   return (
@@ -49,7 +57,7 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubm
       <div className="wireframe-container pointer-events-none fixed top-1/2 -right-12 z-40 hidden xl:block">
         <div
           className="wireframe-cube"
-          style={{ transform: `rotateX(${scrollY * 0.1}deg) rotateY(${scrollY * 0.15}deg)` }}
+          style={{ transform: `rotateX(${scrollY * 0.1}deg) rotateY(${scrollY * 0.15}deg)`, willChange: 'transform' }}
         >
           <div className="cube-face front" />
           <div className="cube-face back" />
@@ -109,7 +117,7 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubm
                 alt="Modern Cargo Ship"
                 className="h-full w-full object-contain grayscale-0 contrast-110"
                 src={clearPathData.hero.heroImage}
-                style={{ transform: `translate(${scrollY * 0.2}px, ${scrollY * 0.1}px) scale(1.05)` }}
+                style={{ transform: `translate(${scrollY * 0.2}px, ${scrollY * 0.1}px) scale(1.05)`, willChange: 'transform' }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent pointer-events-none" />
 
