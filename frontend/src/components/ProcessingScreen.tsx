@@ -62,6 +62,7 @@ export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ file
   const [result, setResult] = useState<ApiResult | null>(null)
   const [requestPending, setRequestPending] = useState(true)
   const [statusMessage, setStatusMessage] = useState('Preparing verification pipeline...')
+  const hasSubmittedRef = useRef(false)
 
   useEffect(() => {
     const cursorInterval = window.setInterval(() => {
@@ -72,6 +73,11 @@ export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ file
   }, [])
 
   useEffect(() => {
+    if (hasSubmittedRef.current) {
+      return
+    }
+    hasSubmittedRef.current = true
+
     const formData = new FormData()
     formData.append('bill_of_lading', files.bill_of_lading!)
     formData.append('invoice', files.invoice!)

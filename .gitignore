@@ -42,7 +42,7 @@ venv/
 .idea/
 .DS_Store
 Thumbs.db
-
+.env
 
 # Testing and Coverage
 .pytest_cache/

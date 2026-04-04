@@ -9,6 +9,7 @@ normalizer.py's ShipmentProcessor.
 import json
 import logging
 import os
+from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, Optional, Tuple
 
@@ -20,6 +21,37 @@ logger = logging.getLogger(__name__)
 _BASE = Path(__file__).parent
 _BASE_TEMPLATES = _BASE / "base_templates"
 _CATEGORY_TEMPLATES = _BASE / "category_templates"
+_DEBUG_OUTPUTS = _BASE / "debug_outputs"
+
+
+def _dump_groq_output(
+    tag: str,
+    raw_output: Any,
+    parse_error: Optional[str] = None,
+    *,
+    model: str = "llama-3.3-70b-versatile",
+    attempt: Optional[int] = None,
+    mode: Optional[str] = None,
+) -> None:
+    """Persist Groq response payloads for debugging parse issues."""
+    try:
+        _DEBUG_OUTPUTS.mkdir(exist_ok=True)
+        ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S_%f")
+        out_path = _DEBUG_OUTPUTS / f"{ts}_{tag}.json"
+        payload = {
+            "timestamp_utc": datetime.utcnow().isoformat(timespec="seconds") + "Z",
+            "tag": tag,
+            "model": model,
+            "attempt": attempt,
+            "mode": mode,
+            "parse_error": parse_error,
+            "raw_output": raw_output,
+        }
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(payload, f, indent=2, ensure_ascii=False, default=str)
+        logger.info("Saved Groq debug output to %s", out_path)
+    except Exception as exc:
+        logger.warning("Failed to save Groq debug output: %s", exc)
 
 
 def _get_groq_client():
@@ -32,6 +64,47 @@ def _get_groq_client():
             "Get a free key at https://console.groq.com"
         )
     return Groq(api_key=api_key)
+
+
+def _strip_markdown_fences(text: str) -> str:
+    """Remove markdown code fences if the model wrapped JSON in them."""
+    if "```json" in text:
+        return text.split("```json", 1)[1].split("```", 1)[0].strip()
+    if "```" in text:
+        return text.split("```", 1)[1].split("```", 1)[0].strip()
+    return text.strip()
+
+
+def _is_likely_truncated_json(raw_text: str, exc: json.JSONDecodeError) -> bool:
+    """Heuristic for retryable malformed JSON caused by truncation/cutoff."""
+    msg = str(exc).lower()
+    tail = (raw_text or "").rstrip()[-5:]
+    return (
+        "unterminated string" in msg
+        or "expecting value" in msg
+        or "expecting ',' delimiter" in msg
+        or (tail and tail[-1] not in ("]", "}"))
+    )
+
+
+def _parse_bundle_response(raw_json: Any) -> dict:
+    """Parse and validate bundle response shape."""
+    required = {"bill_of_lading", "invoice", "packing_list", "category_metadata"}
+
+    if isinstance(raw_json, dict):
+        parsed = raw_json
+    else:
+        cleaned = _strip_markdown_fences(str(raw_json))
+        parsed = json.loads(cleaned)
+
+    if not isinstance(parsed, dict):
+        raise ValueError("Bundle response is not a JSON object")
+
+    missing = required - set(parsed.keys())
+    if missing:
+        raise ValueError(f"Bundle response missing keys: {sorted(missing)}")
+
+    return parsed
 
 
 def _load_template(template_path: Path) -> dict:
@@ -48,41 +121,60 @@ def _coerce_types(data: Any, template: Any) -> Any:
     This handles the common case where Gemini returns ``"42"`` (string)
     when the template expects ``"number"`` (i.e. an actual int/float).
     """
-    if isinstance(template, dict) and isinstance(data, dict):
+    if isinstance(template, dict):
+        # If model returned a scalar/list where object is expected, coerce to {}
+        # so all expected keys still exist with safe defaults.
+        if not isinstance(data, dict):
+            data = {}
         result = {}
         for key, tmpl_val in template.items():
             if key in data:
                 result[key] = _coerce_types(data[key], tmpl_val)
             else:
                 result[key] = None
-        # Keep any extra keys Gemini returned that aren't in the template
+        # Keep any extra keys model returned that aren't in the template
         for key in data:
             if key not in result:
                 result[key] = data[key]
         return result
 
-    if isinstance(template, list) and isinstance(data, list):
-        if template:
+    if isinstance(template, list):
+        if not template:
+            return data if isinstance(data, list) else []
+        # Normalize common shape errors:
+        # - dict returned instead of single-item list
+        # - scalar returned instead of list
+        if data is None or data == "":
+            return []
+        if isinstance(data, list):
             return [_coerce_types(item, template[0]) for item in data]
-        return data
+        if isinstance(data, dict):
+            return [_coerce_types(data, template[0])]
+        return [_coerce_types(data, template[0])]
 
     # Leaf — coerce based on template type hint string
     if isinstance(template, str):
         hint = template.lower()
         if hint == "number":
             if data is None:
-                return None
+                return 0
+            if isinstance(data, str) and data.strip().lower() in ("", "n/a", "na", "null", "none", "-"):
+                return 0
             try:
                 return float(data) if "." in str(data) else int(data)
             except (ValueError, TypeError):
-                return data
+                return 0
         if hint == "boolean":
+            if data is None:
+                return False
             if isinstance(data, bool):
                 return data
             if isinstance(data, str):
                 return data.lower() in ("true", "yes", "1")
-            return bool(data) if data is not None else None
+            return bool(data)
         # "string" or any other hint — return as-is
+        if data is None:
+            return ""
         return data
 
     return data
@@ -136,6 +228,10 @@ def structure_shipment_document_bundle(texts: Dict[str, str]) -> Tuple[dict, dic
         "Raw Materials": _load_template(_CATEGORY_TEMPLATES / "raw_materials.json"),
     }
 
+    bol_schema = json.dumps(bol_template, separators=(",", ":"))
+    inv_schema = json.dumps(inv_template, separators=(",", ":"))
+    pl_schema = json.dumps(pl_template, separators=(",", ":"))
+
     prompt = f"""Extract logistics data from three documents and return a JSON object with keys: bill_of_lading, invoice, packing_list, category_metadata.
 
 Use these field names only:
@@ -148,7 +244,31 @@ PACKING_LIST: delivery_to (customer_name, address_lines, telephone, email), from
 
 category_metadata: category (one of: Perishables, Manufactured Goods, Raw Materials, General), metadata_fields (empty object if General)
 
-RETURN ONLY VALID JSON. Start with {{ and end with }}. No markdown, no explanation.
+STRICT TYPE RULES (MUST FOLLOW):
+- Output must be a single JSON object starting with {{ and ending with }}.
+- Do not output markdown, comments, prose, or code fences.
+- If unknown, use type-safe defaults instead of null:
+  - string -> ""
+  - number -> 0
+  - boolean -> false
+  - object -> {{}}
+  - array -> []
+- Never return object fields as strings, and never return array fields as objects/strings.
+- Required array fields:
+  - bill_of_lading.customer_order_info
+  - bill_of_lading.carrier_commodity_info
+  - invoice.line_items
+  - packing_list.delivery_to.address_lines
+  - packing_list.from_business.address_lines
+  - packing_list.items
+- category_metadata must always be an object with:
+  - category: "Perishables" | "Manufactured Goods" | "Raw Materials" | "General"
+  - metadata_fields: object ({{}} if unknown)
+
+TARGET SHAPES (match these exactly):
+bill_of_lading schema: {bol_schema}
+invoice schema: {inv_schema}
+packing_list schema: {pl_schema}
 
 BILL OF LADING:
 {texts["bill_of_lading"][:800]}
@@ -161,53 +281,102 @@ PACKING LIST:
 """
 
     logger.info("Requesting Groq to structure all documents in one request")
-    try:
-        client = _get_groq_client()
-        response = client.chat.completions.create(
-            model="openai/gpt-oss-20b",
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.1,
-            max_tokens=2048,
-        )
-        raw_json = response.choices[0].message.content
-    except Exception as exc:
-        logger.error("Groq bundled structuring failed: %s", exc)
-        if _should_fallback_to_mock(exc):
-            logger.warning("Falling back to mock data for all documents due to Groq error")
+    client = _get_groq_client()
+    parsed: Optional[dict] = None
+    last_parse_error: Optional[Exception] = None
+
+    for attempt in (1, 2):
+        temperature = 0.1 if attempt == 1 else 0.0
+        try:
+            response = client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[{"role": "user", "content": prompt}],
+                response_format={"type": "json_object"},
+                temperature=temperature,
+                max_tokens=3072,
+            )
+            raw_json = response.choices[0].message.content
+            _dump_groq_output(
+                "bundle_response",
+                raw_json,
+                attempt=attempt,
+                mode="bundle",
+            )
+        except Exception as exc:
+            logger.error("Groq bundled structuring failed on attempt %d: %s", attempt, exc)
+            if attempt == 2:
+                if _should_fallback_to_mock(exc):
+                    logger.warning("Falling back to mock data for all documents due to Groq API error")
+                    bol = _coerce_types(_get_mock_data("Bill of Lading"), bol_template)
+                    inv = _coerce_types(_get_mock_data("Commercial Invoice"), inv_template)
+                    pl = _coerce_types(_get_mock_data("Packing List"), pl_template)
+                    category = detect_category(inv)
+                    return bol, inv, pl, {"category": category, "metadata_fields": {}}
+                logger.warning("Falling back to per-document parsing after bundle API failures")
+                break
+            continue
+
+        try:
+            parsed = _parse_bundle_response(raw_json)
+            logger.info("Bundle parsing succeeded on attempt %d", attempt)
+            break
+        except json.JSONDecodeError as exc:
+            last_parse_error = exc
+            logger.warning("Bundle attempt %d failed parse: %s", attempt, exc)
+            _dump_groq_output(
+                "bundle_parse_error",
+                raw_json,
+                parse_error=str(exc),
+                attempt=attempt,
+                mode="bundle",
+            )
+            if attempt == 1 and _is_likely_truncated_json(str(raw_json), exc):
+                logger.info("Bundle attempt 1 appears truncated; retrying once")
+                continue
+            if attempt == 2:
+                logger.warning("Bundle retries exhausted; falling back to per-document parsing")
+            break
+        except ValueError as exc:
+            last_parse_error = exc
+            logger.warning("Bundle attempt %d returned invalid structure: %s", attempt, exc)
+            _dump_groq_output(
+                "bundle_parse_error",
+                raw_json,
+                parse_error=str(exc),
+                attempt=attempt,
+                mode="bundle",
+            )
+            if attempt == 2:
+                logger.warning("Bundle retries exhausted; falling back to per-document parsing")
+            continue
+
+    if parsed is None:
+        logger.info("Falling back to per-document parsing")
+        try:
+            bol = structure_bill_of_lading(texts["bill_of_lading"])
+            inv = structure_invoice(texts["invoice"])
+            pl = structure_packing_list(texts["packing_list"])
+            category = detect_category(inv)
+            all_text = "\n\n".join(
+                [
+                    texts.get("bill_of_lading", ""),
+                    texts.get("invoice", ""),
+                    texts.get("packing_list", ""),
+                ]
+            )
+            category_meta = structure_category_metadata(all_text, category)
+            logger.info("Per-document fallback parsing succeeded")
+            return bol, inv, pl, category_meta
+        except Exception as exc:
+            logger.error("Per-document fallback parsing failed: %s", exc)
+            if last_parse_error is not None:
+                logger.error("Last bundle parse error before fallback: %s", last_parse_error)
+            logger.warning("Falling back to mock data after structured parsing failures")
             bol = _coerce_types(_get_mock_data("Bill of Lading"), bol_template)
             inv = _coerce_types(_get_mock_data("Commercial Invoice"), inv_template)
             pl = _coerce_types(_get_mock_data("Packing List"), pl_template)
             category = detect_category(inv)
             return bol, inv, pl, {"category": category, "metadata_fields": {}}
-        raise RuntimeError(f"Failed to structure shipment bundle: {exc}") from exc
-
-    try:
-        # Extract JSON from markdown code blocks if present
-        if "```json" in raw_json:
-            raw_json = raw_json.split("```json")[1].split("```")[0].strip()
-        elif "```" in raw_json:
-            raw_json = raw_json.split("```")[1].split("```")[0].strip()
-        
-        parsed = raw_json if isinstance(raw_json, dict) else json.loads(raw_json)
-        
-        if not isinstance(parsed, dict):
-            raise json.JSONDecodeError("Response is not a JSON object", raw_json, 0)
-    except (json.JSONDecodeError, ValueError) as exc:
-        logger.error("Groq returned invalid JSON for bundle: %s", str(raw_json)[:200])
-        logger.warning("Falling back to mock data due to JSON parse error")
-        bol = _coerce_types(_get_mock_data("Bill of Lading"), bol_template)
-        inv = _coerce_types(_get_mock_data("Commercial Invoice"), inv_template)
-        pl = _coerce_types(_get_mock_data("Packing List"), pl_template)
-        category = detect_category(inv)
-        return bol, inv, pl, {"category": category, "metadata_fields": {}}
-    except Exception as exc:
-        logger.error("Unexpected error parsing Groq response: %s", exc)
-        logger.warning("Falling back to mock data")
-        bol = _coerce_types(_get_mock_data("Bill of Lading"), bol_template)
-        inv = _coerce_types(_get_mock_data("Commercial Invoice"), inv_template)
-        pl = _coerce_types(_get_mock_data("Packing List"), pl_template)
-        category = detect_category(inv)
-        return bol, inv, pl, {"category": category, "metadata_fields": {}}
 
     try:
         bol = _coerce_types(parsed.get("bill_of_lading", {}), bol_template)
@@ -418,7 +587,7 @@ DOCUMENT TEXT:
     try:
         client = _get_groq_client()
         response = client.chat.completions.create(
-            model="openai/gpt-oss-20b",
+            model="llama-3.3-70b-versatile",
             messages=[
                 {
                     "role": "user",
@@ -430,6 +599,11 @@ DOCUMENT TEXT:
             max_tokens=1024,
         )
         raw_json = response.choices[0].message.content
+        _dump_groq_output(
+            f"{doc_type.lower().replace(' ', '_')}_response",
+            raw_json,
+            mode="per_document",
+        )
     except Exception as exc:
         logger.error("Groq structuring failed for %s: %s", doc_type, exc)
         if _should_fallback_to_mock(exc):
@@ -445,6 +619,12 @@ DOCUMENT TEXT:
             parsed = json.loads(raw_json)
     except json.JSONDecodeError as exc:
         logger.error("Groq returned invalid JSON for %s: %s", doc_type, raw_json[:200])
+        _dump_groq_output(
+            f"{doc_type.lower().replace(' ', '_')}_parse_error",
+            raw_json,
+            parse_error=str(exc),
+            mode="per_document",
+        )
         raise RuntimeError(
             f"Groq returned invalid JSON for {doc_type}. Raw response: {raw_json[:300]}"
         ) from exc
@@ -568,7 +748,7 @@ DOCUMENT TEXTS:
     try:
         client = _get_groq_client()
         response = client.chat.completions.create(
-            model="openai/gpt-oss-20b",
+            model="llama-3.3-70b-versatile",
             messages=[
                 {
                     "role": "user",
@@ -580,12 +760,25 @@ DOCUMENT TEXTS:
             max_tokens=1024,
         )
         raw_json = response.choices[0].message.content
+        _dump_groq_output(
+            f"category_{category.lower().replace(' ', '_')}_response",
+            raw_json,
+            mode="category_metadata",
+        )
         if isinstance(raw_json, dict):
             metadata_fields = raw_json
         else:
             metadata_fields = json.loads(raw_json)
     except Exception as exc:
         logger.error("Category metadata extraction failed: %s", exc)
+        raw_for_dump = locals().get("raw_json")
+        if raw_for_dump is not None:
+            _dump_groq_output(
+                f"category_{category.lower().replace(' ', '_')}_parse_error",
+                raw_for_dump,
+                parse_error=str(exc),
+                mode="category_metadata",
+            )
         if _should_fallback_to_mock(exc):
             logger.warning("Falling back to mock category metadata for %s due to Groq error", category)
             metadata_fields = {

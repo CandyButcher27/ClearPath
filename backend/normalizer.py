@@ -46,11 +46,12 @@ COLD_CHAIN_KEYWORDS = {
 
 class ShipmentProcessor:
     def __init__(self, raw_shipment):
-        self.raw  = raw_shipment
-        self.bol  = raw_shipment.get("bill_of_lading", {})
-        self.inv  = raw_shipment.get("invoice", {})
-        self.pl   = raw_shipment.get("packing_list", {})
-        self.meta = raw_shipment.get("category_metadata", {}).get("metadata_fields", {})
+        self.raw = raw_shipment if isinstance(raw_shipment, dict) else {}
+        self.bol = self._as_dict(self.raw.get("bill_of_lading"))
+        self.inv = self._as_dict(self.raw.get("invoice"))
+        self.pl = self._as_dict(self.raw.get("packing_list"))
+        category_meta = self._as_dict(self.raw.get("category_metadata"))
+        self.meta = self._as_dict(category_meta.get("metadata_fields"))
         # FIX 11: pre-compute category once so every method can read self.category
         # without triggering repeated HS-code parsing.
         self.category = self._get_category()
@@ -83,9 +84,21 @@ class ShipmentProcessor:
                 continue
         return None  # unparseable — caller treats as missing
 
+    def _as_dict(self, value):
+        """Normalize a value to dict for null/shape-safe nested access."""
+        return value if isinstance(value, dict) else {}
+
+    def _as_list(self, value):
+        """Normalize a value to list for null/shape-safe iteration."""
+        if isinstance(value, list):
+            return value
+        if isinstance(value, dict):
+            return [value]
+        return []
+
     def _get_category(self):
         # Primary: derive from invoice HS code (most authoritative for a complete doc)
-        line_items = self.inv.get("line_items") or []
+        line_items = self._as_list(self.inv.get("line_items"))
         hs = line_items[0].get("hs_code", "") if line_items else ""
         if hs.startswith(("07", "08", "04", "21")):
             return "Perishables"
@@ -105,7 +118,12 @@ class ShipmentProcessor:
 
     def _pl_address(self):
         """Join the packing-list address_lines list into a single string."""
-        lines = self.pl.get("delivery_to", {}).get("address_lines", [])
+        delivery_to = self._as_dict(self.pl.get("delivery_to"))
+        lines = delivery_to.get("address_lines", [])
+        if isinstance(lines, str):
+            lines = [lines]
+        elif not isinstance(lines, list):
+            lines = []
         return ", ".join(lines)
 
     def _classify_uom(self, uom_str):
@@ -119,14 +137,32 @@ class ShipmentProcessor:
             return "count"
         return "unknown"
 
+    def _first_dict(self, items):
+        """Return first dict from a list-like value, otherwise {}."""
+        if isinstance(items, dict):
+            return items
+        if not isinstance(items, list) or not items:
+            return {}
+        first = items[0]
+        return first if isinstance(first, dict) else {}
+
     # -----------------------------------------------------------------------
     # Main processor
     # -----------------------------------------------------------------------
 
     def process(self):
-        weight = sum(i.get("weight_kg", 0) for i in (self.pl.get("items") or []))
-        pkgs   = sum(p.get("pkgs_count", 0) for p in (self.bol.get("customer_order_info") or []))
-        ship_to = self.bol.get("ship_to", {})
+        weight = sum(
+            i.get("weight_kg", 0)
+            for i in self._as_list(self.pl.get("items"))
+            if isinstance(i, dict)
+        )
+        pkgs = sum(
+            p.get("pkgs_count", 0)
+            for p in self._as_list(self.bol.get("customer_order_info"))
+            if isinstance(p, dict)
+        )
+        ship_to = self._as_dict(self.bol.get("ship_to"))
+        totals = self._as_dict(self.inv.get("totals"))
 
         flags = {
             "logistics_flags": {
@@ -172,8 +208,8 @@ class ShipmentProcessor:
                 "ship_to_address_standardized": (
                     f"{ship_to.get('address', '')}, {ship_to.get('city_state_zip', '')}"
                 ),
-                "total_value": self.inv.get("totals", {}).get("grand_total"),
-                "currency":    self.inv.get("totals", {}).get("currency"),
+                "total_value": totals.get("grand_total"),
+                "currency": totals.get("currency"),
             },
             "inconsistency_flags": flags,
         }
@@ -187,7 +223,7 @@ class ShipmentProcessor:
     # legitimately different parties in most international shipments
     # (third-party billing is normal) and therefore produced constant false flags.
     def check_destination_address(self):
-        a1 = self.bol.get("ship_to", {}).get("address", "")
+        a1 = self._as_dict(self.bol.get("ship_to")).get("address", "")
         a2 = self._pl_address()
         if not a1 or not a2:
             return None
@@ -200,9 +236,9 @@ class ShipmentProcessor:
     def check_origin_address(self):
         # Compose full address from BoL ship_from (street + city_state_zip) so the
         # comparison is against the same level of detail as the invoice seller address.
-        sf = self.bol.get("ship_from", {})
+        sf = self._as_dict(self.bol.get("ship_from"))
         a1 = f"{sf.get('address', '')} {sf.get('city_state_zip', '')}".strip()
-        a2 = self.inv.get("seller_info", {}).get("address", "")
+        a2 = self._as_dict(self.inv.get("seller_info")).get("address", "")
         if not a1 or not a2:
             return None
         score = self._calculate_similarity(a1, a2)
@@ -213,12 +249,14 @@ class ShipmentProcessor:
     def check_container(self):
         inv_conts = {
             li.get("container_number")
-            for li in (self.inv.get("line_items") or [])
+            for li in self._as_list(self.inv.get("line_items"))
+            if isinstance(li, dict)
             if li.get("container_number") and li.get("container_number") != "N/A"
         }
         pl_conts = {
             i.get("container_number")
-            for i in (self.pl.get("items") or [])
+            for i in self._as_list(self.pl.get("items"))
+            if isinstance(i, dict)
             if i.get("container_number") and i.get("container_number") != "N/A"
         }
         if not inv_conts or not pl_conts:
@@ -232,14 +270,14 @@ class ShipmentProcessor:
         }
 
     def check_scac(self):
-        if "carrier_details" not in self.bol:
+        scac = self._as_dict(self.bol.get("carrier_details")).get("scac")
+        if scac is None:
             return None
-        scac = self.bol["carrier_details"].get("scac")
         return {"is_flagged": not scac, "value": scac}
 
     def check_po(self):
-        p1 = self.bol.get("customer_order_info", [{}])[0].get("order_number")
-        p2 = self.pl.get("shipping_refs", {}).get("order_reference")
+        p1 = self._first_dict(self.bol.get("customer_order_info")).get("order_number")
+        p2 = self._as_dict(self.pl.get("shipping_refs")).get("order_reference")
         if not p1 or not p2:
             return None
         return {"is_flagged": p1 != p2, "bol_po": p1, "pl_po": p2}
@@ -249,8 +287,8 @@ class ShipmentProcessor:
     # The actual conflict is FOB + "Prepaid" (seller paying freight they've handed
     # off responsibility for). Condition is now inverted.
     def check_incoterm(self):
-        is_fob = self.bol.get("ship_from", {}).get("fob_point")
-        terms  = self.bol.get("carrier_details", {}).get("freight_charge_terms")
+        is_fob = self._as_dict(self.bol.get("ship_from")).get("fob_point")
+        terms = self._as_dict(self.bol.get("carrier_details")).get("freight_charge_terms")
         if is_fob is None or not terms:
             return None
         # Flagged when: FOB point is True AND seller is paying freight (Prepaid)
@@ -266,7 +304,11 @@ class ShipmentProcessor:
     # New rule: flag if variance exceeds 2% of PL weight, with a 10 kg floor to
     # avoid noise on very small shipments.
     def check_weight(self, pl_weight):
-        bol_weight = sum(c.get("weight", 0) for c in self.bol.get("carrier_commodity_info", []))
+        bol_weight = sum(
+            c.get("weight", 0)
+            for c in self._as_list(self.bol.get("carrier_commodity_info"))
+            if isinstance(c, dict)
+        )
         if bol_weight == 0 or pl_weight == 0:
             return None
         variance  = abs(bol_weight - pl_weight)
@@ -301,8 +343,8 @@ class ShipmentProcessor:
     # may weigh exactly 300 kg. When a type mismatch is detected the check returns
     # is_flagged=False with a clear reason so the output stays informative.
     def check_overcharge(self):
-        inv_items = self.inv.get("line_items") or []
-        pl_items  = self.pl.get("items") or []
+        inv_items = self._as_list(self.inv.get("line_items"))
+        pl_items = self._as_list(self.pl.get("items"))
         if not inv_items or not pl_items:
             return None
 
@@ -341,7 +383,7 @@ class ShipmentProcessor:
     # Returns a list of per-item flags so the caller can see exactly which lines
     # were short-shipped.
     def check_short_ship(self):
-        items = self.pl.get("items") or []
+        items = self._as_list(self.pl.get("items"))
         if not items:
             return None
         per_item = []
@@ -365,7 +407,7 @@ class ShipmentProcessor:
     # downstream quantity comparison meaningless. This is the root-cause detection
     # that check_overcharge uses to decide whether to proceed with its math.
     def check_uom(self):
-        inv_uom = self.inv.get("line_items", [{}])[0].get("unit_of_measure")
+        inv_uom = self._first_dict(self.inv.get("line_items")).get("unit_of_measure")
         if not inv_uom:
             return None
         uom_type = self._classify_uom(inv_uom)
@@ -402,7 +444,7 @@ class ShipmentProcessor:
     # metadata doesn't expect, which may indicate a mis-categorised shipment.
     def check_hazmat(self):
         m_h = self.meta.get("is_hazardous_material")
-        b_h = self.bol.get("carrier_commodity_info", [{}])[0].get("is_hazardous")
+        b_h = self._first_dict(self.bol.get("carrier_commodity_info")).get("is_hazardous")
         if m_h is None or b_h is None:
             return None
         return {"is_flagged": m_h != b_h, "meta_hazmat": m_h, "bol_hazmat": b_h}
@@ -425,14 +467,14 @@ class ShipmentProcessor:
         if not exp:
             return None  # No expiry date in metadata — nothing to check
 
-        dlv = self._parse_date(self.pl.get("shipping_refs", {}).get("delivery_date"))
+        shipping_refs = self._as_dict(self.pl.get("shipping_refs"))
+        payment_details = self._as_dict(self.inv.get("payment_details"))
+        dlv = self._parse_date(shipping_refs.get("delivery_date"))
         fallback_used = None
 
         if not dlv:
             # Fallback 1: invoice date
-            dlv = self._parse_date(
-                self.inv.get("payment_details", {}).get("invoice_date")
-            )
+            dlv = self._parse_date(payment_details.get("invoice_date"))
             fallback_used = "invoice_date"
 
         if not dlv:
@@ -461,8 +503,11 @@ class ShipmentProcessor:
     def check_temp(self):
         if self.category != "Perishables":
             return None
-        req   = self.meta.get("temperature_control", {}).get("required")
-        instr = self.bol.get("special_instructions", "").lower()
+        temp_ctrl = self.meta.get("temperature_control")
+        if not isinstance(temp_ctrl, dict):
+            temp_ctrl = {}
+        req   = temp_ctrl.get("required")
+        instr = str(self.bol.get("special_instructions", "")).lower()
         if req is None:
             return None
         found = any(kw in instr for kw in COLD_CHAIN_KEYWORDS)
@@ -485,7 +530,7 @@ class ShipmentProcessor:
         if self.category != "Raw Materials":
             return None
         w = self.meta.get("net_weight")
-        vol_data = self.meta.get("volume", {})
+        vol_data = self._as_dict(self.meta.get("volume"))
         v = vol_data.get("value")
         unit = vol_data.get("unit", "m3").lower()
         if not w or not v or v == 0:
@@ -494,7 +539,7 @@ class ShipmentProcessor:
         if unit in ("liters", "litres", "l"):
             v = v / 1000
         density = w / v
-        hs = self.inv.get("line_items", [{}])[0].get("hs_code", "")
+        hs = self._first_dict(self.inv.get("line_items")).get("hs_code", "")
         lo, hi = HS_DENSITY_BOUNDS.get(hs[:2], DEFAULT_DENSITY_BOUNDS)
         return {
             "is_flagged": not (lo <= density <= hi),
@@ -511,7 +556,7 @@ class ShipmentProcessor:
     # Previously only checked [0], so any mis-calculated tax on items 2..N was
     # silently ignored.
     def check_tax(self):
-        line_items = self.inv.get("line_items") or []
+        line_items = self._as_list(self.inv.get("line_items"))
         if not line_items:
             return None
         errors = []
@@ -532,7 +577,7 @@ class ShipmentProcessor:
         return {"is_flagged": bool(errors), "tax_errors": errors}
 
     def check_total_math(self):
-        t = self.inv.get("totals", {})
+        t = self._as_dict(self.inv.get("totals"))
         sub, tax, grand = t.get("subtotal"), t.get("tax_total"), t.get("grand_total")
         if None in (sub, tax, grand):
             return None
@@ -541,8 +586,9 @@ class ShipmentProcessor:
 
     # FIX 4b — payment date comparison now uses _parse_date.
     def check_payment_dates(self):
-        inv_d = self._parse_date(self.inv.get("payment_details", {}).get("invoice_date"))
-        due_d = self._parse_date(self.inv.get("payment_details", {}).get("due_date"))
+        payment_details = self._as_dict(self.inv.get("payment_details"))
+        inv_d = self._parse_date(payment_details.get("invoice_date"))
+        due_d = self._parse_date(payment_details.get("due_date"))
         if not inv_d or not due_d:
             return None
         return {
@@ -553,8 +599,9 @@ class ShipmentProcessor:
 
     # FIX 4c — timeline comparison now uses _parse_date.
     def check_timeline(self):
-        ord_d = self._parse_date(self.pl.get("shipping_refs", {}).get("order_date"))
-        dlv_d = self._parse_date(self.pl.get("shipping_refs", {}).get("delivery_date"))
+        shipping_refs = self._as_dict(self.pl.get("shipping_refs"))
+        ord_d = self._parse_date(shipping_refs.get("order_date"))
+        dlv_d = self._parse_date(shipping_refs.get("delivery_date"))
         if not ord_d or not dlv_d:
             return None
         return {

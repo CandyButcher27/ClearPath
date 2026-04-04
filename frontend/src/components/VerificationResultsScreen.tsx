@@ -1,4 +1,5 @@
 import React from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { verificationResultsData } from '../data/mockData'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
 import type { ApiResult } from '../App'
@@ -12,10 +13,72 @@ export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScre
   const scrollY = useScrollAnimation()
   const normalized = result?.normalized ?? {}
   const sessionId = result?.session_id ?? 'N/A'
+  const [isGeneratingReport, setIsGeneratingReport] = useState(false)
+  const [reportError, setReportError] = useState<string | null>(null)
+  const [hasGeneratedReport, setHasGeneratedReport] = useState(false)
+  const hasAutoTriggeredRef = useRef(false)
 
   // Extract fields for display — adapt keys to match your normalizer output
   const checks = normalized.checks as Record<string, unknown>[] ?? []
-  const summary = normalized.summary as Record<string, string> ?? {}
+
+  const handleGenerateReport = useCallback(async () => {
+    if (!result?.normalized) {
+      setReportError('No normalized result available to generate report.')
+      return
+    }
+
+    try {
+      setIsGeneratingReport(true)
+      setReportError(null)
+
+      const res = await fetch('http://localhost:5000/api/generate-report', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ normalized: result.normalized }),
+      })
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}))
+        throw new Error(err?.error || `HTTP ${res.status}`)
+      }
+
+      const blob = await res.blob()
+      const productId = String((result.normalized as Record<string, unknown>)?.product_id ?? 'shipment')
+      const fileName = `report_${productId}.pdf`
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = fileName
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      window.URL.revokeObjectURL(url)
+      setHasGeneratedReport(true)
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err)
+      if (/failed to fetch|networkerror|load failed/i.test(message)) {
+        setReportError(
+          `Could not reach backend report endpoint (http://localhost:5000/api/generate-report). ` +
+          `This is usually a local backend/CORS issue. Current frontend origin: ${window.location.origin}.`,
+        )
+      } else {
+        setReportError(message)
+      }
+    } finally {
+      setIsGeneratingReport(false)
+    }
+  }, [result])
+
+  useEffect(() => {
+    if (!result?.normalized) {
+      return
+    }
+    if (hasAutoTriggeredRef.current) {
+      return
+    }
+    hasAutoTriggeredRef.current = true
+    void handleGenerateReport()
+  }, [result, handleGenerateReport])
 
   return (
     <div className="min-h-screen bg-surface text-on-surface selection:bg-secondary/20">
@@ -142,9 +205,22 @@ export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScre
               </div>
             </div>
 
-            <button className="btn-glow relative w-full overflow-hidden rounded-sm bg-secondary py-5 text-sm font-black uppercase tracking-[0.2em] text-white shadow-[0_0_15px_rgba(227,30,36,0.2)] transition-all hover:bg-[#f12a31] hover:shadow-[0_0_30px_rgba(227,30,36,0.5)] active:scale-[0.98]">
-              Generate Final Certificate
+            <button
+              onClick={handleGenerateReport}
+              disabled={isGeneratingReport}
+              className="btn-glow relative w-full overflow-hidden rounded-sm bg-secondary py-5 text-sm font-black uppercase tracking-[0.2em] text-white shadow-[0_0_15px_rgba(227,30,36,0.2)] transition-all hover:bg-[#f12a31] hover:shadow-[0_0_30px_rgba(227,30,36,0.5)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
+            >
+              {isGeneratingReport
+                ? 'Generating Report...'
+                : hasGeneratedReport
+                  ? 'Download Again'
+                  : 'Generate Final Certificate'}
             </button>
+            {reportError ? (
+              <div className="rounded border border-red-500/30 bg-red-500/10 px-3 py-2 text-xs text-red-200">
+                Report generation failed: {reportError}
+              </div>
+            ) : null}
           </div>
         </div>
       </main>

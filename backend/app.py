@@ -9,12 +9,13 @@ audit results.
 import json
 import logging
 import os
+import re
 import tempfile
 import uuid
 from pathlib import Path
 
 from dotenv import load_dotenv
-from flask import Flask, jsonify, request
+from flask import Flask, after_this_request, jsonify, request, send_file
 from flask_cors import CORS
 
 from normalizer import ShipmentProcessor
@@ -43,7 +44,18 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:5173", "http://127.0.0.1:5173"])
+CORS(
+    app,
+    resources={
+        r"/api/*": {
+            "origins": [
+                re.compile(r"^http://localhost(?::\d+)?$"),
+                re.compile(r"^http://127\.0\.0\.1(?::\d+)?$"),
+                re.compile(r"^http://\[::1\](?::\d+)?$"),
+            ]
+        }
+    },
+)
 
 # Temp directory for uploaded files (cleaned up after processing)
 UPLOAD_DIR = Path(__file__).parent / "uploads"
@@ -169,6 +181,86 @@ def process_shipment():
                 os.remove(path)
             except OSError:
                 pass
+
+
+# ---------------------------------------------------------------------------
+# Report generation endpoint
+# ---------------------------------------------------------------------------
+
+@app.route("/api/generate-report", methods=["POST"])
+def generate_report():
+    """Generate and download a PDF report for a normalized shipment result.
+
+    Expects JSON body:
+    {
+      "normalized": { ... }   # output from /api/process-shipment
+    }
+    """
+    payload = request.get_json(silent=True) or {}
+    normalized = payload.get("normalized")
+
+    if not isinstance(normalized, dict):
+        return jsonify({"error": "Missing or invalid 'normalized' payload"}), 400
+
+    product_id = normalized.get("product_id") or f"PRD-{uuid.uuid4().hex[:8].upper()}"
+    safe_product_id = "".join(ch for ch in str(product_id) if ch.isalnum() or ch in ("-", "_"))
+    if not safe_product_id:
+        safe_product_id = f"PRD-{uuid.uuid4().hex[:8].upper()}"
+
+    temp_json_path: Path | None = None
+    temp_pdf_path: Path | None = None
+
+    try:
+        # Import lazily so backend startup is unaffected if report dependencies are missing.
+        try:
+            from generate_report_card import ReportCardGenerator
+        except SystemExit as exc:
+            logger.error("Report generator dependency error: %s", exc)
+            return jsonify({
+                "error": "Report generator dependencies are missing. Install reportlab in backend environment."
+            }), 500
+
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False, encoding="utf-8") as jf:
+            json.dump([normalized], jf, ensure_ascii=False)
+            temp_json_path = Path(jf.name)
+
+        with tempfile.NamedTemporaryFile(mode="wb", suffix=".pdf", delete=False) as pf:
+            temp_pdf_path = Path(pf.name)
+
+        generator = ReportCardGenerator(str(temp_json_path))
+        ok = generator.generate_report_card(str(safe_product_id), str(temp_pdf_path))
+        if not ok:
+            return jsonify({"error": "Failed to generate report PDF"}), 500
+
+        @after_this_request
+        def cleanup_files(response):
+            for p in (temp_json_path, temp_pdf_path):
+                if p is None:
+                    continue
+                try:
+                    p.unlink(missing_ok=True)
+                except OSError:
+                    pass
+            return response
+
+        return send_file(
+            str(temp_pdf_path),
+            as_attachment=True,
+            download_name=f"report_{safe_product_id}.pdf",
+            mimetype="application/pdf",
+        )
+
+    except Exception as exc:
+        logger.exception("Failed to generate report")
+        # Best effort cleanup if send_file path wasn't reached
+        for p in (temp_json_path, temp_pdf_path):
+            if p is None:
+                continue
+            try:
+                p.unlink(missing_ok=True)
+            except OSError:
+                pass
+        return jsonify({"error": f"Failed to generate report: {exc}"}), 500
 
 
 # ---------------------------------------------------------------------------
