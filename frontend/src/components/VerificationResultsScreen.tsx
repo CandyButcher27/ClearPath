@@ -79,7 +79,7 @@ export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScre
       setIsGeneratingReport(true)
       setReportError(null)
 
-      const res = await fetch('http://localhost:5000/api/generate-report', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/generate-report`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ normalized: result.normalized }),
@@ -106,7 +106,7 @@ export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScre
       const message = err instanceof Error ? err.message : String(err)
       if (/failed to fetch|networkerror|load failed/i.test(message)) {
         setReportError(
-          `Could not reach backend report endpoint (http://localhost:5000/api/generate-report). ` +
+          `Could not reach backend report endpoint (${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/generate-report). ` +
           `Current frontend origin: ${window.location.origin}.`,
         )
       } else {

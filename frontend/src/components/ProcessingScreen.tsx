@@ -103,7 +103,7 @@ export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ file
     }
 
     try {
-      const es = new EventSource(`http://localhost:5000/api/process-shipment/logs/${sessionId}`)
+      const es = new EventSource(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/process-shipment/logs/${sessionId}`)
       eventSourceRef.current = es
 
       const fallbackGuard = window.setTimeout(() => {
@@ -154,7 +154,7 @@ export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ file
     const submit = async () => {
       try {
         setStatusMessage('Submitting payload to backend...')
-        const res = await fetch('http://localhost:5000/api/process-shipment', { method: 'POST', body: formData })
+        const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/process-shipment`, { method: 'POST', body: formData })
         const data = await res.json()
         if (!res.ok) throw new Error(data?.error || `HTTP ${res.status}`)
         requestDoneRef.current = true
