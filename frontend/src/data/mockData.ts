@@ -24,7 +24,7 @@ export const clearPathData = {
     }
   ],
   stats: [
-    { value: "140+", label: "Global Jurisdictions" },
+    { value: "24H", label: "Development Time" },
     { value: "0.4s", label: "Avg. Validation Time" }
   ]
 };

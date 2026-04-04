@@ -155,13 +155,12 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubm
                     <h3 className="mb-2 text-sm font-black uppercase tracking-widest text-primary">{doc.title}</h3>
                     <p className="mb-4 text-xs text-on-surface-variant">{doc.description}</p>
                     <label
-                      className={`flex cursor-pointer flex-col items-center gap-2 border border-dashed p-4 text-xs transition-colors ${
-                        dragging === key
-                          ? 'border-secondary bg-secondary/10 text-secondary'
-                          : files[key]
+                      className={`flex cursor-pointer flex-col items-center gap-2 border border-dashed p-4 text-xs transition-colors ${dragging === key
+                        ? 'border-secondary bg-secondary/10 text-secondary'
+                        : files[key]
                           ? 'border-secondary/60 text-secondary'
                           : 'border-outline-variant/40 text-on-surface-variant hover:border-secondary hover:text-secondary'
-                      }`}
+                        }`}
                       onDragOver={(e) => { e.preventDefault(); setDragging(key) }}
                       onDragLeave={() => setDragging(null)}
                       onDrop={(e) => handleDrop(key, e)}
@@ -188,9 +187,9 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubm
             </div>
 
             <div className="scroll-reveal mt-20 flex justify-center">
-              <button 
+              <button
                 onClick={() => allFilesSelected && onSubmit(files)}
-                disabled={!allFilesSelected} 
+                disabled={!allFilesSelected}
                 className={`animate-pulse-accent flex items-center gap-5 bg-red-600 px-16 py-6 text-sm font-black uppercase tracking-[0.3em] text-white transition-all duration-300 hover:bg-red-700 ${!allFilesSelected ? 'opacity-40 cursor-not-allowed' : ''}`}
               >
                 Submit for Verification
@@ -208,7 +207,7 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubm
                 Global Trade.
               </h2>
               <p className="max-w-md text-xs font-black uppercase leading-relaxed tracking-widest text-on-surface-variant">
-                Our infrastructure processes over 4.2 million logistics documents monthly with a verified accuracy rate of 99.98%.
+                Our infrastructure processes logistics documents monthly with reliable0 accuracy.
               </p>
             </div>
             {clearPathData.stats.map((stat, idx) => (
