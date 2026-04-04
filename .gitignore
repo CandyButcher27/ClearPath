@@ -67,3 +67,4 @@ check_*.py
 .claude
 CLaude.md
 uploads/
+debug_outputs

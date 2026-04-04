@@ -4,6 +4,5 @@ llmwhisperer-client>=2.0.0
 groq>=0.4.1
 python-dotenv>=1.0.0
 fpdf
-groq
 reportlab>=4.0.0
-dotenv
+gunicorn>=21.2.0

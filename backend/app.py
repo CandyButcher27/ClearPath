@@ -1,4 +1,4 @@
-﻿"""
+"""
 ClearPath Backend â€” Flask API Server.
 
 Receives PDF uploads from the React frontend, processes them through the
@@ -51,13 +51,7 @@ app = Flask(__name__)
 CORS(
     app,
     resources={
-        r"/api/*": {
-            "origins": [
-                re.compile(r"^http://localhost(?::\d+)?$"),
-                re.compile(r"^http://127\.0\.0\.1(?::\d+)?$"),
-                re.compile(r"^http://\[::1\](?::\d+)?$"),
-            ]
-        }
+        r"/api/*": {"origins": "*"}
     },
 )
 
@@ -537,6 +531,8 @@ def generate_report():
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    logger.info("Starting ClearPath backend on http://localhost:5000")
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    debug_mode = os.environ.get("FLASK_DEBUG", "true").lower() == "true"
+    logger.info(f"Starting ClearPath backend on port {port}")
+    app.run(host="0.0.0.0", port=port, debug=debug_mode)
 
