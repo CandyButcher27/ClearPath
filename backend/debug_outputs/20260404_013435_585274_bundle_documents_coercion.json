@@ -1,0 +1,279 @@
+{
+  "timestamp_utc": "2026-04-04T01:34:35Z",
+  "tag": "bundle_documents_coercion",
+  "model": "llama-3.3-70b-versatile",
+  "attempt": null,
+  "mode": "bundle",
+  "parse_error": null,
+  "raw_output": {
+    "raw_structured": {
+      "bill_of_lading": {
+        "bill_of_lading_number": "BOL-77001",
+        "ship_from": {
+          "name": "FreshFarm Agriculture",
+          "address": "100 Green Way",
+          "city_state_zip": "Salinas, CA 93901",
+          "sid_number": "SID-882",
+          "fob_point": true
+        },
+        "ship_to": {
+          "name": "Global Foods DC",
+          "location_number": "LOC-A1",
+          "address": "500 Distribution Blvd",
+          "city_state_zip": "Chicago, IL 60609",
+          "cid_number": "CID-112",
+          "fob_point": false
+        },
+        "carrier_details": {
+          "carrier_name": "ColdChain Express",
+          "trailer_number": "TR-990",
+          "seal_numbers": "SEAL-001, SEAL-002",
+          "scac": "CCEX",
+          "pro_number": "PRO-4421",
+          "freight_charge_terms": "Prepaid"
+        },
+        "customer_order_info": [
+          {
+            "order_number": "PO-12345",
+            "pkgs_count": 20,
+            "weight": 450.0,
+            "pallet_slip": true,
+            "additional_info": "Standard Wood Pallets"
+          }
+        ],
+        "carrier_commodity_info": [
+          {
+            "handling_unit_qty": 20,
+            "handling_unit_type": "Pallets",
+            "package_qty": 400,
+            "package_type": "Crates",
+            "weight": 450.0,
+            "is_hazardous": false,
+            "commodity_description": "Fresh Strawberries",
+            "nmfc_number": "12345-01",
+            "class": "70"
+          }
+        ]
+      },
+      "invoice": {
+        "invoice_number": "INV-2026-001",
+        "seller_info": {
+          "company_name": "FreshFarm Agriculture",
+          "address": "100 Green Way, Salinas, CA",
+          "reg_number": "REG-8821",
+          "tax_number": "TAX-9900"
+        },
+        "bill_to_info": {
+          "client_name": "Global Foods DC",
+          "address": "500 Distribution Blvd, Chicago, IL",
+          "reg_number": "REG-1102",
+          "tax_number": "TAX-1122"
+        },
+        "payment_details": {
+          "bank_name": "AgriBank",
+          "bic": "AGRIUS33",
+          "account_number": "123456789",
+          "invoice_date": "2026-04-01",
+          "due_date": "2026-04-15"
+        },
+        "line_items": [
+          {
+            "hs_code": "0810.10",
+            "container_number": "CONT-772",
+            "description": "Fresh Strawberries",
+            "quantity": 400.0,
+            "unit_of_measure": "Crates",
+            "unit_price": 12.5,
+            "subtotal": 5000.0,
+            "tax_amount": 425.0,
+            "tax_percentage": 8.5
+          }
+        ],
+        "totals": {
+          "subtotal": 5000.0,
+          "tax_total": 425.0,
+          "grand_total": 5425.0,
+          "currency": "USD",
+          "amount_in_words": ""
+        }
+      },
+      "packing_list": {
+        "delivery_to": {
+          "customer_name": "Global Foods DC",
+          "address_lines": [
+            "500 Distribution Blvd",
+            "Receiving Dock 4"
+          ],
+          "telephone": "555-0199",
+          "email": "receiving@globalfoods.com"
+        },
+        "from_business": {
+          "business_name": "FreshFarm Agriculture",
+          "address_lines": [
+            "100 Green Way",
+            "Salinas, CA 93901"
+          ]
+        },
+        "shipping_refs": {
+          "order_reference": "PO-12345",
+          "order_date": "2026-03-28",
+          "delivery_method": "Refrigerated Truck",
+          "delivery_number": "DLV-9901",
+          "delivery_date": ""
+        },
+        "items": [
+          {
+            "item_number": "STRAW-01",
+            "description": "Fresh Strawberries",
+            "qty_ordered": 400,
+            "qty_shipped": 400,
+            "weight_kg": 450.0,
+            "volume_cbm": 12.5,
+            "container_number": "CONT-772"
+          }
+        ],
+        "notes": "Fragile perishables. Keep cool."
+      }
+    },
+    "coerced_structured": {
+      "bill_of_lading": {
+        "bill_of_lading_number": "BOL-77001",
+        "ship_from": {
+          "name": "FreshFarm Agriculture",
+          "address": "100 Green Way",
+          "city_state_zip": "Salinas, CA 93901",
+          "sid_number": "SID-882",
+          "fob_point": true
+        },
+        "ship_to": {
+          "name": "Global Foods DC",
+          "location_number": "LOC-A1",
+          "address": "500 Distribution Blvd",
+          "city_state_zip": "Chicago, IL 60609",
+          "cid_number": "CID-112",
+          "fob_point": false
+        },
+        "third_party_bill_to": {
+          "name": "",
+          "address": "",
+          "city_state_zip": ""
+        },
+        "special_instructions": "",
+        "carrier_details": {
+          "carrier_name": "ColdChain Express",
+          "trailer_number": "TR-990",
+          "seal_numbers": "SEAL-001, SEAL-002",
+          "scac": "CCEX",
+          "pro_number": "PRO-4421",
+          "freight_charge_terms": "Prepaid"
+        },
+        "customer_order_info": [
+          {
+            "order_number": "PO-12345",
+            "pkgs_count": 20,
+            "weight": 450.0,
+            "pallet_slip": true,
+            "additional_info": "Standard Wood Pallets"
+          }
+        ],
+        "carrier_commodity_info": [
+          {
+            "handling_unit_qty": 20,
+            "handling_unit_type": "Pallets",
+            "package_qty": 400,
+            "package_type": "Crates",
+            "weight": 450.0,
+            "is_hazardous": false,
+            "commodity_description": "Fresh Strawberries",
+            "nmfc_number": "12345-01",
+            "class": "70"
+          }
+        ],
+        "cod_details": {
+          "amount": 0,
+          "fee_terms": "",
+          "customer_check_acceptable": false
+        }
+      },
+      "invoice": {
+        "invoice_number": "INV-2026-001",
+        "seller_info": {
+          "company_name": "FreshFarm Agriculture",
+          "address": "100 Green Way, Salinas, CA",
+          "reg_number": "REG-8821",
+          "tax_number": "TAX-9900"
+        },
+        "bill_to_info": {
+          "client_name": "Global Foods DC",
+          "address": "500 Distribution Blvd, Chicago, IL",
+          "reg_number": "REG-1102",
+          "tax_number": "TAX-1122"
+        },
+        "payment_details": {
+          "bank_name": "AgriBank",
+          "bic": "AGRIUS33",
+          "account_number": "123456789",
+          "invoice_date": "2026-04-01",
+          "due_date": "2026-04-15"
+        },
+        "line_items": [
+          {
+            "hs_code": "0810.10",
+            "container_number": "CONT-772",
+            "description": "Fresh Strawberries",
+            "quantity": 400.0,
+            "unit_of_measure": "Crates",
+            "unit_price": 12.5,
+            "subtotal": 5000.0,
+            "tax_amount": 425.0,
+            "tax_percentage": 8.5
+          }
+        ],
+        "totals": {
+          "subtotal": 5000.0,
+          "tax_total": 425.0,
+          "grand_total": 5425.0,
+          "currency": "USD",
+          "amount_in_words": ""
+        }
+      },
+      "packing_list": {
+        "delivery_to": {
+          "customer_name": "Global Foods DC",
+          "address_lines": [
+            "500 Distribution Blvd",
+            "Receiving Dock 4"
+          ],
+          "telephone": "555-0199",
+          "email": "receiving@globalfoods.com"
+        },
+        "from_business": {
+          "business_name": "FreshFarm Agriculture",
+          "address_lines": [
+            "100 Green Way",
+            "Salinas, CA 93901"
+          ]
+        },
+        "shipping_refs": {
+          "order_reference": "PO-12345",
+          "order_date": "2026-03-28",
+          "delivery_method": "Refrigerated Truck",
+          "delivery_number": "DLV-9901",
+          "delivery_date": ""
+        },
+        "items": [
+          {
+            "item_number": "STRAW-01",
+            "description": "Fresh Strawberries",
+            "qty_ordered": 400,
+            "qty_shipped": 400,
+            "weight_kg": 450.0,
+            "volume_cbm": 12.5,
+            "container_number": "CONT-772"
+          }
+        ],
+        "notes": "Fragile perishables. Keep cool."
+      }
+    }
+  }
+}

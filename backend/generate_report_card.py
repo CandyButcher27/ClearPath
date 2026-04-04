@@ -437,6 +437,48 @@ class ReportCardGenerator:
         
         return elements
 
+    def _has_meaningful_value(self, value: Any) -> bool:
+        if value is None:
+            return False
+        if isinstance(value, bool):
+            return value is True
+        if isinstance(value, (int, float)):
+            return value != 0
+        if isinstance(value, str):
+            return value.strip() not in ("", "n/a", "na", "none", "null", "-")
+        if isinstance(value, list):
+            return any(self._has_meaningful_value(v) for v in value)
+        if isinstance(value, dict):
+            return any(self._has_meaningful_value(v) for v in value.values())
+        return True
+
+    def _append_metadata_value_lines(self, story: List, label: str, value: Any, depth: int = 0) -> None:
+        indent = "  " * depth
+        pretty_label = label.replace("_", " ").title()
+        if isinstance(value, dict):
+            story.append(Paragraph(f"{indent}<b>{pretty_label}:</b>", self.styles['CustomNormal']))
+            for child_key, child_value in value.items():
+                self._append_metadata_value_lines(story, child_key, child_value, depth + 1)
+            return
+        if isinstance(value, list):
+            if not value:
+                return
+            story.append(Paragraph(f"{indent}<b>{pretty_label}:</b>", self.styles['CustomNormal']))
+            for item in value:
+                if isinstance(item, (dict, list)):
+                    self._append_metadata_value_lines(story, "item", item, depth + 1)
+                else:
+                    item_str = str(item)
+                    if len(item_str) > 120:
+                        item_str = item_str[:117] + "..."
+                    story.append(Paragraph(f"{indent}  - {item_str}", self.styles['CustomNormal']))
+            return
+
+        value_str = str(value)
+        if len(value_str) > 150:
+            value_str = value_str[:147] + "..."
+        story.append(Paragraph(f"{indent}<b>{pretty_label}:</b> {value_str}", self.styles['CustomNormal']))
+
     def generate_report_card(self, product_id: str, output_path: str) -> bool:
         """Generate PDF report card for specified product"""
         product = self.find_product(product_id)
@@ -496,36 +538,36 @@ class ReportCardGenerator:
         
         story.append(summary_table)
         story.append(Spacer(1, 20))
-        
+
         # Flag Analysis
         story.append(Paragraph("Flag Analysis & Recommendations", self.styles['CustomHeading']))
         flag_analysis_elements = self._create_flag_analysis_section(all_flags)
         story.extend(flag_analysis_elements)
         story.append(Spacer(1, 20))
-        
+
         # Detailed Category Information
         category_metadata = product.get('category_metadata', {})
-        if category_metadata.get('fields'):
-            story.append(Paragraph("Category-Specific Information", self.styles['CustomHeading']))
-            
-            fields = category_metadata.get('fields', {})
+        if not isinstance(category_metadata, dict):
+            category_metadata = {}
+        fields = category_metadata.get('fields', {})
+        if not isinstance(fields, dict):
+            fields = {}
+
+        story.append(Paragraph("Category-Specific Information", self.styles['CustomHeading']))
+        if self._has_meaningful_value(fields):
             for key, value in fields.items():
-                if isinstance(value, dict):
-                    story.append(Paragraph(f"<b>{key.replace('_', ' ').title()}:</b>", self.styles['CustomNormal']))
-                    for sub_key, sub_value in value.items():
-                        # Handle long values by truncating
-                        sub_value_str = str(sub_value)
-                        if len(sub_value_str) > 100:
-                            sub_value_str = sub_value_str[:97] + "..."
-                        story.append(Paragraph(f"  • {sub_key.replace('_', ' ').title()}: {sub_value_str}", self.styles['CustomNormal']))
-                else:
-                    # Handle long values
-                    value_str = str(value)
-                    if len(value_str) > 150:
-                        value_str = value_str[:147] + "..."
-                    story.append(Paragraph(f"<b>{key.replace('_', ' ').title()}:</b> {value_str}", self.styles['CustomNormal']))
+                if not self._has_meaningful_value(value):
+                    continue
+                self._append_metadata_value_lines(story, key, value)
                 story.append(Spacer(1, 4))
-        
+        else:
+            story.append(
+                Paragraph(
+                    "No category-specific fields extracted after normalization.",
+                    self.styles['CustomNormal'],
+                )
+            )
+
         # Build PDF
         try:
             doc.build(story)
@@ -581,3 +623,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

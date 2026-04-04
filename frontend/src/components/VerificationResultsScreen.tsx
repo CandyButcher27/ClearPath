@@ -1,6 +1,23 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { ApiResult } from '../App'
 
+function useCountUp(target: number, duration = 900): number {
+  const [value, setValue] = useState(0)
+  useEffect(() => {
+    let rafId: number
+    const start = performance.now()
+    const frame = (now: number) => {
+      const elapsed = now - start
+      const progress = Math.min(elapsed / duration, 1)
+      setValue(Math.round(target * (1 - Math.pow(1 - progress, 3))))
+      if (progress < 1) rafId = requestAnimationFrame(frame)
+    }
+    rafId = requestAnimationFrame(frame)
+    return () => cancelAnimationFrame(rafId)
+  }, [target, duration])
+  return value
+}
+
 export interface ReadonlyVerificationResultsScreenProps {
   result: ApiResult | null
   onNavigateHome: () => void
@@ -15,6 +32,7 @@ export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScre
   const [isGeneratingReport, setIsGeneratingReport] = useState(false)
   const [reportError, setReportError] = useState<string | null>(null)
   const [hasGeneratedReport, setHasGeneratedReport] = useState(false)
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set())
   const hasAutoTriggeredRef = useRef(false)
 
   const sessionId = result?.session_id ?? 'N/A'
@@ -26,10 +44,19 @@ export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScre
   const kpis = telemetry.kpis ?? {}
   const extraction = telemetry.extraction ?? {}
 
-  const topWarnings = useMemo(
-    () => explainItems.filter((i) => i?.is_flagged).slice(0, 3),
-    [explainItems],
-  )
+  const animRisk = useCountUp(Math.round(Number(kpis.risk_score ?? 0)))
+  const animChecksPassed = useCountUp(Math.round(Number(kpis.checks_passed ?? 0)))
+  const animTotal = useCountUp(Math.round(Number(kpis.total_checks ?? 0)))
+  const animTimeSaved = useCountUp(Math.round(Number(kpis.estimated_time_saved_minutes ?? 0) * 10))
+  const animCompleteness = useCountUp(Math.round(Number(kpis.completeness_index ?? explainSummary.completeness_index ?? 0)))
+
+  const toggleItem = (id: string) => {
+    setExpandedItems((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) { next.delete(id) } else { next.add(id) }
+      return next
+    })
+  }
 
   const operationsBrief = useMemo(() => {
     const category = String(((normalized as Record<string, unknown>)?.category_metadata as Record<string, unknown>)?.applied_category ?? 'General')
@@ -120,21 +147,19 @@ export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScre
         <section className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="glass-panel p-5">
             <p className="label">Risk Score</p>
-            <p className="metric">{Math.round(Number(kpis.risk_score ?? 0))}</p>
+            <p className={`metric ${animRisk > 50 ? 'text-rose-400' : animRisk > 20 ? 'text-amber-400' : 'text-emerald-400'}`}>{animRisk}</p>
           </div>
           <div className="glass-panel p-5">
             <p className="label">Checks Passed</p>
-            <p className="metric">
-              {Math.round(Number(kpis.checks_passed ?? 0))}/{Math.round(Number(kpis.total_checks ?? 0))}
-            </p>
+            <p className="metric">{animChecksPassed}/{animTotal}</p>
           </div>
           <div className="glass-panel p-5">
             <p className="label">Time Saved</p>
-            <p className="metric">{Number(kpis.estimated_time_saved_minutes ?? 0).toFixed(1)} min</p>
+            <p className="metric">{(animTimeSaved / 10).toFixed(1)} min</p>
           </div>
           <div className="glass-panel p-5">
             <p className="label">Completeness</p>
-            <p className="metric">{pct(kpis.completeness_index ?? explainSummary.completeness_index ?? 0)}</p>
+            <p className="metric">{animCompleteness}%</p>
           </div>
         </section>
 
@@ -150,37 +175,60 @@ export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScre
             </section>
 
             <section className="glass-panel p-6">
-              <h2 className="section-title">Issue Evidence</h2>
-              <div className="mt-4 space-y-3">
-                {topWarnings.length === 0 ? (
+              <h2 className="section-title">
+                Issue Evidence
+                <span className="ml-2 text-xs font-normal text-zinc-400">
+                  ({explainItems.filter((i) => i?.is_flagged).length} flagged / {explainItems.length} total)
+                </span>
+              </h2>
+              <div className="mt-4 space-y-2">
+                {explainItems.length === 0 ? (
                   <div className="rounded-md border border-emerald-400/30 bg-emerald-500/10 px-4 py-3 text-emerald-200">
-                    No high-priority inconsistencies detected.
+                    No inconsistencies detected.
                   </div>
                 ) : (
-                  topWarnings.map((item, idx) => (
-                    <article key={item.id ?? idx} className="rounded-lg border border-white/10 bg-black/25 p-4">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="rounded bg-rose-500/20 px-2 py-0.5 text-xs uppercase tracking-wider text-rose-200">
-                          {String(item.severity ?? 'medium')}
-                        </span>
-                        <span className="rounded bg-indigo-500/20 px-2 py-0.5 text-xs uppercase tracking-wider text-indigo-200">
-                          confidence {pct((Number(item.confidence ?? 0) || 0) * 100)}
-                        </span>
-                      </div>
-                      <h3 className="mt-2 text-lg font-medium text-zinc-100">
-                        {String(item.flag_name ?? 'unknown').replaceAll('_', ' ')}
-                      </h3>
-                      <p className="mt-1 text-sm text-zinc-300">{String(item.rule ?? '')}</p>
-                      <p className="mt-1 text-xs text-zinc-400">Threshold: {String(item.threshold ?? 'rule-specific')}</p>
-                      <div className="mt-3 space-y-1 text-xs text-zinc-300">
-                        {(item.evidence ?? []).map((ev, i) => (
-                          <div key={i} className="rounded border border-white/10 bg-white/5 px-2 py-1">
-                            <span className="text-cyan-300">{String(ev.path ?? '')}</span>: {String(ev.value ?? '')}
+                  explainItems.map((item, idx) => {
+                    const id = String(item.id ?? idx)
+                    const isExpanded = expandedItems.has(id)
+                    const isFlagged = Boolean(item?.is_flagged)
+                    return (
+                      <article
+                        key={id}
+                        className={`rounded-lg border bg-black/25 overflow-hidden transition-all ${isFlagged ? 'border-rose-500/30' : 'border-white/10'}`}
+                      >
+                        <button
+                          onClick={() => toggleItem(id)}
+                          className="flex w-full items-center justify-between px-4 py-3 text-left"
+                        >
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className={`rounded px-2 py-0.5 text-xs uppercase tracking-wider ${isFlagged ? 'bg-rose-500/20 text-rose-200' : 'bg-emerald-500/20 text-emerald-200'}`}>
+                              {isFlagged ? String(item.severity ?? 'medium') : 'pass'}
+                            </span>
+                            <span className="text-sm font-medium text-zinc-100">
+                              {String(item.flag_name ?? 'unknown').replaceAll('_', ' ')}
+                            </span>
                           </div>
-                        ))}
-                      </div>
-                    </article>
-                  ))
+                          <span className="ml-4 text-xs text-zinc-500">{isExpanded ? '▲' : '▼'}</span>
+                        </button>
+                        {isExpanded && (
+                          <div className="border-t border-white/10 px-4 pb-4 pt-3">
+                            <span className="rounded bg-indigo-500/20 px-2 py-0.5 text-xs uppercase tracking-wider text-indigo-200">
+                              confidence {pct((Number(item.confidence ?? 0) || 0) * 100)}
+                            </span>
+                            <p className="mt-2 text-sm text-zinc-300">{String(item.rule ?? '')}</p>
+                            <p className="mt-1 text-xs text-zinc-400">Threshold: {String(item.threshold ?? 'rule-specific')}</p>
+                            <div className="mt-3 space-y-1 text-xs text-zinc-300">
+                              {(item.evidence ?? []).map((ev: { path?: unknown; value?: unknown }, i: number) => (
+                                <div key={i} className="rounded border border-white/10 bg-white/5 px-2 py-1">
+                                  <span className="text-cyan-300">{String(ev.path ?? '')}</span>: {String(ev.value ?? '')}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </article>
+                    )
+                  })
                 )}
               </div>
             </section>

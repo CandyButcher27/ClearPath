@@ -31,6 +31,80 @@ _DEFAULT_MODEL = os.environ.get("STRUCTURER_MODEL", "llama-3.3-70b-versatile")
 _MAX_DOC_CHARS = int(os.environ.get("STRUCTURER_MAX_DOC_CHARS", "12000"))
 _BUNDLE_MAX_TOTAL_CHARS = int(os.environ.get("STRUCTURER_BUNDLE_MAX_TOTAL_CHARS", "30000"))
 _USE_BUNDLE_FIRST = os.environ.get("STRUCTURER_USE_BUNDLE_FIRST", "true").lower() in ("1", "true", "yes")
+_CATEGORY_TEMPLATE_FILES = {
+    "Perishables": "perishables.json",
+    "Manufactured Goods": "manufactured_goods.json",
+    "Raw Materials": "raw_materials.json",
+}
+
+
+def _hs_to_category(hs_code: Any) -> Optional[str]:
+    hs = str(hs_code or "").strip()
+    if not hs:
+        return None
+    normalized = re.sub(r"[^0-9]", "", hs)
+    if not normalized:
+        return None
+    if normalized.startswith(("07", "08", "04", "21")):
+        return "Perishables"
+    if normalized.startswith(("84", "85", "94")):
+        return "Manufactured Goods"
+    if normalized.startswith(("25", "26", "27", "28", "29", "38")):
+        return "Raw Materials"
+    return None
+
+
+def _extract_hs_from_invoice_text(invoice_text: str) -> list[str]:
+    text = invoice_text or ""
+    # Capture HS codes near explicit "HS"/"HS Code" markers first.
+    tagged = re.findall(
+        r"(?i)\bhs(?:\s*code)?\s*[:#-]?\s*([0-9]{2,4}(?:[.\-][0-9]{1,4}){0,2})",
+        text,
+    )
+    # Also catch table-like segments where HS appears as a column.
+    tabular = re.findall(r"(?i)\b([0-9]{4,10}(?:[.\-][0-9]{1,4})?)\b", text)
+    candidates = tagged + tabular
+    # Keep short list for predictable behaviour and avoid noisy matches.
+    return [c for c in candidates if _hs_to_category(c)][:20]
+
+
+def _is_default_like(value: Any) -> bool:
+    if value is None:
+        return True
+    if isinstance(value, bool):
+        return value is False
+    if isinstance(value, (int, float)):
+        return value == 0
+    if isinstance(value, str):
+        return value.strip() in ("", "n/a", "na", "none", "null", "-", "0")
+    if isinstance(value, list):
+        return len(value) == 0 or all(_is_default_like(v) for v in value)
+    if isinstance(value, dict):
+        return len(value) == 0 or all(_is_default_like(v) for v in value.values())
+    return False
+
+
+def _count_non_default_leaves(value: Any) -> int:
+    if isinstance(value, dict):
+        return sum(_count_non_default_leaves(v) for v in value.values())
+    if isinstance(value, list):
+        return sum(_count_non_default_leaves(v) for v in value)
+    return 0 if _is_default_like(value) else 1
+
+
+def _merge_metadata_fields(primary: Any, fallback: Any) -> Any:
+    """Merge metadata preferring non-default values from primary."""
+    if isinstance(primary, dict) and isinstance(fallback, dict):
+        merged = {}
+        keys = set(primary.keys()) | set(fallback.keys())
+        for key in keys:
+            merged[key] = _merge_metadata_fields(primary.get(key), fallback.get(key))
+        return merged
+    if isinstance(primary, list) and isinstance(fallback, list):
+        return primary if _count_non_default_leaves(primary) > 0 else fallback
+    if primary is None:
+        return fallback
+    return primary if not _is_default_like(primary) else fallback
 
 
 def _render_prompt(name: str, values: Dict[str, Any]) -> str:
@@ -312,7 +386,7 @@ def _structure_with_per_document(texts: Dict[str, str]) -> Tuple[dict, dict, dic
     bol = structure_bill_of_lading(texts.get("bill_of_lading", ""))
     inv = structure_invoice(texts.get("invoice", ""))
     pl = structure_packing_list(texts.get("packing_list", ""))
-    category = detect_category(inv)
+    category = detect_category(inv, texts.get("invoice", ""))
     all_text = "\n\n".join(
         [
             texts.get("bill_of_lading", ""),
@@ -332,16 +406,17 @@ def structure_shipment_document_bundle(texts: Dict[str, str]) -> Tuple[dict, dic
         bol = _coerce_types(_get_mock_data("Bill of Lading"), _load_template(_BASE_TEMPLATES / "bill_of_lading.json"))
         inv = _coerce_types(_get_mock_data("Commercial Invoice"), _load_template(_BASE_TEMPLATES / "invoice.json"))
         pl = _coerce_types(_get_mock_data("Packing List"), _load_template(_BASE_TEMPLATES / "packing_list.json"))
-        category = detect_category(inv)
-        return bol, inv, pl, {"category": category, "metadata_fields": {}}
+        category = detect_category(inv, texts.get("invoice", ""))
+        all_text = "\n\n".join([texts.get("bill_of_lading", ""), texts.get("invoice", ""), texts.get("packing_list", "")])
+        category_meta = structure_category_metadata(all_text, category)
+        return bol, inv, pl, category_meta
 
     bol_template = _load_template(_BASE_TEMPLATES / "bill_of_lading.json")
     inv_template = _load_template(_BASE_TEMPLATES / "invoice.json")
     pl_template = _load_template(_BASE_TEMPLATES / "packing_list.json")
     category_templates = {
-        "Perishables": _load_template(_CATEGORY_TEMPLATES / "perishables.json"),
-        "Manufactured Goods": _load_template(_CATEGORY_TEMPLATES / "manufactured_goods.json"),
-        "Raw Materials": _load_template(_CATEGORY_TEMPLATES / "raw_materials.json"),
+        name: _load_template(_CATEGORY_TEMPLATES / filename)
+        for name, filename in _CATEGORY_TEMPLATE_FILES.items()
     }
 
     if not _USE_BUNDLE_FIRST:
@@ -371,6 +446,18 @@ def structure_shipment_document_bundle(texts: Dict[str, str]) -> Tuple[dict, dic
             "BOL_SCHEMA": json.dumps(bol_template, separators=(",", ":")),
             "INV_SCHEMA": json.dumps(inv_template, separators=(",", ":")),
             "PL_SCHEMA": json.dumps(pl_template, separators=(",", ":")),
+            "PERISHABLES_METADATA_SCHEMA": json.dumps(
+                category_templates["Perishables"].get("metadata_fields", {}),
+                separators=(",", ":"),
+            ),
+            "MANUFACTURED_GOODS_METADATA_SCHEMA": json.dumps(
+                category_templates["Manufactured Goods"].get("metadata_fields", {}),
+                separators=(",", ":"),
+            ),
+            "RAW_MATERIALS_METADATA_SCHEMA": json.dumps(
+                category_templates["Raw Materials"].get("metadata_fields", {}),
+                separators=(",", ":"),
+            ),
             "BILL_OF_LADING_TEXT": bol_text,
             "INVOICE_TEXT": inv_text,
             "PACKING_LIST_TEXT": pl_text,
@@ -394,7 +481,7 @@ def structure_shipment_document_bundle(texts: Dict[str, str]) -> Tuple[dict, dic
                 ],
                 response_format={"type": "json_object"},
                 temperature=temperature,
-                max_tokens=3072,
+                max_tokens=4096,
             )
             raw_json = response.choices[0].message.content
             _dump_groq_output(
@@ -412,8 +499,10 @@ def structure_shipment_document_bundle(texts: Dict[str, str]) -> Tuple[dict, dic
                     bol = _coerce_types(_get_mock_data("Bill of Lading"), bol_template)
                     inv = _coerce_types(_get_mock_data("Commercial Invoice"), inv_template)
                     pl = _coerce_types(_get_mock_data("Packing List"), pl_template)
-                    category = detect_category(inv)
-                    return bol, inv, pl, {"category": category, "metadata_fields": {}}
+                    category = detect_category(inv, texts.get("invoice", ""))
+                    all_text = "\n\n".join([texts.get("bill_of_lading", ""), texts.get("invoice", ""), texts.get("packing_list", "")])
+                    category_meta = structure_category_metadata(all_text, category)
+                    return bol, inv, pl, category_meta
                 logger.warning("Falling back to per-document parsing after bundle API failures")
                 break
             continue
@@ -468,8 +557,10 @@ def structure_shipment_document_bundle(texts: Dict[str, str]) -> Tuple[dict, dic
             bol = _coerce_types(_get_mock_data("Bill of Lading"), bol_template)
             inv = _coerce_types(_get_mock_data("Commercial Invoice"), inv_template)
             pl = _coerce_types(_get_mock_data("Packing List"), pl_template)
-            category = detect_category(inv)
-            return bol, inv, pl, {"category": category, "metadata_fields": {}}
+            category = detect_category(inv, texts.get("invoice", ""))
+            all_text = "\n\n".join([texts.get("bill_of_lading", ""), texts.get("invoice", ""), texts.get("packing_list", "")])
+            category_meta = structure_category_metadata(all_text, category)
+            return bol, inv, pl, category_meta
 
     try:
         raw_bol = parsed.get("bill_of_lading", {})
@@ -490,17 +581,35 @@ def structure_shipment_document_bundle(texts: Dict[str, str]) -> Tuple[dict, dic
         bol = _coerce_types(_get_mock_data("Bill of Lading"), bol_template)
         inv = _coerce_types(_get_mock_data("Commercial Invoice"), inv_template)
         pl = _coerce_types(_get_mock_data("Packing List"), pl_template)
-        category = detect_category(inv)
-        return bol, inv, pl, {"category": category, "metadata_fields": {}}
+        category = detect_category(inv, texts.get("invoice", ""))
+        all_text = "\n\n".join([texts.get("bill_of_lading", ""), texts.get("invoice", ""), texts.get("packing_list", "")])
+        category_meta = structure_category_metadata(all_text, category)
+        return bol, inv, pl, category_meta
 
+    invoice_text = texts.get("invoice", "")
+    all_text = "\n\n".join(
+        [
+            texts.get("bill_of_lading", ""),
+            invoice_text,
+            texts.get("packing_list", ""),
+        ]
+    )
     try:
         category_data = parsed.get("category_metadata", {})
         if not isinstance(category_data, dict):
             category_data = {}
-        category = category_data.get("category", "General")
+        detected_category = detect_category(inv, invoice_text)
+        category = str(category_data.get("category") or detected_category or "General")
         metadata_fields = category_data.get("metadata_fields", {}) or {}
+        if not isinstance(metadata_fields, dict):
+            metadata_fields = {}
+        if category == "General" and detected_category != "General":
+            # Bundle occasionally returns General when HS extraction is weak.
+            category = detected_category
+            logger.info("Using detected category from invoice fallback: %s", category)
         if category in category_templates:
-            coerced_metadata = _coerce_types(metadata_fields, category_templates[category].get("metadata_fields", {}))
+            metadata_schema = category_templates[category].get("metadata_fields", {})
+            coerced_metadata = _coerce_types(metadata_fields, metadata_schema)
             _dump_structured_snapshot(
                 "bundle_category_metadata_coercion",
                 metadata_fields,
@@ -508,6 +617,22 @@ def structure_shipment_document_bundle(texts: Dict[str, str]) -> Tuple[dict, dic
                 mode="bundle",
             )
             metadata_fields = coerced_metadata
+            non_default_leaf_count = _count_non_default_leaves(metadata_fields)
+            if non_default_leaf_count < 2:
+                logger.info(
+                    "Category metadata appears sparse (non_default=%d) for %s; running targeted fallback extraction",
+                    non_default_leaf_count,
+                    category,
+                )
+                fallback_meta = structure_category_metadata(all_text, category).get("metadata_fields", {})
+                merged = _merge_metadata_fields(metadata_fields, fallback_meta)
+                metadata_fields = _coerce_types(merged, metadata_schema)
+                _dump_structured_snapshot(
+                    "bundle_category_metadata_merge",
+                    {"bundle": coerced_metadata, "fallback": fallback_meta},
+                    metadata_fields,
+                    mode="bundle",
+                )
     except Exception as exc:
         logger.error("Failed to extract category metadata: %s", exc)
         category = "General"
@@ -754,23 +879,28 @@ def _structure_document(text: str, template: dict, doc_type: str) -> dict:
 # Category detection & metadata
 # ---------------------------------------------------------------------------
 
-def detect_category(invoice_data: dict) -> str:
+def detect_category(invoice_data: dict, invoice_text: str = "") -> str:
     """Determine the product category from HS codes in the invoice.
 
     Mirrors the logic in ``normalizer.py â†’ ShipmentProcessor._get_category``.
     """
     line_items = invoice_data.get("line_items") or []
-    hs = line_items[0].get("hs_code", "") if line_items else ""
-    if not hs:
-        return "General"
+    for idx, item in enumerate(line_items):
+        if not isinstance(item, dict):
+            continue
+        hs = item.get("hs_code", "")
+        category = _hs_to_category(hs)
+        if category:
+            logger.info("Detected category=%s using invoice_hs at line_item_index=%d hs=%s", category, idx, hs)
+            return category
 
-    hs = str(hs)
-    if hs.startswith(("07", "08", "04", "21")):
-        return "Perishables"
-    if hs.startswith(("84", "85", "94")):
-        return "Manufactured Goods"
-    if hs.startswith(("25", "26", "27", "28", "29", "38")):
-        return "Raw Materials"
+    for hs in _extract_hs_from_invoice_text(invoice_text):
+        category = _hs_to_category(hs)
+        if category:
+            logger.info("Detected category=%s using fallback_detected hs=%s", category, hs)
+            return category
+
+    logger.info("Detected category=General using default_general path")
     return "General"
 
 
@@ -795,11 +925,7 @@ def structure_category_metadata(
         ``{"category": ..., "metadata_fields": {...}}`` matching the
         category_templates schema.
     """
-    template_map = {
-        "Perishables": "perishables.json",
-        "Manufactured Goods": "manufactured_goods.json",
-        "Raw Materials": "raw_materials.json",
-    }
+    template_map = _CATEGORY_TEMPLATE_FILES
 
     template_file = template_map.get(category)
     if not template_file:

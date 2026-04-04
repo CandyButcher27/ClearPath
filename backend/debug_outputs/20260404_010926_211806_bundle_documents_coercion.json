@@ -1,0 +1,276 @@
+{
+  "timestamp_utc": "2026-04-04T01:09:26Z",
+  "tag": "bundle_documents_coercion",
+  "model": "llama-3.3-70b-versatile",
+  "attempt": null,
+  "mode": "bundle",
+  "parse_error": null,
+  "raw_output": {
+    "raw_structured": {
+      "bill_of_lading": {
+        "bill_of_lading_number": "BOL-MGD-003",
+        "ship_from": {
+          "name": "ZenithTech Factory",
+          "address": "1 Innovation Blvd",
+          "city_state_zip": "Shenzhen, CN",
+          "sid_number": "SID-SZ",
+          "fob_point": true
+        },
+        "ship_to": {
+          "name": "Retailer Central",
+          "location_number": "Loc#: WH-5",
+          "address": "777 Commerce St",
+          "city_state_zip": "Los Angeles, CA 90001",
+          "cid_number": "CID-LAX",
+          "fob_point": false
+        },
+        "carrier_details": {
+          "carrier_name": "FastTrack Air",
+          "trailer_number": "FLT-102",
+          "seal_numbers": "SEAL-Z",
+          "scac": "FTAK",
+          "pro_number": "PRO-Z",
+          "freight_charge_terms": "Prepaid"
+        },
+        "customer_order_info": [
+          {
+            "order_number": "PO-ZEN-01",
+            "pkgs_count": 100,
+            "weight": 500.0,
+            "pallet_slip": true,
+            "additional_info": "Retail boxes"
+          }
+        ],
+        "carrier_commodity_info": [
+          {
+            "handling_unit_qty": 2,
+            "handling_unit_type": "Pallets",
+            "package_qty": 100,
+            "package_type": "Boxes",
+            "weight": 500.0,
+            "is_hazardous": false,
+            "commodity_description": "Consumer Electronics",
+            "nmfc_number": "NM-ZEN"
+          }
+        ]
+      },
+      "invoice": {
+        "invoice_number": "INV-ZEN-003",
+        "seller_info": {
+          "company_name": "ZenithTech",
+          "address": "1 Innovation Blvd, Shenzhen",
+          "reg_number": "SZ-88",
+          "tax_number": "TAX-CN-1"
+        },
+        "bill_to_info": {
+          "client_name": "Retailer Central",
+          "address": "777 Commerce St, Los Angeles, CA",
+          "reg_number": "REG-US-9",
+          "tax_number": "TX-CA-1"
+        },
+        "payment_details": {
+          "bank_name": "Industrial Bank",
+          "bic": "INDBCCN",
+          "account_number": "111222333",
+          "invoice_date": "2026-03-25",
+          "due_date": "2026-04-05"
+        },
+        "line_items": [
+          {
+            "hs_code": "8517.12",
+            "container_number": "CONT-Z",
+            "description": "Model Z1 Smart Device",
+            "quantity": 100.0,
+            "unit_of_measure": "units",
+            "unit_price": 500.0,
+            "subtotal": 50000.0,
+            "tax_amount": 4250.0,
+            "tax_percentage": 8.5
+          }
+        ],
+        "totals": {
+          "subtotal": 50000.0,
+          "tax_total": 4250.0,
+          "grand_total": 54250.0,
+          "currency": "USD",
+          "amount_in_words": ""
+        }
+      },
+      "packing_list": {
+        "delivery_to": {
+          "customer_name": "Retailer Central",
+          "address_lines": [
+            "777 Commerce St",
+            "Dock 1"
+          ],
+          "telephone": "555-9000",
+          "email": "logistics@retailer.com"
+        },
+        "from_business": {
+          "business_name": "ZenithTech",
+          "address_lines": [
+            "1 Innovation Blvd"
+          ]
+        },
+        "shipping_refs": {
+          "order_reference": "PO-ZEN-01",
+          "order_date": "2026-03-20",
+          "delivery_method": "Air Freight",
+          "delivery_number": "DLV-ZEN-1",
+          "delivery_date": ""
+        },
+        "items": [
+          {
+            "item_number": "Z1-BLACK",
+            "description": "Model Z1 Smart Device",
+            "qty_ordered": 100,
+            "qty_shipped": 95,
+            "weight_kg": 475.0,
+            "volume_cbm": 2.0,
+            "container_number": "CONT-Z"
+          }
+        ],
+        "notes": "Short shipment due to stock shortage. 5 units backordered."
+      }
+    },
+    "coerced_structured": {
+      "bill_of_lading": {
+        "bill_of_lading_number": "BOL-MGD-003",
+        "ship_from": {
+          "name": "ZenithTech Factory",
+          "address": "1 Innovation Blvd",
+          "city_state_zip": "Shenzhen, CN",
+          "sid_number": "SID-SZ",
+          "fob_point": true
+        },
+        "ship_to": {
+          "name": "Retailer Central",
+          "location_number": "Loc#: WH-5",
+          "address": "777 Commerce St",
+          "city_state_zip": "Los Angeles, CA 90001",
+          "cid_number": "CID-LAX",
+          "fob_point": false
+        },
+        "third_party_bill_to": {
+          "name": "",
+          "address": "",
+          "city_state_zip": ""
+        },
+        "special_instructions": "",
+        "carrier_details": {
+          "carrier_name": "FastTrack Air",
+          "trailer_number": "FLT-102",
+          "seal_numbers": "SEAL-Z",
+          "scac": "FTAK",
+          "pro_number": "PRO-Z",
+          "freight_charge_terms": "Prepaid"
+        },
+        "customer_order_info": [
+          {
+            "order_number": "PO-ZEN-01",
+            "pkgs_count": 100,
+            "weight": 500.0,
+            "pallet_slip": true,
+            "additional_info": "Retail boxes"
+          }
+        ],
+        "carrier_commodity_info": [
+          {
+            "handling_unit_qty": 2,
+            "handling_unit_type": "Pallets",
+            "package_qty": 100,
+            "package_type": "Boxes",
+            "weight": 500.0,
+            "is_hazardous": false,
+            "commodity_description": "Consumer Electronics",
+            "nmfc_number": "NM-ZEN",
+            "class": ""
+          }
+        ],
+        "cod_details": {
+          "amount": 0,
+          "fee_terms": "",
+          "customer_check_acceptable": false
+        }
+      },
+      "invoice": {
+        "invoice_number": "INV-ZEN-003",
+        "seller_info": {
+          "company_name": "ZenithTech",
+          "address": "1 Innovation Blvd, Shenzhen",
+          "reg_number": "SZ-88",
+          "tax_number": "TAX-CN-1"
+        },
+        "bill_to_info": {
+          "client_name": "Retailer Central",
+          "address": "777 Commerce St, Los Angeles, CA",
+          "reg_number": "REG-US-9",
+          "tax_number": "TX-CA-1"
+        },
+        "payment_details": {
+          "bank_name": "Industrial Bank",
+          "bic": "INDBCCN",
+          "account_number": "111222333",
+          "invoice_date": "2026-03-25",
+          "due_date": "2026-04-05"
+        },
+        "line_items": [
+          {
+            "hs_code": "8517.12",
+            "container_number": "CONT-Z",
+            "description": "Model Z1 Smart Device",
+            "quantity": 100.0,
+            "unit_of_measure": "units",
+            "unit_price": 500.0,
+            "subtotal": 50000.0,
+            "tax_amount": 4250.0,
+            "tax_percentage": 8.5
+          }
+        ],
+        "totals": {
+          "subtotal": 50000.0,
+          "tax_total": 4250.0,
+          "grand_total": 54250.0,
+          "currency": "USD",
+          "amount_in_words": ""
+        }
+      },
+      "packing_list": {
+        "delivery_to": {
+          "customer_name": "Retailer Central",
+          "address_lines": [
+            "777 Commerce St",
+            "Dock 1"
+          ],
+          "telephone": "555-9000",
+          "email": "logistics@retailer.com"
+        },
+        "from_business": {
+          "business_name": "ZenithTech",
+          "address_lines": [
+            "1 Innovation Blvd"
+          ]
+        },
+        "shipping_refs": {
+          "order_reference": "PO-ZEN-01",
+          "order_date": "2026-03-20",
+          "delivery_method": "Air Freight",
+          "delivery_number": "DLV-ZEN-1",
+          "delivery_date": ""
+        },
+        "items": [
+          {
+            "item_number": "Z1-BLACK",
+            "description": "Model Z1 Smart Device",
+            "qty_ordered": 100,
+            "qty_shipped": 95,
+            "weight_kg": 475.0,
+            "volume_cbm": 2.0,
+            "container_number": "CONT-Z"
+          }
+        ],
+        "notes": "Short shipment due to stock shortage. 5 units backordered."
+      }
+    }
+  }
+}

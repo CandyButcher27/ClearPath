@@ -35,6 +35,13 @@ bill_of_lading schema: {{BOL_SCHEMA}}
 invoice schema: {{INV_SCHEMA}}
 packing_list schema: {{PL_SCHEMA}}
 
+CATEGORY METADATA SHAPES (match exactly):
+- If category = "Perishables", metadata_fields schema: {{PERISHABLES_METADATA_SCHEMA}}
+- If category = "Manufactured Goods", metadata_fields schema: {{MANUFACTURED_GOODS_METADATA_SCHEMA}}
+- If category = "Raw Materials", metadata_fields schema: {{RAW_MATERIALS_METADATA_SCHEMA}}
+- If category = "General", metadata_fields must be {}
+- If category is not "General", metadata_fields must include the category keys. IMPORTANT: Extract actual values from the document text for each metadata field. Only use type-safe defaults ("", 0, false) for fields where no information can be found in any of the three documents. Do NOT default all fields — look carefully in the invoice line items, packing list, and bill of lading for brand names, model numbers, serial numbers, dimensions, weights, packaging info, temperature requirements, certifications, etc.
+
 BILL OF LADING:
 {{BILL_OF_LADING_TEXT}}
 
@@ -43,4 +50,3 @@ COMMERCIAL INVOICE:
 
 PACKING LIST:
 {{PACKING_LIST_TEXT}}
-

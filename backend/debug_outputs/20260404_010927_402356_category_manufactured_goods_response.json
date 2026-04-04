@@ -1,0 +1,9 @@
+{
+  "timestamp_utc": "2026-04-04T01:09:27Z",
+  "tag": "category_manufactured_goods_response",
+  "model": "llama-3.3-70b-versatile",
+  "attempt": null,
+  "mode": "category_metadata",
+  "parse_error": null,
+  "raw_output": "{\n  \"serial_number\": \"\",\n   \"model_number\": \"Z1\",\n   \"brand_name\": \"ZenithTech\",\n   \"dimensions\": {\n       \"length\": 0,\n       \"width\": 0,\n       \"height\": 0,\n       \"unit\": \"cm\"\n   },\n   \"warranty_period_months\": 0,\n   \"fragility_rating\": 3,\n   \"assembly_required\": false,\n   \"upc_ean_code\": \"\",\n   \"packaging_material\": \"Retail boxes\"\n}"
+}

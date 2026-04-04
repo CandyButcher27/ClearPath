@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { ClearPathScreen } from './components/ClearPathScreen'
 import { ProcessingScreen } from './components/ProcessingScreen'
 import { VerificationResultsScreen } from './components/VerificationResultsScreen'
@@ -52,6 +52,32 @@ export interface ApiResult {
   }
 }
 
+function FadeScreen({ children, screenKey }: { children: React.ReactNode; screenKey: string }) {
+  const [visible, setVisible] = useState(false)
+  const prevKey = useRef(screenKey)
+
+  useEffect(() => {
+    prevKey.current = screenKey
+    const t = setTimeout(() => setVisible(true), 30)
+    return () => {
+      clearTimeout(t)
+      setVisible(false)
+    }
+  }, [screenKey])
+
+  return (
+    <div
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0)' : 'translateY(8px)',
+        transition: 'opacity 0.35s ease, transform 0.35s ease',
+      }}
+    >
+      {children}
+    </div>
+  )
+}
+
 function App() {
   const [currentScreen, setCurrentScreen] = useState<'home' | 'processing' | 'results'>('home')
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFiles>({
@@ -63,36 +89,43 @@ function App() {
 
   if (currentScreen === 'home') {
     return (
-      <ClearPathScreen
-        onSubmit={(files) => {
-          setUploadedFiles(files)
-          setCurrentScreen('processing')
-        }}
-      />
+      <FadeScreen screenKey="home">
+        <ClearPathScreen
+          onSubmit={(files) => {
+            setUploadedFiles(files)
+            setCurrentScreen('processing')
+          }}
+        />
+      </FadeScreen>
     )
   }
 
   if (currentScreen === 'processing') {
     return (
-      <ProcessingScreen
-        files={uploadedFiles}
-        onComplete={(result) => {
-          setApiResult(result)
-          setCurrentScreen('results')
-        }}
-        onError={() => setCurrentScreen('home')}
-      />
+      <FadeScreen screenKey="processing">
+        <ProcessingScreen
+          files={uploadedFiles}
+          onComplete={(result) => {
+            setApiResult(result)
+            setCurrentScreen('results')
+          }}
+          onError={() => setCurrentScreen('home')}
+          onCancel={() => setCurrentScreen('home')}
+        />
+      </FadeScreen>
     )
   }
 
   return (
-    <VerificationResultsScreen
-      result={apiResult}
-      onNavigateHome={() => {
-        setCurrentScreen('home')
-        setApiResult(null)
-      }}
-    />
+    <FadeScreen screenKey="results">
+      <VerificationResultsScreen
+        result={apiResult}
+        onNavigateHome={() => {
+          setCurrentScreen('home')
+          setApiResult(null)
+        }}
+      />
+    </FadeScreen>
   )
 }
 

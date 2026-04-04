@@ -15,6 +15,7 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubm
     invoice: null,
     packing_list: null,
   })
+  const [dragging, setDragging] = useState<keyof UploadedFiles | null>(null)
 
   const fileKeys: (keyof UploadedFiles)[] = ['bill_of_lading', 'invoice', 'packing_list']
   const allFilesSelected = fileKeys.every((k) => files[k] !== null)
@@ -22,6 +23,15 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubm
   const handleFileChange = (key: keyof UploadedFiles, e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] ?? null
     setFiles((prev) => ({ ...prev, [key]: file }))
+  }
+
+  const handleDrop = (key: keyof UploadedFiles, e: React.DragEvent) => {
+    e.preventDefault()
+    setDragging(null)
+    const file = e.dataTransfer.files?.[0]
+    if (file && file.name.toLowerCase().endsWith('.pdf')) {
+      setFiles((prev) => ({ ...prev, [key]: file }))
+    }
   }
 
   useEffect(() => {
@@ -57,16 +67,13 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubm
 
       <nav className="fixed top-0 z-50 w-full border-b border-outline-variant/20 bg-surface/80 shadow-[0_1px_0_rgba(255,255,255,0.04),0_4px_24px_rgba(0,0,0,0.4)] backdrop-blur-xl">
         <div className="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-8">
-          <div className="logo-glow text-2xl font-black uppercase tracking-tighter text-primary">VERIFY_LOGIC</div>
-          <div className="hidden items-center gap-10 md:flex">
-            <a className="border-b-2 border-on-surface pb-1 font-inter text-xs font-extrabold uppercase tracking-tighter text-primary" href="#docs">Documents</a>
-            <a className="font-inter text-xs font-extrabold uppercase tracking-tighter text-on-surface-variant transition-colors hover:text-primary" href="#verify">Verification</a>
-            <a className="font-inter text-xs font-extrabold uppercase tracking-tighter text-on-surface-variant transition-colors hover:text-primary" href="#logs">Audit Logs</a>
-            <a className="font-inter text-xs font-extrabold uppercase tracking-tighter text-on-surface-variant transition-colors hover:text-primary" href="#compliance">Compliance</a>
-          </div>
-          <div className="flex items-center gap-6">
-            <button className="font-inter text-xs font-extrabold uppercase tracking-tighter text-on-surface-variant transition-colors hover:text-primary">System Status</button>
-            <button className="bg-primary px-8 py-3 font-inter text-xs font-extrabold uppercase tracking-tighter text-on-primary transition-all duration-300 hover:bg-secondary">Secure Login</button>
+          <div className="logo-glow text-2xl font-black uppercase tracking-tighter text-primary">ClearPath</div>
+          <div className="flex items-center gap-3">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-status-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary" />
+            </span>
+            <span className="font-inter text-[10px] font-black uppercase tracking-[0.2em] text-on-surface-variant">System Online</span>
           </div>
         </div>
         <div className="absolute bottom-0 left-0 h-[2px] w-16 bg-secondary" />
@@ -92,21 +99,9 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubm
               <p className="mb-12 max-w-lg text-xl font-bold uppercase leading-tight tracking-tight text-on-surface-variant">
                 {clearPathData.hero.description}
               </p>
-              <div className="flex flex-wrap gap-4">
-                <button
-                  onClick={() => allFilesSelected && onSubmit(files)}
-                  disabled={!allFilesSelected}
-                  className={`group relative flex items-center gap-4 overflow-hidden bg-red-600 px-10 py-5 text-xs font-black uppercase tracking-widest text-white transition-all duration-500 hover:bg-primary ${!allFilesSelected ? 'opacity-40 cursor-not-allowed' : ''}`}
-                >
-                  <span className="relative z-10 flex items-center gap-4">
-                    Initiate Audit
-                    <img src="/arrow.webp" alt="arrow" className="inline-block h-4 w-4 object-contain transition-transform group-hover:translate-x-1" />
-                  </span>
-                </button>
-                <button className="border-2 border-on-surface/30 px-10 py-5 text-xs font-black uppercase tracking-widest transition-all duration-500 hover:border-on-surface hover:bg-on-surface hover:text-surface">
-                  API Specs
-                </button>
-              </div>
+              <p className="text-xs font-black uppercase tracking-widest text-on-surface-variant">
+                Upload your documents below to begin verification.
+              </p>
             </div>
 
             <div className="hero-parallax reveal-delay-2 relative flex h-[600px] w-full animate-fade-up items-center justify-center overflow-hidden">
@@ -151,11 +146,26 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubm
                     <img src={doc.icon} alt={doc.title} className="mb-4 h-10 w-10 object-contain" />
                     <h3 className="mb-2 text-sm font-black uppercase tracking-widest text-primary">{doc.title}</h3>
                     <p className="mb-4 text-xs text-on-surface-variant">{doc.description}</p>
-                    <label className="flex cursor-pointer flex-col items-center gap-2 border border-dashed border-outline-variant/40 p-4 text-xs text-on-surface-variant hover:border-secondary hover:text-secondary transition-colors">
+                    <label
+                      className={`flex cursor-pointer flex-col items-center gap-2 border border-dashed p-4 text-xs transition-colors ${
+                        dragging === key
+                          ? 'border-secondary bg-secondary/10 text-secondary'
+                          : files[key]
+                          ? 'border-secondary/60 text-secondary'
+                          : 'border-outline-variant/40 text-on-surface-variant hover:border-secondary hover:text-secondary'
+                      }`}
+                      onDragOver={(e) => { e.preventDefault(); setDragging(key) }}
+                      onDragLeave={() => setDragging(null)}
+                      onDrop={(e) => handleDrop(key, e)}
+                    >
                       {files[key] ? (
-                        <span className="text-secondary font-bold">{files[key]!.name}</span>
+                        <span className="flex items-center gap-1 font-bold">
+                          <span className="text-emerald-400">✓</span> {files[key]!.name}
+                        </span>
+                      ) : dragging === key ? (
+                        <span className="font-bold">Drop PDF here</span>
                       ) : (
-                        <span>Click to upload PDF</span>
+                        <span>Click or drag PDF here</span>
                       )}
                       <input
                         type="file"
@@ -203,27 +213,11 @@ export const ClearPathScreen: React.FC<ReadonlyClearPathScreenProps> = ({ onSubm
         </section>
       </main>
 
-      <footer className="relative overflow-hidden bg-black py-20 text-white">
+      <footer className="relative overflow-hidden bg-black py-12 text-white">
         <div className="relative z-10 mx-auto max-w-[1440px] px-8">
-          <div className="flex flex-col items-start justify-between gap-12 md:flex-row md:items-center">
-            <div className="text-3xl font-black uppercase tracking-tighter">VERIFY_LOGIC</div>
-            <div className="grid grid-cols-2 gap-x-12 gap-y-6 md:flex">
-              <a className="font-inter text-[10px] font-black uppercase tracking-widest text-zinc-500 transition-colors hover:text-secondary" href="#">Privacy Policy</a>
-              <a className="font-inter text-[10px] font-black uppercase tracking-widest text-zinc-500 transition-colors hover:text-secondary" href="#">Terms of Service</a>
-              <a className="font-inter text-[10px] font-black uppercase tracking-widest text-zinc-500 transition-colors hover:text-secondary" href="#">Security Whitepaper</a>
-              <a className="font-inter text-[10px] font-black uppercase tracking-widest text-zinc-500 transition-colors hover:text-secondary" href="#">API Documentation</a>
-            </div>
-          </div>
-          <div className="mt-20 flex flex-col items-center justify-between gap-6 border-t border-zinc-800 pt-10 md:flex-row">
-            <p className="font-inter text-[10px] font-black uppercase tracking-widest text-zinc-600">(c) 2024 Industrial Architect Verification Systems.</p>
-            <div className="flex gap-4">
-              <div className="flex h-8 w-8 cursor-pointer items-center justify-center bg-zinc-900 transition-colors hover:bg-secondary">
-                <span className="material-symbols-outlined text-sm">terminal</span>
-              </div>
-              <div className="flex h-8 w-8 cursor-pointer items-center justify-center bg-zinc-900 transition-colors hover:bg-secondary">
-                <span className="material-symbols-outlined text-sm">hub</span>
-              </div>
-            </div>
+          <div className="flex flex-col items-center justify-between gap-4 border-t border-zinc-800 pt-8 md:flex-row">
+            <div className="text-xl font-black uppercase tracking-tighter">ClearPath</div>
+            <p className="font-inter text-[10px] font-black uppercase tracking-widest text-zinc-600">&copy; {new Date().getFullYear()} ClearPath — Intelligent Shipment Verification.</p>
           </div>
         </div>
       </footer>

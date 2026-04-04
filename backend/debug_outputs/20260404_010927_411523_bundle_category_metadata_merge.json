@@ -1,0 +1,60 @@
+{
+  "timestamp_utc": "2026-04-04T01:09:27Z",
+  "tag": "bundle_category_metadata_merge",
+  "model": "llama-3.3-70b-versatile",
+  "attempt": null,
+  "mode": "bundle",
+  "parse_error": null,
+  "raw_output": {
+    "raw_structured": {
+      "bundle": {
+        "serial_number": "",
+        "model_number": "",
+        "brand_name": "",
+        "dimensions": {
+          "length": 0,
+          "width": 0,
+          "height": 0,
+          "unit": ""
+        },
+        "warranty_period_months": 0,
+        "fragility_rating": "0",
+        "assembly_required": false,
+        "upc_ean_code": "",
+        "packaging_material": ""
+      },
+      "fallback": {
+        "serial_number": "",
+        "model_number": "Z1",
+        "brand_name": "ZenithTech",
+        "dimensions": {
+          "length": 0,
+          "width": 0,
+          "height": 0,
+          "unit": "cm"
+        },
+        "warranty_period_months": 0,
+        "fragility_rating": "3",
+        "assembly_required": false,
+        "upc_ean_code": "",
+        "packaging_material": "Retail boxes"
+      }
+    },
+    "coerced_structured": {
+      "serial_number": "",
+      "model_number": "Z1",
+      "brand_name": "ZenithTech",
+      "dimensions": {
+        "length": 0,
+        "width": 0,
+        "height": 0,
+        "unit": "cm"
+      },
+      "warranty_period_months": 0,
+      "fragility_rating": "0",
+      "assembly_required": false,
+      "upc_ean_code": "",
+      "packaging_material": "Retail boxes"
+    }
+  }
+}

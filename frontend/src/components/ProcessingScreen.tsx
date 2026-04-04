@@ -14,6 +14,7 @@ export interface ReadonlyProcessingScreenProps {
   files: UploadedFiles
   onComplete: (result: ApiResult) => void
   onError: () => void
+  onCancel: () => void
 }
 
 const SYNTHETIC_FALLBACK: Array<Omit<LogLine, 'timestamp'>> = [
@@ -42,7 +43,7 @@ function nowTime() {
   return `${h}:${m}:${s}.${ms}`
 }
 
-export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ files, onComplete, onError }) => {
+export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ files, onComplete, onError, onCancel }) => {
   const [logLines, setLogLines] = useState<LogLine[]>([])
   const [requestPending, setRequestPending] = useState(true)
   const [apiError, setApiError] = useState<string | null>(null)
@@ -165,11 +166,8 @@ export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ file
         setRequestPending(false)
         const msg = err instanceof Error ? err.message : String(err)
         setApiError(msg)
-        setStatusMessage('Processing failed.')
-        window.setTimeout(() => {
-          alert(`Processing failed: ${msg}`)
-          onError()
-        }, 500)
+        setStatusMessage('Processing failed. See error below.')
+        window.setTimeout(() => onError(), 3000)
       } finally {
         if (fallbackTimerRef.current) window.clearInterval(fallbackTimerRef.current)
         if (eventSourceRef.current) eventSourceRef.current.close()
@@ -182,7 +180,7 @@ export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ file
       if (fallbackTimerRef.current) window.clearInterval(fallbackTimerRef.current)
       if (eventSourceRef.current) eventSourceRef.current.close()
     }
-  }, [files, onComplete, onError, streamConnected, usingFallback])
+  }, [files, onComplete, onError, onCancel, streamConnected, usingFallback])
 
   return (
     <div className="ux-shell min-h-screen px-4 py-10 text-zinc-100">
@@ -192,9 +190,23 @@ export const ProcessingScreen: React.FC<ReadonlyProcessingScreenProps> = ({ file
             <p className="text-xs uppercase tracking-[0.3em] text-cyan-300">ClearPath Runtime</p>
             <h1 className="mt-1 text-3xl font-semibold tracking-tight">Live Verification Pipeline</h1>
           </div>
-          <div className="text-right text-xs text-zinc-400">
-            <p>stream: {streamConnected ? 'backend-live' : usingFallback ? 'fallback-sim' : 'connecting...'}</p>
-            <p>mode: dark ops console</p>
+          <div className="flex items-center gap-6">
+            <div className="text-right text-xs text-zinc-400">
+              <p>stream: {streamConnected ? 'backend-live' : usingFallback ? 'fallback-sim' : 'connecting...'}</p>
+              <p>mode: dark ops console</p>
+            </div>
+            {requestPending && (
+              <button
+                onClick={() => {
+                  if (fallbackTimerRef.current) window.clearInterval(fallbackTimerRef.current)
+                  if (eventSourceRef.current) eventSourceRef.current.close()
+                  onCancel()
+                }}
+                className="rounded border border-white/20 bg-white/5 px-4 py-2 text-xs text-zinc-400 transition hover:bg-white/10 hover:text-zinc-100"
+              >
+                Cancel
+              </button>
+            )}
           </div>
         </div>
 

@@ -58,6 +58,7 @@ results/*.json
 debug_*.py
 run_*.py
 test_*.py
+!backend/tests/test_*.py
 check_*.py
 *.tmp
 *.bak
