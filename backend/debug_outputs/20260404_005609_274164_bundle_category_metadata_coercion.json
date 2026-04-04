@@ -1,0 +1,26 @@
+{
+  "timestamp_utc": "2026-04-04T00:56:09Z",
+  "tag": "bundle_category_metadata_coercion",
+  "model": "llama-3.3-70b-versatile",
+  "attempt": null,
+  "mode": "bundle",
+  "parse_error": null,
+  "raw_output": {
+    "raw_structured": {},
+    "coerced_structured": {
+      "net_weight": 0,
+      "gross_weight": 0,
+      "volume": {
+        "value": 0,
+        "unit": ""
+      },
+      "purity_percentage": 0,
+      "grade_quality": "",
+      "country_of_origin": "",
+      "batch_lot_number": "",
+      "msds_link": "",
+      "is_hazardous_material": false,
+      "storage_container_type": ""
+    }
+  }
+}

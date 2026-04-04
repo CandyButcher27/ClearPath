@@ -1,7 +1,4 @@
-import React from 'react'
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { verificationResultsData } from '../data/mockData'
-import { useScrollAnimation } from '../hooks/useScrollAnimation'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { ApiResult } from '../App'
 
 export interface ReadonlyVerificationResultsScreenProps {
@@ -9,17 +6,42 @@ export interface ReadonlyVerificationResultsScreenProps {
   onNavigateHome: () => void
 }
 
+function pct(v: unknown): string {
+  if (typeof v !== 'number' || Number.isNaN(v)) return '0%'
+  return `${Math.round(v)}%`
+}
+
 export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScreenProps> = ({ result, onNavigateHome }) => {
-  const scrollY = useScrollAnimation()
-  const normalized = result?.normalized ?? {}
-  const sessionId = result?.session_id ?? 'N/A'
   const [isGeneratingReport, setIsGeneratingReport] = useState(false)
   const [reportError, setReportError] = useState<string | null>(null)
   const [hasGeneratedReport, setHasGeneratedReport] = useState(false)
   const hasAutoTriggeredRef = useRef(false)
 
-  // Extract fields for display — adapt keys to match your normalizer output
-  const checks = normalized.checks as Record<string, unknown>[] ?? []
+  const sessionId = result?.session_id ?? 'N/A'
+  const normalized = result?.normalized ?? {}
+  const telemetry = result?.telemetry ?? {}
+  const explainability = result?.explainability ?? {}
+  const explainItems = (explainability.items ?? []).filter(Boolean)
+  const explainSummary = explainability.summary ?? {}
+  const kpis = telemetry.kpis ?? {}
+  const extraction = telemetry.extraction ?? {}
+
+  const topWarnings = useMemo(
+    () => explainItems.filter((i) => i?.is_flagged).slice(0, 3),
+    [explainItems],
+  )
+
+  const operationsBrief = useMemo(() => {
+    const category = String(((normalized as Record<string, unknown>)?.category_metadata as Record<string, unknown>)?.applied_category ?? 'General')
+    const totalChecks = Number(explainSummary.total_checks ?? 0)
+    const flagged = Number(explainSummary.flagged_checks ?? 0)
+    const safe = Math.max(0, totalChecks - flagged)
+    return {
+      title: `${category} shipment review complete`,
+      body: `Pipeline completed ${totalChecks} automated checks. ${safe} passed cleanly and ${flagged} require review.`,
+      nextAction: flagged > 0 ? 'Review highlighted evidence before dispatch approval.' : 'Proceed to final certificate and dispatch.',
+    }
+  }, [normalized, explainSummary])
 
   const handleGenerateReport = useCallback(async () => {
     if (!result?.normalized) {
@@ -59,7 +81,7 @@ export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScre
       if (/failed to fetch|networkerror|load failed/i.test(message)) {
         setReportError(
           `Could not reach backend report endpoint (http://localhost:5000/api/generate-report). ` +
-          `This is usually a local backend/CORS issue. Current frontend origin: ${window.location.origin}.`,
+          `Current frontend origin: ${window.location.origin}.`,
         )
       } else {
         setReportError(message)
@@ -70,178 +92,140 @@ export const VerificationResultsScreen: React.FC<ReadonlyVerificationResultsScre
   }, [result])
 
   useEffect(() => {
-    if (!result?.normalized) {
-      return
-    }
-    if (hasAutoTriggeredRef.current) {
-      return
-    }
+    if (!result?.normalized) return
+    if (hasAutoTriggeredRef.current) return
     hasAutoTriggeredRef.current = true
     void handleGenerateReport()
   }, [result, handleGenerateReport])
 
   return (
-    <div className="min-h-screen bg-surface text-on-surface selection:bg-secondary/20">
-      <div className="fixed inset-0 z-0 grid-bg pointer-events-none" />
-
-      <div className="wireframe-cube pointer-events-none fixed right-10 top-40 z-0 hidden opacity-20 lg:block">
-        <div
-          className="cube-inner"
-          style={{ transform: `rotateX(${45 + scrollY * 0.15}deg) rotateY(${45 + scrollY * 0.075}deg) rotateZ(${scrollY * 0.03}deg)` }}
-        >
-          <div className="cube-face" style={{ transform: 'translateZ(30px)' }} />
-          <div className="cube-face" style={{ transform: 'rotateY(90deg) translateZ(30px)' }} />
-          <div className="cube-face" style={{ transform: 'rotateY(180deg) translateZ(30px)' }} />
-          <div className="cube-face" style={{ transform: 'rotateY(-90deg) translateZ(30px)' }} />
-          <div className="cube-face" style={{ transform: 'rotateX(90deg) translateZ(30px)' }} />
-          <div className="cube-face" style={{ transform: 'rotateX(-90deg) translateZ(30px)' }} />
-        </div>
-      </div>
-
-      <nav className="fixed top-0 z-50 flex h-20 w-full items-center justify-between border-b border-outline-variant/20 bg-surface/80 px-8 backdrop-blur-md">
-        <div className="flex cursor-pointer items-center gap-2 text-2xl font-black uppercase tracking-tighter text-primary" onClick={onNavigateHome}>
-          <span className="flex h-8 w-8 items-center justify-center bg-secondary text-xl text-white">C</span>
-          Clear Path
-        </div>
-        <div className="hidden items-center gap-8 md:flex">
-          <a className="font-medium text-on-surface-variant transition-colors hover:text-primary" href="#dash">Dashboard</a>
-          <a className="font-medium text-on-surface-variant transition-colors hover:text-primary" href="#docs">Documents</a>
-          <a className="font-medium text-on-surface-variant transition-colors hover:text-primary" href="#arch">Archives</a>
-          <a className="border-b-2 border-secondary pb-1 font-inter font-bold tracking-tight text-primary" href="#reports">Reports</a>
-        </div>
-        <div className="flex items-center gap-6">
-          <button onClick={onNavigateHome} className="bg-primary px-6 py-2.5 text-sm font-bold tracking-tight text-on-primary transition-all hover:bg-opacity-90">Verify New</button>
-          <div className="h-10 w-10 overflow-hidden rounded-full border-2 border-outline-variant/30 bg-surface-container-high">
-            <img alt="User profile" className="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh5xeDcwyCusmEDNp63h1VQZUFxeavqHnjNiaZeWOyMtq5y_ziSWoKIwB6GKQnnnXincMgsK1tuGmSp9YdIfgf23_L-H-TMuhHMqf7EIKvi3orBUz4_ooZV4ejNIFYcYGv4DV0cvO2FiBG_lO2ANEmHfZ1qnbXSA11UYNpmAzsYGpLqODVjK5NKHM5Jx17hG6hj42gzG8b3OE7U6N4vKmjg_ILOY_HAzQeU5VKzxm2s3qgmrrpl-bcpd6gFpjzF_xNbC6oaHj-GejM" />
+    <div className="ux-shell min-h-screen text-zinc-100">
+      <div className="mx-auto max-w-7xl px-5 pb-20 pt-10">
+        <header className="mb-8 grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-cyan-300">Verification report</p>
+            <h1 className="mt-2 text-4xl font-semibold tracking-tight">Operations Trust Dashboard</h1>
+            <p className="mt-3 max-w-3xl text-zinc-300">
+              Session {sessionId} completed. Review explainability evidence, business KPIs, and recommended actions before release.
+            </p>
           </div>
-        </div>
-      </nav>
-
-      <main className="relative z-10 mx-auto max-w-7xl px-8 pb-24 pt-32">
-        <header className="animate-fade-up mb-20" style={{ transform: `translateY(${scrollY * 0.05}px)` }}>
-          <div className="mb-6 flex items-start gap-4">
-            <div className="rounded-sm bg-secondary p-1.5 shadow-lg shadow-secondary/20">
-              <img src="/circle.png" alt="check circle" className="inline-block h-8 w-8 object-contain" />
-            </div>
-            <div className="flex flex-col">
-              <span className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-secondary">Process ID: {sessionId}</span>
-              <h1 className="text-7xl font-black uppercase leading-[0.9] tracking-tighter text-primary md:text-8xl">{verificationResultsData.header.title}</h1>
-            </div>
-          </div>
-          <p className="mt-4 max-w-2xl border-l-4 border-secondary pl-6 text-lg leading-relaxed text-on-surface-variant">
-            {verificationResultsData.header.description}
-          </p>
+          <button
+            onClick={onNavigateHome}
+            className="rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-sm font-medium text-zinc-100 transition hover:bg-white/10"
+          >
+            Verify New Shipment
+          </button>
         </header>
 
-        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
-          <div className="stagger-children lg:col-span-8 space-y-4">
-            {checks.length > 0
-              ? checks.map((check, index) => (
-                <div key={index} className="...">
-                  <h3>{String(check.field ?? check.name ?? `Check ${index + 1}`)}</h3>
-                  <span>{String(check.status ?? check.result ?? '')}</span>
-                </div>
-              ))
-              : verificationResultsData.points.map((point, index) => (
-                <div
-                  key={point.id}
-                  className={`reveal point-${index} group rounded-sm border-l-8 border-primary bg-surface-container-lowest p-8 shadow-sm transition-all duration-500 hover:bg-surface-container hover:shadow-xl`}
-                  style={{ transform: `translateY(${index % 2 === 0 ? scrollY * 0.02 : scrollY * -0.015}px)` }}
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex flex-col gap-1">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant">Metadata Point {point.id}</span>
-                      <h3 className="text-2xl font-bold tracking-tight text-primary">{point.title}</h3>
-                    </div>
-                    <img
-                      src="/ccircle.png"
-                      alt="verified"
-                      className="animated-check inline-block"
-                      style={{ width: '32px', height: '32px', objectFit: 'contain', animationDelay: `${0.1 + index * 0.1}s` }}
-                    />
+        <section className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="glass-panel p-5">
+            <p className="label">Risk Score</p>
+            <p className="metric">{Math.round(Number(kpis.risk_score ?? 0))}</p>
+          </div>
+          <div className="glass-panel p-5">
+            <p className="label">Checks Passed</p>
+            <p className="metric">
+              {Math.round(Number(kpis.checks_passed ?? 0))}/{Math.round(Number(kpis.total_checks ?? 0))}
+            </p>
+          </div>
+          <div className="glass-panel p-5">
+            <p className="label">Time Saved</p>
+            <p className="metric">{Number(kpis.estimated_time_saved_minutes ?? 0).toFixed(1)} min</p>
+          </div>
+          <div className="glass-panel p-5">
+            <p className="label">Completeness</p>
+            <p className="metric">{pct(kpis.completeness_index ?? explainSummary.completeness_index ?? 0)}</p>
+          </div>
+        </section>
+
+        <div className="grid gap-6 lg:grid-cols-[1.35fr_0.9fr]">
+          <div className="space-y-6">
+            <section className="glass-panel p-6">
+              <h2 className="section-title">Operations Brief</h2>
+              <p className="mt-3 text-xl font-medium text-zinc-100">{operationsBrief.title}</p>
+              <p className="mt-2 text-zinc-300">{operationsBrief.body}</p>
+              <p className="mt-4 rounded-md border border-cyan-400/30 bg-cyan-500/10 px-3 py-2 text-sm text-cyan-200">
+                Next action: {operationsBrief.nextAction}
+              </p>
+            </section>
+
+            <section className="glass-panel p-6">
+              <h2 className="section-title">Issue Evidence</h2>
+              <div className="mt-4 space-y-3">
+                {topWarnings.length === 0 ? (
+                  <div className="rounded-md border border-emerald-400/30 bg-emerald-500/10 px-4 py-3 text-emerald-200">
+                    No high-priority inconsistencies detected.
                   </div>
-                </div>
-            ))}
+                ) : (
+                  topWarnings.map((item, idx) => (
+                    <article key={item.id ?? idx} className="rounded-lg border border-white/10 bg-black/25 p-4">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="rounded bg-rose-500/20 px-2 py-0.5 text-xs uppercase tracking-wider text-rose-200">
+                          {String(item.severity ?? 'medium')}
+                        </span>
+                        <span className="rounded bg-indigo-500/20 px-2 py-0.5 text-xs uppercase tracking-wider text-indigo-200">
+                          confidence {pct((Number(item.confidence ?? 0) || 0) * 100)}
+                        </span>
+                      </div>
+                      <h3 className="mt-2 text-lg font-medium text-zinc-100">
+                        {String(item.flag_name ?? 'unknown').replaceAll('_', ' ')}
+                      </h3>
+                      <p className="mt-1 text-sm text-zinc-300">{String(item.rule ?? '')}</p>
+                      <p className="mt-1 text-xs text-zinc-400">Threshold: {String(item.threshold ?? 'rule-specific')}</p>
+                      <div className="mt-3 space-y-1 text-xs text-zinc-300">
+                        {(item.evidence ?? []).map((ev, i) => (
+                          <div key={i} className="rounded border border-white/10 bg-white/5 px-2 py-1">
+                            <span className="text-cyan-300">{String(ev.path ?? '')}</span>: {String(ev.value ?? '')}
+                          </div>
+                        ))}
+                      </div>
+                    </article>
+                  ))
+                )}
+              </div>
+            </section>
           </div>
 
-          <div className="scroll-reveal-left lg:col-span-4 sticky top-32 space-y-8">
-            <div className="group relative overflow-hidden rounded-sm border border-white/8 bg-surface-container-high p-8 shadow-xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-surface-container-high via-surface-container-high to-secondary/10 opacity-50" />
-              <div className="relative z-10">
-                <h4 className="mb-6 text-[10px] font-bold uppercase tracking-[0.3em] text-on-surface-variant">Final Hash Signature</h4>
-                <div className="break-all font-mono text-sm leading-relaxed tracking-wider text-on-surface opacity-90">
-                  {verificationResultsData.sidebar.hash}
-                </div>
-
-                <div className="mt-8 border-t border-white/10 pt-8">
-                  <div className="mb-2 flex justify-between">
-                    <span className="text-[10px] font-bold uppercase text-on-surface-variant">Verified At</span>
-                    <span className="text-xs font-bold text-on-surface">{verificationResultsData.sidebar.verifiedAt}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-[10px] font-bold uppercase text-on-surface-variant">Nodes Checked</span>
-                    <span className="text-xs font-bold text-secondary">{verificationResultsData.sidebar.nodesChecked}</span>
-                  </div>
-                </div>
+          <aside className="space-y-6">
+            <section className="glass-panel p-6">
+              <h2 className="section-title">Decision Trace</h2>
+              <div className="mt-3 space-y-2 text-sm">
+                <p className="trace-row"><span>Extraction coverage</span><strong>{pct((Number(extraction.coverage_ratio ?? 0) || 0) * 100)}</strong></p>
+                <p className="trace-row"><span>Parse retries</span><strong>{Math.round(Number(extraction.parse_retries ?? 0))}</strong></p>
+                <p className="trace-row"><span>Fallback used</span><strong>{extraction.fallback_used ? 'yes' : 'no'}</strong></p>
+                <p className="trace-row"><span>Total checks</span><strong>{Math.round(Number(explainSummary.total_checks ?? 0))}</strong></p>
+                <p className="trace-row"><span>Flagged checks</span><strong>{Math.round(Number(explainSummary.flagged_checks ?? 0))}</strong></p>
               </div>
-            </div>
+            </section>
 
-            <div className="group relative h-64 overflow-hidden rounded-sm border border-white/5 bg-primary shadow-2xl">
-              <img
-                alt="Industrial Hub"
-                className="h-full w-full object-cover brightness-50 contrast-125 grayscale transition-transform duration-700 group-hover:scale-110"
-                src={verificationResultsData.sidebar.hubImage}
-              />
+            <section className="glass-panel p-6">
+              <h2 className="section-title">Shipment Metadata</h2>
+              <div className="mt-3 space-y-2 text-sm text-zinc-300">
+                <p className="trace-row"><span>Product ID</span><strong>{String((normalized as Record<string, unknown>).product_id ?? 'N/A')}</strong></p>
+                <p className="trace-row"><span>Runtime</span><strong>{Math.round(Number(telemetry.timing?.total_duration_ms ?? 0))} ms</strong></p>
+                <p className="trace-row"><span>Chars extracted</span><strong>{Math.round(Number(extraction.chars_extracted ?? 0))}</strong></p>
+              </div>
+            </section>
 
-              <div className="scanning-overlay absolute inset-0 h-[20%] w-full animate-scan-line bg-[linear-gradient(transparent_0%,rgba(227,30,36,0.1)_50%,transparent_100%)] pointer-events-none" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0)_0%,rgba(0,0,0,0.6)_100%)]" />
-
-              <div className="absolute bottom-4 left-4 right-4 z-20 flex flex-col gap-1">
-                <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-secondary shadow-[0_0_8px_#E31E24] animate-pulse" />
-                  <p className="text-[9px] font-black uppercase tracking-[0.3em] text-white">Live Visual Confirmation</p>
+            <section className="glass-panel p-6">
+              <h2 className="section-title">Final Certificate</h2>
+              <button
+                onClick={handleGenerateReport}
+                disabled={isGeneratingReport}
+                className="mt-3 w-full rounded-lg bg-gradient-to-r from-indigo-500 via-cyan-500 to-fuchsia-500 px-4 py-3 text-sm font-semibold text-black transition hover:brightness-110 disabled:opacity-60"
+              >
+                {isGeneratingReport ? 'Generating Report...' : hasGeneratedReport ? 'Download Again' : 'Download Certificate'}
+              </button>
+              {reportError ? (
+                <div className="mt-3 rounded border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-xs text-rose-200">
+                  {reportError}
                 </div>
-                <p className="text-xs font-bold text-white/80">Terminal Hub: Port Area 7G</p>
-              </div>
-            </div>
-
-            <button
-              onClick={handleGenerateReport}
-              disabled={isGeneratingReport}
-              className="btn-glow relative w-full overflow-hidden rounded-sm bg-secondary py-5 text-sm font-black uppercase tracking-[0.2em] text-white shadow-[0_0_15px_rgba(227,30,36,0.2)] transition-all hover:bg-[#f12a31] hover:shadow-[0_0_30px_rgba(227,30,36,0.5)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
-            >
-              {isGeneratingReport
-                ? 'Generating Report...'
-                : hasGeneratedReport
-                  ? 'Download Again'
-                  : 'Generate Final Certificate'}
-            </button>
-            {reportError ? (
-              <div className="rounded border border-red-500/30 bg-red-500/10 px-3 py-2 text-xs text-red-200">
-                Report generation failed: {reportError}
-              </div>
-            ) : null}
-          </div>
+              ) : null}
+            </section>
+          </aside>
         </div>
-      </main>
-
-      <footer className="relative z-10 w-full border-t border-outline-variant/20 bg-surface py-16">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-10 px-8 md:flex-row">
-          <div className="flex items-center gap-2 text-xl font-black uppercase tracking-tighter text-primary">
-            <span className="flex h-6 w-6 items-center justify-center bg-secondary text-xs text-white">C</span>
-            CLEAR PATH
-          </div>
-          <div className="flex flex-wrap justify-center gap-10">
-            <a className="font-inter text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant transition-colors hover:text-secondary" href="#sec">Security</a>
-            <a className="font-inter text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant transition-colors hover:text-secondary" href="#tos">Terms of Service</a>
-            <a className="font-inter text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant transition-colors hover:text-secondary" href="#api">API Documentation</a>
-            <a className="font-inter text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant transition-colors hover:text-secondary" href="#support">Support</a>
-          </div>
-          <div className="font-inter text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant">
-            (c) 2024 CLEAR PATH INDUSTRIAL. ALL RIGHTS RESERVED.
-          </div>
-        </div>
-      </footer>
+      </div>
     </div>
   )
 }
+
